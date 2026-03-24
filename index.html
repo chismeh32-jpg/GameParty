@@ -1,0 +1,2039 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Party Games">
+<link rel="apple-touch-icon" href="./icono.png">
+<link rel="icon" type="image/png" href="./icono.png">
+<link rel="manifest" href="./manifest.json">
+<title>Party Games 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════ */
+:root {
+  --bg: #08080f;
+  --surface: rgba(255,255,255,0.045);
+  --surface2: rgba(255,255,255,0.075);
+  --surface3: rgba(255,255,255,0.11);
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.20);
+  --text: #f0f0f8;
+  --text2: rgba(220,220,240,0.65);
+  --muted: rgba(200,200,230,0.38);
+  --hint: rgba(200,200,230,0.18);
+
+  /* Game colors */
+  --imp:   #a78bfa; --imp-glow:   rgba(167,139,250,0.4); --imp-bg:   rgba(167,139,250,0.10);
+  --nunca: #34d399; --nunca-glow: rgba(52,211,153,0.4);  --nunca-bg: rgba(52,211,153,0.08);
+  --prob:  #fb7185; --prob-glow:  rgba(251,113,133,0.4); --prob-bg:  rgba(251,113,133,0.08);
+  --hot:   #fb923c; --hot-glow:   rgba(251,146,60,0.4);  --hot-bg:   rgba(251,146,60,0.08);
+  --ruleta:#fbbf24; --ruleta-glow:rgba(251,191,36,0.4);  --ruleta-bg:rgba(251,191,36,0.08);
+  --verd:  #38bdf8; --verd-glow:  rgba(56,189,248,0.4);  --verd-bg:  rgba(56,189,248,0.08);
+  --yosi:  #f472b6; --yosi-glow:  rgba(244,114,182,0.4); --yosi-bg:  rgba(244,114,182,0.08);
+
+  --radius: 20px;
+  --radius-sm: 14px;
+  --radius-xs: 10px;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: env(safe-area-inset-top);
+  /* Grain texture overlay */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient glow background */
+body::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 5%,  rgba(167,139,250,0.13) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 85% 85%, rgba(52,211,153,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 35% at 70% 15%, rgba(251,113,133,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 30% at 10% 75%, rgba(251,191,36,0.06) 0%, transparent 65%);
+}
+/* Noise texture */
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════════
+   APP CONTAINER & SCREENS
+══════════════════════════════════════ */
+#app {
+  position: relative; z-index: 1;
+  max-width: 480px; margin: 0 auto;
+  padding: 24px 18px 100px;
+  padding-left: max(18px, env(safe-area-inset-left));
+  padding-right: max(18px, env(safe-area-inset-right));
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.screen-enter { animation: screenIn 0.35s cubic-bezier(0.22,1,0.36,1) both; }
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.screen-exit { animation: screenOut 0.2s ease-in both; }
+@keyframes screenOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-10px) scale(0.99); }
+}
+
+/* ══════════════════════════════════════
+   HOME SCREEN
+══════════════════════════════════════ */
+.home-header {
+  margin-bottom: 32px;
+  padding-top: 8px;
+}
+.logo-wrap {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 6px;
+}
+.logo-icon {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 8px 24px rgba(0,0,0,0.5);
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(130deg, #a78bfa 0%, #fb7185 45%, #fbbf24 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.logo-tagline {
+  font-size: 13px; color: var(--muted); font-weight: 400;
+  padding-left: 66px; letter-spacing: 0.02em;
+}
+
+/* Player setup */
+.setup-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(20px);
+}
+.setup-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 14px;
+}
+.setup-label {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 700; color: var(--text2);
+  letter-spacing: 0.02em;
+}
+.player-badge {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 12px; font-weight: 700; color: var(--text);
+  font-family: var(--font-display);
+  transition: background 0.2s;
+}
+.input-row { display: flex; gap: 8px; margin-bottom: 14px; }
+input[type=text] {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--text); font-size: 15px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+input[type=text]:focus {
+  border-color: var(--imp);
+  background: rgba(167,139,250,0.07);
+  box-shadow: 0 0 0 3px rgba(167,139,250,0.12);
+}
+input[type=text]::placeholder { color: var(--muted); }
+.add-btn {
+  background: var(--imp);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 13px 18px;
+  color: #fff; font-size: 14px; font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-display);
+  white-space: nowrap;
+  transition: opacity 0.15s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(167,139,250,0.35);
+}
+.add-btn:active { opacity: 0.85; transform: scale(0.95); }
+
+/* Player tags */
+.tags { display: flex; flex-wrap: wrap; gap: 7px; min-height: 8px; }
+.tag {
+  background: rgba(167,139,250,0.12);
+  border: 1px solid rgba(167,139,250,0.22);
+  border-radius: 999px;
+  padding: 6px 8px 6px 14px;
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; color: var(--text);
+  animation: tagPop 0.25s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes tagPop {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.tag-x {
+  background: rgba(255,255,255,0.1); border: none; color: var(--muted);
+  cursor: pointer; font-size: 14px; padding: 0; line-height: 1;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.tag-x:hover { background: rgba(251,113,133,0.2); color: var(--prob); }
+
+/* Mode grid */
+.modes-title {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 700; color: var(--muted);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 12px; display: block;
+}
+.mode-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.mode-card {
+  border-radius: var(--radius);
+  padding: 18px 16px 16px;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s;
+  display: flex; flex-direction: column; gap: 8px;
+  position: relative; overflow: hidden;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+}
+.mode-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.01));
+  pointer-events: none;
+}
+.mode-card:active { transform: scale(0.94); }
+.mode-card[data-mode="impostor"] { background: linear-gradient(145deg, rgba(167,139,250,0.18), rgba(167,139,250,0.06)); border-color: rgba(167,139,250,0.22); }
+.mode-card[data-mode="nunca"]    { background: linear-gradient(145deg, rgba(52,211,153,0.15),  rgba(52,211,153,0.05));  border-color: rgba(52,211,153,0.20);  }
+.mode-card[data-mode="probable"] { background: linear-gradient(145deg, rgba(251,113,133,0.15), rgba(251,113,133,0.05)); border-color: rgba(251,113,133,0.20); }
+.mode-card[data-mode="ruleta"]   { background: linear-gradient(145deg, rgba(251,191,36,0.15),  rgba(251,191,36,0.05));  border-color: rgba(251,191,36,0.20);  }
+.mode-card[data-mode="verdad"]   { background: linear-gradient(145deg, rgba(56,189,248,0.15),  rgba(56,189,248,0.05));  border-color: rgba(56,189,248,0.20);  }
+.mode-card[data-mode="yosino"]   { background: linear-gradient(145deg, rgba(244,114,182,0.15), rgba(244,114,182,0.05)); border-color: rgba(244,114,182,0.20); }
+
+.mode-card[data-mode="verdad"],
+.mode-card[data-mode="yosino"] { grid-column: span 2; flex-direction: row; align-items: center; gap: 16px; padding: 16px 18px; }
+.mode-card[data-mode="verdad"] .mode-info,
+.mode-card[data-mode="yosino"] .mode-info { flex: 1; }
+
+.mode-emoji { font-size: 30px; line-height: 1; flex-shrink: 0; }
+.mode-name { font-family: var(--font-display); font-size: 14px; font-weight: 800; color: var(--text); line-height: 1.25; }
+.mode-desc { font-size: 12px; color: var(--text2); line-height: 1.45; font-weight: 400; }
+.mode-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px; margin-top: 4px; display: inline-block;
+}
+.badge-imp    { background: var(--imp-bg);   color: var(--imp);   border: 1px solid rgba(167,139,250,0.3); }
+.badge-nunca  { background: var(--nunca-bg); color: var(--nunca); border: 1px solid rgba(52,211,153,0.3);  }
+.badge-prob   { background: var(--prob-bg);  color: var(--prob);  border: 1px solid rgba(251,113,133,0.3); }
+.badge-ruleta { background: var(--ruleta-bg);color: var(--ruleta);border: 1px solid rgba(251,191,36,0.3);  }
+.badge-verd   { background: var(--verd-bg);  color: var(--verd);  border: 1px solid rgba(56,189,248,0.3);  }
+.badge-yosi   { background: var(--yosi-bg);  color: var(--yosi);  border: 1px solid rgba(244,114,182,0.3); }
+
+/* Install hint */
+.ios-hint {
+  background: rgba(255,255,255,0.025);
+  border: 1px dashed rgba(255,255,255,0.09);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px; font-size: 12px; color: var(--muted);
+  line-height: 1.65; margin-top: 24px; text-align: center;
+}
+.ios-hint strong { color: rgba(220,220,240,0.6); }
+
+/* ══════════════════════════════════════
+   SHARED GAME UI
+══════════════════════════════════════ */
+.game-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+}
+.back-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 9px 14px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; color: var(--text2);
+  font-family: var(--font-body);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.back-btn:hover, .back-btn:active { color: var(--text); border-color: var(--border2); background: var(--surface3); }
+.game-title {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 800; color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.instr {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 17px;
+  font-size: 13px; color: var(--text2); line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+/* ══════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════ */
+.action-btn {
+  width: 100%; padding: 16px;
+  border-radius: var(--radius);
+  border: none;
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 800;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.12s, box-shadow 0.2s;
+  letter-spacing: 0.02em;
+  position: relative; overflow: hidden;
+}
+.action-btn::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
+  pointer-events: none;
+}
+.action-btn:active { transform: scale(0.96); }
+.action-btn:disabled { opacity: 0.2; cursor: not-allowed; transform: none !important; }
+
+.btn-imp    { background: linear-gradient(135deg, #a78bfa, #7c5af0); color: #fff; box-shadow: 0 4px 24px rgba(167,139,250,0.35); }
+.btn-nunca  { background: linear-gradient(135deg, #34d399, #0fb87e); color: #021a0f; box-shadow: 0 4px 24px rgba(52,211,153,0.35); }
+.btn-prob   { background: linear-gradient(135deg, #fb7185, #e03050); color: #fff; box-shadow: 0 4px 24px rgba(251,113,133,0.35); }
+.btn-ruleta { background: linear-gradient(135deg, #fbbf24, #d97706); color: #1a0f00; box-shadow: 0 4px 24px rgba(251,191,36,0.35); }
+.btn-verd   { background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #031520; box-shadow: 0 4px 24px rgba(56,189,248,0.35); }
+.btn-yosi   { background: linear-gradient(135deg, #f472b6, #db2777); color: #fff; box-shadow: 0 4px 24px rgba(244,114,182,0.35); }
+
+.btn-imp:active    { box-shadow: 0 2px 12px rgba(167,139,250,0.25); }
+.btn-nunca:active  { box-shadow: 0 2px 12px rgba(52,211,153,0.25); }
+.btn-prob:active   { box-shadow: 0 2px 12px rgba(251,113,133,0.25); }
+.btn-ruleta:active { box-shadow: 0 2px 12px rgba(251,191,36,0.25); }
+.btn-verd:active   { box-shadow: 0 2px 12px rgba(56,189,248,0.25); }
+.btn-yosi:active   { box-shadow: 0 2px 12px rgba(244,114,182,0.25); }
+
+/* Secondary ghost button */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-family: var(--font-body);
+  font-size: 13px; font-weight: 500;
+  padding: 11px;
+  border-radius: var(--radius-sm);
+  width: 100%; cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  margin-top: 8px;
+}
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); background: var(--surface2); }
+
+/* ══════════════════════════════════════
+   BIG CARD — the main game card
+══════════════════════════════════════ */
+.big-card {
+  background: linear-gradient(150deg, rgba(255,255,255,0.065), rgba(255,255,255,0.02));
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  padding: 38px 26px;
+  min-height: 220px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; position: relative; margin-bottom: 16px;
+  box-shadow: 0 10px 50px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px);
+  transition: transform 0.2s cubic-bezier(0.22,1,0.36,1);
+}
+.big-card.card-flip {
+  animation: cardFlip 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes cardFlip {
+  0%   { transform: scale(0.94) rotateY(-4deg); opacity: 0.5; }
+  100% { transform: scale(1) rotateY(0); opacity: 1; }
+}
+
+.card-pill {
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 999px; margin-bottom: 20px;
+  font-family: var(--font-display);
+}
+.pill-imp    { background: var(--imp-bg);   color: var(--imp);   border: 1px solid rgba(167,139,250,0.3); }
+.pill-nunca  { background: var(--nunca-bg); color: var(--nunca); border: 1px solid rgba(52,211,153,0.3);  }
+.pill-prob   { background: var(--prob-bg);  color: var(--prob);  border: 1px solid rgba(251,113,133,0.3); }
+.pill-verd   { background: var(--verd-bg);  color: var(--verd);  border: 1px solid rgba(56,189,248,0.3);  }
+.pill-yosi   { background: var(--yosi-bg);  color: var(--yosi);  border: 1px solid rgba(244,114,182,0.3); }
+
+.card-text {
+  font-family: var(--font-display);
+  font-size: 21px; font-weight: 700; color: var(--text); line-height: 1.4;
+}
+.card-sub { font-size: 12px; color: var(--muted); margin-top: 14px; line-height: 1.6; letter-spacing: 0.04em; }
+.card-count {
+  font-size: 11px; color: var(--muted); text-align: right;
+  margin-bottom: 10px; font-weight: 600; font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+/* Swipe indicator */
+.swipe-hint {
+  font-size: 12px; color: var(--hint); text-align: center; margin: 6px 0 16px;
+}
+
+/* ══════════════════════════════════════
+   PROGRESS BAR
+══════════════════════════════════════ */
+.progress-wrap {
+  background: rgba(255,255,255,0.06); border-radius: 999px; height: 3px;
+  margin-bottom: 18px; overflow: hidden;
+}
+.progress-bar {
+  height: 100%; border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.22,1,0.36,1);
+}
+.progress-imp    { background: var(--imp); }
+.progress-nunca  { background: var(--nunca); }
+.progress-prob   { background: var(--prob); }
+.progress-verd   { background: var(--verd); }
+.progress-yosi   { background: var(--yosi); }
+
+/* ══════════════════════════════════════
+   DRINKS NOTE
+══════════════════════════════════════ */
+.drinks-note {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 13px; color: var(--text2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px; margin: 0 0 16px;
+}
+
+/* ══════════════════════════════════════
+   IMPOSTOR
+══════════════════════════════════════ */
+.cat-big {
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 900;
+  letter-spacing: -0.5px;
+}
+.imp-role { font-weight: 700; font-size: 14px; margin-bottom: 8px; letter-spacing: 0.02em; }
+.imp-warn { color: var(--prob); }
+
+.imp-card-wrap {
+  position: relative;
+}
+.imp-reveal-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8,8,15,0.85);
+  border-radius: 26px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+.imp-reveal-overlay.hidden { opacity: 0; pointer-events: none; }
+.imp-reveal-icon { font-size: 36px; }
+.imp-reveal-text {
+  font-family: var(--font-display); font-size: 15px; font-weight: 800;
+  color: var(--text2); letter-spacing: 0.04em;
+}
+.imp-reveal-sub { font-size: 12px; color: var(--muted); }
+
+/* Player progress strip */
+.player-progress {
+  display: flex; gap: 6px; margin-bottom: 20px;
+}
+.pp-dot {
+  height: 4px; flex: 1; border-radius: 999px;
+  background: var(--surface3);
+  transition: background 0.3s;
+}
+.pp-dot.done { background: var(--imp); }
+.pp-dot.current { background: rgba(167,139,250,0.5); animation: dotPulse 1.2s infinite; }
+@keyframes dotPulse {
+  0%, 100% { background: rgba(167,139,250,0.5); }
+  50% { background: var(--imp); }
+}
+
+/* ══════════════════════════════════════
+   VOTE / RESULT
+══════════════════════════════════════ */
+.reveal-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px; text-align: center; margin-bottom: 16px;
+}
+.reveal-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 8px; font-weight: 700; font-family: var(--font-display); }
+.reveal-word { font-family: var(--font-display); font-size: 26px; font-weight: 900; color: var(--text); }
+
+.vote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.vote-btn {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 12px; text-align: center;
+  cursor: pointer; font-size: 14px; font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-display);
+  transition: all 0.15s cubic-bezier(0.22,1,0.36,1);
+  letter-spacing: 0.01em;
+}
+.vote-btn:hover { border-color: var(--border2); background: var(--surface2); transform: translateY(-1px); }
+.vote-btn.sel { border-color: var(--imp); background: var(--imp-bg); color: var(--imp); box-shadow: 0 0 0 1px var(--imp), 0 4px 16px rgba(167,139,250,0.2); }
+
+.result-card { border-radius: var(--radius); padding: 24px; text-align: center; margin-bottom: 16px; }
+.result-win  { background: rgba(52,211,153,0.08);  border: 1px solid rgba(52,211,153,0.28);  }
+.result-lose { background: rgba(251,113,133,0.08); border: 1px solid rgba(251,113,133,0.28); }
+
+.result-emoji { font-size: 40px; margin-bottom: 10px; display: block; }
+.result-title { font-family: var(--font-display); font-size: 22px; font-weight: 900; margin-bottom: 6px; }
+.result-win  .result-title { color: var(--nunca); }
+.result-lose .result-title { color: var(--prob); }
+.result-desc { font-size: 14px; line-height: 1.55; }
+.result-win  .result-desc { color: rgba(52,211,153,0.75);  }
+.result-lose .result-desc { color: rgba(251,113,133,0.75); }
+
+.score-section { margin-bottom: 16px; }
+.score-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 10px; font-weight: 700; font-family: var(--font-display); }
+.score-list { display: flex; flex-direction: column; gap: 6px; }
+.score-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; border-radius: var(--radius-sm);
+  background: var(--surface); border: 1px solid var(--border);
+  font-size: 14px; font-weight: 600;
+  transition: background 0.2s;
+}
+.score-row.top { background: rgba(167,139,250,0.1); border-color: rgba(167,139,250,0.25); }
+.score-pts { font-family: var(--font-display); font-weight: 900; color: var(--imp); font-size: 18px; }
+.score-rank { font-size: 16px; margin-right: 10px; }
+
+/* ══════════════════════════════════════
+   RULETA (WHEEL)
+══════════════════════════════════════ */
+#wheel-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+.wheel-outer {
+  position: relative;
+  width: 300px; height: 300px;
+}
+.wheel-pointer {
+  position: absolute;
+  top: -8px; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 22px solid var(--ruleta);
+  filter: drop-shadow(0 2px 8px rgba(251,191,36,0.6));
+  z-index: 5;
+}
+#wheel-canvas {
+  display: block; border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.07), 0 0 60px rgba(251,191,36,0.15), 0 10px 40px rgba(0,0,0,0.5);
+}
+.winner-box {
+  background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,191,36,0.05));
+  border: 1px solid rgba(251,191,36,0.35);
+  border-radius: var(--radius); padding: 24px; text-align: center; margin-bottom: 16px;
+  box-shadow: 0 4px 30px rgba(251,191,36,0.12);
+  animation: winnerReveal 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes winnerReveal {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.winner-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(251,191,36,0.55); margin-bottom: 8px; font-weight: 700; font-family: var(--font-display); }
+.winner-name { font-family: var(--font-display); font-size: 34px; font-weight: 900; color: var(--ruleta); }
+.winner-confetti { font-size: 28px; letter-spacing: 4px; margin-top: 6px; }
+
+/* ══════════════════════════════════════
+   VERDAD O RETO
+══════════════════════════════════════ */
+.vr-player-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 14px;
+}
+.vr-turn-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-family: var(--font-display); }
+.vr-player-name { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--text); }
+.vr-player-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 16px; font-weight: 800; color: #fff;
+  flex-shrink: 0;
+}
+
+.vr-choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.vr-choice-btn {
+  padding: 30px 16px; border-radius: var(--radius); border: none;
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 800;
+  cursor: pointer; transition: opacity 0.2s, transform 0.12s, box-shadow 0.15s;
+  position: relative; overflow: hidden;
+  letter-spacing: 0.02em;
+}
+.vr-choice-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent); pointer-events: none; }
+.vr-choice-btn:active { transform: scale(0.94); }
+.vr-verdad { background: linear-gradient(135deg, #38bdf8, #0ea5e9); color: #031520; box-shadow: 0 4px 24px rgba(56,189,248,0.35); }
+.vr-reto   { background: linear-gradient(135deg, #fb7185, #e03050); color: #fff; box-shadow: 0 4px 24px rgba(251,113,133,0.35); }
+
+/* ══════════════════════════════════════
+   YO SÍ / YO NO
+══════════════════════════════════════ */
+.yosino-votes {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+}
+.yosino-vote-btn {
+  padding: 18px 12px; border-radius: var(--radius); border: 2px solid transparent;
+  font-family: var(--font-display); font-size: 17px; font-weight: 800;
+  cursor: pointer; transition: all 0.15s cubic-bezier(0.22,1,0.36,1);
+  text-align: center; position: relative; overflow: hidden;
+}
+.yosino-vote-btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.1), transparent); pointer-events: none; }
+.yosino-si {
+  background: linear-gradient(135deg, rgba(52,211,153,0.2), rgba(52,211,153,0.08));
+  border-color: rgba(52,211,153,0.3); color: var(--nunca);
+}
+.yosino-no {
+  background: linear-gradient(135deg, rgba(251,113,133,0.2), rgba(251,113,133,0.08));
+  border-color: rgba(251,113,133,0.3); color: var(--prob);
+}
+.yosino-si.voted { background: linear-gradient(135deg, rgba(52,211,153,0.35), rgba(52,211,153,0.15)); border-color: var(--nunca); box-shadow: 0 0 0 1px var(--nunca); }
+.yosino-no.voted { background: linear-gradient(135deg, rgba(251,113,133,0.35), rgba(251,113,133,0.15)); border-color: var(--prob); box-shadow: 0 0 0 1px var(--prob); }
+
+.yosino-result {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  text-align: center; margin-bottom: 12px;
+  font-size: 13px; color: var(--text2); line-height: 1.6;
+  display: none;
+}
+.yosino-result.show { display: block; animation: screenIn 0.3s ease; }
+
+.cat-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 999px; margin-bottom: 16px;
+}
+
+/* ══════════════════════════════════════
+   ROUND HEADER BADGE
+══════════════════════════════════════ */
+.round-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 4px 12px 4px 10px;
+  font-size: 12px; font-weight: 700; color: var(--text2);
+  font-family: var(--font-display);
+  margin-left: auto; flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════
+   PLAYER LIST (setup preview)
+══════════════════════════════════════ */
+.player-list-preview {
+  display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px;
+}
+.player-pill-preview {
+  background: var(--imp-bg);
+  border: 1px solid rgba(167,139,250,0.2);
+  border-radius: 999px; padding: 6px 14px;
+  font-size: 13px; font-weight: 600; color: var(--imp);
+}
+
+/* ══════════════════════════════════════
+   TOAST NOTIFICATION
+══════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,30,45,0.95); border: 1px solid var(--border2);
+  border-radius: var(--radius-sm); padding: 12px 20px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 999;
+  white-space: nowrap; backdrop-filter: blur(20px);
+  animation: toastIn 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ══════════════════════════════════════
+   CONFETTI PARTICLE
+══════════════════════════════════════ */
+.confetti-particle {
+  position: fixed; pointer-events: none; z-index: 9999;
+  width: 8px; height: 8px; border-radius: 2px;
+  animation: confettiFall 1.2s ease-in forwards;
+}
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(400px) rotate(720deg) scale(0.5); opacity: 0; }
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE TWEAKS
+══════════════════════════════════════ */
+@media (max-height: 700px) {
+  .big-card { min-height: 180px; padding: 28px 20px; }
+  .card-text { font-size: 18px; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ════════════════ HOME ════════════════ -->
+  <div id="screen-home" class="screen">
+    <div class="home-header">
+      <div class="logo-wrap">
+        <img src="./icono.png" class="logo-icon" alt="Party Games">
+        <div class="logo-text">Party Games</div>
+      </div>
+      <p class="logo-tagline">Añade jugadores y elige un juego 🎉</p>
+    </div>
+
+    <div class="setup-card">
+      <div class="setup-header">
+        <span class="setup-label">Jugadores</span>
+        <span class="player-badge" id="home-player-count">0</span>
+      </div>
+      <div class="input-row">
+        <input type="text" id="home-input" placeholder="Nombre del jugador..." maxlength="16"
+          onkeydown="if(event.key==='Enter')homeAddPlayer()">
+        <button class="add-btn" onclick="homeAddPlayer()">+ Añadir</button>
+      </div>
+      <div class="tags" id="home-tags"></div>
+    </div>
+
+    <span class="modes-title">Elige un juego</span>
+    <div class="mode-grid">
+      <div class="mode-card" data-mode="impostor" onclick="startMode('impostor')">
+        <div class="mode-emoji">🕵️</div>
+        <div class="mode-info">
+          <div class="mode-name">El Impostor</div>
+          <div class="mode-desc">Adivina quién no sabe la palabra</div>
+          <span class="mode-badge badge-imp">3+ jugadores</span>
+        </div>
+      </div>
+      <div class="mode-card" data-mode="nunca" onclick="startMode('nunca')">
+        <div class="mode-emoji">🍹</div>
+        <div class="mode-info">
+          <div class="mode-name">Yo Nunca</div>
+          <div class="mode-desc">Confiesa o bebe</div>
+          <span class="mode-badge badge-nunca">+180 cartas</span>
+        </div>
+      </div>
+      <div class="mode-card" data-mode="probable" onclick="startMode('probable')">
+        <div class="mode-emoji">🎯</div>
+        <div class="mode-info">
+          <div class="mode-name">¿Quién es más probable?</div>
+          <div class="mode-desc">Señala al culpable del grupo</div>
+          <span class="mode-badge badge-prob">+200 cartas</span>
+        </div>
+      </div>
+      <div class="mode-card" data-mode="ruleta" onclick="startMode('ruleta')">
+        <div class="mode-emoji">🎰</div>
+        <div class="mode-info">
+          <div class="mode-name">Ruleta</div>
+          <div class="mode-desc">Gira y elige al siguiente</div>
+          <span class="mode-badge badge-ruleta">2+ jugadores</span>
+        </div>
+      </div>
+      <div class="mode-card" data-mode="verdad" onclick="startMode('verdad')">
+        <div class="mode-emoji">🔥</div>
+        <div class="mode-info">
+          <div class="mode-name">Verdad o Reto</div>
+          <div class="mode-desc">Por turnos — cada uno elige su destino</div>
+          <span class="mode-badge badge-verd">2+ jugadores</span>
+        </div>
+      </div>
+      <div class="mode-card" data-mode="yosino" onclick="startMode('yosino')">
+        <div class="mode-emoji">🙋</div>
+        <div class="mode-info">
+          <div class="mode-name">Yo sí / Yo no</div>
+          <div class="mode-desc">Red flags, debates y situaciones</div>
+          <span class="mode-badge badge-yosi">+100 preguntas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ios-hint">
+      <strong>📱 iPhone:</strong> Abre en Safari → <strong>Compartir</strong> → <strong>Añadir a pantalla de inicio</strong>
+    </div>
+  </div>
+
+  <!-- ════════════════ IMPOSTOR SETUP ════════════════ -->
+  <div id="screen-impostor-setup" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Volver</button>
+      <span class="game-title">🕵️ El Impostor</span>
+    </div>
+    <div class="instr">
+      Todos ven la palabra secreta menos el impostor, que <strong style="color:var(--text)">solo conoce la categoría</strong>.
+      Dan pistas, votan quién creen que es el impostor y se revelan los puntos.
+    </div>
+    <div class="player-list-preview" id="imp-player-preview"></div>
+    <button class="action-btn btn-imp" onclick="startImpostor()">Empezar juego →</button>
+  </div>
+
+  <!-- ════════════════ IMPOSTOR CARDS ════════════════ -->
+  <div id="screen-impostor-cards" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="confirmExit()">← Salir</button>
+      <span class="game-title">🕵️ El Impostor</span>
+      <span class="round-badge" id="imp-round-badge">Ronda 1</span>
+    </div>
+    <div class="player-progress" id="imp-player-progress"></div>
+    <div class="imp-card-wrap" id="imp-card-container"></div>
+  </div>
+
+  <!-- ════════════════ IMPOSTOR VOTE ════════════════ -->
+  <div id="screen-impostor-vote" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="confirmExit()">← Salir</button>
+      <span class="game-title">🗳️ Votación</span>
+    </div>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:16px;line-height:1.6;">
+      Cada jugador da <strong>una pista</strong> sin decir la palabra. ¿Quién creen que es el impostor?
+    </p>
+    <div class="reveal-box">
+      <p class="reveal-label">Categoría de esta ronda</p>
+      <p class="reveal-word" id="imp-cat-reveal">—</p>
+    </div>
+    <div class="vote-grid" id="imp-vote-list"></div>
+    <button class="action-btn btn-imp" id="imp-reveal-btn" onclick="revealImpostor()" disabled>
+      Revelar resultado
+    </button>
+  </div>
+
+  <!-- ════════════════ IMPOSTOR RESULT ════════════════ -->
+  <div id="screen-impostor-result" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Salir</button>
+      <span class="game-title">🏆 Resultado</span>
+    </div>
+    <div id="imp-result-box"></div>
+    <div class="reveal-box" style="margin-bottom:16px;">
+      <p class="reveal-label">La palabra secreta era</p>
+      <p class="reveal-word" id="imp-word-reveal" style="color:var(--nunca)">—</p>
+    </div>
+    <div class="score-section" id="imp-scores"></div>
+    <button class="action-btn btn-imp" onclick="nextImpostorRound()" style="margin-bottom:10px;">Siguiente ronda →</button>
+    <button class="btn-ghost" onclick="goHome()">Volver al menú</button>
+  </div>
+
+  <!-- ════════════════ YO NUNCA ════════════════ -->
+  <div id="screen-nunca" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Salir</button>
+      <span class="game-title">🍹 Yo Nunca</span>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar progress-nunca" id="nunca-progress" style="width:0%"></div></div>
+    <div class="card-count" id="nunca-count">Carta 1 de 180</div>
+    <div class="big-card" id="nunca-card">
+      <span class="card-pill pill-nunca">Yo nunca...</span>
+      <p class="card-text" id="nunca-text">—</p>
+    </div>
+    <div class="drinks-note">🍹 Si lo has hecho → <strong style="color:var(--nunca)">bebe</strong></div>
+    <button class="action-btn btn-nunca" onclick="nextNunca()">Siguiente carta →</button>
+  </div>
+
+  <!-- ════════════════ PROBABLE ════════════════ -->
+  <div id="screen-probable" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Salir</button>
+      <span class="game-title">🎯 ¿Quién es más probable?</span>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar progress-prob" id="prob-progress" style="width:0%"></div></div>
+    <div class="card-count" id="prob-count">Carta 1 de 200</div>
+    <div class="big-card" id="prob-card">
+      <span class="card-pill pill-prob">¿Quién es más probable...</span>
+      <p class="card-text" id="prob-text">—</p>
+    </div>
+    <p class="swipe-hint">👆 Señala al culpable</p>
+    <button class="action-btn btn-prob" onclick="nextProb()">Siguiente carta →</button>
+  </div>
+
+  <!-- ════════════════ RULETA ════════════════ -->
+  <div id="screen-ruleta" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Salir</button>
+      <span class="game-title">🎰 Ruleta</span>
+    </div>
+    <div id="wheel-wrap">
+      <div class="wheel-outer">
+        <div class="wheel-pointer"></div>
+        <canvas id="wheel-canvas" width="300" height="300"></canvas>
+      </div>
+      <button id="spin-btn" class="action-btn btn-ruleta" style="margin-top:18px;width:100%;" onclick="spinWheel()">¡Girar la ruleta! 🎰</button>
+    </div>
+    <div id="winner-display"></div>
+  </div>
+
+  <!-- ════════════════ VERDAD O RETO ════════════════ -->
+  <div id="screen-verdad" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Salir</button>
+      <span class="game-title">🔥 Verdad o Reto</span>
+    </div>
+    <div class="vr-player-card" id="vr-player-box">
+      <div class="vr-player-avatar" id="vr-avatar">?</div>
+      <div>
+        <div class="vr-turn-label">Le toca a</div>
+        <div class="vr-player-name" id="vr-current-player">—</div>
+      </div>
+    </div>
+    <div id="vr-choice-screen">
+      <div class="vr-choice-grid">
+        <button class="vr-choice-btn vr-verdad" onclick="vrPick('verdad')">💬 Verdad</button>
+        <button class="vr-choice-btn vr-reto" onclick="vrPick('reto')">🔥 Reto</button>
+      </div>
+      <button class="btn-ghost" onclick="vrPass()">Saltar turno →</button>
+    </div>
+    <div id="vr-card-screen" style="display:none;">
+      <div class="big-card" id="vr-card">
+        <span class="card-pill" id="vr-pill">Verdad</span>
+        <p class="card-text" id="vr-card-text">—</p>
+      </div>
+      <button class="action-btn" id="vr-next-btn" onclick="vrNext()">Siguiente jugador →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════ YO SÍ / YO NO ════════════════ -->
+  <div id="screen-yosino" class="screen">
+    <div class="game-header">
+      <button class="back-btn" onclick="goHome()">← Salir</button>
+      <span class="game-title">🙋 Yo sí / Yo no</span>
+    </div>
+    <div class="instr">
+      Se lee la pregunta en voz alta. Cada uno dice <strong style="color:var(--nunca)">Yo sí</strong> o <strong style="color:var(--prob)">Yo no</strong>.
+      El que esté solo/a en su respuesta 🍹 <strong style="color:var(--text)">bebe</strong>.
+    </div>
+    <div class="progress-wrap"><div class="progress-bar progress-yosi" id="yosino-progress" style="width:0%"></div></div>
+    <div class="card-count" id="yosino-count">Pregunta 1</div>
+    <div class="big-card" id="yosino-card">
+      <span class="cat-tag" id="yosino-cat-tag" style="background:rgba(244,114,182,0.12);color:var(--yosi);border:1px solid rgba(244,114,182,0.25);">🙋 Yo sí / Yo no</span>
+      <p class="card-text" id="yosino-text">—</p>
+    </div>
+    <div class="yosino-votes">
+      <button class="yosino-vote-btn yosino-si" id="yosino-btn-si" onclick="yosinoVote('si')">Yo sí 🙋</button>
+      <button class="yosino-vote-btn yosino-no" id="yosino-btn-no" onclick="yosinoVote('no')">Yo no 🙅</button>
+    </div>
+    <div class="yosino-result" id="yosino-result"></div>
+    <button class="action-btn btn-yosi" onclick="nextYosino()">Siguiente →</button>
+  </div>
+
+</div>
+
+<script>
+// ══════════════════════════════════════════
+//  UTILS
+// ══════════════════════════════════════════
+function shuffle(a) {
+  const b = [...a];
+  for (let i = b.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
+  }
+  return b;
+}
+
+function showScreen(id) {
+  const current = document.querySelector('.screen.active');
+  const next = document.getElementById(id);
+  if (current) {
+    current.classList.remove('active');
+  }
+  next.classList.add('active', 'screen-enter');
+  setTimeout(() => next.classList.remove('screen-enter'), 400);
+  window.scrollTo(0, 0);
+}
+
+function goHome() { showScreen('screen-home'); }
+
+function showToast(msg, duration = 2000) {
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), duration);
+}
+
+function confirmExit() {
+  if (confirm('¿Salir del juego? Se perderá el progreso.')) goHome();
+}
+
+function triggerConfetti(x, y) {
+  const colors = ['#a78bfa','#34d399','#fb7185','#fbbf24','#38bdf8','#f472b6'];
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-particle';
+    el.style.cssText = `left:${x + (Math.random()-0.5)*120}px;top:${y}px;background:${colors[i%colors.length]};animation-delay:${Math.random()*0.3}s;animation-duration:${0.9+Math.random()*0.5}s;transform:rotate(${Math.random()*360}deg)`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1500);
+  }
+}
+
+// Avatar colors
+const AVATAR_COLORS = ['#7c5af0','#0fb87e','#e03050','#d97706','#0ea5e9','#db2777','#ea580c','#65a30d'];
+function getAvatarColor(name) {
+  let hash = 0;
+  for (let c of name) hash = (hash * 31 + c.charCodeAt(0)) | 0;
+  return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
+}
+
+// ══════════════════════════════════════════
+//  GLOBAL PLAYERS
+// ══════════════════════════════════════════
+let globalPlayers = ['Geroy', 'Judith', 'Lara', 'Xerxi', 'Bruno'];
+
+function homeAddPlayer() {
+  const inp = document.getElementById('home-input');
+  const n = inp.value.trim();
+  if (!n) return;
+  if (globalPlayers.includes(n)) { showToast('⚠️ ' + n + ' ya está en la lista'); inp.value = ''; return; }
+  if (globalPlayers.length >= 10) { showToast('Máximo 10 jugadores'); return; }
+  globalPlayers.push(n);
+  inp.value = '';
+  renderHomeTags();
+  inp.focus();
+}
+
+function removeHomePlayer(n) {
+  globalPlayers = globalPlayers.filter(p => p !== n);
+  renderHomeTags();
+}
+
+function renderHomeTags() {
+  const tagsEl = document.getElementById('home-tags');
+  tagsEl.innerHTML = globalPlayers.map(p =>
+    `<div class="tag" style="background:${getAvatarColor(p)}22;border-color:${getAvatarColor(p)}44;color:var(--text)">
+      ${p}<button class="tag-x" onclick="removeHomePlayer('${p.replace(/'/g,"\\'")}')">×</button>
+    </div>`
+  ).join('');
+  document.getElementById('home-player-count').textContent = globalPlayers.length;
+}
+
+document.addEventListener('DOMContentLoaded', renderHomeTags);
+
+function startMode(mode) {
+  if (mode === 'impostor') {
+    if (globalPlayers.length < 3) { showToast('⚠️ Necesitas al menos 3 jugadores'); return; }
+    document.getElementById('imp-player-preview').innerHTML = globalPlayers.map(p =>
+      `<div class="player-pill-preview">${p}</div>`).join('');
+    showScreen('screen-impostor-setup');
+  }
+  if (mode === 'nunca')    { initNunca();  showScreen('screen-nunca'); }
+  if (mode === 'probable') { initProb();   showScreen('screen-probable'); }
+  if (mode === 'ruleta')   { initWheel();  showScreen('screen-ruleta'); }
+  if (mode === 'verdad') {
+    if (globalPlayers.length < 2) { showToast('⚠️ Necesitas al menos 2 jugadores'); return; }
+    initVerdad(); showScreen('screen-verdad');
+  }
+  if (mode === 'yosino') { initYosino(); showScreen('screen-yosino'); }
+}
+
+// ══════════════════════════════════════════
+//  IMPOSTOR DATA
+// ══════════════════════════════════════════
+const IMP_WORDS = [
+  {cat:'YouTubers españoles',word:'Vegeta777'},{cat:'YouTubers españoles',word:'TheGrefg'},
+  {cat:'YouTubers españoles',word:'ElRubius'},{cat:'YouTubers españoles',word:'AuronPlay'},
+  {cat:'YouTubers españoles',word:'Willyrex'},{cat:'YouTubers españoles',word:'Makiman'},
+  {cat:'YouTubers españoles',word:'Xokas'},{cat:'YouTubers españoles',word:'Luzu'},
+  {cat:'YouTubers españoles',word:'Ibai'},{cat:'YouTubers españoles',word:'Perxitaa'},
+  {cat:'Streamers internacionales',word:'xQc'},{cat:'Streamers internacionales',word:'Pokimane'},
+  {cat:'Streamers internacionales',word:'Ninja'},{cat:'Streamers internacionales',word:'MrBeast'},
+  {cat:'Redes sociales',word:'TikTok'},{cat:'Redes sociales',word:'Instagram'},
+  {cat:'Redes sociales',word:'Twitter/X'},{cat:'Redes sociales',word:'BeReal'},
+  {cat:'Redes sociales',word:'Snapchat'},{cat:'Redes sociales',word:'Threads'},
+  {cat:'Videojuegos',word:'Minecraft'},{cat:'Videojuegos',word:'Fortnite'},
+  {cat:'Videojuegos',word:'Among Us'},{cat:'Videojuegos',word:'GTA V'},
+  {cat:'Videojuegos',word:'Valorant'},{cat:'Videojuegos',word:'League of Legends'},
+  {cat:'Videojuegos',word:'Roblox'},{cat:'Videojuegos',word:'FIFA'},
+  {cat:'Videojuegos',word:'Call of Duty'},{cat:'Videojuegos',word:'Apex Legends'},
+  {cat:'Videojuegos',word:'Clash Royale'},{cat:'Videojuegos',word:'Pokémon GO'},
+  {cat:'Aplicaciones del móvil',word:'WhatsApp'},{cat:'Aplicaciones del móvil',word:'Telegram'},
+  {cat:'Aplicaciones del móvil',word:'Spotify'},{cat:'Aplicaciones del móvil',word:'Shazam'},
+  {cat:'Aplicaciones del móvil',word:'Duolingo'},{cat:'Aplicaciones del móvil',word:'Notion'},
+  {cat:'Aplicaciones del móvil',word:'Google Maps'},{cat:'Aplicaciones del móvil',word:'Cabify'},
+  {cat:'Marcas de ropa',word:'Nike'},{cat:'Marcas de ropa',word:'Adidas'},
+  {cat:'Marcas de ropa',word:'Zara'},{cat:'Marcas de ropa',word:'Stradivarius'},
+  {cat:'Marcas de ropa',word:'Pull&Bear'},{cat:'Marcas de ropa',word:'Supreme'},
+  {cat:'Marcas de ropa',word:'Bershka'},{cat:'Marcas de ropa',word:'Lefties'},
+  {cat:'Comida rápida',word:"McDonald's"},{cat:'Comida rápida',word:'Burger King'},
+  {cat:'Comida rápida',word:'KFC'},{cat:'Comida rápida',word:"Domino's Pizza"},
+  {cat:'Comida rápida',word:'Telepizza'},{cat:'Comida rápida',word:'Five Guys'},
+  {cat:'Bebidas',word:'Coca-Cola'},{cat:'Bebidas',word:'Pepsi'},
+  {cat:'Bebidas',word:'Fanta'},{cat:'Bebidas',word:'Red Bull'},
+  {cat:'Bebidas',word:'Monster'},{cat:'Bebidas',word:'Aquarius'},
+  {cat:'Plataformas streaming',word:'Netflix'},{cat:'Plataformas streaming',word:'HBO Max'},
+  {cat:'Plataformas streaming',word:'Disney+'},{cat:'Plataformas streaming',word:'Prime Video'},
+  {cat:'Plataformas streaming',word:'Twitch'},{cat:'Plataformas streaming',word:'Apple TV+'},
+  {cat:'Artistas urbanos',word:'Bad Bunny'},{cat:'Artistas urbanos',word:'J Balvin'},
+  {cat:'Artistas urbanos',word:'Quevedo'},{cat:'Artistas urbanos',word:'Bizarrap'},
+  {cat:'Artistas urbanos',word:'Myke Towers'},{cat:'Artistas urbanos',word:'Rauw Alejandro'},
+  {cat:'Artistas urbanos',word:'Karol G'},{cat:'Artistas urbanos',word:'Feid'},
+  {cat:'Artistas urbanos',word:'Anuel AA'},{cat:'Artistas urbanos',word:'Jhayco'},
+  {cat:'Series españolas',word:'La Casa de Papel'},{cat:'Series españolas',word:'Élite'},
+  {cat:'Series españolas',word:'Vis a Vis'},{cat:'Series españolas',word:'El Pueblo'},
+  {cat:'Series internacionales',word:'Breaking Bad'},{cat:'Series internacionales',word:'Stranger Things'},
+  {cat:'Series internacionales',word:'Game of Thrones'},{cat:'Series internacionales',word:'Peaky Blinders'},
+  {cat:'Series internacionales',word:'Black Mirror'},{cat:'Series internacionales',word:'Los Bridgerton'},
+  {cat:'Deportistas',word:'Messi'},{cat:'Deportistas',word:'Cristiano Ronaldo'},
+  {cat:'Deportistas',word:'Neymar'},{cat:'Deportistas',word:'Mbappé'},
+  {cat:'Deportistas',word:'Rafa Nadal'},{cat:'Deportistas',word:'Carlos Alcaraz'},
+  {cat:'Deportistas',word:'LeBron James'},{cat:'Deportistas',word:'Alexia Putellas'},
+  {cat:'Emojis populares',word:'💀'},{cat:'Emojis populares',word:'😭'},
+  {cat:'Emojis populares',word:'🔥'},{cat:'Emojis populares',word:'🫠'},
+  {cat:'Emojis populares',word:'🥹'},{cat:'Emojis populares',word:'💅'},
+  {cat:'Consolas',word:'PlayStation 5'},{cat:'Consolas',word:'Xbox Series X'},
+  {cat:'Consolas',word:'Nintendo Switch'},{cat:'Consolas',word:'Steam Deck'},
+  {cat:'Coches de lujo',word:'Ferrari'},{cat:'Coches de lujo',word:'Lamborghini'},
+  {cat:'Coches de lujo',word:'Porsche'},{cat:'Coches de lujo',word:'Bugatti'},
+  {cat:'Destinos de fiesta',word:'Ibiza'},{cat:'Destinos de fiesta',word:'Benidorm'},
+  {cat:'Destinos de fiesta',word:'Magaluf'},{cat:'Destinos de fiesta',word:'Salou'},
+  {cat:'Snacks',word:'Doritos'},{cat:'Snacks',word:'Cheetos'},
+  {cat:'Snacks',word:'Pringles'},{cat:'Snacks',word:'Oreo'},
+  {cat:'Snacks',word:'Ganchitos'},{cat:'Snacks',word:'Ruffles'},
+  {cat:'Zapatillas',word:'Air Jordan'},{cat:'Zapatillas',word:'Yeezy'},
+  {cat:'Zapatillas',word:'New Balance 550'},{cat:'Zapatillas',word:'Air Force 1'},
+  {cat:'Zapatillas',word:'Converse All Star'},{cat:'Zapatillas',word:'Vans Old Skool'},
+  {cat:'Cosas de fiesta',word:'Chupito'},{cat:'Cosas de fiesta',word:'Botellón'},
+  {cat:'Cosas de fiesta',word:'Litrona'},{cat:'Cosas de fiesta',word:'Combinado'},
+  {cat:'Cosas de fiesta',word:'After'},{cat:'Cosas de fiesta',word:'Previo'},
+  {cat:'Memes',word:'Doge'},{cat:'Memes',word:'Cheems'},
+  {cat:'Memes',word:'Pepe the Frog'},{cat:'Memes',word:'Trollface'},
+  {cat:'Marcas de móviles',word:'iPhone'},{cat:'Marcas de móviles',word:'Samsung'},
+  {cat:'Marcas de móviles',word:'Xiaomi'},{cat:'Marcas de móviles',word:'OnePlus'},
+  {cat:'Marcas de móviles',word:'Google Pixel'},{cat:'Marcas de móviles',word:'Huawei'},
+  {cat:'Festivales de música',word:'Primavera Sound'},{cat:'Festivales de música',word:'Coachella'},
+  {cat:'Festivales de música',word:'Tomorrowland'},{cat:'Festivales de música',word:'Mad Cool'},
+  {cat:'Festivales de música',word:'Lollapalooza'},{cat:'Festivales de música',word:'Arenal Sound'},
+  {cat:'Cocteles y bebidas',word:'Gin Tonic'},{cat:'Cocteles y bebidas',word:'Mojito'},
+  {cat:'Cocteles y bebidas',word:'Sangría'},{cat:'Cocteles y bebidas',word:'Aperol Spritz'},
+  {cat:'Cocteles y bebidas',word:'Caipirinha'},{cat:'Cocteles y bebidas',word:'Margarita'},
+  {cat:'Destinos de viaje',word:'Bangkok'},{cat:'Destinos de viaje',word:'Nueva York'},
+  {cat:'Destinos de viaje',word:'Tokyo'},{cat:'Destinos de viaje',word:'Amsterdam'},
+  {cat:'Destinos de viaje',word:'Lisboa'},{cat:'Destinos de viaje',word:'Bali'},
+  {cat:'Personajes de serie',word:'Walter White'},{cat:'Personajes de serie',word:'Tony Soprano'},
+  {cat:'Personajes de serie',word:'Eleven'},{cat:'Personajes de serie',word:'Daenerys'},
+  {cat:'Personajes de serie',word:'Don Draper'},{cat:'Personajes de serie',word:'Fleabag'},
+  {cat:'Artistas pop internacionales',word:'Taylor Swift'},{cat:'Artistas pop internacionales',word:'Beyoncé'},
+  {cat:'Artistas pop internacionales',word:'Billie Eilish'},{cat:'Artistas pop internacionales',word:'The Weeknd'},
+  {cat:'Artistas pop internacionales',word:'Dua Lipa'},{cat:'Artistas pop internacionales',word:'Harry Styles'},
+  {cat:'Marcas de lujo',word:'Louis Vuitton'},{cat:'Marcas de lujo',word:'Gucci'},
+  {cat:'Marcas de lujo',word:'Balenciaga'},{cat:'Marcas de lujo',word:'Versace'},
+  {cat:'Marcas de lujo',word:'Prada'},{cat:'Marcas de lujo',word:'Chanel'},
+  {cat:'Apps de citas',word:'Tinder'},{cat:'Apps de citas',word:'Bumble'},
+  {cat:'Apps de citas',word:'Hinge'},{cat:'Apps de citas',word:'Badoo'},
+  {cat:'Apps de citas',word:'Grindr'},{cat:'Apps de citas',word:'Once'},
+  {cat:'Comida española',word:'Tortilla de patatas'},{cat:'Comida española',word:'Paella'},
+  {cat:'Comida española',word:'Jamón ibérico'},{cat:'Comida española',word:'Gazpacho'},
+  {cat:'Comida española',word:'Croquetas'},{cat:'Comida española',word:'Patatas bravas'},
+  {cat:'Películas de culto',word:'El Club de la Lucha'},{cat:'Películas de culto',word:'Pulp Fiction'},
+  {cat:'Películas de culto',word:'Matrix'},{cat:'Películas de culto',word:'Interstellar'},
+  {cat:'Películas de culto',word:'El Padrino'},{cat:'Películas de culto',word:'Joker'},
+];
+
+const impState = { players:[], impostor:-1, word:'', cat:'', voted:null, scores:{}, round:1, idx:0 };
+let usedImp = [];
+
+function startImpostor() {
+  impState.players = [...globalPlayers];
+  impState.scores = {};
+  impState.players.forEach(p => impState.scores[p] = 0);
+  impState.round = 1;
+  newImpostorRound();
+}
+
+function newImpostorRound() {
+  let av = IMP_WORDS.filter(w => !usedImp.includes(w.word));
+  if (!av.length) { usedImp = []; av = IMP_WORDS; }
+  const pick = av[Math.floor(Math.random() * av.length)];
+  usedImp.push(pick.word);
+  impState.word = pick.word; impState.cat = pick.cat;
+  impState.impostor = Math.floor(Math.random() * impState.players.length);
+  impState.voted = null; impState.idx = 0;
+  document.getElementById('imp-round-badge').textContent = 'Ronda ' + impState.round;
+  renderImpProgress();
+  renderImpCard();
+  showScreen('screen-impostor-cards');
+}
+
+function renderImpProgress() {
+  const n = impState.players.length;
+  document.getElementById('imp-player-progress').innerHTML = impState.players.map((_, i) =>
+    `<div class="pp-dot ${i < impState.idx ? 'done' : i === impState.idx ? 'current' : ''}"></div>`
+  ).join('');
+}
+
+function renderImpCard() {
+  const i = impState.idx, players = impState.players, isImp = (i === impState.impostor);
+  document.getElementById('imp-card-container').innerHTML = `
+    <p style="font-size:13px;color:var(--text2);margin-bottom:14px;text-align:center;letter-spacing:0.01em;">
+      Pasa el teléfono a <strong style="color:var(--text);font-family:var(--font-display)">${players[i]}</strong>
+    </p>
+    <div style="position:relative;" id="imp-card-outer">
+      <div class="big-card" style="min-height:240px;">
+        <span class="card-pill pill-imp">${isImp ? '⚠️ IMPOSTOR' : '✅ Jugador normal'}</span>
+        <div id="imp-content" style="text-align:center;transition:all 0.3s;">
+          ${isImp
+            ? `<p style="font-size:14px;color:var(--prob);font-weight:700;margin-bottom:12px;font-family:var(--font-display)">ERES EL IMPOSTOR</p>
+               <p class="cat-big" style="color:var(--imp)">${impState.cat}</p>
+               <p class="card-sub">Solo conoces la categoría — da pistas sin revelar que no sabes la palabra</p>`
+            : `<p style="font-size:13px;color:var(--text2);margin-bottom:12px;">La palabra secreta es:</p>
+               <p class="cat-big" style="color:var(--nunca)">${impState.word}</p>
+               <p class="card-sub">Categoría: ${impState.cat}</p>`
+          }
+        </div>
+      </div>
+      <div class="imp-reveal-overlay" id="imp-overlay" onclick="flipImp()">
+        <div class="imp-reveal-icon">👁️</div>
+        <div class="imp-reveal-text">Toca para ver tu carta</div>
+        <div class="imp-reveal-sub">Solo ${players[i]} puede ver esto</div>
+      </div>
+    </div>
+    <button class="action-btn btn-imp" id="imp-next-btn" style="margin-top:14px;opacity:0.25;" disabled onclick="nextImpPlayer()">
+      ${i < players.length - 1 ? 'Siguiente jugador →' : '¡Todos listos! → Votar'}
+    </button>`;
+  renderImpProgress();
+}
+
+function flipImp() {
+  const overlay = document.getElementById('imp-overlay');
+  const btn = document.getElementById('imp-next-btn');
+  overlay.classList.add('hidden');
+  btn.disabled = false; btn.style.opacity = '1';
+  // Re-hide on tap outside card
+  setTimeout(() => {
+    overlay.classList.remove('hidden');
+    overlay.onclick = null;
+    overlay.style.background = 'rgba(8,8,15,0.92)';
+    overlay.innerHTML = `<div style="font-size:28px">🙈</div><div style="font-family:var(--font-display);font-size:14px;font-weight:800;color:var(--text2)">Carta oculta</div>`;
+  }, 8000); // auto-hide after 8s
+}
+
+function nextImpPlayer() {
+  impState.idx++;
+  if (impState.idx >= impState.players.length) showImpVote();
+  else renderImpCard();
+}
+
+function showImpVote() {
+  document.getElementById('imp-cat-reveal').textContent = impState.cat;
+  document.getElementById('imp-vote-list').innerHTML = impState.players.map(p =>
+    `<button class="vote-btn" onclick="selectVote(this,'${p.replace(/'/g,"\\'")}')">
+      <span style="font-size:22px;display:block;margin-bottom:4px;">${p[0].toUpperCase()}</span>${p}
+    </button>`).join('');
+  document.getElementById('imp-reveal-btn').disabled = true;
+  showScreen('screen-impostor-vote');
+}
+
+function selectVote(el, n) {
+  document.querySelectorAll('#imp-vote-list .vote-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  impState.voted = n;
+  document.getElementById('imp-reveal-btn').disabled = false;
+}
+
+function revealImpostor() {
+  if (!impState.voted) return;
+  const imp = impState.players[impState.impostor], ok = impState.voted === imp;
+  document.getElementById('imp-result-box').innerHTML = ok
+    ? `<div class="result-card result-win">
+        <span class="result-emoji">🎉</span>
+        <p class="result-title">¡Impostor descubierto!</p>
+        <p class="result-desc"><strong>${imp}</strong> era el impostor. El grupo gana puntos.</p>
+       </div>`
+    : `<div class="result-card result-lose">
+        <span class="result-emoji">😈</span>
+        <p class="result-title">¡El impostor escapó!</p>
+        <p class="result-desc"><strong>${imp}</strong> era el impostor pero votasteis a <strong>${impState.voted}</strong>.</p>
+       </div>`;
+  if (ok) {
+    impState.players.forEach(p => { if (p !== imp) impState.scores[p]++; });
+    const btn = document.getElementById('imp-reveal-btn');
+    if (btn) triggerConfetti(window.innerWidth/2, 300);
+  } else {
+    impState.scores[imp] = (impState.scores[imp] || 0) + 2;
+  }
+  document.getElementById('imp-word-reveal').textContent = impState.word;
+  const sorted = Object.entries(impState.scores).sort((a, b) => b[1] - a[1]);
+  document.getElementById('imp-scores').innerHTML =
+    `<p class="score-title">🏆 Clasificación</p>
+     <div class="score-list">` +
+    sorted.map(([p, s], idx) => `
+      <div class="score-row${idx===0?' top':''}">
+        <span>
+          <span class="score-rank">${['🥇','🥈','🥉'][idx]||'  '}</span>
+          ${p}${p === imp ? ' <span style="color:var(--prob);font-size:12px;">🕵️ Impostor</span>' : ''}
+        </span>
+        <span class="score-pts">${s}</span>
+      </div>`).join('') +
+    `</div>`;
+  showScreen('screen-impostor-result');
+}
+
+function nextImpostorRound() { impState.round++; newImpostorRound(); }
+
+// ══════════════════════════════════════════
+//  YO NUNCA
+// ══════════════════════════════════════════
+const ALL_NUNCA = shuffle([
+  'he mentido para salir de una situación incómoda','he enviado un mensaje al destinatario equivocado',
+  'he fingido no ver una notificación para no responder','he comido en la cama',
+  'he llorado viendo una película de Disney','me he perdido en una ciudad desconocida',
+  'he bailado solo/a en casa','he cantado a pleno pulmón en el coche',
+  'he stalkeado el perfil de alguien más de 10 minutos','me he quedado dormido/a en el trabajo o en clase',
+  'he inventado una excusa ridícula para cancelar planes','he tenido un crush con alguien famoso/a',
+  'me he reído de algo inapropiado en un momento serio','he fingido que no me importaba algo que sí me importaba',
+  'he comido algo caído al suelo','he mentido sobre haber visto una película',
+  'he buscado mi nombre en Google','he llegado tarde por quedarme en la cama',
+  'he revisado el teléfono de otra persona','he fingido no hablar el idioma para evitar una conversación',
+  'he hecho una videollamada en pijama fingiendo estar vestido/a','me he hecho el dormido/a para no hablar con alguien',
+  'he comprado algo por impulso y lo he devuelto después','he olvidado el cumpleaños de alguien importante',
+  'he dado un like accidental en una foto muy antigua','me he inventado una alergia para no comer algo',
+  'he contestado "bien" cuando estaba todo menos bien','he pedido comida a domicilio estando solo/a entre semana',
+  'me he dormido durante una peli que yo mismo/a quería ver','he empezado a escribir un mensaje y lo he borrado 10 veces',
+  'he visto más de 5 episodios seguidos sin moverme del sofá','he mentido sobre haber leído un libro',
+  'he comprado algo para regalar y me lo he quedado','me he apuntado a un plan que odiaba para no quedar mal',
+  'he fingido estar ocupado/a cuando estaba tumbado/a','me he cortado el pelo yo mismo/a con resultados desastrosos',
+  'he mandado un meme inapropiado al grupo familiar','he empezado una dieta que duró menos de 24 horas',
+  'he fingido saber de algo del que no tenía ni idea','he rellenado el jabón del baño con agua para que durase más',
+  'he dicho "ya casi llego" estando aún en casa','he cancelado planes y luego posteado stories saliendo',
+  'he llorado en el baño para que nadie me vea','me he tropezado en público y he mirado al suelo como si fuera su culpa',
+  'he grabado un vídeo mío solo/a para ver cómo salgo','he reído la gracia de alguien sin haberla entendido',
+  'he seguido viendo una serie que odiaba para no admitirlo','he comido algo directamente del bote sin plato',
+  'he fingido no tener batería para no coger el teléfono','me he apuntado al gimnasio y he ido menos de 5 veces',
+  'he comprado ropa que sabía que no me iba a poner','he mentido sobre lo que estaba haciendo cuando me preguntaron',
+  'he ignorado un correo importante durante semanas','he hecho como que no veía a alguien en la calle para no saludar',
+  'he dicho "ya llego" cuando ni siquiera había salido de casa','he mandado un mensaje de voz de más de 3 minutos',
+  'he puesto la alarma y me he vuelto a dormir 6 veces seguidas','he tenido conversaciones imaginarias en la ducha que me han emocionado',
+  'he practicado una conversación antes de tenerla y salió completamente diferente','he pasado la tarde entera en redes sin darme cuenta',
+  'he probado la comida de otro sin permiso','he fingido que el móvil no tenía cobertura para no responder',
+  'he guardado un meme en el móvil que nunca le mandaré a nadie',
+  'he mentido sobre cuántas personas he besado','he fingido tener pareja para rechazar a alguien',
+  'he leído conversaciones privadas de otra persona','he quedado con dos personas el mismo día sin que lo supieran',
+  'he tenido sentimientos por el ex de un/a amigo/a','he enviado una foto comprometida',
+  'he hecho ghosting a alguien después de varias citas','he liado algo con alguien del trabajo',
+  'me he besado con alguien de quien no recuerdo el nombre','he cancelado planes por quedarme con otra persona',
+  'he tenido sentimientos por alguien que ya tenía pareja','he ignorado a alguien que me gustaba para parecer interesante',
+  'he dicho "te quiero" y no lo sentía del todo','he borrado mensajes para que no los viera alguien',
+  'he fantaseado con alguien mientras estaba con otra persona','he fingido que una relación era algo que no era',
+  'me he arrepentido de algo que hice en una noche de fiesta','he vuelto con un ex que todo el mundo desaprobaba',
+  'he mandado un mensaje a un ex "sin querer"','he tenido rollos en más de un país',
+  'he guardado fotos de alguien que ya no está en mi vida','he mentido sobre dónde estaba una noche',
+  'he dado falsas esperanzas a alguien a propósito','me he puesto celoso/a sin razón real',
+  'he enviado mensajes en caliente que luego borré','me han dicho que soy demasiado intenso/a y lo entendí tarde',
+  'he desaparecido de la vida de alguien sin explicación','he tenido sentimientos por alguien que nunca lo supo',
+  'me han bloqueado sin saber muy bien por qué','he espiado las redes de alguien con quien tuve algo',
+  'he tenido un chat secreto que prefiero que nadie vea','he rechazado a alguien que me gustaba por miedo',
+  'he hecho algo solo porque me daba morbo que me pillaran','he liado algo con el mejor amigo/a de un ex',
+  'he creado un perfil falso para ver qué hacía alguien','he salido con alguien más para poner celoso/a a otra persona',
+  'he visto el perfil de alguien más de 20 veces en un día','he mandado un audio comprometido al grupo equivocado',
+  'me han rechazado de una forma que todavía recuerdo','he tenido sentimientos que nunca dije por cobardía',
+  'he tenido una aventura de una noche con alguien que conocí ese día','he hecho algo picante en un sitio público',
+  'he tenido un trío','me he acostado con alguien que no me atraía solo por aburrimiento',
+  'he tenido un rollo con alguien en una boda','he tenido algo con alguien de la familia de un amigo/a',
+  'me han pillado en algo comprometido que no debería haber hecho',
+  'he mandado un mensaje y luego fingido que había sido sin querer',
+  'he escuchado una conversación que no era para mí y no dije nada',
+  'me he emocionado con un anuncio y lo he negado','he pedido consejo sabiendo que iba a hacer lo contrario',
+  'he dormido con el móvil encima por si llegaba un mensaje concreto',
+  'he repasado mentalmente una conversación más de 10 veces después de tenerla',
+  'he mandado un mensaje de madrugada que luego borré antes de que lo leyeran',
+  'he seguido a alguien en redes para que se diera cuenta de que existía',
+  'he puesto una historia solo para ver si alguien concreto la veía',
+  'he cambiado de opinión sobre alguien en cuanto me prestó atención',
+  'he tenido conversaciones paralelas con dos personas y les he contado lo mismo',
+  'he mentido sobre con quién había estado','he hecho algo solo para tener algo que contar',
+  'me han gustado dos personas a la vez y no he hecho nada con ninguna',
+  'he tenido más química con alguien en un viaje que con nadie en años',
+  'he actuado como si no me importara alguien que me importaba mucho',
+  'he bloqueado a alguien y lo he desbloqueado al día siguiente',
+  'he llegado tarde a algo aposta para no ser el primero',
+  'he tenido sentimientos por alguien de quien nunca lo diría en voz alta',
+  'he ignorado señales evidentes porque me convenía ignorarlas',
+  'he estado en una relación más tiempo del que debería por comodidad',
+  'he tenido tensión con alguien durante semanas antes de que pasara algo',
+  'me han besado sin esperarlo y no paré','he hecho algo en un viaje que no habría hecho en casa',
+  'he tenido algo con alguien y al día siguiente lo negué todo',
+  'he quedado con alguien sabiendo perfectamente cómo iba a acabar',
+  'he actuado como si nada después de algo que lo cambió todo',
+  'he tenido una conversación a las 5am que nunca debería haber tenido',
+  'me han dicho algo al oído que todavía recuerdo',
+  'he sacado el móvil en una cena para parecer ocupado/a',
+  'me he gastado más en delivery en un mes que en el super',
+  'he empezado un curso online y lo he abandonado antes de la segunda clase',
+  'he copiado en un examen o trabajo','he usado la misma excusa dos veces con la misma persona',
+  'he llegado tarde a algo importante por no encontrar qué ponerme',
+  'me he dormido en el baño para descansar de la gente',
+  'he pasado más tiempo eligiendo serie que viendo la serie',
+  'he sacado foto a la comida antes de probarla','he llegado al final de TikTok y he empezado otra vez',
+  'he intentado hacer algo que vi en un tutorial y ha salido fatal',
+  'he revisado si alguien me ha borrado de Instagram o de sus mejores amigos',
+  'he creado una cuenta secundaria para ver stories sin que lo supieran',
+  'he borrado comentarios míos en redes porque no tuvieron los likes que esperaba',
+  'he buscado en redes a la nueva pareja de un ex antes que a nada',
+  'he dejado de seguir a alguien para ver si se daba cuenta',
+  'he guardado una conversación comprometida en una carpeta oculta',
+  'he tenido sentimientos por alguien que me trató mal y lo sé',
+  'he intentado poner celos a alguien de forma consciente',
+  'he dado un like accidental a alguien y he entrado en pánico',
+  'he esperado a que alguien entrara en línea para ver si me escribía',
+  'he mirado las historias de alguien que tengo bloqueado desde otro perfil',
+  'he enviado un audio largo sabiendo que el otro no los escucha',
+  'he cotilleado el perfil de alguien y luego le he dado like sin querer',
+  'me han escrito algo comprometido en mitad de una reunión o clase',
+  'he tenido un rollo que empezó con una apuesta',
+  'me han liado en algo que empezó como un "vamos un momento"',
+  'he dicho que era la primera vez cuando no lo era',
+  'me han propuesto algo que habría dicho que no sobrio/a y dije que sí',
+  'he quedado con alguien a las 3am y he dicho que iba a dar un paseo',
+  'he tenido una situación que no pienso contar nunca aunque me lo pregunten directamente',
+  'he ignorado a alguien el día siguiente después de algo intenso',
+  'he tenido algo con alguien del grupo de amigos que nadie sabe',
+]);
+
+const nuncaState = { deck: [...ALL_NUNCA], idx: 0 };
+
+function initNunca() {
+  nuncaState.deck = shuffle([...ALL_NUNCA]);
+  nuncaState.idx = 0;
+  showNuncaCard();
+}
+
+function showNuncaCard() {
+  const d = nuncaState.deck, i = nuncaState.idx;
+  const pct = Math.round((i / d.length) * 100);
+  document.getElementById('nunca-count').textContent = `Carta ${i + 1} de ${d.length}`;
+  document.getElementById('nunca-progress').style.width = pct + '%';
+  const card = document.getElementById('nunca-card');
+  card.classList.remove('card-flip');
+  void card.offsetWidth;
+  card.classList.add('card-flip');
+  document.getElementById('nunca-text').textContent = 'Yo nunca... ' + d[i];
+}
+
+function nextNunca() {
+  nuncaState.idx = (nuncaState.idx + 1) % nuncaState.deck.length;
+  if (nuncaState.idx === 0) { nuncaState.deck = shuffle([...ALL_NUNCA]); showToast('🔄 Baraja reiniciada'); }
+  showNuncaCard();
+}
+
+// ══════════════════════════════════════════
+//  PROBABLE
+// ══════════════════════════════════════════
+const ALL_PROB = shuffle([
+  'se haría un tatuaje en un lugar ridículo','mandaría un mensaje borracho/a a su ex',
+  'acabaría en las noticias por algo absurdo','se comería una pizza entera solo/a',
+  'olvidaría el cumpleaños de su pareja','se perdería yendo a un sitio que ya conoce',
+  'montaría una empresa y la quebraría en una semana','se haría viral por tropezar en público',
+  'adoptaría 10 gatos sin avisar','gastaría todos sus ahorros en un capricho',
+  'se apuntaría a un reality show','lloraría en una primera cita',
+  'sería el primero en rendirse en un juego de mesa','acabaría casándose con alguien que conoció hace 48h',
+  'saldría en pijama al supermercado sin darse cuenta','rompería algo caro y lo escondería',
+  'daría dinero a un estafador por pena','se quedaría dormido/a en su propia fiesta de cumpleaños',
+  'cancelaría planes por ver una serie','dejaría el trabajo para hacer algo totalmente inesperado',
+  'se comería el postre antes que el plato','montaría un drama por una bobada en WhatsApp',
+  'se haría influencer si pudiera','se perdería en IKEA más de una hora',
+  'pasaría la aspiradora a las 3am','respondería un "hola" con un audio de 4 minutos',
+  'llamaría a su madre llorando por una peli','se haría una foto con alguien famoso aunque no supiera quién es',
+  'discutiría con un desconocido en los comentarios de internet','perdería el móvil mientras lo está usando',
+  'empezaría a ver una serie de 8 temporadas para relajarse',
+  'llegaría el primero a una cita y esperaría dando vueltas fuera',
+  'usaría el horno como cajón de almacenamiento',
+  'diría "lo hago luego" y no lo haría nunca','pondría la alarma 10 veces antes de levantarse',
+  'compraría algo online a las 2am que no necesita para nada',
+  'mandaría una voz de más de 2 minutos como respuesta a un meme',
+  'llegaría tarde a algo importante por quedarse mirando el móvil',
+  'abriría la nevera 5 veces seguidas sin coger nada',
+  'se iría de cañas y acabaría a las 6am sin haberlo planeado',
+  'dejaría la ropa en la lavadora dos días antes de meterla a secar',
+  'diría "5 minutos más" y se quedaría dormido/a 2 horas',
+  'se haría ilusiones con algo y luego negaría que le importaba',
+  'pasaría toda una tarde buscando qué ver y no vería nada',
+  'mandaría capturas de pantalla que no debería a quien no toca',
+  'escribiría a su ex a las 3am un viernes','ligaría con el/la amigo/a de su pareja',
+  'coquetearía con alguien solo para ver si puede','usaría a alguien para olvidar a otra persona',
+  'ligaría con alguien en una boda siendo el/la invitado/a',
+  'haría algo arriesgado solo por impresionar a alguien','diría "te quiero" primero sin querer',
+  'se enrollaría con el ex de su mejor amigo/a','ligaría con alguien solo para no pagar la cuenta',
+  'haría ghosting a alguien después de tres citas','quedaría con alguien solo para no estar solo/a',
+  'usaría una foto de hace 5 años en sus apps de citas',
+  'seguiría hablando con alguien aunque ya tuviera pareja',
+  'dejaría en visto a alguien que le gusta para parecer ocupado/a',
+  'hablaría de su ex en la primera cita sin poder evitarlo',
+  'le daría un número de teléfono falso a alguien',
+  'diría "somos solo amigos" cuando claramente no lo son',
+  'saldría con alguien solo porque es guapo/a aunque no le guste nada',
+  'buscaría a un ex en cada persona nueva que conoce',
+  'haría algo para dar envidia a un ex en redes sociales',
+  'mandaría algo y lo borraría sabiendo que ya lo han leído',
+  'llamaría a su ex después de una noche de fiesta',
+  'inventaría un plan para coincidir con alguien que le gusta',
+  'fingería no importarle algo que le importa muchísimo',
+  'mandaría una captura de pantalla de algo que no debía',
+  'mandaría un meme para romper la tensión sexual',
+  'haría like a alguien a las 3am de forma completamente consciente',
+  'se inventaría una historia para parecer más interesante',
+  'guardaría conversaciones para volver a leerlas',
+  'haría un storie para que lo vea una persona concreta',
+  'investigaría a alguien durante horas antes de una primera cita',
+  'mandaría un audio comprometido al grupo familiar',
+  'seduciría al camarero/a para conseguir descuento',
+  'haría una lista de pros y contras antes de responder un mensaje',
+  'ligaría con alguien en un lugar totalmente inapropiado',
+  'acabaría ligando con alguien del trabajo después de una cena de empresa',
+  'empezaría un drama de celos que no tiene sentido',
+  'fingiría tener pareja para dar pena y ligar',
+  'mandaría una foto "sin querer" para llamar la atención',
+  'cogería el móvil de su pareja para ver con quién habla',
+  'borraría pruebas de su historial antes de dejar el móvil a alguien',
+  'ligaría con alguien en un funeral',
+  'ha tenido un encuentro en un baño de discoteca',
+  'mandaría fotos sin que se lo pidan','se enrollaría con alguien en casa de otra persona',
+  'tendría un rollo sin preguntar el nombre',
+  'confesaría fantasías que nadie esperaba','habría tenido dos rollos en el mismo día',
+  'habría usado una app de citas para algo distinto a citas',
+  'habría tenido sentimientos después de lo que se supone que era solo una noche',
+  'haría algo atrevido si supiera que no habría consecuencias',
+  'habría estado en una situación que todavía no ha contado a nadie',
+  'habría tenido algo con alguien que le sorprendió a sí mismo/a',
+  'habría confundido morbo con sentimientos más de una vez',
+  'habría hecho algo con alguien que juraba que nunca pasaría',
+  'habría necesitado inventar una coartada después de una noche',
+  'tendría una historia sin contar que cambiaría cómo lo/la ven los demás',
+  'habría protagonizado el momento más tenso de los últimos meses',
+  'se quedaría sin batería en el peor momento posible',
+  'perdería las llaves de casa más de dos veces en un mes',
+  'compraría entradas para algo y luego no iría',
+  'se haría un plan solo para luego no apetecerle nada',
+  'se quedaría mirando el techo pensando en algo que pasó hace 3 años',
+  'llegaría tarde a su propia boda','se arrepentiría de un corte de pelo en menos de 24 horas',
+  'respondería un email urgente tres días después',
+  'diría "no bebo hoy" y acabaría siendo el último en irse',
+  'se gastaría más dinero en una noche de lo que tenía planeado',
+  'lloraría en un aeropuerto por algo que no tiene que ver con el viaje',
+  'ha mandado una captura de pantalla a quien no toca',
+  'ha creado un drama en un grupo de WhatsApp que no hacía falta',
+  'ha tenido más química con alguien en un viaje que en meses de su vida normal',
+  'ha vuelto a ver el perfil de alguien después de bloquearlo',
+  'ha actuado como si no recordara algo que recordaba perfectamente',
+  'ha dejado un mensaje en visto para tener ventaja en la situación',
+  'ha ignorado una señal obvia porque le convenía ignorarla',
+  'ha tenido sentimientos por alguien que no debería',
+  'ha hecho algo solo para ver cómo reaccionaba alguien',
+  'ha tenido algo con alguien de un viaje que nunca ha contado',
+  'se ha enrollado con alguien en la última persona que esperaba',
+  'ha actuado como si nada después de algo que lo cambió todo',
+  'ha quedado con alguien a sabiendas de cómo iba a acabar',
+  'ha tenido más de una situación sin resolver al mismo tiempo',
+  'ha hecho algo una noche que cambió la dinámica con alguien para siempre',
+  'ha tenido una conversación de madrugada que nunca debería haber tenido',
+  'llegaría a una fiesta sorpresa con la persona sorprendida',
+  'montaría un negocio de algo rarísimo y le funcionaría',
+  'haría una compra impulsiva a las 4am y se arrepentiría a las 9',
+  'cometería un error garrafal en su primer día de trabajo nuevo',
+]);
+
+const probState = { deck: [...ALL_PROB], idx: 0 };
+
+function initProb() {
+  probState.deck = shuffle([...ALL_PROB]);
+  probState.idx = 0;
+  showProbCard();
+}
+
+function showProbCard() {
+  const d = probState.deck, i = probState.idx;
+  const pct = Math.round((i / d.length) * 100);
+  document.getElementById('prob-count').textContent = `Carta ${i + 1} de ${d.length}`;
+  document.getElementById('prob-progress').style.width = pct + '%';
+  const card = document.getElementById('prob-card');
+  card.classList.remove('card-flip');
+  void card.offsetWidth;
+  card.classList.add('card-flip');
+  document.getElementById('prob-text').textContent = '¿Quién es más probable que... ' + d[i] + '?';
+}
+
+function nextProb() {
+  probState.idx = (probState.idx + 1) % probState.deck.length;
+  if (probState.idx === 0) { probState.deck = shuffle([...ALL_PROB]); showToast('🔄 Baraja reiniciada'); }
+  showProbCard();
+}
+
+// ══════════════════════════════════════════
+//  RULETA
+// ══════════════════════════════════════════
+const WHEEL_COLORS = ['#7c5af0','#0fb87e','#e03050','#d97706','#0ea5e9','#db2777','#ea580c','#65a30d','#0891b2','#9333ea'];
+let wheelSpinning = false;
+let wheelCurrentAngle = 0;
+
+function initWheel() {
+  document.getElementById('winner-display').innerHTML = '';
+  wheelCurrentAngle = 0;
+  drawWheel(0);
+}
+
+function drawWheel(rotation) {
+  const canvas = document.getElementById('wheel-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const players = globalPlayers.length >= 2 ? globalPlayers : ['Jugador 1', 'Jugador 2', 'Jugador 3'];
+  const n = players.length;
+  const R = 140, cx = 150, cy = 150;
+  const arc = (2 * Math.PI) / n;
+  ctx.clearRect(0, 0, 300, 300);
+
+  // Draw shadow
+  ctx.save();
+  ctx.shadowColor = 'rgba(0,0,0,0.4)';
+  ctx.shadowBlur = 20;
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, 2 * Math.PI);
+  ctx.fillStyle = '#000';
+  ctx.fill();
+  ctx.restore();
+
+  for (let i = 0; i < n; i++) {
+    const startAngle = rotation + i * arc;
+    const endAngle = startAngle + arc;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, R, startAngle, endAngle);
+    ctx.closePath();
+    ctx.fillStyle = WHEEL_COLORS[i % WHEEL_COLORS.length];
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(startAngle + arc / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 13px "Syne", sans-serif';
+    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+    ctx.shadowBlur = 5;
+    const label = players[i].length > 10 ? players[i].slice(0, 9) + '…' : players[i];
+    ctx.fillText(label, R - 10, 5);
+    ctx.restore();
+  }
+
+  // Inner ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, 22, 0, 2 * Math.PI);
+  ctx.fillStyle = '#08080f';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Center dot
+  ctx.beginPath();
+  ctx.arc(cx, cy, 7, 0, 2 * Math.PI);
+  ctx.fillStyle = 'rgba(255,255,255,0.3)';
+  ctx.fill();
+}
+
+function spinWheel() {
+  if (wheelSpinning) return;
+  if (globalPlayers.length < 2) { showToast('⚠️ Añade al menos 2 jugadores'); return; }
+  wheelSpinning = true;
+  const spinBtn = document.getElementById('spin-btn');
+  spinBtn.disabled = true;
+  spinBtn.textContent = '¡Girando...';
+  document.getElementById('winner-display').innerHTML = '';
+
+  const n = globalPlayers.length;
+  const arc = (2 * Math.PI) / n;
+  const extraSpins = (6 + Math.floor(Math.random() * 5)) * 2 * Math.PI;
+  const targetOffset = Math.random() * 2 * Math.PI;
+  const totalRotation = extraSpins + targetOffset;
+  const duration = 4500;
+  const start = performance.now();
+  const startAngle = wheelCurrentAngle;
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3.5); }
+
+  function frame(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    const currentRot = startAngle + totalRotation * easeOut(t);
+    drawWheel(currentRot);
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      wheelCurrentAngle = currentRot % (2 * Math.PI);
+      const pointerAngle = -Math.PI / 2;
+      const normalized = (((pointerAngle - wheelCurrentAngle) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+      const winnerIdx = Math.floor(normalized / arc) % n;
+      const winner = globalPlayers[winnerIdx];
+      document.getElementById('winner-display').innerHTML =
+        `<div class="winner-box">
+          <p class="winner-label">🎉 ¡Le ha tocado a!</p>
+          <p class="winner-name">${winner}</p>
+          <p class="winner-confetti">🎊 🥂 🎉</p>
+        </div>`;
+      triggerConfetti(window.innerWidth / 2, 200);
+      wheelSpinning = false;
+      spinBtn.disabled = false;
+      spinBtn.textContent = '¡Girar otra vez! 🎰';
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+// ══════════════════════════════════════════
+//  VERDAD O RETO
+// ══════════════════════════════════════════
+const VERDADES = shuffle([
+  '¿Cuál es la decisión más impulsiva que has tomado en el último año?',
+  '¿Qué es lo que más te asusta del futuro ahora mismo?',
+  '¿Cuál es la mayor mentira que mantienes activa a día de hoy?',
+  '¿Hay alguien con quien hayas cortado el contacto y en el fondo te arrepientas?',
+  '¿Qué es lo que más te cuesta admitir de ti mismo/a?',
+  '¿Cuál es la conversación más difícil que tienes pendiente con alguien?',
+  '¿Qué harías diferente si pudieras repetir el último año?',
+  '¿Hay algo que estés evitando afrontar en tu vida ahora mismo?',
+  '¿Cuándo fue la última vez que hiciste algo solo por miedo a lo que pensarían?',
+  '¿Cuál fue la última vez que actuaste movido/a por los celos?',
+  '¿Qué es lo que más echas de menos de una versión anterior de ti mismo/a?',
+  '¿Qué es lo que más te da miedo que descubran de ti?',
+  '¿Has tratado mal a alguien que no se lo merecía y lo reconocerías?',
+  '¿Hay alguien en tu vida a quien le deberías una disculpa que aún no has dado?',
+  '¿Cuál es la decisión que más veces has pospuesto por miedo?',
+  '¿Cuándo fue la última vez que te sentiste solo/a de verdad aunque estuvieras rodeado/a de gente?',
+  '¿Cuál es tu mayor red flag que poca gente conoce?',
+  '¿Qué hábito tuyo crees que hace daño a las personas que te rodean?',
+  '¿Cuál es el consejo que te darías a ti mismo/a hace 3 años?',
+  '¿Qué cosa de tu vida actual no le contarías a tu yo de hace 5 años?',
+  '¿Hay algo que hayas hecho esta semana que preferirías que no se supiera?',
+  '¿Cuál es la situación más incómoda de la que hayas tenido que salir con una excusa?',
+  '¿Tienes algún secreto que no le has contado ni a tus amigos más cercanos?',
+  '¿Cuándo fue la última vez que actuaste de una forma de la que no te sientes orgulloso/a?',
+  '¿Hay algo que estés haciendo ahora mismo que sabes que no deberías?',
+  '¿Cuál es la mayor contradicción entre lo que dices que valoras y lo que realmente haces?',
+  '¿Hay alguien de quien dependas emocionalmente más de lo que te gustaría reconocer?',
+  '¿Cuándo fue la última vez que te arrepentiste de haber dicho la verdad?',
+  '¿Cuál fue el momento en que más has actuado por orgullo en lugar de por lo que querías de verdad?',
+  '¿Hay alguien a quien hayas hecho daño sin pedirle perdón?',
+  '¿Cuál es la cosa que más te daría vergüenza que descubriera alguien que acaba de conocerte?',
+  '¿Hay algo de tu rutina actual que estás haciendo solo por inercia y que en realidad no te hace feliz?',
+  '¿Hay alguien aquí a quien le tengas algo pendiente de decir que no has dicho?',
+  '¿Cuándo fue la última vez que envidiaste algo de alguien de los que están aquí?',
+  '¿Cuál es la mentira más elaborada que hayas construido y mantuvieras durante tiempo?',
+  '¿Qué harías si supieras con certeza que nadie del grupo se enteraría?',
+  '¿Cuándo fue la última vez que actuaste de forma egoísta y lo sabías?',
+  '¿Cuál es la decisión que más ha cambiado tu vida y la repetirías?',
+  '¿Cuándo fue la última vez que perdiste el control de una situación?',
+  '¿Hay algo que hayas hecho y que no le cuentes ni a la persona más cercana?',
+  '¿Hay algo que desearías que alguien del grupo supiera sin tener que decírselo?',
+  '¿Qué es lo que más te da miedo que la gente note en ti cuando bajas la guardia?',
+  '¿Hay alguien en tu vida ahora mismo que te importa más de lo que demuestras?',
+  '¿Qué es lo que harías diferente en tu última relación o situación importante?',
+  '¿Cuándo fue la última vez que mentiste a alguien por protegerle y no fue lo correcto?',
+  '¿Cuál es la cosa más rara que te ha dado por hacer cuando estabas solo/a?',
+  '¿Cuándo fue la última vez que fuiste completamente honesto/a con alguien?',
+  '¿Cuál es la versión de ti mismo/a que más te cuesta mostrar?',
+]);
+
+const RETOS = shuffle([
+  'Muéstrale al grupo la última conversación de WhatsApp que hayas tenido',
+  'Deja que el grupo lea tus últimas 5 búsquedas de Google',
+  'Di en voz alta algo que llevas tiempo queriendo decirle a alguien pero no te has atrevido',
+  'Muéstrale al grupo tu última foto del carrete sin filtro ni edición',
+  'Escribe un mensaje sincero a alguien de tus contactos y mándalo ahora',
+  'Deja que alguien del grupo abra tu Spotify y vea tu historial reciente',
+  'Di qué harías con un millón de euros siendo completamente honesto/a',
+  'Cuéntale al grupo algo que pasó en los últimos días que no ibas a contar',
+  'Lee en voz alta el último mensaje que enviaste a alguien que te importa',
+  'Di cuál es la mayor red flag que has ignorado en alguien y por qué',
+  'Hazle una pregunta directa a alguien del grupo que siempre has querido hacer',
+  'Confiesa algo que hiciste y por lo que nunca pediste perdón',
+  'Muestra tu pantalla de inicio del móvil al grupo durante 10 segundos',
+  'Di cuál es la cosa que más te avergüenza haber comprado',
+  'Confiesa algo que hayas hecho y que el grupo no esperaría de ti',
+  'Haz una valoración honesta de tu situación vital actual en menos de 1 minuto',
+  'Di cuál es el consejo que le darías a alguien del grupo sin que te lo haya pedido',
+  'Cuéntale al grupo cuál es el momento en que más has actuado por ego',
+  'Confiesa cuántas veces has chequeado el perfil de alguien esta semana',
+  'Di en voz alta qué es lo que más te da envidia de alguien de tu entorno',
+  'Lee el último mensaje que recibiste sin responder y explica por qué no has contestado',
+  'Di qué harías diferente esta noche si supieras que no hay consecuencias',
+  'Di cuál es la mentira que más veces has repetido hasta creerla',
+  'Cuenta algo que hiciste en solitario que nunca le has contado a nadie',
+  'Di cuál es la cosa de la que más orgulloso/a te sientes y que nunca dices en voz alta',
+  'Lee en voz alta la última nota que tienes escrita en el móvil',
+  'Di cuál fue la última vez que actuaste por orgullo y te costó caro',
+  'Confiesa algo que hayas pensado esta semana que no le dirías a nadie',
+  'Di qué es lo que más te da miedo que la gente descubra de ti',
+  'Cuéntale al grupo cuál es el momento del que más te arrepientes en el último año',
+  'Muestra al grupo el meme más raro que tengas guardado en el móvil',
+  'Confiesa algo que hayas hecho solo para encajar y que en realidad no querías hacer',
+  'Cuéntale al grupo algo que haces cuando estás solo/a que nunca harías delante de nadie',
+  'Deja que alguien del grupo elija una persona de tu lista de contactos y le mandas un mensaje',
+  'Di en voz alta cuál es tu mayor inseguridad ahora mismo',
+  'Cuéntale al grupo la historia más vergonzosa que tienes de una noche de fiesta',
+  'Abre tu galería y enseña la 10ª foto del carrete sin mirar antes cuál es',
+  'Llama o manda un audio ahora mismo a la persona que llevas más tiempo sin hablar',
+  'Di tres cosas positivas de alguien del grupo que nunca le has dicho en serio',
+  'Reproduce el último vídeo que has grabado con tu cámara para el grupo',
+  'Hazle una imitación a alguien del grupo sin decir quién es, y el grupo adivina',
+  'Di una verdad incómoda sobre la noche de hoy que nadie ha dicho todavía',
+  'Muestra al grupo la última captura de pantalla de una conversación que tienes guardada',
+  'Abre el chat con tu mejor amigo/a y lee en voz alta el último mensaje que te mandó',
+  'Haz la mejor imitación posible de alguien famoso que el grupo tiene que adivinar',
+  'Deja que alguien del grupo te escriba un estado de WhatsApp que tendrás puesto 1 hora',
+  'Di en voz alta qué harías si tuvieras que elegir entre trabajo y amor esta semana',
+]);
+
+const vrState = { playerIdx: 0, verdades: [], retos: [], vIdx: 0, rIdx: 0 };
+
+function initVerdad() {
+  vrState.playerIdx = 0;
+  vrState.verdades = shuffle([...VERDADES]);
+  vrState.retos = shuffle([...RETOS]);
+  vrState.vIdx = 0; vrState.rIdx = 0;
+  showVrPlayer();
+}
+
+function showVrPlayer() {
+  const p = globalPlayers[vrState.playerIdx];
+  const col = getAvatarColor(p);
+  document.getElementById('vr-current-player').textContent = p;
+  document.getElementById('vr-avatar').textContent = p[0].toUpperCase();
+  document.getElementById('vr-avatar').style.background = col;
+  document.getElementById('vr-choice-screen').style.display = 'block';
+  document.getElementById('vr-card-screen').style.display = 'none';
+}
+
+function vrPick(type) {
+  let text, pillClass, pillText, btnClass;
+  if (type === 'verdad') {
+    text = vrState.verdades[vrState.vIdx % vrState.verdades.length];
+    vrState.vIdx++;
+    if (vrState.vIdx >= vrState.verdades.length) vrState.verdades = shuffle([...VERDADES]);
+    pillClass = 'card-pill pill-verd'; pillText = '💬 Verdad';
+    btnClass = 'action-btn btn-verd';
+  } else {
+    text = vrState.retos[vrState.rIdx % vrState.retos.length];
+    vrState.rIdx++;
+    if (vrState.rIdx >= vrState.retos.length) vrState.retos = shuffle([...RETOS]);
+    pillClass = 'card-pill pill-prob'; pillText = '🔥 Reto';
+    btnClass = 'action-btn btn-prob';
+  }
+  document.getElementById('vr-pill').className = pillClass;
+  document.getElementById('vr-pill').textContent = pillText;
+  document.getElementById('vr-card-text').textContent = text;
+  document.getElementById('vr-next-btn').className = btnClass;
+  const card = document.getElementById('vr-card');
+  card.classList.remove('card-flip');
+  void card.offsetWidth;
+  card.classList.add('card-flip');
+  document.getElementById('vr-choice-screen').style.display = 'none';
+  document.getElementById('vr-card-screen').style.display = 'block';
+}
+
+function vrPass() {
+  vrState.playerIdx = (vrState.playerIdx + 1) % globalPlayers.length;
+  showToast('⏭ Turno saltado');
+  showVrPlayer();
+}
+
+function vrNext() {
+  vrState.playerIdx = (vrState.playerIdx + 1) % globalPlayers.length;
+  showVrPlayer();
+}
+
+// ══════════════════════════════════════════
+//  YO SÍ / YO NO
+// ══════════════════════════════════════════
+const YOSINO_CARDS = shuffle([
+  { text: '¿Fumar es red flag?', cat: 'Red flags' },
+  { text: '¿Es red flag no tener trabajo estable a los 25?', cat: 'Red flags' },
+  { text: '¿Saldrías con alguien que sigue siendo muy amigo/a de su ex?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien no tenga amigos de hace años?', cat: 'Red flags' },
+  { text: '¿Te importaría que tu pareja tuviera un amigo/a con quien tuvo algo en el pasado?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien solo hable de sí mismo?', cat: 'Red flags' },
+  { text: '¿Saldrías con alguien que nunca pide perdón aunque se equivoque?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien no tenga ningún hobbie o pasión?', cat: 'Red flags' },
+  { text: '¿Te frenaría saber que alguien tiene deudas?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien tarde horas en responder siempre?', cat: 'Red flags' },
+  { text: '¿Saldrías con alguien que come muy mal y no le importa nada?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien hable mal de todos sus ex?', cat: 'Red flags' },
+  { text: '¿Te importaría que tu pareja saliera de fiesta sin ti a menudo?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien no tenga ninguna ambición?', cat: 'Red flags' },
+  { text: '¿Saldrías con alguien que es muy celoso/a desde el principio?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien no tenga nada suyo en casa después de meses?', cat: 'Red flags' },
+  { text: '¿Te echarías atrás si alguien cancela planes más de dos veces seguidas?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien nunca admita que se ha equivocado?', cat: 'Red flags' },
+  { text: '¿Es red flag que alguien revise constantemente tu móvil sin pedirte permiso?', cat: 'Red flags' },
+  { text: '¿Prefieres el mar a la montaña?', cat: 'Preferencias' },
+  { text: '¿Prefieres una noche en casa a una noche de fiesta?', cat: 'Preferencias' },
+  { text: '¿Pagarías más por calidad aunque sea más caro?', cat: 'Preferencias' },
+  { text: '¿Prefieres tener pocos amigos muy cercanos que muchos conocidos?', cat: 'Preferencias' },
+  { text: '¿Prefieres decir siempre la verdad aunque duela?', cat: 'Preferencias' },
+  { text: '¿Vivirías solo/a si pudieras?', cat: 'Preferencias' },
+  { text: '¿Prefieres las relaciones donde hay mucha independencia?', cat: 'Preferencias' },
+  { text: '¿Preferirías ganar menos y trabajar en algo que te gusta?', cat: 'Preferencias' },
+  { text: '¿Prefieres hacer planes espontáneos a tenerlo todo organizado?', cat: 'Preferencias' },
+  { text: '¿Prefieres quedarte con la duda o saber la verdad aunque sea mala?', cat: 'Preferencias' },
+  { text: '¿Preferirías saber cómo vas a morir o no saberlo nunca?', cat: 'Preferencias' },
+  { text: '¿Prefieres pedir perdón que pedir permiso?', cat: 'Preferencias' },
+  { text: '¿Prefieres una discusión directa a un silencio incómodo?', cat: 'Preferencias' },
+  { text: '¿Preferirías olvidar todos tus recuerdos malos o recordarlos todos?', cat: 'Preferencias' },
+  { text: '¿Prefieres que te quieran mucho y tú poco o al revés?', cat: 'Preferencias' },
+  { text: '¿Preferirías ser muy guapo/a sin dinero o muy rico/a sin atractivo?', cat: 'Preferencias' },
+  { text: '¿Preferirías que te dijeran siempre la verdad aunque duela o que te protegieran con mentiras?', cat: 'Preferencias' },
+  { text: '¿Crees que la amistad entre chico y chica sin historia es posible al 100%?', cat: 'Debate' },
+  { text: '¿Crees que es posible querer a dos personas a la vez?', cat: 'Debate' },
+  { text: '¿Crees que las relaciones abiertas pueden funcionar de verdad?', cat: 'Debate' },
+  { text: '¿Crees que hay que contarle a tu pareja todo lo del pasado?', cat: 'Debate' },
+  { text: '¿Crees que los celos en pequeña dosis son normales en una pareja?', cat: 'Debate' },
+  { text: '¿Crees que se puede ser feliz sin pareja a largo plazo?', cat: 'Debate' },
+  { text: '¿Crees que la gente cambia de verdad?', cat: 'Debate' },
+  { text: '¿Crees que el dinero da la felicidad, siendo realistas?', cat: 'Debate' },
+  { text: '¿Crees que es mejor vivir el momento que planificar el futuro?', cat: 'Debate' },
+  { text: '¿Crees que las primeras impresiones suelen ser acertadas?', cat: 'Debate' },
+  { text: '¿Crees que estar soltero/a a los 30 es una elección y no un problema?', cat: 'Debate' },
+  { text: '¿Crees que se puede mantener la amistad con alguien con quien tuviste algo?', cat: 'Debate' },
+  { text: '¿Crees que hay que perdonar siempre o hay cosas imperdonables?', cat: 'Debate' },
+  { text: '¿Crees que el ghosting es a veces la opción más honesta?', cat: 'Debate' },
+  { text: '¿Crees que la mayoría de la gente tiene pareja por miedo a estar sola?', cat: 'Debate' },
+  { text: '¿Crees que el amor romántico es una construcción social o algo real?', cat: 'Debate' },
+  { text: '¿Crees que se puede querer a alguien y hacerle daño conscientemente?', cat: 'Debate' },
+  { text: '¿Crees que las redes sociales hacen más daño que bien en las relaciones?', cat: 'Debate' },
+  { text: '¿Crees que todo el mundo miente en las apps de citas?', cat: 'Debate' },
+  { text: '¿Le dirías a un/a amigo/a que su pareja le está siendo infiel?', cat: 'Situaciones' },
+  { text: '¿Bloquearías a alguien sin dar explicaciones si ya no quieres saber nada?', cat: 'Situaciones' },
+  { text: '¿Le preguntarías a alguien directamente si le gustas?', cat: 'Situaciones' },
+  { text: '¿Dejarías una relación por mensaje si ya no hay vuelta atrás?', cat: 'Situaciones' },
+  { text: '¿Irías a la boda de un ex si os lleváis bien?', cat: 'Situaciones' },
+  { text: '¿Le contarías a tu pareja si alguien te ha tirado los tejos?', cat: 'Situaciones' },
+  { text: '¿Dejarías tu trabajo actual si te surgiera algo mejor pero con más riesgo?', cat: 'Situaciones' },
+  { text: '¿Irías solo/a de viaje si nadie puede acompañarte?', cat: 'Situaciones' },
+  { text: '¿Perdonarías una infidelidad si la persona lo reconoce y lo lamenta?', cat: 'Situaciones' },
+  { text: '¿Le escribirías a alguien que te gustó hace años solo para ver qué pasa?', cat: 'Situaciones' },
+  { text: '¿Cambiarías de ciudad por una relación si todo lo demás estuviera bien?', cat: 'Situaciones' },
+  { text: '¿Le dirías a alguien del grupo algo que llevas tiempo queriendo decirle esta noche?', cat: 'Situaciones' },
+  { text: '¿Cortarías con alguien que quieres si sabes que no tiene futuro a largo plazo?', cat: 'Situaciones' },
+  { text: '¿Le dirías a alguien que le quieres si sabes que no te lo va a devolver?', cat: 'Situaciones' },
+  { text: '¿Leerías el diario o los mensajes de alguien cercano si supieras que no te pillarían?', cat: 'Situaciones' },
+  { text: '¿Irías a terapia si alguien cercano te dijera que cree que lo necesitas?', cat: 'Situaciones' },
+  { text: '¿Preferirías saber que alguien te mintió o seguir sin saberlo si ya no cambia nada?', cat: 'Situaciones' },
+]);
+
+const CAT_COLORS = {
+  'Red flags':   { bg: 'rgba(251,113,133,0.12)', color: 'var(--prob)',  border: 'rgba(251,113,133,0.25)' },
+  'Preferencias':{ bg: 'rgba(56,189,248,0.12)',  color: 'var(--verd)',  border: 'rgba(56,189,248,0.25)'  },
+  'Debate':      { bg: 'rgba(251,191,36,0.12)',  color: 'var(--ruleta)',border: 'rgba(251,191,36,0.25)'  },
+  'Situaciones': { bg: 'rgba(52,211,153,0.12)',  color: 'var(--nunca)', border: 'rgba(52,211,153,0.25)'  },
+};
+
+const yosinoState = { deck: [], idx: 0, voted: null };
+
+function initYosino() {
+  yosinoState.deck = shuffle([...YOSINO_CARDS]);
+  yosinoState.idx = 0;
+  yosinoState.voted = null;
+  showYosinoCard();
+}
+
+function showYosinoCard() {
+  const d = yosinoState.deck, i = yosinoState.idx;
+  const card = d[i];
+  const pct = Math.round((i / d.length) * 100);
+  const col = CAT_COLORS[card.cat] || CAT_COLORS['Situaciones'];
+
+  document.getElementById('yosino-count').textContent = `Pregunta ${i + 1} de ${d.length}`;
+  document.getElementById('yosino-progress').style.width = pct + '%';
+  document.getElementById('yosino-text').textContent = card.text;
+
+  const catTag = document.getElementById('yosino-cat-tag');
+  catTag.textContent = card.cat;
+  catTag.style.cssText = `background:${col.bg};color:${col.color};border:1px solid ${col.border};display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:16px;`;
+
+  // Reset vote buttons
+  document.getElementById('yosino-btn-si').classList.remove('voted');
+  document.getElementById('yosino-btn-no').classList.remove('voted');
+  document.getElementById('yosino-result').classList.remove('show');
+  document.getElementById('yosino-result').textContent = '';
+  yosinoState.voted = null;
+
+  const yCard = document.getElementById('yosino-card');
+  yCard.classList.remove('card-flip');
+  void yCard.offsetWidth;
+  yCard.classList.add('card-flip');
+}
+
+function yosinoVote(v) {
+  if (yosinoState.voted) return;
+  yosinoState.voted = v;
+  document.getElementById('yosino-btn-' + v).classList.add('voted');
+  const result = document.getElementById('yosino-result');
+  result.textContent = v === 'si'
+    ? '🙋 Todos los que han votado "Yo sí", alzad la mano. ¿Hay alguien solo? ¡Bebe!'
+    : '🙅 Todos los que han votado "Yo no", alzad la mano. ¿Hay alguien solo? ¡Bebe!';
+  result.classList.add('show');
+}
+
+function nextYosino() {
+  yosinoState.idx = (yosinoState.idx + 1) % yosinoState.deck.length;
+  if (yosinoState.idx === 0) { yosinoState.deck = shuffle([...YOSINO_CARDS]); showToast('🔄 Baraja reiniciada'); }
+  showYosinoCard();
+}
+
+// ══════════════════════════════════════════
+//  SERVICE WORKER
+// ══════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
