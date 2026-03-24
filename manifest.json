@@ -2,14 +2,14 @@
   "name": "Party Games",
   "short_name": "Party Games",
   "description": "Juegos para fiestas: Impostor, Yo Nunca, Verdad o Reto y más",
-  "start_url": "./index.html",
+  "start_url": "/GameParty/index.html",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#0a0a0f",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "./icono.png",
+      "src": "/GameParty/icono.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
