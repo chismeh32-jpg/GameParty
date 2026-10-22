@@ -4,8 +4,8 @@ Simulador de granja para el navegador, pensado para jugar en el móvil. No neces
 
 ## Cómo jugarlo
 
-- **En local:** abre `granja/index.html` en el navegador.
-- **En GitHub Pages** (con Pages activado en la rama `main`): `https://chismeh32-jpg.github.io/GameParty/granja/`
+- **En local:** abre `index.html` en el navegador.
+- **En GitHub Pages** (con Pages activado en la rama `main`): `https://chismeh32-jpg.github.io/GameParty/`
 
 La partida se guarda sola en el navegador.
 
