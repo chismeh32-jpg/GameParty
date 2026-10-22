@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#2f5d2a">
+<meta name="theme-color" content="#24391c">
 <title>Granja Simulador</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,104 +13,52 @@
 </head>
 <body>
 
+<canvas id="world" aria-label="Mapa de la granja"></canvas>
+
+<!-- HUD -->
 <header class="hud">
-  <div class="hud-row">
-    <div class="hud-date">
-      <span id="hud-season" class="season-chip"></span>
-      <strong id="hud-day"></strong>
-    </div>
-    <div class="hud-right">
-      <span id="hud-weather" class="weather"></span>
-      <span id="hud-clock" class="clock">06:00</span>
-      <button id="btn-pause" class="icon-btn" aria-label="Pausar">⏸️</button>
+  <div class="hud-box clock-box">
+    <div id="hud-date" class="date"></div>
+    <div class="time"><span id="hud-weather"></span> <span id="hud-clock">06:00</span></div>
+  </div>
+  <div class="hud-stack">
+    <div class="hud-box bars">
+      <div class="bar-row" title="Energía">⚡ <div class="meter"><div id="energy-fill"></div></div><span id="hud-energy"></span></div>
+      <div class="bar-row" title="Nivel">⭐ <div class="meter xp"><div id="xp-fill"></div></div><span id="hud-level"></span></div>
     </div>
   </div>
-  <div class="daybar" aria-hidden="true"><div id="daybar-fill"></div></div>
-  <div class="hud-row stats">
-    <div class="stat coins">🪙 <strong id="hud-coins">0</strong></div>
-    <div class="stat energy">
-      ⚡ <div class="meter"><div id="energy-fill"></div></div>
-      <span id="hud-energy"></span>
-    </div>
-    <div class="stat level">
-      ⭐ <strong id="hud-level">1</strong>
-      <div class="meter xp"><div id="xp-fill"></div></div>
+  <div class="hud-right">
+    <div class="hud-box coins">🪙 <strong id="hud-coins">0</strong></div>
+    <div class="hud-buttons">
+      <button id="btn-pause" class="hud-box icon-btn" aria-label="Pausar">⏸️</button>
+      <button id="btn-menu" class="hud-box icon-btn" aria-label="Menú">🎒</button>
     </div>
   </div>
 </header>
 
-<main>
-  <!-- GRANJA -->
-  <section id="tab-granja" class="tab active">
-    <div id="season-note" class="note hidden"></div>
-    <div id="farm-grid" class="farm-grid"></div>
-    <div class="bulk-actions">
-      <button id="btn-water-all" class="btn">💧 Regar todo</button>
-      <button id="btn-harvest-all" class="btn">🧺 Cosechar todo</button>
-      <button id="btn-sleep" class="btn primary">🛏️ Dormir</button>
-    </div>
-    <h2 class="section-title">Semillas</h2>
-    <div id="seed-list" class="seed-list"></div>
-    <p class="hint">Toca una parcela vacía para sembrar la semilla elegida. Vuelve a tocarla para regar 💧 y, cuando esté lista, para cosechar 🧺. Sin agua durante 3 días, el cultivo se seca 🥀.</p>
-  </section>
-
-  <!-- ANIMALES -->
-  <section id="tab-animales" class="tab">
-    <div class="card feed-card">
-      <div>
-        <div class="card-title">🌾 Pienso: <strong id="feed-count">0</strong></div>
-        <div class="muted">Se reparte solo cada noche. Consumo diario: <strong id="feed-need">0</strong></div>
-      </div>
-      <div class="btn-group">
-        <button class="btn small" data-buy-feed="1">+1</button>
-        <button class="btn small" data-buy-feed="10">+10</button>
-      </div>
-    </div>
-    <h2 class="section-title">Tus animales <span id="corral-count" class="muted"></span></h2>
-    <div id="animal-list" class="list"></div>
-    <h2 class="section-title">Comprar animales</h2>
-    <div id="animal-shop" class="list"></div>
-  </section>
-
-  <!-- MERCADO -->
-  <section id="tab-mercado" class="tab">
-    <div class="card">
-      <div class="card-title">🏚️ Granero <span id="barn-usage" class="muted"></span></div>
-      <div class="meter wide"><div id="barn-fill"></div></div>
-      <div id="market-event" class="muted small-gap"></div>
-    </div>
-    <div id="market-list" class="list"></div>
-    <button id="btn-sell-all" class="btn primary block">💰 Vender todo el granero</button>
-  </section>
-
-  <!-- MEJORAS -->
-  <section id="tab-mejoras" class="tab">
-    <h2 class="section-title">Mejoras de la granja</h2>
-    <div id="upgrade-list" class="list"></div>
-  </section>
-
-  <!-- LOGROS -->
-  <section id="tab-logros" class="tab">
-    <h2 class="section-title">Logros <span id="ach-count" class="muted"></span></h2>
-    <div id="ach-list" class="ach-grid"></div>
-    <h2 class="section-title">Estadísticas</h2>
-    <div id="stats-list" class="card stats-list"></div>
-    <div class="btn-row">
-      <button id="btn-help" class="btn">❓ Cómo jugar</button>
-      <button id="btn-reset" class="btn danger">🗑️ Nueva partida</button>
-    </div>
-  </section>
-</main>
-
-<nav class="tabbar">
-  <button class="tab-btn active" data-tab="granja"><span>🌾</span>Granja</button>
-  <button class="tab-btn" data-tab="animales"><span>🐮</span>Animales</button>
-  <button class="tab-btn" data-tab="mercado"><span>🏪</span>Mercado</button>
-  <button class="tab-btn" data-tab="mejoras"><span>🔧</span>Mejoras</button>
-  <button class="tab-btn" data-tab="logros"><span>🏆</span>Logros</button>
-</nav>
-
 <div id="toast-wrap" class="toast-wrap" aria-live="polite"></div>
+
+<!-- Controles -->
+<div class="controls">
+  <div id="joystick" class="joystick" aria-label="Joystick"><div id="joy-knob" class="knob"></div></div>
+  <button id="btn-action" class="action-btn" aria-label="Usar">A</button>
+</div>
+
+<footer class="bottom">
+  <div id="tool-hint" class="tool-hint"></div>
+  <div id="hotbar" class="hotbar"></div>
+</footer>
+
+<!-- Paneles -->
+<div id="panel" class="panel hidden" role="dialog" aria-modal="true">
+  <div class="panel-box">
+    <div class="panel-head">
+      <h2 id="panel-title"></h2>
+      <button id="panel-close" class="icon-btn" aria-label="Cerrar">✕</button>
+    </div>
+    <div id="panel-body" class="panel-body"></div>
+  </div>
+</div>
 
 <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
   <div class="modal-box">
@@ -120,6 +68,8 @@
   </div>
 </div>
 
+<script src="data.js"></script>
+<script src="sprites.js"></script>
 <script src="game.js"></script>
 </body>
 </html>

@@ -1,33 +1,52 @@
 # 🌾 Granja Simulador
 
-Simulador de granja para el navegador, pensado para jugar en el móvil. No necesita instalación ni dependencias: solo HTML, CSS y JavaScript.
+Simulador de granja en 2D al estilo Stardew Valley para el navegador. Funciona en el móvil (joystick y botón táctil) y en el ordenador (teclado y ratón). No necesita instalación ni dependencias: todo el pixel art se dibuja con código.
 
 ## Cómo jugarlo
 
+- **Online (GitHub Pages):** `https://chismeh32-jpg.github.io/GameParty/`
 - **En local:** abre `index.html` en el navegador.
-- **En GitHub Pages** (con Pages activado en la rama `main`): `https://chismeh32-jpg.github.io/GameParty/`
 
 La partida se guarda sola en el navegador.
 
+## Controles
+
+| | Móvil | Ordenador |
+|---|---|---|
+| Moverse | Joystick | WASD o flechas |
+| Usar / interactuar | Botón **A** o tocar una casilla cercana | Espacio, E o clic en una casilla cercana |
+| Ir a un sitio | Tocar una casilla lejana | Clic en una casilla lejana |
+| Cambiar herramienta | Barra inferior | Teclas 1-9 |
+| Menú | 🎒 | Esc |
+
+## La granja
+
+| Lugar | Para qué sirve |
+|---|---|
+| 🏠 **Casa** | Dormir y pasar al día siguiente |
+| 📦 **Caja de envíos** | Vender cultivos y productos (los precios cambian cada día) |
+| 🌱 **Huerto** | Arar con la azada, sembrar y regar |
+| 💧 **Estanque** | Rellenar la regadera |
+| 🐮 **Establo y corral** | Comprar animales y pienso. Acaricia a tus animales y recoge sus productos en el corral |
+| 🔧 **Taller** | Mejoras: más terreno, regadera más grande, granero, establo, espantapájaros, pararrayos, cafetera y aspersores |
+| 📋 **Tablón** | Logros y estadísticas |
+
 ## Mecánicas
 
-| | |
-|---|---|
-| 🌱 **Cultivos** | 9 semillas (trigo, cebolla, zanahoria, col, maíz, tomate, fresa, calabaza y sandía). Cada una tiene su coste, días de crecimiento y estaciones. El tomate y la fresa vuelven a dar fruto. |
-| 💧 **Riego** | Los cultivos solo crecen los días que se riegan. Si pasan 3 días sin agua, se secan. La lluvia y la nieve riegan solas. |
-| 🍂 **Estaciones** | Primavera, verano, otoño e invierno, de 7 días cada una. Al cambiar de estación se marchitan los cultivos que no son de temporada. |
-| ⏰ **Tiempo** | Cada día va de 06:00 a 24:00 (60 s reales). Si no duermes antes de medianoche, te desmayas y despiertas con media energía. |
-| ⚡ **Energía** | Sembrar, regar, cosechar, limpiar y mimar animales gastan energía. Dormir la recupera. |
-| 🐔 **Animales** | Gallinas, ovejas, vacas y cerdos. Cada noche comen pienso y producen huevos, lana, leche o trufas. Si están felices pueden producir el doble, y si están tristes no producen. |
-| 🏪 **Mercado** | Los precios cambian cada día. Los productos fuera de temporada se pagan mejor y, a veces, hay feria con un producto a precio doble. |
-| 🌦️ **Eventos** | Lluvia, tormentas con rayos, cuervos que se comen los cultivos... |
-| 🔧 **Mejoras** | Más terreno, granero, corral, espantapájaros, pararrayos, cafetera (más energía) y aspersores automáticos. |
-| ⭐ **Progreso** | Subes de nivel con la experiencia y desbloqueas semillas y animales. Hay 10 logros. |
+- **Cultivos:** hay 9 semillas, cada una con sus estaciones. El tomate y la fresa vuelven a dar fruto. Sin agua durante 3 días, el cultivo se seca.
+- **Estaciones:** duran 7 días cada una y cambian los colores del mapa. Al cambiar de estación se marchitan los cultivos que no son de temporada.
+- **Tiempo:** el día va de 06:00 a 24:00 (2,5 minutos reales) y se hace de noche. Si no duermes antes de medianoche, te desmayas.
+- **Clima:** lluvia y nieve riegan el huerto. Las tormentas pueden quemar un cultivo con un rayo y los cuervos se comen cultivos si no tienes espantapájaros.
+- **Animales:** gallinas, ovejas, vacas y cerdos. Comen pienso cada noche y, si están contentos, dejan huevos, lana, leche o trufas para recoger.
+- **Progreso:** subes de nivel con la experiencia, desbloqueas semillas y animales y hay 10 logros.
 
 ## Archivos
 
-- `index.html`: estructura de la interfaz
-- `styles.css`: estilos, con modo claro y oscuro
-- `game.js`: lógica del juego (datos, simulación diaria, guardado y render)
+- `index.html`: interfaz (HUD, barra de herramientas, controles y paneles)
+- `styles.css`: estilos
+- `data.js`: datos del juego y del mapa (cultivos, animales, mejoras, edificios...)
+- `sprites.js`: pixel art dibujado con código
+- `game.js`: simulación, movimiento, render y guardado
+- `sw.js`: borra la caché de la antigua app Party Games en los móviles que la tenían instalada
 
-Para ajustar el equilibrio del juego, modifica las tablas `CROPS`, `ANIMALS`, `PRODUCTS` y `UPGRADES` al principio de `game.js`.
+Para ajustar el equilibrio del juego, modifica las tablas de `data.js`.
