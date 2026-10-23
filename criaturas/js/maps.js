@@ -43,6 +43,10 @@ const LOOKS = {
   oldman:   { head: 'bald',  h: '#d8d8d8', s: '#6a8a5a', p: '#4a4a3a' },
   girl:     { head: 'long',  h: '#3a2a1a', s: '#f2d23a', p: '#d8584a' },
   engineer: { head: 'cap',   c: '#f2d23a', h: '#2a1a1a', s: '#e8a040', p: '#3a3a4a' },
+  umbra:    { head: 'long',  h: '#4a2a6a', k: '#e8d8f0', s: '#2a1a3a', p: '#5a3a8a' },
+  marina:   { head: 'long',  h: '#3a7ad8', s: '#e8f4ff', S: '#a8c8e8', p: '#2a4a8a' },
+  celia:    { head: 'long',  h: '#4fa83a', s: '#f2a0c8', p: '#3a6a2a' },
+  bruno:    { head: 'bald',  h: '#3a2a1a', k: '#c8906a', s: '#6a4a2a', p: '#3a3a3a' },
 };
 
 /* ══════════════════════════════════════
@@ -423,7 +427,7 @@ defineMap({
     'TT.........==.........TT',
     'TT.........==.........TT',
     'TT....=....==.....=...TT',
-    '======================TT',
+    '========================',
     'TT....................TT',
     'TT.S..................TT',
     'TT....................TT',
@@ -441,6 +445,7 @@ defineMap({
   ],
   warps: [
     { x: 0, y: 8, to: 'cueva', tx: 22, ty: 8 },
+    { x: 23, y: 8, to: 'ruta3', tx: 1, ty: 7 },
     { x: 11, y: 0, to: 'santuario', tx: 6, ty: 12 },
     { x: 12, y: 0, to: 'santuario', tx: 7, ty: 12 },
   ],
@@ -452,8 +457,7 @@ defineMap({
   npcs: [
     { id: 'c2_sailor', x: 8, y: 15, dir: 'down', look: 'sailor', wander: true, text: ['¡Ahoy! El mar está demasiado bravo para navegar hoy.', 'Al norte de la ciudad está el Santuario. Solo los campeones pueden entrar.'] },
     { id: 'c2_girl', x: 18, y: 12, dir: 'left', look: 'girl', text: ['Volta usa criaturas Eléctricas.', 'Las criaturas de Agua y Voladoras lo pasan fatal contra ella.'] },
-    { id: 'rival3', x: 11, y: 3, dir: 'down', look: 'rival', showIf: 'badge2', hideIf: 'rival3', trainer: { rival: 3, name: 'Rival Dani', prize: 60, sight: 0,
-      intro: '¡Dos medallas! Ya somos los mejores de la región... pero solo puede haber un campeón. ¡Vamos!', defeat: '¡Has ganado! Eres... el mejor entrenador de Brisaluz.', after: '' }, script: 'rival3' },
+    { id: 'guard2', x: 22, y: 8, dir: 'left', look: 'sailor', script: 'guard2', hideIf: 'badge2' },
   ],
 });
 
@@ -481,7 +485,7 @@ defineMap({
   warps: [4, 5].map(x => ({ x, y: 13, to: 'ciudad2', tx: 17, ty: 7 })),
   npcs: [
     { id: 'leader2', x: 5, y: 2, dir: 'down', look: 'leader2', trainer: { name: 'Líder Volta', party: [['chispin', 19], ['murcielin', 19], ['voltion', 22]], prize: 100, sight: 0, leader: 'badge2',
-      intro: '¡Bienvenido al Gimnasio Marea! Soy Volta. ¿Estás listo para sentir la corriente?', defeat: '¡Me has dejado sin batería! Te has ganado la Medalla Voltio.', after: 'Con dos medallas puedes ir al Santuario, al norte de la ciudad.' } },
+      intro: '¡Bienvenido al Gimnasio Marea! Soy Volta. ¿Estás listo para sentir la corriente?', defeat: '¡Me has dejado sin batería! Te has ganado la Medalla Voltio.', after: 'Al este, siguiendo la costa, está Villa Bruma. Su líder, Umbra, domina a los fantasmas.' } },
     { id: 't_tesla', x: 2, y: 9, dir: 'right', look: 'engineer', trainer: { name: 'Ingeniero Teo', party: [['chispin', 16], ['chispin', 17]], prize: 25, sight: 4,
       intro: '¡Mis circuitos están a plena carga!', defeat: '¡Cortocircuito!', after: 'Volta tiene un Voltión muy rápido.' } },
     { id: 't_sara', x: 7, y: 6, dir: 'left', look: 'lass', trainer: { name: 'Chica Sara', party: [['pipio', 16], ['chispin', 17]], prize: 20, sight: 4,
@@ -514,3 +518,245 @@ defineMap({
   ],
   objects: [{ x: 6, y: 4, script: 'legend', creature: 'auroral', hideIf: 'legend' }],
 });
+
+/* ── Ruta 3 · Costa Brava ── */
+defineMap({
+  id: 'ruta3', name: 'Ruta 3 · Costa Brava', music: 'route',
+  rows: [
+    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+    'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
+    'TT,,,,....TT,,,,,,....,,,,TTTTTT',
+    'TT,,,,....TT,,,,,,....,,,,..,,TT',
+    'TT....R...TT......R.......,,,,TT',
+    'TT....................TTTT....TT',
+    'TT..,,,,,,....,,,,..........S.TT',
+    '==..,,,,,,....,,,,............==',
+    '::::::::::::::::::::::::::::::::',
+    '::::,,,,::::::::::::,,,,::::::::',
+    '::::::::::::::RR::::::::::::::::',
+    '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+    '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+    '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~',
+  ],
+  warps: [
+    { x: 0, y: 7, to: 'ciudad2', tx: 22, ty: 8 },
+    { x: 31, y: 7, to: 'ciudad3', tx: 1, ty: 8 },
+  ],
+  signs: [{ x: 28, y: 6, text: 'RUTA 3 · Este: Villa Bruma. Oeste: Puerto Marea.' }],
+  encounters: { tall: [['charquito', 16, 19, 25], ['halconcio', 18, 20, 15], ['alabella', 17, 19, 15], ['roedon', 18, 20, 20], ['pipio', 16, 18, 15], ['gotarin', 17, 18, 5], ['marejon', 19, 20, 5]] },
+  encountersNight: { tall: [['sombrin', 17, 19, 30], ['murcielin', 17, 19, 25], ['nocturcielo', 19, 21, 10], ['charquito', 16, 19, 25], ['ranaldo', 20, 21, 10]] },
+  npcs: [
+    { id: 't_tino', x: 8, y: 9, dir: 'up', look: 'sailor', trainer: { name: 'Pescador Tino', party: [['charquito', 18], ['gotarin', 19]], prize: 20, sight: 3,
+      intro: '¡Hoy no pican los peces, pero sí los entrenadores!', defeat: '¡Se me escapó el pez gordo!', after: 'El mar de esta costa está lleno de criaturas de Agua.' } },
+    { id: 't_ana', x: 16, y: 3, dir: 'down', look: 'lass', trainer: { name: 'Chica Ana', party: [['alabella', 19], ['pipio', 19]], prize: 20, sight: 4,
+      intro: '¡Mis criaturas brillan con el sol de la costa!', defeat: '¡Qué combate más bonito!', after: 'Dicen que en Villa Bruma siempre hay niebla.' } },
+    { id: 't_leo2', x: 24, y: 4, dir: 'left', look: 'youngster', trainer: { name: 'Joven Iván', party: [['roedon', 20], ['halconcio', 20]], prize: 20, sight: 4,
+      intro: '¡Te reto! ¡He entrenado en la playa todo el verano!', defeat: '¡Uf! Necesito más entrenamiento.', after: 'Las criaturas Fantasma no reciben daño de los ataques Normales.' } },
+  ],
+  items: [
+    { id: 'r3_super', x: 3, y: 2, item: 'superpocion', qty: 2 },
+    { id: 'r3_ultra', x: 28, y: 3, item: 'ultracapsula' },
+    { id: 'r3_revivir', x: 20, y: 9, item: 'revivir' },
+  ],
+});
+
+/* ── Villa Bruma ── */
+defineMap({
+  id: 'ciudad3', name: 'Villa Bruma', music: 'town', fog: true,
+  rows: [
+    'TTTTTTTTTTT==TTTTTTTTTTT',
+    'TTTTTTTTTTT==TTTTTTTTTTT',
+    'TT.........==.........TT',
+    'TT.........==.........TT',
+    'TT.........==.........TT',
+    'TT.........==.........TT',
+    'TT.........==.........TT',
+    'TT....=....==.....=...TT',
+    '======================TT',
+    'TT....................TT',
+    'TT..S.................TT',
+    'TT....................TT',
+    'TT....................TT',
+    'TT*...........=.......TT',
+    'TT...=.............*..TT',
+    'TT....................TT',
+    'TTTTTTTTTTTTTTTTTTTTTTTT',
+    'TTTTTTTTTTTTTTTTTTTTTTTT',
+  ],
+  buildings: [
+    { kind: 'center', x: 3, y: 3, to: 'centro3', tx: 5, ty: 6 },
+    { kind: 'gym', x: 14, y: 2, to: 'gym3', tx: 5, ty: 12 },
+    { kind: 'shop', x: 13, y: 10, to: 'tienda3', tx: 3, ty: 5 },
+    { kind: 'house2', x: 3, y: 11, to: 'casa_bruma', tx: 3, ty: 5 },
+  ],
+  warps: [
+    { x: 0, y: 8, to: 'ruta3', tx: 30, ty: 7 },
+    { x: 11, y: 0, to: 'ruta4', tx: 9, ty: 28 },
+    { x: 12, y: 0, to: 'ruta4', tx: 10, ty: 28 },
+  ],
+  signs: [{ x: 4, y: 10, text: 'VILLA BRUMA · Un pueblo envuelto en niebla. Gimnasio de Umbra.' }],
+  triggers: [
+    { x: 11, y: 2, script: 'gate3' },
+    { x: 12, y: 2, script: 'gate3' },
+  ],
+  npcs: [
+    { id: 'c3_old', x: 9, y: 12, dir: 'down', look: 'oldman', wander: true, text: ['La niebla nunca se va de Villa Bruma.', 'Dicen que las criaturas Fantasma se esconden en ella.'] },
+    { id: 'c3_girl', x: 18, y: 9, dir: 'left', look: 'girl', text: ['Al norte está el Paso Montaña y, al final, la Liga de Brisaluz.', 'Solo dejan subir a quien tenga tres medallas.'] },
+  ],
+});
+
+defineMap(centerMap('centro3', 'Centro de Criaturas', { to: 'ciudad3', tx: 6, ty: 7 }));
+defineMap(shopMap('tienda3', 'Tienda', 'tienda3', { to: 'ciudad3', tx: 14, ty: 13 }));
+defineMap(houseMap('casa_bruma', 'Casa', { to: 'ciudad3', tx: 5, ty: 14 }, [
+  { id: 'bruma_kid', x: 4, y: 3, dir: 'down', look: 'youngster', script: 'brumaGift' },
+]));
+
+defineMap({
+  id: 'gym3', arena: 'santuario', name: 'Gimnasio Bruma', interior: true, music: 'gym',
+  rows: [
+    'WWWWWWWWWW',
+    'qqqqqqqqqq',
+    'qqqqqqqqqq',
+    'qpqqqqqqpq',
+    'qqqqqqqqqq',
+    'qqqpqqpqqq',
+    'qqqqqqqqqq',
+    'qqqqqqqqqq',
+    'qpqqqqqqpq',
+    'qqqqqqqqqq',
+    'qqqqqqqqqq',
+    'qqqqqqqqqq',
+    'qqqqqqqqqq',
+    'qqqqmmqqqq',
+  ],
+  warps: [4, 5].map(x => ({ x, y: 13, to: 'ciudad3', tx: 17, ty: 7 })),
+  npcs: [
+    { id: 'leader3', x: 5, y: 2, dir: 'down', look: 'umbra', trainer: { name: 'Líder Umbra', party: [['sombrin', 25], ['nocturcielo', 26], ['espectron', 28]], prize: 110, sight: 0, leader: 'badge3', badgeName: 'Medalla Sombra',
+      intro: 'Bienvenido a mi gimnasio... Soy Umbra. Las sombras me susurran que has venido a por una medalla. Veamos si no te tiemblan las piernas.', defeat: 'Las sombras se disipan... Has ganado. Toma la Medalla Sombra.', after: 'Con tres medallas puedes cruzar el Paso Montaña, al norte, y desafiar a la Liga de Brisaluz.' } },
+    { id: 't_sol', x: 2, y: 9, dir: 'right', look: 'medium', trainer: { name: 'Médium Sol', party: [['sombrin', 23], ['sombrin', 24]], prize: 25, sight: 4,
+      intro: 'Uuuuh... ¿Notas ese escalofrío?', defeat: 'Los espíritus se han ido...', after: 'Los ataques Fantasma son muy eficaces contra otros Fantasma.' } },
+    { id: 't_noa', x: 7, y: 6, dir: 'left', look: 'medium', trainer: { name: 'Médium Noa', party: [['murcielin', 23], ['espectron', 25]], prize: 25, sight: 4,
+      intro: '¡No llegarás hasta Umbra!', defeat: 'Eres más fuerte que las sombras...', after: 'Umbra tiene un Espectrón temible.' } },
+  ],
+});
+
+/* ── Ruta 4 · Paso Montaña ── */
+defineMap({
+  id: 'ruta4', arena: 'gimnasio_roca', name: 'Ruta 4 · Paso Montaña', music: 'route',
+  rows: [
+    'TTTTTTTTT==TTTTTTTTT',
+    'TTTTTTTTT==TTTTTTTTT',
+    'TT..R....==....R..TT',
+    'TT,,,,...==...,,,,TT',
+    'TT,,,,...==...,,,,TT',
+    'TTLLLLLL.==.LLLLLLTT',
+    'TT..R....==.......TT',
+    'TT.......==..R....TT',
+    'TT,,,,,..==..,,,,,TT',
+    'TT,,,,,..==..,,,,,TT',
+    'TT.......==.......TT',
+    'TTTT..TT.==.TT..TTTT',
+    'TT.......==.......TT',
+    'TT..RR...==...RR..TT',
+    'TT,,,,,..==..,,,,,TT',
+    'TT,,,,,..==..,,,,,TT',
+    'TT.......==.......TT',
+    'TTLLLL...==...LLLLTT',
+    'TT.......==.......TT',
+    'TT..,,,,.==.,,,,..TT',
+    'TT..,,,,.==.,,,,..TT',
+    'TT..,,,,.==.,,,,..TT',
+    'TT.......==.......TT',
+    'TTTT.....==.....TTTT',
+    'TT....R..==..R....TT',
+    'TT,,,,...==...,,,,TT',
+    'TT,,,,...==...,,,,TT',
+    'TT.......==.......TT',
+    'TTTTTTTTT==TTTTTTTTT',
+    'TTTTTTTTT==TTTTTTTTT',
+  ],
+  warps: [
+    { x: 9, y: 29, to: 'ciudad3', tx: 11, ty: 1 },
+    { x: 10, y: 29, to: 'ciudad3', tx: 12, ty: 1 },
+    { x: 9, y: 0, to: 'liga', tx: 5, ty: 7 },
+    { x: 10, y: 0, to: 'liga', tx: 5, ty: 7 },
+  ],
+  encounters: { tall: [['pedrusco', 24, 27, 22], ['rocazon', 26, 28, 10], ['murcielin', 24, 26, 18], ['roedon', 25, 27, 18], ['halconcio', 26, 28, 14], ['nocturcielo', 26, 28, 8], ['hongoloso', 26, 27, 6], ['brasito', 24, 25, 4]] },
+  encountersNight: { tall: [['espectron', 26, 28, 15], ['sombrin', 25, 27, 20], ['nocturcielo', 26, 28, 25], ['pedrusco', 24, 27, 25], ['rocazon', 26, 28, 15]] },
+  npcs: [
+    { id: 't_gus', x: 6, y: 22, dir: 'right', look: 'hiker', trainer: { name: 'Montañero Gus', party: [['pedrusco', 25], ['rocazon', 27]], prize: 25, sight: 3,
+      intro: '¡Esta montaña es mi casa!', defeat: '¡Me has hecho rodar ladera abajo!', after: 'La Liga está en lo alto del paso. ¡Prepárate bien!' } },
+    { id: 't_eva', x: 13, y: 12, dir: 'left', look: 'engineer', trainer: { name: 'Ingeniera Eva', party: [['chispin', 26], ['voltion', 27]], prize: 25, sight: 4,
+      intro: '¡He instalado pararrayos en toda la montaña! ¡Y ahora, combate!', defeat: '¡Sobrecarga total!', after: 'Lleva Hiperpociones a la Liga. Las vas a necesitar.' } },
+    { id: 't_dora', x: 6, y: 7, dir: 'right', look: 'lass', trainer: { name: 'Excursionista Dora', party: [['halconcio', 26], ['hongoloso', 25]], prize: 25, sight: 3,
+      intro: '¡Casi en la cima! Pero antes, ¡un combate!', defeat: 'Me quedo sin aliento...', after: 'Arriba está la Liga de Brisaluz. ¡Mucha suerte!' } },
+  ],
+  items: [
+    { id: 'r4_hiper', x: 3, y: 25, item: 'hiperpocion', qty: 2 },
+    { id: 'r4_ultra', x: 16, y: 3, item: 'ultracapsula', qty: 2 },
+    { id: 'r4_curatotal', x: 16, y: 20, item: 'curatotal', qty: 2 },
+  ],
+});
+
+/* ── Liga de Brisaluz ── */
+defineMap({
+  id: 'liga', name: 'Liga de Brisaluz', interior: true, heal: true, music: 'town',
+  rows: [
+    'WWWWWWWWWWW',
+    'WWWWWmWWWWW',
+    'pfffffffffp',
+    'fffffffffff',
+    'fcccfffcccf',
+    'fffffffffff',
+    'fffffffffff',
+    'rrrrrrrrrrr',
+    'ffffmmmffff',
+  ],
+  warps: [
+    { x: 5, y: 1, to: 'liga1', tx: 4, ty: 8 },
+    ...[4, 5, 6].map(x => ({ x, y: 8, to: 'ruta4', tx: 9 + (x === 6 ? 1 : 0), ty: 1 })),
+  ],
+  gates: [{ x: 5, y: 1, flag: 'badge3', text: 'Un guarda: Solo pueden entrar los entrenadores con tres medallas.' }],
+  npcs: [
+    { id: 'nurse', x: 2, y: 3, dir: 'down', look: 'nurse', script: 'nurse' },
+    { id: 'clerk', x: 8, y: 3, dir: 'down', look: 'clerk', script: 'shop', shop: 'tienda3' },
+    { id: 'liga_guard', x: 4, y: 2, dir: 'down', look: 'guard', text: ['Bienvenido a la Liga de Brisaluz.', 'Tendrás que vencer a tres entrenadores de élite seguidos y, al final, al Campeón.', 'Cura a tu equipo y compra provisiones antes de entrar.'] },
+  ],
+});
+
+function ligaRoom(id, name, arena, next, trainer, look, pal) {
+  return {
+    id, name, arena, interior: true, music: 'gym',
+    rows: [
+      'WWWWWWWWW',
+      'WWWWmWWWW',
+      pal.repeat(9),
+      pal.repeat(9),
+      pal + 'p' + pal.repeat(5) + 'p' + pal,
+      pal.repeat(9),
+      pal.repeat(9),
+      pal + 'p' + pal.repeat(5) + 'p' + pal,
+      pal.repeat(9),
+      pal.repeat(4) + 'm' + pal.repeat(4),
+    ],
+    warps: [
+      { x: 4, y: 1, ...next },
+      { x: 4, y: 9, to: 'liga', tx: 5, ty: 2 },
+    ],
+    gates: [{ x: 4, y: 1, flag: 'beat_' + trainer.id, text: 'La puerta no se abre. Primero tienes que vencer a quien la custodia.' }],
+    npcs: [{ id: trainer.id, x: 4, y: 3, dir: 'down', look, trainer }],
+  };
+}
+
+defineMap(ligaRoom('liga1', 'Liga · Sala del Mar', 'gimnasio_voltio', { to: 'liga2', tx: 4, ty: 8 },
+  { id: 'e_marina', name: 'Élite Marina', party: [['charquito', 30], ['ranaldo', 32], ['marejon', 33]], prize: 120, sight: 4,
+    intro: 'Soy Marina, de la élite de la Liga. Mis criaturas son tan profundas como el océano. ¡Te arrastraré con la marea!', defeat: 'Qué fuerza... Puedes seguir adelante.', after: 'La siguiente sala es la de Bruno. Sus rocas no ceden fácilmente.' }, 'marina', 'g'));
+defineMap(ligaRoom('liga2', 'Liga · Sala de la Roca', 'gimnasio_roca', { to: 'liga3', tx: 4, ty: 8 },
+  { id: 'e_bruno', name: 'Élite Bruno', party: [['pedrusco', 31], ['rocazon', 33], ['rocazon', 34]], prize: 120, sight: 4,
+    intro: '¡Soy Bruno! Mis criaturas son duras como la montaña. ¡Vamos a ver si tienes lo que hay que tener!', defeat: '¡Me has partido en dos! Adelante.', after: 'Celia te espera en la sala del bosque. Cuidado con sus esporas.' }, 'bruno', 'g'));
+defineMap(ligaRoom('liga3', 'Liga · Sala del Bosque', 'bosque', { to: 'liga4', tx: 4, ty: 8 },
+  { id: 'e_celia', name: 'Élite Celia', party: [['alabella', 32], ['hongoloso', 34], ['frondosaur', 35]], prize: 120, sight: 4,
+    intro: 'Soy Celia. Las plantas crecen despacio, pero llegan a romper la piedra. ¿Resistirás?', defeat: 'Has florecido de verdad. El Campeón te espera.', after: 'Detrás de esa puerta está el Campeón de Brisaluz.' }, 'celia', 'g'));
+defineMap(ligaRoom('liga4', 'Liga · Sala del Campeón', 'santuario', { to: 'liga', tx: 5, ty: 2 },
+  { id: 'e_campeon', name: 'Campeón Dani', rival: 4, champion: true, prize: 200, sight: 4,
+    intro: '¡Sabía que llegarías hasta aquí! Me he convertido en el Campeón de Brisaluz antes que tú. ¡Esta vez no pienso perder!', defeat: 'No puede ser... Otra vez...' , after: '' }, 'rival', 'q'));

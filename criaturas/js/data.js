@@ -295,6 +295,7 @@ const ITEMS = {
 
 const SHOPS = {
   tienda1: ['capsula', 'pocion', 'antidoto', 'antiparaliz', 'antiquemar', 'despertar'],
+  tienda3: ['capsula', 'supercapsula', 'ultracapsula', 'superpocion', 'hiperpocion', 'antidoto', 'antiparaliz', 'antiquemar', 'despertar', 'curatotal', 'revivir'],
   tienda2: ['capsula', 'supercapsula', 'pocion', 'superpocion', 'antidoto', 'antiparaliz', 'antiquemar', 'despertar', 'curatotal', 'revivir'],
 };
 

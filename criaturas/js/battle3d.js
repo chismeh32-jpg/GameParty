@@ -15,6 +15,7 @@ const cache = new Map();        // url → Promise<gltf>
 const TRAINER_MODELS = {
   player: 'jugador', rival: 'dani', prof: 'alisa', leader1: 'petra', leader2: 'volta',
   youngster: 'joven', lass: 'chica', bug: 'cazabichos', hiker: 'montanero', medium: 'medium', engineer: 'ingeniero',
+  umbra: 'medium', marina: 'chica', celia: 'chica', bruno: 'montanero',
 };
 const ARENA_STYLE = {
   pradera:         { sky: '#9fd3f0', ground: '#557744', hemi: 1.6, sun: 2.2, fog: '#cfe8f4' },

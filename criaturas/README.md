@@ -30,8 +30,8 @@ Los combates se dibujan en 3D con [Three.js](https://threejs.org/) (incluido en 
 - **Combates por turnos** con tabla de tipos, bonificación por tipo propio (STAB), golpes críticos, precisión, prioridad, estados (veneno, quemadura, parálisis y sueño) y cambios de estadísticas.
 - **Capturas** con Cápsula, Supercápsula y Ultracápsula (cuantos menos PS, más fácil).
 - **Experiencia**, subidas de nivel, aprendizaje de movimientos (con opción de olvidar uno) y evoluciones animadas.
-- **Mapas:** Pueblo Albor, Ruta 1, Ciudad Roble, Ruta 2 (Bosque Musgo), Cueva Eco, Puerto Marea y el Santuario.
-- **Historia:** elección de inicial, rival, 2 gimnasios con medalla, entrenadores que te ven y vienen a retarte, guardias, regalos y final con créditos.
+- **Mapas:** Pueblo Albor, Ruta 1, Ciudad Roble, Ruta 2 (Bosque Musgo), Cueva Eco, Puerto Marea, Ruta 3 (Costa Brava), Villa Bruma (con niebla), Ruta 4 (Paso Montaña), la Liga de Brisaluz y el Santuario.
+- **Historia:** elección de inicial, rival, 3 gimnasios (Roca, Eléctrico y Fantasma), entrenadores que te ven y vienen a retarte, guardias, regalos y la **Liga de Brisaluz**: tres entrenadores de élite seguidos (Marina, Bruno y Celia) y el Campeón. Al ganar, se abre el Santuario con la criatura legendaria.
 - Centros de Criaturas, tiendas, PC para guardar criaturas, Criaturario, mochila, ficha de entrenador, bordillos para saltar, hierba alta y cuevas con encuentros.
 - **Día y noche** según la hora real: amanecer, día, atardecer y noche. De noche aparecen criaturas distintas (Sombrín, Murcielín...) y a veces llueve en el Bosque Musgo.
 - **Tu criatura te sigue** por el mapa (la primera del equipo). Háblale con A para ver cómo está.

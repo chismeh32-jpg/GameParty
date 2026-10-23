@@ -98,8 +98,11 @@ const World = (() => {
   const objectAt = (x, y) => map.objects.find(o => o.x === x && o.y === y);
   const itemAt = (x, y) => map.items.find(o => o.x === x && o.y === y);
 
+  const gateAt = (x, y) => (map.def.gates || []).find(g => g.x === x && g.y === y && !flag(g.flag));
+
   function blocked(x, y, ignore) {
     if (!inside(x, y)) return true;
+    if (gateAt(x, y)) return true;
     if (map.solid[y * map.w + x]) return true;
     const n = npcAt(x, y);
     if (n && n !== ignore) return true;
@@ -279,7 +282,8 @@ const World = (() => {
   function rivalParty(n) {
     if (n === 1) return [[rivalStarter(), 5]];
     if (n === 2) return [['pipio', 11], [rivalStarter(), 13]];
-    return [['halconcio', 21], ['setilla', 20], ['chispin', 21], [rivalStarter(true), 24]];
+    if (n === 3) return [['halconcio', 21], ['setilla', 20], ['chispin', 21], [rivalStarter(true), 24]];
+    return [['halconcio', 36], ['voltion', 35], ['hongoloso', 35], ['nocturcielo', 35], [rivalStarter(true), 38]];
   }
 
   async function trainerBattle(n, extra = {}) {
@@ -293,6 +297,7 @@ const World = (() => {
     if (result === 'win') {
       G.flags['beat_' + n.id] = true;
       if (tr.leader) await leaderReward(tr);
+      else if (tr.champion) await championWin();
       else if (tr.after && !tr.rival) await UI.say(tr.after);
     }
     if (result === 'lose' && !extra.noBlackout) await blackout();
@@ -303,7 +308,7 @@ const World = (() => {
   async function leaderReward(tr) {
     G.flags[tr.leader] = true;
     Audio8.sfx('levelup');
-    const badge = tr.leader === 'badge1' ? 'Medalla Roca' : 'Medalla Voltio';
+    const badge = tr.badgeName || (tr.leader === 'badge1' ? 'Medalla Roca' : 'Medalla Voltio');
     await UI.say(`¡${G.name} ha recibido la ${badge}!`);
     await UI.say(tr.after);
   }
@@ -358,6 +363,8 @@ const World = (() => {
     if (o) return run(() => SCRIPTS[o.script](o));
     const it = itemAt(x, y);
     if (it) return run(() => pickItem(it));
+    const gate = gateAt(player.x + dx, player.y + dy);
+    if (gate) return run(() => UI.say(gate.text));
     const t = tileAt(player.x + dx, player.y + dy);
     if (t === 'sign') {
       const s = (map.def.signs || []).find(s => s.x === player.x + dx && s.y === player.y + dy);
@@ -649,8 +656,8 @@ const World = (() => {
     },
 
     async northGate() {
-      if (!flag('badge2')) {
-        await UI.say('Un cartel: «SANTUARIO. Solo pueden pasar los entrenadores con dos medallas».');
+      if (!flag('champion')) {
+        await UI.say('Un cartel: «SANTUARIO. Solo puede pasar el Campeón de la Liga de Brisaluz».');
         player.dir = 'down';
         startStep(player.x, player.y + 1, WALK, false);
         await wait(260);
@@ -676,6 +683,27 @@ const World = (() => {
       await ending();
     },
 
+    async guard2() {
+      await UI.sayAll(['¡Eh, marinero! El camino de la costa es peligroso.', 'Solo dejo pasar a quien tenga la Medalla Voltio del gimnasio de Volta.']);
+    },
+
+    async gate3() {
+      if (flag('badge3')) return;
+      await UI.say('Un cartel: «PASO MONTAÑA. Solo para entrenadores con tres medallas».');
+      player.dir = 'down';
+      startStep(player.x, player.y + 1, WALK, false);
+      await wait(260);
+    },
+
+    async brumaGift() {
+      if (flag('gift_ultra')) return UI.say('¿Ya has vencido a Umbra? ¡A mí me da muchísimo miedo!');
+      G.flags.gift_ultra = true;
+      await UI.say('¡Hola! Encontré esto en la niebla, pero yo no sé usarlo. ¡Toma!');
+      G.bag.ultracapsula = (G.bag.ultracapsula || 0) + 3;
+      Audio8.sfx('item');
+      await UI.say(`¡${G.name} ha recibido 3 × Ultracápsula!`);
+    },
+
     async rival3(n) {
       player.dir = OPP[n.dir];
       return SCRIPTS.northGate();
@@ -697,11 +725,25 @@ const World = (() => {
     },
   };
 
+  async function championWin() {
+    G.flags.champion = true;
+    G.flags.rival3 = true;
+    Audio8.sfx('evolve');
+    await UI.sayAll([
+      'Dani: Increíble... Me has ganado otra vez. Tú eres el verdadero Campeón de Brisaluz.',
+      'Dani: Pero no pienso rendirme. ¡Seguiré entrenando y algún día te ganaré!',
+      'Profesora Alisa: ¡Enhorabuena! He venido corriendo en cuanto me he enterado.',
+      `Profesora Alisa: ${G.name}, has demostrado que las personas y las criaturas son más fuertes juntas.`,
+      'Profesora Alisa: Ahora el Santuario de Puerto Marea está abierto para ti. Dicen que allí vive una criatura legendaria...',
+    ]);
+    await ending();
+  }
+
   async function ending() {
     const caught = Object.keys(G.dex.caught).length;
     const layer = { el: UI.el('div', 'fullscreen ending', `
       <div class="end-title">¡ENHORABUENA!</div>
-      <p>Has derrotado a los dos líderes de gimnasio y a tu rival.</p>
+      <p>Has vencido a los tres líderes de gimnasio, a la élite de la Liga y al Campeón.</p>
       <p><b>${UI.esc(G.name)}</b> es el nuevo campeón de Brisaluz.</p>
       <p>Criaturas capturadas: <b>${caught}/${DEX_ORDER.length}</b></p>
       <p class="muted">El Santuario ya está abierto... ¿Completarás el Criaturario?</p>
@@ -744,6 +786,15 @@ const World = (() => {
         const t = tileAt(x, y) || outside;
         ctx.drawImage(Art.tile(t, x, y, frame), x * 16, y * 16);
       }
+    }
+
+    // Puertas cerradas
+    for (const g of map.def.gates || []) {
+      if (flag(g.flag)) continue;
+      ctx.fillStyle = '#5a2a2a';
+      ctx.fillRect(g.x * 16 + 1, g.y * 16, 14, 16);
+      ctx.fillStyle = '#f2c040';
+      for (let i = 0; i < 4; i++) ctx.fillRect(g.x * 16 + 2, g.y * 16 + 2 + i * 4, 12, 2);
     }
 
     // Objetos del suelo
@@ -819,6 +870,19 @@ const World = (() => {
         ctx.fillStyle = g;
       } else ctx.fillStyle = tint;
       ctx.fillRect(0, 0, 240, 160);
+    }
+    if (map.def.fog) {
+      ctx.fillStyle = 'rgba(225,230,240,0.22)';
+      ctx.fillRect(0, 0, 240, 160);
+      for (let i = 0; i < 4; i++) {
+        const y = 20 + i * 38 + Math.sin(now / 2200 + i) * 6;
+        const x = ((now / (60 + i * 25)) % 360) - 120;
+        const g = ctx.createRadialGradient(x + 60, y, 4, x + 60, y, 70);
+        g.addColorStop(0, 'rgba(240,242,248,0.35)');
+        g.addColorStop(1, 'rgba(240,242,248,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(x - 20, y - 70, 160, 140);
+      }
     }
     if (raining) {
       ctx.fillStyle = 'rgba(40,60,90,0.18)';
@@ -925,7 +989,7 @@ const World = (() => {
   }
 
   async function trainerCard() {
-    const badges = [['badge1', 'Roca', '#9a8f80'], ['badge2', 'Voltio', '#f2d23a']];
+    const badges = [['badge1', 'Roca', '#9a8f80'], ['badge2', 'Voltio', '#f2d23a'], ['badge3', 'Sombra', '#735797'], ['champion', 'Liga', '#e8b020']];
     const mins = Math.floor((G.playTime || 0) / 60);
     const layer = { el: UI.el('div', 'fullscreen card', `
       <div class="card-head">FICHA DE ENTRENADOR</div>
