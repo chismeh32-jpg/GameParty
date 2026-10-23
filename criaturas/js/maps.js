@@ -231,6 +231,7 @@ defineMap({
   ],
   signs: [{ x: 4, y: 14, text: 'RUTA 1 · Norte: Ciudad Roble. Sur: Pueblo Albor.' }],
   encounters: { tall: [['roedin', 2, 4, 35], ['pipio', 2, 4, 35], ['larvita', 3, 4, 20], ['chispin', 3, 5, 10]] },
+  encountersNight: { tall: [['roedin', 2, 4, 40], ['murcielin', 3, 4, 25], ['sombrin', 3, 5, 15], ['larvita', 3, 4, 20]] },
   npcs: [
     { id: 't_pablo', x: 6, y: 18, dir: 'right', look: 'youngster', trainer: { name: 'Joven Pablo', party: [['roedin', 4]], prize: 15, sight: 3,
       intro: '¡Eh, tú! ¡Mis criaturas y yo hemos entrenado mucho!', defeat: '¡No puede ser! ¡Perdí!', after: 'Tengo que capturar más criaturas en la hierba alta.' } },
@@ -352,6 +353,8 @@ defineMap({
     { x: 2, y: 9, script: 'rival2' },
   ],
   encounters: { tall: [['setilla', 7, 10, 25], ['larvita', 7, 9, 20], ['pipio', 8, 10, 20], ['roedin', 8, 10, 15], ['charquito', 8, 10, 12], ['alabella', 9, 10, 5], ['brotin', 8, 9, 3]] },
+  encountersNight: { tall: [['setilla', 8, 10, 25], ['sombrin', 8, 10, 20], ['murcielin', 8, 10, 20], ['charquito', 8, 10, 20], ['alabella', 9, 10, 10], ['gotarin', 8, 9, 5]] },
+  rain: 0.35,
   npcs: [
     { id: 'rival2', x: 5, y: 8, dir: 'left', look: 'rival', hideIf: 'rival2', trainer: { rival: 2, name: 'Rival Dani', prize: 40, sight: 0,
       intro: '¡Eh, ya tienes la Medalla Roca! Yo también. Veamos quién ha entrenado más.', defeat: '¡Grr! Esta vez has ganado tú...', after: 'Voy a la Cueva Eco. ¡Nos vemos en Puerto Marea!' }, script: 'rival2' },

@@ -65,6 +65,8 @@ const World = (() => {
       window.Battle3D.preload([['escenarios', arenaOf(def)], ...G.party.map(c => ['criaturas', c.sp]), ...Object.values(def.encounters || {}).flat().map(e => ['criaturas', e[0]])]);
     }
     showBanner(def.name);
+    raining = !!def.rain && Math.random() < def.rain;
+    drops = raining ? Array.from({ length: 70 }, () => ({ x: Math.random() * 260, y: Math.random() * 170, s: 0.7 + Math.random() * 0.6 })) : [];
   }
 
   function showBanner(name) {
@@ -77,6 +79,18 @@ const World = (() => {
   }
 
   const arenaOf = def => def.arena || (def.dark ? 'cueva' : 'pradera');
+
+  // Momento del día según la hora real del dispositivo
+  function timeOfDay() {
+    const h = new Date().getHours() + new Date().getMinutes() / 60;
+    if (h >= 21 || h < 5.5) return 'night';
+    if (h < 8) return 'dawn';
+    if (h >= 18.5) return 'dusk';
+    return 'day';
+  }
+  const TINTS = { night: 'rgba(20,24,70,0.45)', dawn: 'rgba(255,170,120,0.16)', dusk: 'rgba(255,110,60,0.2)', day: null };
+  let raining = false;
+  let drops = [];
 
   const inside = (x, y) => x >= 0 && y >= 0 && x < map.w && y < map.h;
   const tileAt = (x, y) => (inside(x, y) ? map.tiles[y * map.w + x] : null);
@@ -295,6 +309,7 @@ const World = (() => {
   }
 
   async function wildEncounter(enc, tile) {
+    if (timeOfDay() === 'night' && map.def.encountersNight?.[tile]) enc = map.def.encountersNight[tile];
     const total = enc.reduce((a, e) => a + e[3], 0);
     let r = Math.random() * total;
     let pick = enc[0];
@@ -793,6 +808,29 @@ const World = (() => {
     }
     ctx.restore();
 
+    // Luz del día (solo en exteriores)
+    const tint = !map.def.interior && !map.def.dark ? TINTS[timeOfDay()] : null;
+    if (tint) {
+      if (timeOfDay() === 'night') {
+        // Noche: más claro alrededor del jugador, como si llevara un farol
+        const g = ctx.createRadialGradient(120, 84, 18, 120, 84, 140);
+        g.addColorStop(0, 'rgba(18,22,64,0.22)');
+        g.addColorStop(1, 'rgba(10,12,40,0.68)');
+        ctx.fillStyle = g;
+      } else ctx.fillStyle = tint;
+      ctx.fillRect(0, 0, 240, 160);
+    }
+    if (raining) {
+      ctx.fillStyle = 'rgba(40,60,90,0.18)';
+      ctx.fillRect(0, 0, 240, 160);
+      ctx.fillStyle = 'rgba(200,225,255,0.6)';
+      for (const d of drops) {
+        d.y += 4.5 * d.s; d.x -= 1.2 * d.s;
+        if (d.y > 165) { d.y = -8; d.x = Math.random() * 260; }
+        if (d.x < -5) d.x = 245;
+        ctx.fillRect(Math.round(d.x), Math.round(d.y), 1, Math.round(5 * d.s));
+      }
+    }
     if (map.def.dark) {
       const g = ctx.createRadialGradient(120, 84, 30, 120, 84, 150);
       g.addColorStop(0, 'rgba(10,6,4,0)');
