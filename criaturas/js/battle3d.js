@@ -231,10 +231,267 @@ async function begin(sc) {
 
 function end() {
   if (!world) return;
+  clearEffects();
   scene3.traverse(o => { if (o !== scene3 && o !== hemi && o !== sun && o !== sun.target) o.userData.remove = true; });
   for (const o of [...scene3.children]) if (o.userData.remove) { dispose(o); scene3.remove(o); }
   world = null;
   if (canvas) canvas.classList.remove('on');
+}
+
+/* ══════════════════════════════════════
+   EFECTOS DE ATAQUE (partículas por tipo)
+══════════════════════════════════════ */
+const GEO = {};
+function geo(kind) {
+  if (GEO[kind]) return GEO[kind];
+  switch (kind) {
+    case 'sphere': GEO[kind] = new THREE.SphereGeometry(1, 12, 8); break;
+    case 'octa': GEO[kind] = new THREE.OctahedronGeometry(1, 0); break;
+    case 'rock': GEO[kind] = new THREE.DodecahedronGeometry(1, 0); break;
+    case 'ring': GEO[kind] = new THREE.TorusGeometry(1, 0.08, 6, 28); break;
+    case 'arc': GEO[kind] = new THREE.TorusGeometry(1, 0.12, 6, 20, Math.PI * 0.9); break;
+    case 'leaf': {
+      const sh = new THREE.Shape();
+      sh.moveTo(0, -1); sh.quadraticCurveTo(0.7, 0, 0, 1); sh.quadraticCurveTo(-0.7, 0, 0, -1);
+      GEO[kind] = new THREE.ShapeGeometry(sh, 4);
+      break;
+    }
+    case 'cyl': GEO[kind] = new THREE.CylinderGeometry(1, 1, 1, 6, 1); break;
+  }
+  return GEO[kind];
+}
+
+const particles = [];
+const emitters = [];
+
+// p: { geo, color, color2, pos, vel, life, size, size2, gravity, drag, spin, glow, opacity, rot }
+function particle(p) {
+  const glow = p.glow !== false;
+  const mat = glow
+    ? new THREE.MeshBasicMaterial({ color: p.color, transparent: true, opacity: p.opacity ?? 1, blending: p.add ? THREE.AdditiveBlending : THREE.NormalBlending, depthWrite: false, side: THREE.DoubleSide })
+    : new THREE.MeshStandardMaterial({ color: p.color, transparent: true, opacity: p.opacity ?? 1, roughness: 0.6, side: THREE.DoubleSide });
+  const mesh = new THREE.Mesh(geo(p.geo || 'sphere'), mat);
+  mesh.position.copy(p.pos);
+  if (p.rot) mesh.rotation.copy(p.rot);
+  // Las partículas sueltas se agrandan para que se lean bien a la distancia de la cámara
+  const mul = p.geo === 'ring' || p.geo === 'arc' ? 1 : 1.7;
+  mesh.scale.setScalar((p.size ?? 0.1) * mul);
+  scene3.add(mesh);
+  particles.push({
+    mesh, vel: p.vel ? p.vel.clone() : new THREE.Vector3(), age: 0, life: p.life ?? 0.6,
+    size: (p.size ?? 0.1) * mul, size2: (p.size2 ?? p.size ?? 0.1) * mul, gravity: p.gravity ?? 0, drag: p.drag ?? 0,
+    spin: p.spin || null, c1: new THREE.Color(p.color), c2: new THREE.Color(p.color2 ?? p.color), op: p.opacity ?? 1,
+    scaleXYZ: p.scaleXYZ || null, fadeIn: p.fadeIn || 0,
+  });
+}
+
+function updateParticles(dt) {
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const q = particles[i];
+    q.age += dt;
+    const k = q.age / q.life;
+    if (k >= 1) {
+      scene3.remove(q.mesh);
+      q.mesh.material.dispose();
+      particles.splice(i, 1);
+      continue;
+    }
+    q.vel.y -= q.gravity * dt;
+    if (q.drag) q.vel.multiplyScalar(Math.max(0, 1 - q.drag * dt));
+    q.mesh.position.addScaledVector(q.vel, dt);
+    const sz = q.size + (q.size2 - q.size) * k;
+    if (q.scaleXYZ) q.mesh.scale.set(sz * q.scaleXYZ[0], sz * q.scaleXYZ[1], sz * q.scaleXYZ[2]);
+    else q.mesh.scale.setScalar(Math.max(0.001, sz));
+    q.mesh.material.color.copy(q.c1).lerp(q.c2, k);
+    const fin = q.fadeIn ? Math.min(1, k / q.fadeIn) : 1;
+    q.mesh.material.opacity = q.op * fin * (k > 0.6 ? 1 - (k - 0.6) / 0.4 : 1);
+    if (q.spin) { q.mesh.rotation.x += q.spin.x * dt; q.mesh.rotation.y += q.spin.y * dt; q.mesh.rotation.z += q.spin.z * dt; }
+  }
+  for (let i = emitters.length - 1; i >= 0; i--) {
+    const e = emitters[i];
+    e.age += dt;
+    if (e.update(e.age, dt) === false || e.age > (e.life ?? 3)) emitters.splice(i, 1);
+  }
+}
+
+function clearEffects() {
+  for (const q of particles) { scene3.remove(q.mesh); q.mesh.material.dispose(); }
+  particles.length = 0;
+  emitters.length = 0;
+}
+
+const rnd = (a, b) => a + Math.random() * (b - a);
+const jitter = r => new THREE.Vector3(rnd(-r, r), rnd(-r, r), rnd(-r, r));
+
+function burst(at, { color, color2, n = 16, speed = 2.5, size = 0.08, size2 = 0.02, life = 0.5, geoKind = 'sphere', gravity = 0, glow = true, up = 0 }) {
+  for (let i = 0; i < n; i++) {
+    const v = jitter(1).normalize().multiplyScalar(speed * rnd(0.5, 1));
+    v.y += up;
+    particle({ geo: geoKind, color, color2, pos: at.clone(), vel: v, life: life * rnd(0.7, 1.2), size, size2, gravity, drag: 2, glow, spin: geoKind === 'sphere' ? null : jitter(8) });
+  }
+}
+
+function shockwave(at, color, size = 0.9, life = 0.45) {
+  particle({ geo: 'ring', color, pos: at.clone().setY(at.y + 0.05), rot: new THREE.Euler(Math.PI / 2, 0, 0), size: 0.15, size2: size, life, opacity: 0.9 });
+}
+
+// Lanza un efecto a lo largo del camino a→b durante `dur` segundos
+function stream(a, b, dur, rate, spawn) {
+  let acc = 0;
+  emitters.push({ age: 0, life: dur + 0.05, update(age, dt) {
+    acc += dt * rate;
+    while (acc >= 1) {
+      acc--;
+      const t = Math.min(1, age / dur);
+      spawn(a.clone().lerp(b, t), t);
+    }
+    return age < dur;
+  } });
+}
+
+function later(delay, fn) {
+  emitters.push({ age: 0, life: delay + 0.1, update(age) { if (age >= delay) { fn(); return false; } return true; } });
+}
+
+function bolt(top, bottom, color) {
+  const pts = [top.clone()];
+  const n = 7;
+  for (let i = 1; i < n; i++) {
+    const p = top.clone().lerp(bottom, i / n);
+    p.x += rnd(-0.25, 0.25); p.z += rnd(-0.25, 0.25);
+    pts.push(p);
+  }
+  pts.push(bottom.clone());
+  for (let i = 0; i < pts.length - 1; i++) {
+    const a = pts[i], b = pts[i + 1];
+    const mid = a.clone().lerp(b, 0.5);
+    const len = a.distanceTo(b);
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize());
+    for (const [w, op, col] of [[0.035, 1, 0xffffff], [0.11, 0.55, color]]) {
+      const mesh = new THREE.Mesh(geo('cyl'), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: op, blending: THREE.AdditiveBlending, depthWrite: false }));
+      mesh.position.copy(mid);
+      mesh.quaternion.copy(q);
+      mesh.scale.set(w, len, w);
+      scene3.add(mesh);
+      particles.push({ mesh, vel: new THREE.Vector3(), age: 0, life: 0.35, size: 1, size2: 1, gravity: 0, drag: 0, spin: null, c1: new THREE.Color(col), c2: new THREE.Color(col), op, scaleXYZ: [w, len, w], fadeIn: 0 });
+    }
+  }
+}
+
+const TYPE_COLORS = {
+  normal: [0xffffff, 0xd8d4c0], fuego: [0xffd23f, 0xe0412f], agua: [0x8fd8ff, 0x2f7ad8], planta: [0x8fe060, 0x2f8a2a],
+  electrico: [0xfff6a0, 0xf2c020], roca: [0xb8a888, 0x6e5a40], volador: [0xffffff, 0xa98ff3], bicho: [0xd8f060, 0x7a9a1a],
+  veneno: [0xd88ae0, 0x7a2a8a], fantasma: [0xb090f0, 0x3a2058],
+};
+
+function attackEffect(a) {
+  const att = a.from === 'me' ? world.me : world.foe;
+  const def = a.from === 'me' ? world.foe : world.me;
+  const from = chest(att), to = chest(def);
+  const ground = def.group.position.clone();
+  const [c1, c2] = TYPE_COLORS[a.type] || TYPE_COLORS.normal;
+  const dirv = to.clone().sub(from).normalize();
+
+  if (a.cat === 'status') {
+    // Aura alrededor del usuario y, si afecta al rival, polvo que viaja hacia él
+    const base = att.group.position.clone();
+    for (let i = 0; i < 3; i++) later(i * 0.12, () => particle({ geo: 'ring', color: c1, color2: c2, pos: base.clone().setY(base.y + 0.1), vel: new THREE.Vector3(0, 1.3, 0), rot: new THREE.Euler(Math.PI / 2, 0, 0), size: 0.55, size2: 0.25, life: 0.6 }));
+    if (a.targetFoe) stream(from, to, 0.5, 40, p => particle({ color: c1, color2: c2, pos: p.add(jitter(0.25)), vel: jitter(0.4), size: 0.05, size2: 0.02, life: 0.5 }));
+    return;
+  }
+
+  if (a.cat === 'phys') {
+    // Impacto al final de la embestida
+    later(0.17, () => {
+      burst(to, { color: c1, color2: c2, n: 18, speed: 3, size: 0.09, life: 0.4, geoKind: a.type === 'roca' ? 'rock' : 'octa', glow: a.type !== 'roca' });
+      shockwave(ground, c1, 1.0);
+      if (a.type === 'fuego') burst(to, { color: 0xffd23f, color2: 0xe0412f, n: 22, speed: 1.5, size: 0.14, size2: 0.02, life: 0.6, up: 1.2 });
+      if (a.type === 'electrico') bolt(to.clone().add(new THREE.Vector3(0, 2.2, 0)), to, c2);
+      if (a.type === 'agua') burst(to, { color: 0x8fd8ff, n: 20, speed: 2.2, size: 0.06, life: 0.7, gravity: 6, glow: false, up: 2 });
+    });
+    return;
+  }
+
+  const D = 0.62;   // duración del viaje (coincide con battle.js)
+  switch (a.type) {
+    case 'fuego':
+      stream(from, to, D, 90, (p, t) => particle({ color: 0xfff0a0, color2: 0xe0412f, pos: p.add(jitter(0.08 + t * 0.1)), vel: dirv.clone().multiplyScalar(1.2).add(jitter(0.5)).add(new THREE.Vector3(0, 0.6, 0)), size: 0.1 + t * 0.08, size2: 0.02, life: 0.45 }));
+      later(D, () => { burst(to, { color: 0xffd23f, color2: 0xe0412f, n: 34, speed: 2.2, size: 0.16, size2: 0.02, life: 0.7, up: 1.5 }); shockwave(ground, 0xff8a3a, 1.2); });
+      break;
+    case 'agua':
+      stream(from, to, D, 80, (p, t) => particle({ color: 0xffffff, color2: 0x3a8ad8, pos: p.add(jitter(0.05)).setY(p.y + Math.sin(t * Math.PI) * 0.35), vel: jitter(0.3), size: 0.07, size2: 0.03, life: 0.35, glow: t < 0.5 }));
+      later(D, () => {
+        burst(to, { color: 0xbfe8ff, color2: 0x3a8ad8, n: 30, speed: 2, size: 0.07, life: 0.9, gravity: 7, glow: false, up: 2.5 });
+        shockwave(ground, 0x8fd8ff, 1.3, 0.6);
+      });
+      break;
+    case 'planta':
+      for (let i = 0; i < 8; i++) later(i * 0.05, () => {
+        const start = from.clone().add(jitter(0.3));
+        const v = to.clone().add(jitter(0.3)).sub(start).multiplyScalar(1 / (D - 0.1));
+        v.y += 0.8;
+        particle({ geo: 'leaf', color: i % 2 ? 0x8fe060 : 0x4fa83a, pos: start, vel: v, size: 0.12, size2: 0.1, life: D - 0.05, glow: false, gravity: 2.6, spin: new THREE.Vector3(9, 12, 6) });
+      });
+      later(D, () => burst(to, { color: 0x8fe060, color2: 0x2f8a2a, n: 14, speed: 2, size: 0.1, size2: 0.06, life: 0.6, geoKind: 'leaf', glow: false, gravity: 2 }));
+      break;
+    case 'electrico':
+      stream(from, to, D * 0.5, 60, p => particle({ geo: 'octa', color: 0xfff6a0, pos: p.add(jitter(0.15)), vel: jitter(1.5), size: 0.05, size2: 0.01, life: 0.25, spin: jitter(10), add: true }));
+      later(D * 0.45, () => bolt(ground.clone().add(new THREE.Vector3(rnd(-0.2, 0.2), 3.2, rnd(-0.2, 0.2))), to, 0xf2c020));
+      later(D * 0.62, () => bolt(ground.clone().add(new THREE.Vector3(rnd(-0.3, 0.3), 3.2, rnd(-0.3, 0.3))), to, 0xfff6a0));
+      later(D * 0.62, () => { burst(to, { color: 0xffffff, color2: 0xf2c020, n: 26, speed: 3.4, size: 0.05, life: 0.4, geoKind: 'octa' }); shockwave(ground, 0xfff6a0, 1.1); });
+      break;
+    case 'roca':
+      for (let i = 0; i < 6; i++) later(i * 0.07, () => {
+        const p = ground.clone().add(new THREE.Vector3(rnd(-0.6, 0.6), 2.8 + rnd(0, 0.8), rnd(-0.6, 0.6)));
+        particle({ geo: 'rock', color: i % 2 ? 0x9a8f80 : 0x7d7466, pos: p, vel: new THREE.Vector3(0, -2, 0), size: rnd(0.12, 0.2), life: 0.65, gravity: 9, glow: false, spin: jitter(6) });
+      });
+      later(D * 0.8, () => { burst(ground.clone().setY(ground.y + 0.2), { color: 0xc8b898, color2: 0x6e5a40, n: 20, speed: 2, size: 0.06, life: 0.6, geoKind: 'rock', glow: false, gravity: 6, up: 1.5 }); shockwave(ground, 0xc8b898, 1.4, 0.5); });
+      break;
+    case 'volador':
+      for (let i = 0; i < 3; i++) later(i * 0.12, () => {
+        const v = dirv.clone().multiplyScalar(7);
+        particle({ geo: 'arc', color: 0xffffff, color2: 0xa98ff3, pos: from.clone().add(jitter(0.2)), vel: v, rot: new THREE.Euler(0, Math.atan2(dirv.x, dirv.z), rnd(-0.6, 0.6)), size: 0.3, size2: 0.45, life: 0.55 });
+      });
+      stream(from, to, D, 50, p => particle({ color: 0xffffff, pos: p.add(jitter(0.4)), vel: dirv.clone().multiplyScalar(3), size: 0.03, size2: 0.01, life: 0.3, opacity: 0.7 }));
+      later(D, () => burst(to, { color: 0xffffff, color2: 0xa98ff3, n: 18, speed: 2.8, size: 0.06, life: 0.4 }));
+      break;
+    case 'bicho':
+      stream(from, to, D, 70, (p, t) => {
+        const off = new THREE.Vector3(Math.sin(t * 30) * 0.3, Math.cos(t * 26) * 0.25, Math.sin(t * 22) * 0.3);
+        particle({ geo: 'octa', color: 0xd8f060, color2: 0x7a9a1a, pos: p.add(off), vel: jitter(1.2), size: 0.05, size2: 0.02, life: 0.4, spin: jitter(12) });
+      });
+      later(D, () => burst(to, { color: 0xd8f060, color2: 0x7a9a1a, n: 22, speed: 2.4, size: 0.05, life: 0.5, geoKind: 'octa' }));
+      break;
+    case 'veneno':
+      emitters.push({ age: 0, life: D + 0.05, update(age) {
+        const t = Math.min(1, age / D);
+        const p = from.clone().lerp(to, t);
+        p.y += Math.sin(t * Math.PI) * 0.8;
+        particle({ color: 0xd88ae0, color2: 0x7a2a8a, pos: p.add(jitter(0.06)), size: 0.16, size2: 0.05, life: 0.25, glow: false, opacity: 0.85 });
+        return age < D;
+      } });
+      later(D, () => {
+        burst(to, { color: 0xd88ae0, color2: 0x7a2a8a, n: 24, speed: 1.8, size: 0.09, size2: 0.04, life: 0.8, glow: false, gravity: 4, up: 1.6 });
+        for (let i = 0; i < 8; i++) particle({ color: 0xe8b0f0, pos: ground.clone().add(new THREE.Vector3(rnd(-0.5, 0.5), 0.1, rnd(-0.5, 0.5))), vel: new THREE.Vector3(0, rnd(0.5, 1.2), 0), size: 0.06, size2: 0.12, life: 0.8, glow: false, opacity: 0.6 });
+      });
+      break;
+    case 'fantasma':
+      emitters.push({ age: 0, life: D + 0.05, update(age) {
+        const t = Math.min(1, age / D);
+        const p = from.clone().lerp(to, t * t);
+        p.y += Math.sin(age * 18) * 0.12;
+        particle({ color: 0x3a2058, color2: 0x000000, pos: p.clone(), size: 0.22, size2: 0.08, life: 0.18, glow: false, opacity: 0.8 });
+        particle({ color: 0xb090f0, pos: p.add(jitter(0.25)), vel: jitter(0.6), size: 0.04, size2: 0.01, life: 0.4 });
+        return age < D;
+      } });
+      later(D, () => {
+        for (let i = 0; i < 3; i++) later(i * 0.08, () => particle({ geo: 'ring', color: 0xb090f0, color2: 0x3a2058, pos: to.clone(), rot: new THREE.Euler(rnd(0, 3), rnd(0, 3), 0), size: 0.9, size2: 0.1, life: 0.45 }));
+      });
+      break;
+    default: // normal
+      stream(from, to, D, 40, p => particle({ color: 0xffffff, color2: 0xd8d4c0, pos: p.add(jitter(0.05)), size: 0.12, size2: 0.02, life: 0.3 }));
+      later(D, () => { burst(to, { color: 0xffffff, color2: 0xfff0c0, n: 20, speed: 2.6, size: 0.07, life: 0.4, geoKind: 'octa' }); shockwave(ground, 0xffffff, 1.0); });
+  }
 }
 
 /* ── Sincronización por fotograma ─── */
@@ -249,6 +506,9 @@ function swapCreature(slot, sp) {
     if (slot.sp !== sp || slot.inst) return;
     slot.inst = instance(g);
     slot.group.add(slot.inst.root);
+    const at = slot.group.position.clone().add(new THREE.Vector3(0, 0.5, 0));
+    burst(at, { color: 0xffffff, color2: 0xff8080, n: 22, speed: 2.4, size: 0.07, life: 0.5 });
+    shockwave(slot.group.position, 0xffffff, 1.0);
   });
 }
 
@@ -265,7 +525,11 @@ function syncCreature(slot, s, target, dt) {
   inst.root.position.set(0, 0, lunge);
   if (s.dy > 8) inst.root.position.y = -(s.dy / 40) * 1.1;
   else inst.root.position.y = Math.abs(s.dy) / 20 * 0.4;
-  setGlow(inst, s.hidden ? 0xffffff : 0x000000, 0);
+  const hit = slot.hitAt ? (performance.now() - slot.hitAt) / 380 : 1;
+  if (hit < 1) {
+    inst.root.position.x = Math.sin(hit * 40) * 0.09 * (1 - hit) * slot.hitPow;
+    setGlow(inst, 0xff4030, (1 - hit) * 0.7);
+  } else setGlow(inst, 0x000000, 0);
   void target;
 }
 
@@ -316,7 +580,7 @@ function syncProjectile(sc) {
   const p = sc.proj;
   world.proj.forEach(m => { m.visible = false; });
   world.light.intensity = 0;
-  if (!p) return;
+  if (!p || p.type) return;
   const fromMe = p.from === 'me';
   const a = chest(fromMe ? world.me : world.foe), b = chest(fromMe ? world.foe : world.me);
   const col = new THREE.Color(p.color);
@@ -448,8 +712,13 @@ function syncCamera(sc, now) {
     camPos.copy(c).addScaledVector(dir, -5.2).addScaledVector(side, 1.2).add(new THREE.Vector3(0, 1.8, 0));
     look.copy(c).add(new THREE.Vector3(0, 0.75, 0));
   }
-  // Pequeño balanceo para que la escena respire
+  // Pequeño balanceo para que la escena respire y sacudida en los golpes fuertes
   camPos.y += Math.sin(now / 1800) * 0.04;
+  if (world.shake) {
+    const k2 = 1 - (now - world.shake.t) / 400;
+    if (k2 > 0) camPos.add(jitter(world.shake.mag * k2));
+    else world.shake = null;
+  }
   camera.position.copy(camPos);
   camera.lookAt(look);
 }
@@ -459,8 +728,22 @@ const CAM = { fov: 34, back: 2.6, side: 3.4, up: 2.6, look: 0.65, lookSide: -1.0
 
 function render(sc, now) {
   if (!world || world.sc !== sc) return false;
-  const dt = Math.min(0.05, clock.getDelta());
+  const dt = Math.min(0.2, clock.getDelta());
   world.arena.mixer.update(dt);
+  if (sc.attack && sc.attack !== world.lastAttack) { world.lastAttack = sc.attack; attackEffect(sc.attack); }
+  if (sc.hit && sc.hit !== world.lastHit) {
+    world.lastHit = sc.hit;
+    const slot = sc.hit.target === 'me' ? world.me : world.foe;
+    slot.hitAt = now;
+    slot.hitPow = sc.hit.eff > 1 ? 1.6 : sc.hit.eff < 1 ? 0.6 : 1;
+    world.shake = { t: now, mag: sc.hit.eff > 1 ? 0.12 : 0.04 };
+  }
+  if (sc.faint && sc.faint !== world.lastFaint) {
+    world.lastFaint = sc.faint;
+    const slot = sc.faint.target === 'me' ? world.me : world.foe;
+    later(0.3, () => burst(slot.group.position.clone().add(new THREE.Vector3(0, 0.15, 0)), { color: 0xd8ccb8, color2: 0x8a7a60, n: 20, speed: 1.4, size: 0.12, size2: 0.2, life: 0.8, glow: false, up: 0.6 }));
+  }
+  updateParticles(dt);
   syncCreature(world.me, sc.me, world.foe, dt);
   syncCreature(world.foe, sc.foe, world.me, dt);
   syncTrainer(sc, now, dt);

@@ -153,25 +153,30 @@ const Battle = (() => {
   /* ── Animaciones de la escena ─────── */
   async function attackAnim(att, def, mv) {
     const me = att.isPlayer ? scene.me : scene.foe;
-    const target = att.isPlayer ? scene.foe : scene.me;
     const dir = att.isPlayer ? 1 : -1;
+    const from = att.isPlayer ? 'me' : 'foe';
+    // Evento que la escena 3D convierte en un efecto propio de cada tipo
+    scene.attack = { type: mv.t, cat: mv.c, from, targetFoe: !!(mv.foe || mv.inflict), t: performance.now() };
     if (mv.c === 'phys') {
       await anim(140, p => { me.dx = dir * 14 * p; me.dy = -dir * 6 * p; });
       await anim(140, p => { me.dx = dir * 14 * (1 - p); me.dy = -dir * 6 * (1 - p); });
+      if (scene.use3d) await wait(120);
     } else if (mv.c === 'spec') {
-      scene.proj = { color: TYPES[mv.t].color, from: att.isPlayer ? 'me' : 'foe', p: 0 };
-      await anim(320, p => { scene.proj.p = p; });
+      scene.proj = { color: TYPES[mv.t].color, type: mv.t, from, p: 0 };
+      await anim(scene.use3d ? 700 : 320, p => { scene.proj.p = p; });
       scene.proj = null;
     } else {
-      scene.fx = { type: 'sparkle', target: att.isPlayer ? 'me' : 'foe', t: performance.now() };
-      await wait(380);
+      scene.fx = { type: 'sparkle', target: from, t: performance.now() };
+      await wait(scene.use3d ? 650 : 380);
     }
-    void target;
+    void def;
   }
 
   async function hitAnim(side, eff) {
     Audio8.sfx(eff > 1 ? 'super' : eff < 1 ? 'weak' : 'hit');
     const s = side.isPlayer ? scene.me : scene.foe;
+    scene.hit = { target: side.isPlayer ? 'me' : 'foe', eff, t: performance.now() };
+    if (scene.use3d) { await wait(320); return; }
     for (let i = 0; i < 4; i++) { s.hidden = !s.hidden; await wait(70); }
     s.hidden = false;
   }
@@ -179,7 +184,8 @@ const Battle = (() => {
   async function faintAnim(side) {
     Audio8.sfx('faint');
     const s = side.isPlayer ? scene.me : scene.foe;
-    await anim(380, p => { s.dy = p * 40; s.alpha = 1 - p; });
+    scene.faint = { target: side.isPlayer ? 'me' : 'foe', t: performance.now() };
+    await anim(scene.use3d ? 650 : 380, p => { s.dy = p * 40; s.alpha = 1 - p; });
     s.sp = null;
     s.dy = 0;
     s.alpha = 1;
@@ -262,7 +268,7 @@ const Battle = (() => {
     const { dmg, crit, eff } = calcDamage(att, def, moveId);
     await attackAnim(att, def, mv);
     if (eff === 0) {
-      await say(`No afecta a ${label(def, false)}...`);
+      await say(`No afecta ${def.isPlayer ? 'a ' + monName(def.mon) : `al ${monName(def.mon)} ${scene.wild ? 'salvaje' : 'enemigo'}`}...`);
       return;
     }
     const before = def.mon.hp;
@@ -530,6 +536,7 @@ const Battle = (() => {
   async function run(opts) {
     const wild = !!opts.wild;
     const firstIdx = G.party.findIndex(c => c.hp > 0);
+    if (firstIdx < 0) return 'lose';
     scene = {
       wild, env: opts.env || 'grass', arena: opts.arena || 'pradera', t0: performance.now(), use3d: false, playerOut: false,
       me: { sp: null, alpha: 1, scale: 1, dx: 0, dy: 0 },
