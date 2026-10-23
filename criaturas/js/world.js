@@ -56,6 +56,10 @@ const World = (() => {
     player.moving = false;
     stepsSinceWarp = 0;
     Audio8.play(def.music || (def.interior ? 'town' : 'route'));
+    // Precarga el escenario 3D de la zona y las criaturas del equipo
+    if (window.Battle3D?.available) {
+      window.Battle3D.preload([['escenarios', arenaOf(def)], ...G.party.map(c => ['criaturas', c.sp]), ...Object.values(def.encounters || {}).flat().map(e => ['criaturas', e[0]])]);
+    }
     showBanner(def.name);
   }
 
@@ -67,6 +71,8 @@ const World = (() => {
     setTimeout(() => b.classList.add('out'), 1800);
     setTimeout(() => b.remove(), 2400);
   }
+
+  const arenaOf = def => def.arena || (def.dark ? 'cueva' : 'pradera');
 
   const inside = (x, y) => x >= 0 && y >= 0 && x < map.w && y < map.h;
   const tileAt = (x, y) => (inside(x, y) ? map.tiles[y * map.w + x] : null);
@@ -253,7 +259,7 @@ const World = (() => {
     const list = tr.rival ? rivalParty(tr.rival) : tr.party;
     const party = list.map(([sp, lvl]) => makeMon(sp, lvl));
     const env = map.def.music === 'gym' ? 'gym' : map.def.dark ? 'cave' : 'grass';
-    const result = await battleTransition(() => Battle.run({ trainer: { ...tr, party, look: n.look }, env, ...extra }));
+    const result = await battleTransition(() => Battle.run({ trainer: { ...tr, party, look: n.look }, env, arena: arenaOf(map.def), ...extra }));
     if (result === 'win') {
       G.flags['beat_' + n.id] = true;
       if (tr.leader) await leaderReward(tr);
@@ -279,7 +285,7 @@ const World = (() => {
     for (const e of enc) { r -= e[3]; if (r <= 0) { pick = e; break; } }
     const mon = makeMon(pick[0], randInt(pick[1], pick[2]));
     const env = tile === 'cave' ? 'cave' : 'grass';
-    const result = await battleTransition(() => Battle.run({ wild: mon, env }));
+    const result = await battleTransition(() => Battle.run({ wild: mon, env, arena: arenaOf(map.def) }));
     if (result === 'lose') await blackout();
     save();
   }
@@ -512,7 +518,7 @@ const World = (() => {
           const list = SHOPS[n.shop];
           while (true) {
             const tb2 = await UI.say('¿Qué quieres comprar?', { keep: true });
-            const i = await UI.choose(list.map(id => ({ label: ITEMS[id].n, right: fmtMoney(ITEMS[id].price) })), { cls: 'shop-list' });
+            const i = await UI.choose(list.map(id => ({ label: ITEMS[id].n, icon: id, right: fmtMoney(ITEMS[id].price) })), { cls: 'shop-list' });
             UI.remove(tb2);
             if (i < 0) break;
             const id = list[i];
@@ -633,7 +639,7 @@ const World = (() => {
       Audio8.sfx('cry');
       await UI.say('¡Kriiiiiiaaah!');
       const mon = makeMon(o.creature, 35);
-      const result = await battleTransition(() => Battle.run({ wild: mon, env: 'shrine', music: 'gym' }));
+      const result = await battleTransition(() => Battle.run({ wild: mon, env: 'shrine', arena: 'santuario', music: 'gym' }));
       if (result === 'caught' || result === 'win') {
         G.flags.legend = true;
         map.objects = map.objects.filter(x => x !== o);
@@ -787,7 +793,9 @@ const World = (() => {
       const opts = [];
       if (G.flags.dex) opts.push(['CRIATURARIO', 'dex']);
       if (G.party.length) opts.push(['CRIATURAS', 'party']);
-      opts.push(['MOCHILA', 'bag'], [G.name.toUpperCase(), 'card'], ['GUARDAR', 'save'], [Audio8.isMuted() ? 'SONIDO: NO' : 'SONIDO: SÍ', 'sound'], ['SALIR', 'exit']);
+      opts.push(['MOCHILA', 'bag'], [G.name.toUpperCase(), 'card'], ['GUARDAR', 'save'], [Audio8.isMuted() ? 'SONIDO: NO' : 'SONIDO: SÍ', 'sound']);
+      if (window.Battle3D) opts.push([window.Battle3D.enabled ? 'COMBATES: 3D' : 'COMBATES: 2D', 'gfx']);
+      opts.push(['SALIR', 'exit']);
       const r = await UI.choose(opts.map(o => o[0]), { cls: 'start-menu', start: Math.min(last, opts.length - 1) });
       if (r < 0 || opts[r][1] === 'exit') return;
       last = r;
@@ -801,6 +809,7 @@ const World = (() => {
         if (yes === 0) { save(); Audio8.sfx('levelup'); await UI.say(`${G.name} ha guardado la partida.`); }
       }
       if (act === 'sound') Audio8.toggleMute();
+      if (act === 'gfx') window.Battle3D.setEnabled(!window.Battle3D.enabled);
     }
   }
 

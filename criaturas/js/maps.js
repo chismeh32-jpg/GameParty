@@ -294,7 +294,7 @@ defineMap(houseMap('casa_roble', 'Casa', { to: 'ciudad1', tx: 5, ty: 15 }, [
 ]));
 
 defineMap({
-  id: 'gym1', name: 'Gimnasio Roble', interior: true, music: 'gym',
+  id: 'gym1', arena: 'gimnasio_roca', name: 'Gimnasio Roble', interior: true, music: 'gym',
   rows: [
     'WWWWWWWWWW',
     'gggggggggg',
@@ -323,7 +323,7 @@ defineMap({
 
 /* ── Ruta 2 · Bosque Musgo ── */
 defineMap({
-  id: 'ruta2', name: 'Ruta 2 · Bosque Musgo', music: 'route',
+  id: 'ruta2', arena: 'bosque', name: 'Ruta 2 · Bosque Musgo', music: 'route',
   rows: [
     'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
     'TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT',
@@ -371,7 +371,7 @@ defineMap({
 
 /* ── Cueva Eco ── */
 defineMap({
-  id: 'cueva', name: 'Cueva Eco', music: 'cave', dark: true,
+  id: 'cueva', arena: 'cueva', name: 'Cueva Eco', music: 'cave', dark: true,
   rows: [
     '########################',
     '########################',
@@ -458,7 +458,7 @@ defineMap(centerMap('centro2', 'Centro de Criaturas', { to: 'ciudad2', tx: 6, ty
 defineMap(shopMap('tienda2', 'Tienda', 'tienda2', { to: 'ciudad2', tx: 14, ty: 13 }));
 
 defineMap({
-  id: 'gym2', name: 'Gimnasio Marea', interior: true, music: 'gym',
+  id: 'gym2', arena: 'gimnasio_voltio', name: 'Gimnasio Marea', interior: true, music: 'gym',
   rows: [
     'WWWWWWWWWW',
     'gggggggggg',
@@ -488,7 +488,7 @@ defineMap({
 
 /* ── Santuario ── */
 defineMap({
-  id: 'santuario', name: 'Santuario', music: 'cave',
+  id: 'santuario', arena: 'santuario', name: 'Santuario', music: 'cave',
   rows: [
     'TTTTTTTTTTTTTT',
     'TTTTTTTTTTTTTT',

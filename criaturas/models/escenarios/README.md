@@ -8,9 +8,9 @@ En GitHub: entra en esta carpeta → *Add file* → *Upload files*.
 
 | Archivo | Subido |
 |---|---|
-| `pradera.glb` | ☐ |
-| `bosque.glb` | ☐ |
-| `cueva.glb` | ☐ |
-| `gimnasio_roca.glb` | ☐ |
-| `gimnasio_voltio.glb` | ☐ |
-| `santuario.glb` | ☐ |
+| `pradera.glb` | ✅ |
+| `bosque.glb` | ✅ |
+| `cueva.glb` | ✅ |
+| `gimnasio_roca.glb` | ✅ |
+| `gimnasio_voltio.glb` | ✅ |
+| `santuario.glb` | ✅ |

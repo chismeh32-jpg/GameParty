@@ -190,6 +190,10 @@ const Battle = (() => {
     side.mon = side.party[idx];
     side.stages = freshStages();
     const s = side.isPlayer ? scene.me : scene.foe;
+    if (side.isPlayer && !scene.playerOut) {
+      scene.playerOut = true;
+      if (scene.use3d) await wait(450);  // el entrenador lanza la cápsula
+    }
     s.sp = side.mon.sp;
     s.alpha = 0;
     s.scale = 0.2;
@@ -386,7 +390,7 @@ const Battle = (() => {
     G.bag[ball]--;
     await say(`¡${G.name} lanzó una ${ITEMS[ball].n}!`, { fast: true });
     Audio8.sfx('ball');
-    scene.ball = { x: 40, y: 120, open: 0, visible: true };
+    scene.ball = { x: 40, y: 120, open: 0, visible: true, kind: ball };
     await anim(450, p => { scene.ball.x = 40 + (176 - 40) * p; scene.ball.y = 120 - Math.sin(p * Math.PI) * 70 + (40 - 120) * p; });
     scene.ball.open = 3;
     await anim(250, p => { foe.scale = 1 - p; foe.alpha = 1 - p; });
@@ -527,7 +531,7 @@ const Battle = (() => {
     const wild = !!opts.wild;
     const firstIdx = G.party.findIndex(c => c.hp > 0);
     scene = {
-      wild, env: opts.env || 'grass', t0: performance.now(),
+      wild, env: opts.env || 'grass', arena: opts.arena || 'pradera', t0: performance.now(), use3d: false, playerOut: false,
       me: { sp: null, alpha: 1, scale: 1, dx: 0, dy: 0 },
       foe: { sp: null, alpha: 1, scale: 1, dx: 0, dy: 0 },
       trainerLook: opts.trainer?.look || null, trainerX: opts.trainer ? 0 : null,
@@ -543,8 +547,21 @@ const Battle = (() => {
 
     let result = null;
     try {
+      // Escena 3D si el dispositivo puede y los modelos cargan a tiempo
+      scene.intro = 1;
+      const B3 = window.Battle3D;
+      if (B3 && B3.available) {
+        const species = new Set([...G.party, ...enemyParty].flatMap(c => [c.sp, SPECIES[c.sp].evo?.[0]].filter(Boolean)));
+        const ok = await Promise.race([
+          B3.prepare({ arena: scene.arena, species: [...species], trainers: opts.trainer?.look ? [opts.trainer.look] : [], balls: ['capsula', 'supercapsula', 'ultracapsula'] }),
+          wait(5000).then(() => false),
+        ]);
+        if (ok) {
+          try { await B3.begin(scene); scene.use3d = true; } catch (e) { console.warn('Combate 3D no disponible', e); }
+        }
+      }
       // Presentación
-      await anim(400, p => { scene.intro = 1 - p; });
+      await anim(scene.use3d ? 1100 : 400, p => { scene.intro = 1 - p; });
       scene.intro = 0;
       if (wild) {
         await sendOut(enemy, 0);
@@ -665,6 +682,7 @@ const Battle = (() => {
         if (to) await evolveScene(c, to);
       }
     } finally {
+      if (scene.use3d) window.Battle3D.end();
       hud.wrap.remove();
       scene = null;
     }
@@ -720,6 +738,7 @@ const Battle = (() => {
 
   function render(ctx, now) {
     if (!scene) return;
+    if (scene.use3d && window.Battle3D.render(scene, now)) return;
     const env = ENV[scene.env] || ENV.grass;
     const g = ctx.createLinearGradient(0, 0, 0, 100);
     g.addColorStop(0, env.sky[0]);

@@ -8,15 +8,15 @@ En GitHub: entra en esta carpeta → *Add file* → *Upload files*.
 
 | Archivo | Subido |
 |---|---|
-| `pocion.png` | ☐ |
-| `superpocion.png` | ☐ |
-| `hiperpocion.png` | ☐ |
-| `antidoto.png` | ☐ |
-| `antiquemar.png` | ☐ |
-| `antiparaliz.png` | ☐ |
-| `despertar.png` | ☐ |
-| `curatotal.png` | ☐ |
-| `revivir.png` | ☐ |
-| `capsula.png` | ☐ |
-| `supercapsula.png` | ☐ |
-| `ultracapsula.png` | ☐ |
+| `pocion.png` | ✅ |
+| `superpocion.png` | ✅ |
+| `hiperpocion.png` | ✅ |
+| `antidoto.png` | ✅ |
+| `antiquemar.png` | ✅ |
+| `antiparaliz.png` | ✅ |
+| `despertar.png` | ✅ |
+| `cura_total.png` | ✅ |
+| `revivir.png` | ✅ |
+| `capsula.png` | ✅ |
+| `supercapsula.png` | ✅ |
+| `ultracapsula.png` | ✅ |

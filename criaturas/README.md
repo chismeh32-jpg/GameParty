@@ -3,7 +3,7 @@
 RPG de captura y combate de criaturas para el navegador, al estilo de los clásicos de consola portátil. Es un juego original: región, criaturas, personajes y pixel art propios, todo dibujado con código. No necesita instalación ni dependencias.
 
 - **Online:** `https://chismeh32-jpg.github.io/GameParty/criaturas/`
-- **En local:** abre `criaturas/index.html` en el navegador.
+- **En local:** abre `criaturas/index.html` en el navegador. Para ver los combates en 3D hace falta servirlo por HTTP (por ejemplo `python3 -m http.server` desde la raíz del repo); abierto como archivo, el juego usa automáticamente los combates 2D.
 
 ## Controles
 
@@ -13,6 +13,15 @@ RPG de captura y combate de criaturas para el navegador, al estilo de los clási
 | A (aceptar, hablar) | Z, Espacio o Enter | A |
 | B (volver, correr) | X o Mayús | B |
 | Menú | Esc o M | START |
+
+## Combates en 3D
+
+Los combates se dibujan en 3D con [Three.js](https://threejs.org/) (incluido en `vendor/three/`, licencia MIT) usando los modelos de `models/`: criaturas, escenarios, cápsulas y entrenadores, con sus animaciones. El mapa sigue en pixel art 2D.
+
+- La cámara encuadra tu criatura abajo a la izquierda y la rival arriba a la derecha, con un barrido al empezar.
+- El entrenador lanza la cápsula, los ataques especiales disparan proyectiles del color de su tipo, las cápsulas vuelan, se abren y tiemblan, y las evoluciones tienen destello.
+- Cada zona tiene su escenario: pradera (Ruta 1), bosque (Ruta 2), cueva, gimnasio de roca, gimnasio eléctrico y santuario.
+- Si el dispositivo no tiene WebGL o falta algún modelo, el combate se juega en 2D. Desde el menú se puede elegir **COMBATES: 3D / 2D**.
 
 ## Contenido
 
@@ -38,3 +47,4 @@ RPG de captura y combate de criaturas para el navegador, al estilo de los clási
 | `battle.js` | Sistema de combate |
 | `world.js` | Movimiento, eventos e historia |
 | `main.js` | Arranque, controles, título y guardado |
+| `battle3d.js` | Combates en 3D con Three.js |

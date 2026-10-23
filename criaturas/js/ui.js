@@ -135,7 +135,7 @@ const UI = (() => {
       let idx = opts.start || 0;
       const items = options.map((o, i) => {
         const opt = typeof o === 'string' ? { label: o } : o;
-        const it = el('div', 'menu-item' + (opt.disabled ? ' disabled' : ''), `<span class="cursor">▶</span><span class="label">${opt.html || esc(opt.label)}</span>${opt.right ? `<span class="right">${opt.right}</span>` : ''}`);
+        const it = el('div', 'menu-item' + (opt.disabled ? ' disabled' : ''), `<span class="cursor">▶</span><span class="label">${opt.icon ? itemIcon(opt.icon) : ''}${opt.html || esc(opt.label)}</span>${opt.right ? `<span class="right">${opt.right}</span>` : ''}`);
         it.addEventListener('click', e => { e.stopPropagation(); idx = i; render(); pick(); });
         layer.el.appendChild(it);
         return it;
@@ -326,7 +326,7 @@ const UI = (() => {
       let idx = 0;
       const entries = [...ids, null];
       function render() {
-        list.innerHTML = entries.map((id, i) => `<div class="bag-item ${i === idx ? 'active' : ''}" data-i="${i}"><span class="cursor">▶</span><span>${id ? ITEMS[id].n : 'Cerrar'}</span><b>${id ? '×' + G.bag[id] : ''}</b></div>`).join('');
+        list.innerHTML = entries.map((id, i) => `<div class="bag-item ${i === idx ? 'active' : ''}" data-i="${i}"><span class="cursor">▶</span><span>${id ? itemIcon(id) + ITEMS[id].n : 'Cerrar'}</span><b>${id ? '×' + G.bag[id] : ''}</b></div>`).join('');
         list.querySelectorAll('.bag-item').forEach(it => it.onclick = () => { idx = +it.dataset.i; render(); pick(); });
         msg.textContent = entries[idx] ? ITEMS[entries[idx]].desc : 'Cerrar la mochila.';
         list.querySelector('.active')?.scrollIntoView({ block: 'nearest' });
@@ -454,5 +454,9 @@ const UI = (() => {
 
   return { say, sayAll, ask, choose, party, summary, bag, dex, quantity, nameEntry, moneyBox, push, remove, press, busy, el, esc, hpBar, statusBadge, typeBadges };
 })();
+
+// Iconos de objetos (icons/*.png). Si falta alguno, simplemente no se muestra
+const ICON_FILES = { curatotal: 'cura_total' };
+const itemIcon = id => `<img class="item-icon" src="icons/${ICON_FILES[id] || id}.png" alt="" onerror="this.remove()">`;
 
 const fmtMoney = n => `${n.toLocaleString('es-ES')} ₵`;

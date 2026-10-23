@@ -67,6 +67,12 @@ body.touch .keys-hint { display: none; }
   image-rendering: pixelated;
   image-rendering: crisp-edges;
 }
+#game3d {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: none;
+}
+#game3d.on { display: block; }
 #ui {
   position: absolute; inset: 0;
   font-size: calc(var(--p) * 7);
@@ -235,7 +241,8 @@ body.touch .keys-hint { display: none; }
 .bag { background: #f8e0b8; }
 .bag-title { font-size: calc(var(--p) * 8); margin-bottom: calc(var(--p) * 4); }
 .bag-list { background: #fff; border-radius: calc(var(--p) * 4); padding: calc(var(--p) * 3); height: calc(var(--p) * 98); overflow-y: auto; scrollbar-width: none; }
-.bag-item { display: grid; grid-template-columns: calc(var(--p) * 8) 1fr auto; padding: calc(var(--p) * 1.5) calc(var(--p) * 3); cursor: pointer; }
+.item-icon { width: calc(var(--p) * 12); height: calc(var(--p) * 12); vertical-align: middle; margin-right: calc(var(--p) * 3); }
+.bag-item { display: grid; grid-template-columns: calc(var(--p) * 8) 1fr auto; align-items: center; padding: calc(var(--p) * 1.5) calc(var(--p) * 3); cursor: pointer; }
 .bag-item .cursor { visibility: hidden; font-size: calc(var(--p) * 6); }
 .bag-item.active .cursor { visibility: visible; }
 .bag .screen-msg { background: var(--box); border-radius: calc(var(--p) * 3); padding: calc(var(--p) * 3) calc(var(--p) * 5); min-height: calc(var(--p) * 26); }

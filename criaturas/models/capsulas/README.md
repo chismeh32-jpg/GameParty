@@ -8,6 +8,6 @@ En GitHub: entra en esta carpeta → *Add file* → *Upload files*.
 
 | Archivo | Subido |
 |---|---|
-| `capsula.glb` | ☐ |
-| `supercapsula.glb` | ☐ |
-| `ultracapsula.glb` | ☐ |
+| `capsula.glb` | ✅ |
+| `supercapsula.glb` | ✅ |
+| `ultracapsula.glb` | ✅ |
