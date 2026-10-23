@@ -1304,6 +1304,7 @@ function menuHtml() {
     <p class="hint">Vende tus productos en la caja de envíos 📦 que hay junto a tu casa.</p>
     <div class="btn-row">
       <button class="btn" data-act="help">❓ Cómo jugar</button>
+      <a class="btn" href="criaturas/" style="text-align:center;text-decoration:none">🎮 Criaturas</a>
       <button class="btn danger" data-act="reset">🗑️ Nueva partida</button>
     </div>`;
 }

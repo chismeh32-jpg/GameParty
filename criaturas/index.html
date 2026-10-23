@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1a1a2e">
+<title>Criaturas de Brisaluz</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23f4f4f4' stroke='%232a1a14' stroke-width='6'/><path d='M4 50a46 46 0 0 1 92 0z' fill='%23d8433a'/><rect x='4' y='46' width='92' height='8' fill='%232a1a14'/><circle cx='50' cy='50' r='13' fill='%23fff' stroke='%232a1a14' stroke-width='6'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <a href="../" class="top-link">← Granja</a>
+    <span class="keys-hint">Flechas: mover · Z/Enter: A · X: B (correr) · Esc: menú</span>
+    <button id="btn-mute" class="top-btn" aria-label="Sonido">🔊</button>
+  </div>
+
+  <div id="screen">
+    <canvas id="game" width="240" height="160"></canvas>
+    <div id="ui"></div>
+  </div>
+
+  <div id="controls">
+    <div class="dpad">
+      <button data-btn="up" class="d up" aria-label="Arriba"></button>
+      <button data-btn="left" class="d left" aria-label="Izquierda"></button>
+      <span class="d center"></span>
+      <button data-btn="right" class="d right" aria-label="Derecha"></button>
+      <button data-btn="down" class="d down" aria-label="Abajo"></button>
+    </div>
+    <div class="mid">
+      <button data-btn="start" class="pill">START</button>
+    </div>
+    <div class="ab">
+      <button data-btn="b" class="round b">B</button>
+      <button data-btn="a" class="round a">A</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/maps.js"></script>
+<script src="js/art.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/mons.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/battle.js"></script>
+<script src="js/world.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
