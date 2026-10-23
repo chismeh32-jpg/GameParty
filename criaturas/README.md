@@ -19,7 +19,8 @@ RPG de captura y combate de criaturas para el navegador, al estilo de los clási
 Los combates se dibujan en 3D con [Three.js](https://threejs.org/) (incluido en `vendor/three/`, licencia MIT) usando los modelos de `models/`: criaturas, escenarios, cápsulas y entrenadores, con sus animaciones. El mapa sigue en pixel art 2D.
 
 - La cámara encuadra tu criatura abajo a la izquierda y la rival arriba a la derecha, con un barrido al empezar.
-- El entrenador lanza la cápsula, los ataques especiales disparan proyectiles del color de su tipo, las cápsulas vuelan, se abren y tiemblan, y las evoluciones tienen destello.
+- Cada tipo de ataque tiene su efecto: llamaradas, chorros de agua, lluvia de hojas, rayos, rocas que caen, cuchillas de viento, enjambres, lodo venenoso y orbes de sombra. Los golpes hacen temblar al rival y los muy eficaces sacuden la cámara.
+- El entrenador lanza la cápsula, las cápsulas vuelan, se abren y tiemblan, y las evoluciones tienen destello.
 - Cada zona tiene su escenario: pradera (Ruta 1), bosque (Ruta 2), cueva, gimnasio de roca, gimnasio eléctrico y santuario.
 - Si el dispositivo no tiene WebGL o falta algún modelo, el combate se juega en 2D. Desde el menú se puede elegir **COMBATES: 3D / 2D**.
 
@@ -32,7 +33,8 @@ Los combates se dibujan en 3D con [Three.js](https://threejs.org/) (incluido en 
 - **Mapas:** Pueblo Albor, Ruta 1, Ciudad Roble, Ruta 2 (Bosque Musgo), Cueva Eco, Puerto Marea y el Santuario.
 - **Historia:** elección de inicial, rival, 2 gimnasios con medalla, entrenadores que te ven y vienen a retarte, guardias, regalos y final con créditos.
 - Centros de Criaturas, tiendas, PC para guardar criaturas, Criaturario, mochila, ficha de entrenador, bordillos para saltar, hierba alta y cuevas con encuentros.
-- Música chiptune y efectos con Web Audio, y guardado en el navegador.
+- **Tu criatura te sigue** por el mapa (la primera del equipo). Háblale con A para ver cómo está.
+- Música chiptune con Web Audio, un sonido distinto para cada tipo de ataque, un grito propio para cada especie y guardado en el navegador.
 
 ## Archivos (`js/`)
 

@@ -15,6 +15,9 @@ const World = (() => {
   let fade = 0;
   let emote = null;
   let stepsSinceWarp = 0;
+  // Criatura que va detrás del jugador
+  const follower = { x: 0, y: 0, fx: 0, fy: 0, tx: 0, ty: 0, moving: false, t: 0, dur: WALK, dir: 'down', hidden: true, jump: false };
+  const leadMon = () => (G.party[0] && G.party[0].hp > 0 ? G.party[0] : null);
   let banner = null;
   let lastBump = 0;
 
@@ -55,6 +58,7 @@ const World = (() => {
     if (dir) player.dir = dir;
     player.moving = false;
     stepsSinceWarp = 0;
+    Object.assign(follower, { x, y, moving: false, hidden: true });
     Audio8.play(def.music || (def.interior ? 'town' : 'route'));
     // Precarga el escenario 3D de la zona y las criaturas del equipo
     if (window.Battle3D?.available) {
@@ -92,6 +96,10 @@ const World = (() => {
   /* ── Movimiento del jugador ───────── */
   function update(dt) {
     for (const n of map.npcs) updateNpc(n, dt);
+    if (follower.moving) {
+      follower.t += dt / follower.dur;
+      if (follower.t >= 1) Object.assign(follower, { moving: false, x: follower.tx, y: follower.ty, jump: false });
+    }
     if (player.moving) {
       player.t += dt / player.dur;
       if (player.t >= 1) finishStep();
@@ -130,6 +138,13 @@ const World = (() => {
   }
 
   function startStep(tx, ty, dur, jump) {
+    // La criatura ocupa la casilla que deja el jugador
+    if (follower.hidden) Object.assign(follower, { x: player.x, y: player.y, hidden: false, moving: false, dir: player.dir });
+    else if (follower.x !== player.x || follower.y !== player.y) {
+      const dx = player.x - follower.x, dy = player.y - follower.y;
+      const dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'right' : 'left') : (dy > 0 ? 'down' : 'up');
+      Object.assign(follower, { moving: true, t: 0, fx: follower.x, fy: follower.y, tx: player.x, ty: player.y, dur, dir, jump: Math.abs(dx) + Math.abs(dy) > 1 });
+    }
     Object.assign(player, { moving: true, t: 0, fx: player.x, fy: player.y, tx, ty, dur, jump });
     player.foot ^= 1;
   }
@@ -204,6 +219,7 @@ const World = (() => {
     const nx = n.x + dx, ny = n.y + dy;
     if (Math.abs(nx - n.ox) > 2 || Math.abs(ny - n.oy) > 2) return;
     if (blocked(nx, ny, n) || (nx === player.x && ny === player.y) || (player.moving && nx === player.tx && ny === player.ty)) return;
+    if (!follower.hidden && ((nx === follower.x && ny === follower.y) || (follower.moving && nx === follower.tx && ny === follower.ty))) return;
     if (tileAt(nx, ny) === 'ledge') return;
     Object.assign(n, { moving: true, t: 0, fx: n.x, fy: n.y, tx: nx, ty: ny });
   }
@@ -322,6 +338,7 @@ const World = (() => {
     if (tileAt(x, y) === 'counter') { x += dx; y += dy; }
     const n = npcAt(x, y);
     if (n) return run(() => talk(n));
+    if (!follower.hidden && !follower.moving && leadMon() && follower.x === player.x + dx && follower.y === player.y + dy) return run(talkFollower);
     const o = objectAt(x, y);
     if (o) return run(() => SCRIPTS[o.script](o));
     const it = itemAt(x, y);
@@ -335,6 +352,21 @@ const World = (() => {
     if (t === 'pc') return run(() => SCRIPTS.pc());
     if (t === 'healer') return run(() => UI.say('Una máquina para curar criaturas. Mejor no tocarla.'));
     if (t === 'water') return run(() => UI.say('El agua es de un azul precioso.'));
+  }
+
+  async function talkFollower() {
+    const c = leadMon();
+    const name = monName(c);
+    follower.dir = OPP[player.dir];
+    Audio8.cry(c.sp);
+    emote = { npc: follower, t: performance.now(), kind: 'heart' };
+    const f = c.hp / maxHp(c);
+    const lines = c.status ? [`${name} no se encuentra muy bien...`, `${name} parece ${STATUS[c.status].label}. Deberías curarle.`]
+      : f < 0.3 ? [`${name} está agotado. Necesita descansar.`]
+      : f < 0.7 ? [`${name} aguanta como puede. ¡Ánimo!`]
+      : [`¡${name} te mira muy contento!`, `${name} da saltitos de alegría.`, `${name} olisquea el suelo con curiosidad.`, `${name} se frota contra tu pierna.`, `${name} tararea una cancioncilla.`];
+    await UI.say(lines[Math.floor(Math.random() * lines.length)]);
+    emote = null;
   }
 
   async function talk(n) {
@@ -636,7 +668,7 @@ const World = (() => {
 
     async legend(o) {
       await UI.say('Una criatura resplandeciente te observa en silencio...');
-      Audio8.sfx('cry');
+      Audio8.cry(o.creature);
       await UI.say('¡Kriiiiiiaaah!');
       const mon = makeMon(o.creature, 35);
       const result = await battleTransition(() => Battle.run({ wild: mon, env: 'shrine', arena: 'santuario', music: 'gym' }));
@@ -671,7 +703,7 @@ const World = (() => {
   let preview = null;
   async function showCreature(sp) {
     preview = sp;
-    Audio8.sfx('cry');
+    Audio8.cry(sp);
   }
   function hideCreature() { preview = null; }
 
@@ -722,6 +754,22 @@ const World = (() => {
       const [nx, ny] = lerpPos(n);
       ents.push({ y: ny * 16 + 16, draw: () => drawChar(ctx, LOOKS[n.look], n, nx, ny, 0) });
     }
+    const lead = leadMon();
+    if (lead && !follower.hidden) {
+      const [fx, fy] = lerpPos(follower);
+      ents.push({ y: fy * 16 + 16.2, draw: () => {
+        const img = Art.creatureMini(lead.sp, follower.dir === 'up' ? 'back' : 'front');
+        const hop = follower.jump ? Math.sin(Math.min(1, follower.t) * Math.PI) * 6 : follower.moving ? Math.abs(Math.sin(follower.t * Math.PI)) * 2 : Math.max(0, Math.sin(now / 260)) * 1;
+        const flipX = follower.dir === 'right';
+        const x = Math.round(fx * 16 + 8 - img.width / 2), y = Math.round(fy * 16 + 15 - img.height - hop);
+        ctx.fillStyle = 'rgba(0,0,0,0.2)';
+        ctx.fillRect(Math.round(fx * 16 + 3), Math.round(fy * 16 + 13), 10, 3);
+        if (flipX) { ctx.save(); ctx.translate(x + img.width, y); ctx.scale(-1, 1); ctx.drawImage(img, 0, 0); ctx.restore(); }
+        else ctx.drawImage(img, x, y);
+        const tx = Math.round(fx), ty = Math.round(fy);
+        if (!follower.moving && tileAt(tx, ty) === 'tall') ctx.drawImage(Art.tile('tall', tx, ty), 0, 9, 16, 7, tx * 16, ty * 16 + 9, 16, 7);
+      } });
+    }
     ents.push({ y: py * 16 + 16.5, draw: () => {
       const hop = player.jump ? Math.sin(Math.min(1, player.t) * Math.PI) * 8 : 0;
       drawChar(ctx, LOOKS.player, player, px, py, hop);
@@ -737,7 +785,11 @@ const World = (() => {
       ctx.fillStyle = '#2a1a14';
       ctx.fillRect(bx, by, 10, 1); ctx.fillRect(bx, by + 11, 10, 1); ctx.fillRect(bx, by, 1, 12); ctx.fillRect(bx + 9, by, 1, 12);
       ctx.fillStyle = '#d8433a';
-      ctx.fillRect(bx + 4, by + 2, 2, 5); ctx.fillRect(bx + 4, by + 8, 2, 2);
+      if (emote.kind === 'heart') {
+        for (const [x, y, w] of [[2, 3, 2], [6, 3, 2], [1, 4, 8], [1, 5, 8], [2, 6, 6], [3, 7, 4], [4, 8, 2]]) ctx.fillRect(bx + x, by + y, w, 1);
+      } else {
+        ctx.fillRect(bx + 4, by + 2, 2, 5); ctx.fillRect(bx + 4, by + 8, 2, 2);
+      }
     }
     ctx.restore();
 

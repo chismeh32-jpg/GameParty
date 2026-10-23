@@ -54,7 +54,8 @@ const Audio8 = (() => {
     o.stop(t + dur + 0.02);
   }
 
-  function noise(t, dur, vol = 0.3) {
+  // Ruido con filtro opcional: { type: 'lowpass' | 'bandpass' | 'highpass', f, f2 (barrido) }
+  function noise(t, dur, vol = 0.3, filter) {
     if (!ac) return;
     const len = Math.floor(ac.sampleRate * dur);
     const buf = ac.createBuffer(1, len, ac.sampleRate);
@@ -64,9 +65,63 @@ const Audio8 = (() => {
     const g = ac.createGain();
     g.gain.value = vol;
     src.buffer = buf;
-    src.connect(g);
+    let node = src;
+    if (filter) {
+      const f = ac.createBiquadFilter();
+      f.type = filter.type;
+      f.frequency.setValueAtTime(filter.f, t);
+      if (filter.f2) f.frequency.exponentialRampToValueAtTime(filter.f2, t + dur);
+      f.Q.value = filter.q || 1;
+      src.connect(f);
+      node = f;
+    }
+    node.connect(g);
     g.connect(master);
     src.start(t);
+  }
+
+  // Sonido de ataque según el tipo
+  function attack(type, cat) {
+    if (!ensure() || muted) return;
+    const t = ac.currentTime;
+    if (cat === 'status') {
+      [0, 1, 2].forEach(i => tone(500 + i * 180, t + i * 0.08, 0.12, 'triangle', 0.25, 1.4));
+      return;
+    }
+    switch (type) {
+      case 'fuego': noise(t, 0.6, 0.5, { type: 'lowpass', f: 400, f2: 2500 }); tone(110, t, 0.5, 'sawtooth', 0.15, 2); break;
+      case 'agua': for (let i = 0; i < 6; i++) tone(900 - i * 90 + Math.random() * 120, t + i * 0.06, 0.07, 'sine', 0.3, 0.6); noise(t + 0.3, 0.3, 0.25, { type: 'bandpass', f: 1800, q: 2 }); break;
+      case 'planta': for (let i = 0; i < 4; i++) noise(t + i * 0.1, 0.12, 0.3, { type: 'bandpass', f: 3000, f2: 1200, q: 3 }); break;
+      case 'electrico': for (let i = 0; i < 10; i++) tone(1200 + Math.random() * 1400, t + i * 0.03, 0.03, 'square', 0.2); noise(t + 0.3, 0.25, 0.5, { type: 'highpass', f: 1500 }); break;
+      case 'roca': for (let i = 0; i < 4; i++) { noise(t + i * 0.09, 0.15, 0.5, { type: 'lowpass', f: 500 }); tone(70, t + i * 0.09, 0.12, 'square', 0.25, 0.6); } break;
+      case 'volador': noise(t, 0.5, 0.45, { type: 'bandpass', f: 600, f2: 3500, q: 4 }); break;
+      case 'bicho': { const o = ac.createOscillator(); const g = ac.createGain(); const lfo = ac.createOscillator(); const lg = ac.createGain();
+        o.type = 'sawtooth'; o.frequency.value = 220; lfo.frequency.value = 30; lg.gain.value = 60; lfo.connect(lg); lg.connect(o.frequency);
+        g.gain.setValueAtTime(0.15, t); g.gain.linearRampToValueAtTime(0, t + 0.6); o.connect(g); g.connect(master);
+        o.start(t); lfo.start(t); o.stop(t + 0.62); lfo.stop(t + 0.62); break; }
+      case 'veneno': for (let i = 0; i < 5; i++) tone(180 + Math.random() * 80, t + i * 0.09, 0.1, 'sine', 0.35, 1.8); break;
+      case 'fantasma': { const o = ac.createOscillator(); const g = ac.createGain(); const lfo = ac.createOscillator(); const lg = ac.createGain();
+        o.type = 'sine'; o.frequency.setValueAtTime(700, t); o.frequency.exponentialRampToValueAtTime(250, t + 0.7);
+        lfo.frequency.value = 7; lg.gain.value = 25; lfo.connect(lg); lg.connect(o.frequency);
+        g.gain.setValueAtTime(0.25, t); g.gain.linearRampToValueAtTime(0, t + 0.7); o.connect(g); g.connect(master);
+        o.start(t); lfo.start(t); o.stop(t + 0.72); lfo.stop(t + 0.72); break; }
+      default: tone(440, t, 0.08, 'square', 0.25, 0.5); noise(t, 0.12, 0.3);
+    }
+  }
+
+  // Grito propio de cada especie (siempre suena igual para la misma criatura)
+  function cry(sp) {
+    if (!ensure() || muted || !sp) return;
+    let h = 0;
+    for (const ch of sp) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+    const t = ac.currentTime;
+    const base = 300 + (h % 500);
+    const notes = 2 + (h % 3);
+    const wave = ['sawtooth', 'square', 'triangle'][(h >> 3) % 3];
+    for (let i = 0; i < notes; i++) {
+      const up = ((h >> (i + 4)) & 1) ? 1.35 : 0.75;
+      tone(base * (1 + ((h >> (i * 2)) % 5) / 10), t + i * 0.11, 0.14, wave, 0.2, up);
+    }
   }
 
   // Cada pista: tempo y canales con notas "C5:1 E5:1 -:2" (duración en corcheas)
@@ -181,5 +236,5 @@ const Audio8 = (() => {
     return muted;
   }
 
-  return { play, stop, sfx, unlock, toggleMute, isMuted: () => muted };
+  return { play, stop, sfx, attack, cry, unlock, toggleMute, isMuted: () => muted };
 })();

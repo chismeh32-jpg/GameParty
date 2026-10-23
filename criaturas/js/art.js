@@ -438,6 +438,25 @@ const Art = (() => {
   }
 
   // Versión en miniatura (para menús) como data URL
+  // Versión pequeña (≈28 px) para la criatura que te sigue por el mapa
+  function creatureMini(id, view = 'front') {
+    return cached(`mini-${id}-${view}`, () => {
+      const src = creature(id, view);
+      const k = 0.4 * (SPECIES[id].art.size || 1);
+      const w = Math.round(src.width * k), h = Math.round(src.height * k);
+      const c = makeCanvas(w, h);
+      const ctx = c.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(src, 0, 0, w, h);
+      // Bordes nítidos: sin píxeles semitransparentes
+      const img = ctx.getImageData(0, 0, w, h);
+      for (let i = 3; i < img.data.length; i += 4) img.data[i] = img.data[i] > 110 ? 255 : 0;
+      ctx.putImageData(img, 0, 0);
+      return c;
+    });
+  }
+
   function creatureIcon(id) {
     return cached(`icon-${id}`, () => creature(id, 'front').toDataURL());
   }
@@ -781,5 +800,5 @@ const Art = (() => {
     });
   }
 
-  return { creature, creatureIcon, character, tile, building, itemBall, capsule, shade, ellipse, rect, makeCanvas, hash };
+  return { creature, creatureMini, creatureIcon, character, tile, building, itemBall, capsule, shade, ellipse, rect, makeCanvas, hash };
 })();

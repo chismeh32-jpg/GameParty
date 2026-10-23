@@ -157,6 +157,7 @@ const Battle = (() => {
     const from = att.isPlayer ? 'me' : 'foe';
     // Evento que la escena 3D convierte en un efecto propio de cada tipo
     scene.attack = { type: mv.t, cat: mv.c, from, targetFoe: !!(mv.foe || mv.inflict), t: performance.now() };
+    Audio8.attack(mv.t, mv.c);
     if (mv.c === 'phys') {
       await anim(140, p => { me.dx = dir * 14 * p; me.dy = -dir * 6 * p; });
       await anim(140, p => { me.dx = dir * 14 * (1 - p); me.dy = -dir * 6 * (1 - p); });
@@ -205,7 +206,7 @@ const Battle = (() => {
     s.scale = 0.2;
     Audio8.sfx('ball');
     await anim(260, p => { s.alpha = p; s.scale = 0.2 + 0.8 * p; });
-    Audio8.sfx('cry');
+    Audio8.cry(side.mon.sp);
     G.dex.seen[side.mon.sp] = true;
     updateBox(side);
   }
