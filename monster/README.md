@@ -1,6 +1,6 @@
 # 💀 Monster High · Cajas Sorpresa
 
-Fan game para abrir cajas sorpresa (blind boxes) y coleccionar muñecas de Monster High de todas las épocas: la G1 de 2010, la G2, la G3, las ediciones de coleccionista y las Skullector. También hay mascotas y accesorios.
+Fan game para abrir cajas sorpresa (blind boxes) y coleccionar muñecas de Monster High de todas las épocas: la G1 de 2010, la G2, la G3, las ediciones de coleccionista y las Skullector. Cada muñeca se ve con su **foto oficial**. También hay mascotas y accesorios.
 
 - **Online:** `https://chismeh32-jpg.github.io/GameParty/monster/`
 - **En local:** sirve la carpeta del repositorio (por ejemplo `python3 -m http.server`) y abre `/monster/`.
@@ -27,19 +27,30 @@ Desde la ficha de cualquier muñeca, mascota o accesorio, o desde la tienda para
 
 ## Fotos reales
 
-Las ilustraciones están dibujadas con código. En la ficha de cada muñeca se puede añadir una **foto real**: buscarla en Google, pegar el enlace de la imagen o subirla de la galería. Las fotos se guardan solo en el dispositivo; para pasárselas a la otra persona hay **Exportar fotos** e **Importar fotos** en el perfil.
+- Cada muñeca muestra su foto oficial de la [wiki de Monster High](https://monsterhigh.fandom.com). El juego solo guarda el enlace; la imagen se carga desde la wiki (sin enviar *referer*, que es como la wiki permite mostrarlas en otras páginas).
+- Si una foto no carga, se ve el dibujo de la muñeca.
+- En la ficha de cada muñeca se puede poner **una foto tuya**, que tiene prioridad: buscarla en Google, pegar el enlace o subirla de la galería. Esas fotos se guardan solo en el dispositivo; para pasárselas a la otra persona hay **Exportar fotos** e **Importar fotos** en el perfil.
+- Con el ajuste **Fotos reales** del perfil se puede volver a los dibujos.
 
 ## Catálogo
 
-- **209 muñecas en 56 colecciones**: Básicas, Dawn of the Dance, Dead Tired, School's Out, Gloom Beach, Sweet 1600, Ghouls Rule, Scaris, Power Ghouls, 13 Wishes, Freaky Fusion, Boo York, Great Scarrier Reef, Welcome to Monster High, Electrified, Faboolous Friends, Skulltimate Secrets, Monster Ball, Monster Fest, Haunt Couture, Creeproduction y todas las Skullector (de Pennywise en 2020 a las de 2026).
+- **615 muñecas en 179 colecciones**, sacadas de la wiki de Monster High:
+  - G1 (2010–2016): 313 muñecas
+  - G2 (2016–2018): 89
+  - G3 (2022–hoy): 129
+  - Ediciones de coleccionista (Haunt Couture, Howliday, Creeproduction, Comic-Con…): 54
+  - Skullector, de Pennywise (2020) a las de 2026: 30
+- Incluye los sets de varias muñecas (por ejemplo Cleo y Deuce) y las ediciones especiales.
 - **21 mascotas** y **50 accesorios**.
 
-El catálogo se ha hecho de memoria y con búsquedas, así que puede faltar alguna muñeca o haber algún año distinto. Se añaden más en `js/data.js`: basta con añadir una colección a `LINES`, y si es un personaje nuevo, también a `CHARS`.
+El catálogo se genera con los scripts de `tools/wiki/` (ver su README) y se puede volver a generar cuando salgan muñecas nuevas.
 
 ## Archivos
 
 - `index.html`, `styles.css`: interfaz
-- `js/data.js`: personajes, colecciones, mascotas, accesorios, cajas y logros
+- `js/data.js`: personajes, mascotas, accesorios, cajas y logros
+- `js/catalog.js`: colecciones y muñecas (generado desde la wiki)
+- `js/photos.js`: enlace a la foto oficial de cada muñeca (generado desde la wiki)
 - `js/art.js`: generador de ilustraciones SVG de muñecas, mascotas y accesorios
 - `js/game.js`: lógica de cajas, rarezas, recompensas y regalos
 - `js/store.js`: guardado, perfiles, fotos (IndexedDB) y códigos de regalo
@@ -49,4 +60,4 @@ El catálogo se ha hecho de memoria y con búsquedas, así que puede faltar algu
 
 ---
 
-Fan game no oficial y sin ánimo de lucro. Monster High es una marca de Mattel; los personajes Skullector pertenecen a sus respectivos dueños. No incluye imágenes de terceros.
+Fan game no oficial y sin ánimo de lucro. Monster High es una marca de Mattel; los personajes Skullector pertenecen a sus respectivos dueños. El repositorio no contiene imágenes de terceros: las fotos se enlazan desde la wiki de Monster High.

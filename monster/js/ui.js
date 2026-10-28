@@ -91,7 +91,7 @@ const UI = (() => {
   const usePhotos = () => S.settings.realPhotos !== false;
   // Si la foto no carga, se cambia por el dibujo
   const fallback = id => `onerror="this.onerror=null;this.src='${Art.dollURL(id)}';this.classList.add('fb')"`;
-  const lineLabel = d => esc(d.lineName.replace('Skullector: ', '').replace('Skulltimate Secrets: ', 'SS: '));
+  const lineLabel = d => esc((d.edition || d.lineName).replace('Skullector: ', '').replace('Skulltimate Secrets: ', 'SS: '));
   function pkgHTML(id, { owned = !!S.dolls[id], badges = true, shiny = null, art = false } = {}) {
     const d = DOLLS[id];
     const v = S.dolls[id];
@@ -106,8 +106,8 @@ const UI = (() => {
     const ph = !art && usePhotos() && photoFor(id);
     if (ph) {
       return `<div class="pcard g-${d.gen} r-${d.rarity} ${owned ? '' : 'missing'} ${isShiny ? 'shiny' : ''}">
-        <div class="pc-img"><img referrerpolicy="no-referrer" src="${esc(ph)}" alt="${esc(d.name)}" draggable="false" ${fallback(id)}></div>
-        <div class="pc-foot"><b>${hide ? '???' : esc(shortName(d.char))}</b><small>${lineLabel(d)} · ${d.year}</small></div>
+        <div class="pc-img"><img referrerpolicy="no-referrer" loading="lazy" src="${esc(ph)}" alt="${esc(d.name)}" draggable="false" ${fallback(id)}></div>
+        <div class="pc-foot"><b>${hide ? '???' : esc(d.short)}</b><small>${lineLabel(d)} · ${d.year}</small></div>
         <span class="pkg-rar" title="${RARITY[d.rarity].name}"></span>
         <div class="pkg-badges">${b}</div>
         ${owned ? '' : '<div class="lock">?</div>'}
@@ -117,7 +117,7 @@ const UI = (() => {
       <div class="pkg-shape"></div>
       <div class="pkg-in"><div class="pkg-brand">${d.gen === 'SK' ? 'Skullector' : 'Monster High'}</div>
         <div class="pkg-win"><img src="${Art.dollURL(id)}" alt="${esc(d.name)}" draggable="false"></div>
-        <div class="pkg-name">${hide ? '???' : esc(shortName(d.char))}</div>
+        <div class="pkg-name">${hide ? '???' : esc(d.short)}</div>
         <div class="pkg-line">${lineLabel(d)} · ${d.year}</div>
       </div>
       <span class="pkg-rar" title="${RARITY[d.rarity].name}"></span>
@@ -216,7 +216,7 @@ const UI = (() => {
     if (colTab === 'pets') return h + `<div class="col-head"><div class="progress"><i style="width:${np / PETS.length * 100}%"></i></div><b>${np}/${PETS.length}</b></div><div class="mini-grid">${PETS.map(p => itemCard('pet', p.id)).join('')}</div>`;
     if (colTab === 'accs') return h + `<div class="col-head"><div class="progress"><i style="width:${na / ACCESSORIES.length * 100}%"></i></div><b>${na}/${ACCESSORIES.length}</b></div><div class="mini-grid">${ACCESSORIES.map(a => itemCard('acc', a.id)).join('')}</div>`;
 
-    const chars = [...new Set(DOLL_LIST.map(d => d.char))].sort((a, b) => CHARS[a].name.localeCompare(CHARS[b].name, 'es'));
+    const chars = [...new Set(DOLL_LIST.flatMap(d => d.chars))].sort((a, b) => CHARS[a].name.localeCompare(CHARS[b].name, 'es'));
     h += `<div class="col-head"><div class="progress"><i style="width:${nd / DOLL_LIST.length * 100}%"></i></div><b>${nd}/${DOLL_LIST.length} · ${Math.floor(nd / DOLL_LIST.length * 100)}%</b></div>`;
     h += `<div class="chips" style="margin-bottom:8px">${[['all', 'Todas'], ['G1', 'G1'], ['G2', 'G2'], ['G3', 'G3'], ['COL', 'Coleccionista'], ['SK', 'Skullector']].map(([v, l]) => `<button class="chip ${filt.gen === v ? 'on' : ''}" data-act="fgen" data-v="${v}">${l}</button>`).join('')}</div>`;
     h += `<div class="filters"><select class="sel" data-act="fchar"><option value="all">Todos los personajes</option>${chars.map(c => `<option value="${c}" ${filt.char === c ? 'selected' : ''}>${esc(CHARS[c].name)}</option>`).join('')}</select>
@@ -224,8 +224,8 @@ const UI = (() => {
     let any = false;
     for (const l of [...LINES].sort((a, b) => GEN_ORDER.indexOf(a.gen) - GEN_ORDER.indexOf(b.gen) || a.year - b.year)) {
       if (filt.gen !== 'all' && l.gen !== filt.gen) continue;
-      let ds = l.members.map(c => DOLLS[`${l.id}.${c}`]);
-      if (filt.char !== 'all') ds = ds.filter(d => d.char === filt.char);
+      let ds = l.dolls.map(id => DOLLS[id]);
+      if (filt.char !== 'all') ds = ds.filter(d => d.chars.includes(filt.char));
       ds = ds.filter(d => {
         const v = S.dolls[d.id];
         switch (filt.show) {
@@ -239,9 +239,9 @@ const UI = (() => {
       });
       if (!ds.length) continue;
       any = true;
-      const have = l.members.filter(c => S.dolls[`${l.id}.${c}`]).length;
+      const have = l.dolls.filter(id => S.dolls[id]).length;
       h += `<div class="line-group"><div class="line-head"><h4>${esc(l.name)}</h4><span class="yr">${l.year}</span><span class="gen" style="background:${GENS[l.gen].color}">${GENS[l.gen].short}</span>
-        <span class="cnt ${have === l.members.length ? 'done' : ''}">${have === l.members.length ? '✓ ' : ''}${have}/${l.members.length}</span></div>
+        <span class="cnt ${have === l.dolls.length ? 'done' : ''}">${have === l.dolls.length ? '✓ ' : ''}${have}/${l.dolls.length}</span></div>
         <div class="grid">${ds.map(d => `<button data-act="doll" data-id="${d.id}">${pkgHTML(d.id)}</button>`).join('')}</div></div>`;
     }
     if (!any) h += '<div class="empty">No hay muñecas con estos filtros.</div>';
@@ -265,10 +265,10 @@ const UI = (() => {
     const others = DOLL_LIST.filter(x => x.char === d.char);
     const haveOthers = others.filter(x => S.dolls[x.id]).length;
     let h = `<div class="detail"><div class="d-art">${art}
-      <div class="view-tabs">${ph ? `<button data-act="dview" data-v="photo" class="${dView === 'photo' ? 'on' : ''}">📷 Foto</button>` : ''}<button data-act="dview" data-v="box" class="${dView === 'box' ? 'on' : ''}">🎨 En su caja</button><button data-act="dview" data-v="out" class="${dView === 'out' ? 'on' : ''}">🎨 Sin caja</button></div></div>
-      <div class="d-info"><h2>${esc(ch.name)}</h2><div class="kind">${esc(ch.kind)}</div>
-      <div class="tags">${rarTag(d.rarity)}<span class="tag" style="background:${GENS[d.gen].color}">${GENS[d.gen].name}</span><span class="tag">${esc(line.name)}</span>${line.theme ? `<span class="tag">${esc(THEME_NAMES[line.theme] || '')}</span>` : ''}</div>
-      <p class="bio">${esc(ch.bio)}</p><p class="muted" style="font-weight:700;margin-bottom:10px">${esc(line.desc)} (${line.year})</p>
+      <div class="view-tabs">${ph ? `<button data-act="dview" data-v="photo" class="${dView === 'photo' ? 'on' : ''}">📷 Foto</button>` : ''}${ph && ch.auto ? '' : `<button data-act="dview" data-v="box" class="${dView === 'box' ? 'on' : ''}">🎨 En su caja</button><button data-act="dview" data-v="out" class="${dView === 'out' ? 'on' : ''}">🎨 Sin caja</button>`}</div></div>
+      <div class="d-info"><h2>${esc(d.name)}</h2><div class="kind">${d.chars.length > 1 ? `Set de ${d.chars.length} muñecas` : esc(ch.kind)}</div>
+      <div class="tags">${rarTag(d.rarity)}<span class="tag" style="background:${GENS[d.gen].color}">${GENS[d.gen].name}</span><span class="tag">${esc(line.name)}</span></div>
+      <p class="bio">${d.chars.map(c => esc(CHARS[c].bio)).join('<br>')}</p><p class="muted" style="font-weight:700;margin-bottom:10px">${d.edition ? `${esc(d.edition)} · ` : ''}${esc(line.desc)}${line.desc.includes(String(d.year)) ? '' : ` (${d.year})`}</p>
       <div class="have">${v ? `Tienes ×${v.n}${v.shiny ? ` · ✨ brillantes ×${v.shiny}` : ''}` : '<span class="muted">Todavía no la tienes</span>'} · <span class="muted">${haveOthers}/${others.length} versiones de ${esc(shortName(d.char))}</span></div>`;
     if (pets.length) h += `<div class="d-sub">Su mascota</div><div class="extras">${pets.map(p => itemCard('pet', p.id)).join('')}</div>`;
     if (accs.length) h += `<div class="d-sub">Sus accesorios</div><div class="extras">${accs.map(a => itemCard('acc', a.id)).join('')}</div>`;
@@ -383,7 +383,7 @@ const UI = (() => {
         <div class="row"><div>Repetidas<small>${dupes} copias de sobra (se guarda una de cada y todas las brillantes).</small></div><button class="btn gold small" data-act="sell-all" ${dupes ? '' : 'disabled'}>Venderlas</button></div>
         <div class="row"><div>Borrar este perfil<small>Se pierde toda la colección de ${esc(S.name)}.</small></div><button class="btn danger small" data-act="delete-profile">Borrar</button></div>
       </div>
-      <p class="tiny" style="margin-top:18px">Fan game no oficial y sin ánimo de lucro. Monster High es una marca de Mattel; los personajes Skullector pertenecen a sus dueños. Todas las ilustraciones están dibujadas con código. Las fotos que añadas se quedan en tu dispositivo.</p>`;
+      <p class="tiny" style="margin-top:18px">Fan game no oficial y sin ánimo de lucro. Monster High es una marca de Mattel; los personajes Skullector pertenecen a sus dueños. Las fotos oficiales se cargan desde la wiki de Monster High (monsterhigh.fandom.com) y los dibujos están hechos con código. Las fotos que añadas tú se quedan en tu dispositivo.</p>`;
   }
 
   /* ── Regalar ── */

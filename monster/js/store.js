@@ -56,7 +56,9 @@ const Store = {
     for (const k of Object.keys(base.stats)) if (s.stats[k] === undefined) s.stats[k] = base.stats[k];
     for (const k of Object.keys(base.settings)) if (s.settings[k] === undefined) s.settings[k] = base.settings[k];
     // Quita objetos que ya no existen en el catálogo
-    for (const id2 of Object.keys(s.dolls)) if (!DOLLS[id2]) delete s.dolls[id2];
+    let gone = 0;
+    for (const id2 of Object.keys(s.dolls)) if (!DOLLS[id2]) { gone += s.dolls[id2].n; delete s.dolls[id2]; }
+    if (gone) { s.coins += gone * 60; s.notice = { gone, coins: gone * 60 }; }
     for (const id2 of Object.keys(s.pets)) if (!PET_BY_ID[id2]) delete s.pets[id2];
     for (const id2 of Object.keys(s.accs)) if (!ACC_BY_ID[id2]) delete s.accs[id2];
     s.shelf = s.shelf.map(x => (x && DOLLS[x] ? x : null));

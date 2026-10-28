@@ -84,8 +84,8 @@ const Opening = (() => {
     if (main.kind === 'doll') {
       const d = DOLLS[main.id];
       h += `<div class="reveal-item main">${UI.pkgHTML(main.id, { badges: false, shiny: main.shiny })}</div>`;
-      name = esc(CHARS[d.char].name);
-      sub = `${esc(d.lineName)} · ${d.year} · ${GENS[d.gen].short}`;
+      name = esc(d.name);
+      sub = `${esc(d.lineName)}${d.edition ? ` · ${esc(d.edition)}` : ''} · ${d.year} · ${GENS[d.gen].short}`;
       tags = `<span class="rv-tag r-${d.rarity}">${RARITY[d.rarity].name}</span>${main.shiny ? '<span class="rv-tag shiny">✨ Brillante</span>' : ''}${main.isNew ? '<span class="rv-tag new">¡NUEVA!</span>' : `<span class="rv-tag dup">Repetida · tienes ×${main.n}</span>`}`;
       for (const x of r.items.slice(1)) {
         h += `<div class="reveal-item extra"><span class="extra-tag">¡De regalo!</span>${UI.itemCard(x.kind, x.id, { act: false })}</div>`;

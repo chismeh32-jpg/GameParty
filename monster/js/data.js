@@ -166,70 +166,7 @@ const RARITY = {
   legendaria: { name: 'Legendaria', order: 3, color: '#ffc83a', dup: 300 },
 };
 
-// Colecciones: id, nombre, año, generación, rareza, tema de ropa, miembros
-const LINES = [
-  // ── G1 ──
-  { id: 'basic', name: 'Básicas', year: 2010, gen: 'G1', rarity: 'comun', theme: 'school', desc: 'Las primeras muñecas de Monster High, con su ropa de diario y su diario.', members: ['frankie', 'draculaura', 'clawdeen', 'cleo', 'lagoona', 'deuce', 'ghoulia', 'holt'] },
-  { id: 'dawn', name: 'Dawn of the Dance', year: 2010, gen: 'G1', rarity: 'rara', theme: 'party', desc: 'Listas para el gran baile, con faldas de tul.', members: ['frankie', 'clawdeen', 'cleo', 'draculaura', 'lagoona', 'ghoulia', 'deuce'] },
-  { id: 'deadtired', name: 'Dead Tired', year: 2011, gen: 'G1', rarity: 'comun', theme: 'pajamas', desc: 'Fiesta de pijamas: camisones y antifaces para dormir.', members: ['frankie', 'draculaura', 'cleo', 'ghoulia', 'lagoona'] },
-  { id: 'schoolsout', name: "School's Out", year: 2011, gen: 'G1', rarity: 'comun', theme: 'jacket', desc: '¡Se acabaron las clases! Looks de fin de curso.', members: ['frankie', 'clawdeen', 'spectra', 'cleo', 'draculaura', 'clawd', 'abbey', 'lagoona'] },
-  { id: 'gloombeach', name: 'Gloom Beach', year: 2011, gen: 'G1', rarity: 'comun', theme: 'beach', desc: 'Un día de playa con bañadores y gafas de sol.', members: ['frankie', 'draculaura', 'clawdeen', 'cleo', 'lagoona'] },
-  { id: 'sweet1600', name: 'Sweet 1600', year: 2011, gen: 'G1', rarity: 'rara', theme: 'gala', desc: 'La fiesta del 1.600 cumpleaños de Draculaura.', members: ['draculaura', 'frankie', 'clawdeen', 'cleo', 'lagoona'] },
-  { id: 'newghouls', name: 'Nuevos alumnos', year: 2012, gen: 'G1', rarity: 'comun', theme: 'school', desc: 'Las muñecas básicas de los alumnos que fueron llegando al instituto.', members: ['operetta', 'toralei', 'howleen', 'heath', 'rochelle', 'venus', 'robecca'] },
-  { id: 'skullshores', name: 'Skull Shores', year: 2012, gen: 'G1', rarity: 'comun', theme: 'tropical', desc: 'Escapada a la isla tropical de Skull Shores.', members: ['frankie', 'draculaura', 'ghoulia'] },
-  { id: 'ghoulsrule', name: 'Ghouls Rule', year: 2012, gen: 'G1', rarity: 'rara', theme: 'halloween', desc: 'Disfraces de Halloween en homenaje a su herencia monstruosa.', members: ['frankie', 'cleo', 'draculaura', 'clawdeen', 'abbey'] },
-  { id: 'pictureday', name: 'Picture Day', year: 2013, gen: 'G1', rarity: 'comun', theme: 'picture', desc: 'Día de la foto de clase: ¡sonrisa monstruosa!', members: ['frankie', 'operetta', 'lagoona', 'draculaura', 'clawdeen', 'cleo'] },
-  { id: 'scaris', name: 'Scaris: City of Frights', year: 2013, gen: 'G1', rarity: 'rara', theme: 'travel', desc: 'De viaje por Scaris, la capital de la moda monstruosa.', members: ['frankie', 'draculaura', 'clawdeen', 'cleo', 'lagoona', 'catrine', 'jinafire', 'skelita'] },
-  { id: 'powerghouls', name: 'Power Ghouls', year: 2013, gen: 'G1', rarity: 'epica', theme: 'hero', desc: 'Superheroínas: Voltageous, Wonder Wolf, Polterghoul y Cat-Tastrophe.', members: ['frankie', 'clawdeen', 'spectra', 'toralei'] },
-  { id: 'thirteenwishes', name: '13 Wishes', year: 2013, gen: 'G1', rarity: 'rara', theme: 'casbah', desc: 'La aventura de Gigi Grant y sus 13 deseos.', members: ['gigi', 'twyla', 'howleen', 'lagoona', 'cleo', 'spectra'] },
-  { id: 'fca', name: 'Frights, Camera, Action!', year: 2014, gen: 'G1', rarity: 'rara', theme: 'redcarpet', desc: 'Alfombra negra en Hauntlywood.', members: ['elissabat', 'draculaura', 'clawdeen', 'frankie', 'viperine'] },
-  { id: 'freakyfusion', name: 'Freaky Fusion', year: 2014, gen: 'G1', rarity: 'epica', theme: 'fusion', desc: 'Híbridos y fusiones creados por accidente en el laboratorio.', members: ['cleolei', 'lagoonafire', 'dracubecca', 'clawvenus', 'sirena', 'avea', 'neighthan'] },
-  { id: 'brandboo', name: 'Brand-Boo Students', year: 2014, gen: 'G1', rarity: 'comun', theme: 'school', desc: 'Alumnas de intercambio recién llegadas a Monster High.', members: ['marisol', 'lorna'] },
-  { id: 'haunted', name: 'Haunted', year: 2015, gen: 'G1', rarity: 'rara', theme: 'ghostly', desc: 'Una aventura en el instituto fantasma de Haunted High.', members: ['spectra', 'kiyomi', 'vandala', 'twyla', 'draculaura', 'frankie'] },
-  { id: 'booyork', name: 'Boo York, Boo York', year: 2015, gen: 'G1', rarity: 'rara', theme: 'broadway', desc: 'Luces, música y un cometa sobre Boo York.', members: ['cleo', 'nefera', 'catty', 'luna', 'mouscedes', 'elle', 'astranova'] },
-  { id: 'reef', name: 'Great Scarrier Reef', year: 2016, gen: 'G1', rarity: 'rara', theme: 'ocean', desc: 'Bajo el mar del Great Scarrier Reef, ¡algunas brillan!', members: ['lagoona', 'kala', 'posea', 'peri', 'toralei', 'frankie', 'draculaura', 'clawdeen'] },
-  { id: 'sdcc', name: 'Exclusiva Comic-Con', year: 2011, gen: 'G1', rarity: 'legendaria', theme: 'blackwhite', desc: 'La mítica Frankie en blanco y negro de la Comic-Con de San Diego.', members: ['frankie'] },
-  // ── G2 ──
-  { id: 'welcome', name: 'Welcome to Monster High', year: 2016, gen: 'G2', rarity: 'comun', theme: 'g2', desc: 'El renacer de Monster High con un look más juvenil.', members: ['frankie', 'draculaura', 'clawdeen', 'cleo', 'lagoona'] },
-  { id: 'electrified', name: 'Electrified', year: 2017, gen: 'G2', rarity: 'rara', theme: 'neon', desc: 'Pelo eléctrico y colores neón.', members: ['frankie', 'draculaura', 'clawdeen', 'lagoona'] },
-  // ── G3 ──
-  { id: 'g3core', name: 'Faboolous Friends', year: 2022, gen: 'G3', rarity: 'comun', theme: 'g3', desc: 'Las muñecas principales de la tercera generación.', members: ['frankie', 'draculaura', 'clawdeen', 'cleo', 'lagoona', 'deuce', 'toralei', 'abbey', 'ghoulia', 'twyla'] },
-  { id: 'dayout', name: 'Day Out', year: 2022, gen: 'G3', rarity: 'comun', theme: 'casual', desc: 'Un día de compras por la ciudad.', members: ['frankie', 'draculaura', 'clawdeen'] },
-  { id: 'howliday', name: 'Howliday', year: 2022, gen: 'G3', rarity: 'epica', theme: 'winter', desc: 'Edición especial de las fiestas de invierno.', members: ['draculaura'] },
-  { id: 'fearidescent', name: 'Skulltimate Secrets: Fearidescent', year: 2023, gen: 'G3', rarity: 'rara', theme: 'iridescent', desc: 'Taquillas sorpresa con ropa iridiscente.', members: ['draculaura', 'clawdeen', 'frankie', 'cleo', 'lagoona'] },
-  { id: 'monsterball', name: 'Monster Ball', year: 2023, gen: 'G3', rarity: 'rara', theme: 'gala', desc: 'El gran baile de gala de Monster High.', members: ['draculaura', 'clawdeen', 'cleo', 'lagoona'] },
-  { id: 'neonfrights', name: 'Skulltimate Secrets: Neon Frights', year: 2023, gen: 'G3', rarity: 'rara', theme: 'neon', desc: 'Taquillas sorpresa con colores fluorescentes.', members: ['draculaura', 'frankie', 'toralei', 'ghoulia', 'twyla'] },
-  { id: 'monstermysteries', name: 'Skulltimate Secrets: Monster Mysteries', year: 2024, gen: 'G3', rarity: 'rara', theme: 'mystery', desc: 'Detectives monstruosas resolviendo misterios.', members: ['draculaura', 'clawdeen', 'cleo', 'abbey'] },
-  { id: 'monsterfest', name: 'Monster Fest', year: 2024, gen: 'G3', rarity: 'comun', theme: 'fest', desc: 'El festival de música de Monster High, con póster de su grupo favorito.', members: ['draculaura', 'clawdeen', 'frankie', 'cleo', 'lagoona'] },
-  { id: 'gardenmysteries', name: 'Skulltimate Secrets: Garden Mysteries', year: 2024, gen: 'G3', rarity: 'rara', theme: 'garden', desc: 'Secretos entre flores en el jardín del instituto.', members: ['draculaura', 'twyla', 'venus'] },
-  { id: 'deadfast', name: 'Dead Fast', year: 2024, gen: 'G3', rarity: 'epica', theme: 'hero', desc: 'Ghoulia como la superheroína de su cómic favorito.', members: ['ghoulia'] },
-  { id: 'fangvote', name: 'Fang Vote', year: 2024, gen: 'G3', rarity: 'epica', theme: 'g3', desc: 'El personaje elegido por los fans para volver.', members: ['jinafire'] },
-  { id: 'houseofwolf', name: 'House of Wolf', year: 2025, gen: 'G3', rarity: 'epica', theme: 'couture', desc: 'Clawdeen presenta su propia casa de moda.', members: ['clawdeen'] },
-  // ── Coleccionista ──
-  { id: 'hauntcouture', name: 'Haunt Couture', year: 2022, gen: 'COL', rarity: 'legendaria', theme: 'couture', desc: 'Alta costura monstruosa para coleccionistas.', members: ['frankie', 'draculaura', 'clawdeen', 'cleo', 'lagoona'] },
-  { id: 'midnightrunway', name: 'Haunt Couture: Midnight Runway', year: 2023, gen: 'COL', rarity: 'legendaria', theme: 'runway', desc: 'Desfile de medianoche de alta costura.', members: ['frankie', 'cleo', 'spectra'] },
-  { id: 'creeproduction', name: 'Boo-riginal Creeproduction', year: 2022, gen: 'COL', rarity: 'epica', theme: 'school', desc: 'Reediciones fieles de las muñecas originales de 2010.', members: ['draculaura', 'clawdeen', 'frankie', 'lagoona', 'ghoulia', 'abbey', 'cleo', 'deuce', 'spectra'] },
-  { id: 'fangclub', name: 'Fang Club', year: 2025, gen: 'COL', rarity: 'legendaria', theme: 'garden', desc: 'Venus en una edición Skullector exclusiva.', members: ['venus'] },
-  // ── Skullector ──
-  { id: 'sk_it', name: 'Skullector: It', year: 2020, gen: 'SK', rarity: 'legendaria', desc: 'La primera Skullector de la historia.', members: ['pennywise'] },
-  { id: 'sk_shining', name: 'Skullector: El resplandor', year: 2020, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecas.', members: ['grady'] },
-  { id: 'sk_beetle', name: 'Skullector: Bitelchús', year: 2021, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecas de la película de 1988.', members: ['beetlejuice', 'lydia'] },
-  { id: 'sk_gremlins', name: 'Skullector: Gremlins 2', year: 2021, gen: 'SK', rarity: 'legendaria', desc: 'La gremlin más glamurosa.', members: ['greta'] },
-  { id: 'sk_dracula', name: 'Skullector: Drácula', year: 2022, gen: 'SK', rarity: 'legendaria', desc: 'Monstruos clásicos de Universal.', members: ['dracula'] },
-  { id: 'sk_frank', name: 'Skullector: La novia de Frankenstein', year: 2022, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecas de los monstruos clásicos.', members: ['frankenstein', 'bride'] },
-  { id: 'sk_elvira', name: 'Skullector: Elvira', year: 2023, gen: 'SK', rarity: 'legendaria', desc: 'La Señora de la Oscuridad.', members: ['elvira'] },
-  { id: 'sk_chucky', name: 'Skullector: La novia de Chucky', year: 2023, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecos.', members: ['chucky', 'tiffany'] },
-  { id: 'sk_nbc', name: 'Skullector: Pesadilla antes de Navidad', year: 2023, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecos de Halloween Town.', members: ['jack', 'sally'] },
-  { id: 'sk_hocus', name: 'Skullector: El retorno de las brujas', year: 2024, gen: 'SK', rarity: 'legendaria', desc: 'Las tres hermanas Sanderson.', members: ['winifred', 'mary', 'sarah'] },
-  { id: 'sk_addams', name: 'Skullector: La familia Addams', year: 2024, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecas: madre e hija.', members: ['morticia', 'wednesday'] },
-  { id: 'sk_beetle2', name: 'Skullector: Bitelchús Bitelchús', year: 2025, gen: 'SK', rarity: 'legendaria', desc: 'Set de dos muñecas de la secuela.', members: ['beetlejuice', 'lydia'] },
-  { id: 'sk_elvira2', name: 'Skullector: Elvira (2025)', year: 2025, gen: 'SK', rarity: 'legendaria', desc: 'Segunda Elvira Skullector.', members: ['elvira'] },
-  { id: 'sk_coraline', name: 'Skullector: Coraline', year: 2026, gen: 'SK', rarity: 'legendaria', desc: 'Colaboración con LAIKA.', members: ['coraline'] },
-  { id: 'sk_gozer', name: 'Skullector: Cazafantasmas', year: 2026, gen: 'SK', rarity: 'legendaria', desc: 'Gozer el Gozeriano.', members: ['gozer'] },
-  { id: 'sk_halloween', name: 'Skullector: Halloween', year: 2026, gen: 'SK', rarity: 'legendaria', desc: 'El hombre de la máscara.', members: ['michael'] },
-  { id: 'sk_krampus', name: 'Skullector: Krampus', year: 2026, gen: 'SK', rarity: 'legendaria', desc: 'Edición navideña de terror.', members: ['krampus'] },
-  { id: 'sk_oogie', name: 'Skullector: Oogie Boogie', year: 2026, gen: 'SK', rarity: 'legendaria', desc: 'El villano de Halloween Town.', members: ['oogie'] },
-];
+// Las colecciones (LINES) están en catalog.js, sacadas de la wiki de Monster High
 
 // Variaciones de vestuario por personaje dentro de un tema (detalles extra)
 const THEME_NAMES = {
@@ -240,19 +177,61 @@ const THEME_NAMES = {
   fest: 'Festival', garden: 'Jardín', couture: 'Alta costura', runway: 'Pasarela',
 };
 
-/* ── Muñecas: una por miembro de cada colección ── */
+/* ── Muñecas: se crean desde las colecciones de catalog.js ── */
 const DOLLS = {};
 const DOLL_LIST = [];
-for (const line of LINES) {
-  line.members.forEach((c, i) => {
-    const id = `${line.id}.${c}`;
-    const ch = CHARS[c];
-    const d = { id, char: c, line: line.id, name: ch.name, lineName: line.name, year: line.year, gen: line.gen, rarity: line.rarity, theme: line.theme, n: DOLL_LIST.length + 1, idx: i };
-    DOLLS[id] = d;
-    DOLL_LIST.push(d);
-  });
+const LINE_BY_ID = {};
+// Miembro: { c: personaje, k: nº si se repite, with: [otros personajes del set], sub: edición, year }
+function buildCatalog() {
+  for (const [id, c] of Object.entries(CHARS)) if (!c.skin) Object.assign(c, autoLook(id, c));
+  for (const line of LINES) {
+    LINE_BY_ID[line.id] = line;
+    line.dolls = [];
+    const reps = {};
+    for (const m of line.members) reps[m.c] = (reps[m.c] || 0) + 1;
+    line.members.forEach((m, i) => {
+      const id = `${line.id}.${m.c}${m.k ? '.' + m.k : ''}`;
+      const all = [m.c, ...(m.with || [])];
+      const year = m.year || line.year;
+      let edition = m.sub || '';
+      if (!edition && reps[m.c] > 1 && m.k) edition = m.year ? String(m.year) : `Versión ${m.k}`;
+      const d = {
+        id, char: m.c, chars: all, line: line.id, n: DOLL_LIST.length + 1, idx: i,
+        name: listES(all.map(c => CHARS[c].name)),
+        short: all.length > 1 ? listES(all.map(c => shortName(c))) : shortName(m.c),
+        lineName: line.name, edition, year, gen: line.gen, theme: line.theme,
+        rarity: all.length > 1 && line.rarity === 'comun' ? 'rara' : line.rarity,
+      };
+      DOLLS[id] = d;
+      DOLL_LIST.push(d);
+      line.dolls.push(id);
+    });
+  }
 }
-const LINE_BY_ID = Object.fromEntries(LINES.map(l => [l.id, l]));
+
+// «A, B y C»
+function listES(a) { return a.length > 1 ? `${a.slice(0, -1).join(', ')} y ${a[a.length - 1]}` : a[0]; }
+
+// Aspecto para los personajes que no tienen dibujo propio (solo se ve si falla la foto)
+const SPECIES_FEATS = [[/werewolf|licántrop/, ['wolfEars']], [/werecat|gata/, ['catEars', 'tail']], [/ghost|fantasma|reaper/, ['ghost']], [/vampir/, ['fangs']], [/gorgon/, []], [/robot/, ['rivets']], [/dragon/, ['horns']], [/skeleton|calavera/, ['skeleton']], [/moth|polilla/, ['antennae']], [/antropod|hada/, ['mothWings', 'antennae']], [/mermaid|sea|marin|hydra|kraken/, ['fins', 'scales']], [/wererat|ratona/, ['mouseEars']], [/gargoyle|gárgola/, ['wings', 'stone']], [/unicorn/, ['unicorn']], [/cyclops/, []]];
+function autoLook(id, c) {
+  let h = 0;
+  for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const pick = a => a[(h = (h * 1103515245 + 12345) >>> 0) % a.length];
+  const sp = (c.species || '') + ' ' + (c.kind || '').toLowerCase();
+  const skins = /zomb/.test(sp) ? ['#b9bfcc', '#a8b8a0'] : /ghost|fantasma/.test(sp) ? ['#e8e2f8', '#e0f0f8'] : ['#f4dcd0', '#e8c0a0', '#c8875a', '#9a6a48', '#b9ecd0', '#c8b8e8', '#a8d8f0', '#f0c8d8'];
+  const hairs = ['#1a1a1a', '#5a2e1a', '#f4e08a', '#e8703a', '#ff5fa8', '#3a6ae8', '#8a3ac8', '#ffffff', '#3aa06a', '#c8281e'];
+  const pals = [['#ff3d9a', '#1a1a1a', '#ffffff'], ['#7a3aa0', '#e8b030', '#1a1a1a'], ['#2a8ad8', '#ff7a9a', '#f4e08a'], ['#3aa02a', '#ff4a8a', '#f4e03a'], ['#1a1a1a', '#c8102e', '#ffffff'], ['#5ac8c8', '#ff8ac0', '#2a2a3a']];
+  const feats = (SPECIES_FEATS.find(([r]) => r.test(sp)) || [null, []])[1];
+  return {
+    skin: pick(skins), hair: pick(hairs), streak: pick(hairs), style: c.boy ? 'boy' : pick(['long', 'wavy', 'big', 'bob', 'pony', 'side', 'longStraight']),
+    eyes: pick(['#3a8ad8', '#8a5ad8', '#3aa06a', '#e8a030', '#c83a5a']), lips: pick(['#c83a5a', '#8a2a5a', '#e85a8a', '#6a3a3a']),
+    feats, pal: pick(pals), pat: pick(['polka', 'stripes', 'stars', 'plaid', 'skulls', 'hearts']),
+    bio: c.bio || `${c.name} es ${c.kind ? c.kind.toLowerCase() : 'parte del mundo de Monster High'}.`,
+    kind: c.kind || 'Monster High',
+    auto: true,
+  };
+}
 
 /* ── Mascotas ── */
 const PETS = [
@@ -371,7 +350,7 @@ function seeded(seed) {
 }
 function dayNumber(d = new Date()) { return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000); }
 function dailyLines() {
-  const pool = LINES.filter(l => l.gen !== 'SK' && l.members.length >= 3);
+  const pool = LINES.filter(l => l.gen !== 'SK' && l.dolls.length >= 3);
   const r = seeded(dayNumber() * 7919);
   const a = Math.floor(r() * pool.length);
   let b = Math.floor(r() * (pool.length - 1));
@@ -406,4 +385,4 @@ const ACHIEVEMENTS = [
 ];
 function shortName(c) { const ch = CHARS[c]; return ch.short || (ch.name.length > 13 ? ch.name.split(' ')[0] : ch.name); }
 function ownedDolls(s) { return Object.keys(s.dolls).length; }
-function lineDone(s, l) { return l.members.every(c => s.dolls[`${l.id}.${c}`]); }
+function lineDone(s, l) { return l.dolls.every(id => s.dolls[id]); }

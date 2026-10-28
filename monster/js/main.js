@@ -39,6 +39,12 @@ const Main = {
     Game.save();
     $('#app').classList.remove('hidden');
     UI.go('cajas');
+    if (S.notice) {
+      const n = S.notice;
+      delete S.notice;
+      Game.save();
+      UI.modal('📷 ¡Fotos reales!', `<p>El catálogo se ha rehecho con la wiki de Monster High: ahora hay ${DOLL_LIST.length} muñecas, cada una con su foto oficial.</p><p>${n.gone} ${n.gone === 1 ? 'muñeca que tenías ya no está' : 'muñecas que tenías ya no están'} en el catálogo, así que te devolvemos ${coinSm(n.coins)}.</p>`, [{ label: '¡A verlas!', cls: 'primary' }]);
+    }
     this.checkGiftLink();
   },
 
