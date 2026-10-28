@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Render de arte de cartas</title>
+<!--
+  Herramienta para generar el arte de las cartas a partir de los modelos 3D
+  de Criaturas de Brisaluz. Se abre servida por HTTP (por ejemplo con
+  `python3 -m http.server` desde la raíz del repo) y se llama a
+  `renderAll()` desde la consola o desde un script de Playwright.
+  Devuelve un objeto { "criaturas/brasito.webp": dataURL, ... }.
+-->
+</head>
+<body style="margin:0;background:#222">
+<script src="../../criaturas/js/data.js"></script>
+<script type="importmap">{ "imports": { "three": "../../criaturas/vendor/three/three.module.min.js" } }</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from '../../criaturas/vendor/three/loaders/GLTFLoader.js';
+
+const MODELS = '../../criaturas/models/';
+const loader = new GLTFLoader();
+const cache = new Map();
+const load = u => { if (!cache.has(u)) cache.set(u, new Promise((res, rej) => loader.load(u, res, undefined, rej))); return cache.get(u); };
+
+// Escenario y cielo según el tipo principal
+const ARENA_BY_TYPE = {
+  normal: ['pradera', '#a8d8f0'], volador: ['pradera', '#bfe4ff'], agua: ['pradera', '#7ec4f0'],
+  planta: ['bosque', '#c8e8b0'], bicho: ['bosque', '#d8ecb0'], veneno: ['cueva', '#4a3058'],
+  roca: ['gimnasio_roca', '#e0d0b0'], fuego: ['gimnasio_roca', '#f4c890'],
+  electrico: ['gimnasio_voltio', '#24305a'], fantasma: ['santuario', '#2a2450'],
+};
+
+function renderer(w, h, alpha) {
+  const r = new THREE.WebGLRenderer({ antialias: true, alpha, preserveDrawingBuffer: true });
+  r.setPixelRatio(1);
+  r.setSize(w, h);
+  r.outputColorSpace = THREE.SRGBColorSpace;
+  r.toneMapping = THREE.ACESFilmicToneMapping;
+  r.toneMappingExposure = 1.1;
+  r.shadowMap.enabled = true;
+  r.shadowMap.type = THREE.PCFSoftShadowMap;
+  return r;
+}
+
+function lights(scene, warm = 0xfff2e0) {
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x556644, 1.5));
+  const sun = new THREE.DirectionalLight(warm, 2.4);
+  sun.position.set(3, 6, 5);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(1024, 1024);
+  Object.assign(sun.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4 });
+  scene.add(sun);
+  const rim = new THREE.DirectionalLight(0xbfd8ff, 1.4);
+  rim.position.set(-4, 3, -5);
+  scene.add(rim);
+}
+
+function posed(gltf, t = 0.6) {
+  const root = gltf.scene.clone(true);
+  if (gltf.animations.length) {
+    const mixer = new THREE.AnimationMixer(root);
+    const idle = gltf.animations.find(a => a.name === 'idle') || gltf.animations[0];
+    mixer.clipAction(idle).play();
+    mixer.update(t);
+  }
+  root.traverse(o => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+  root.updateMatrixWorld(true);
+  return root;
+}
+
+// Arte de criatura dentro de su escenario
+async function creatureArt(id, mode) {
+  const sp = SPECIES[id];
+  const [arenaId, sky] = ARENA_BY_TYPE[sp.types[0]];
+  const [W, H] = mode === 'full' ? [500, 700] : [600, 420];
+  const r = renderer(W, H, false);
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(sky);
+  scene.fog = new THREE.Fog(sky, 7, 22);
+  lights(scene, sp.types[0] === 'fantasma' || sp.types[0] === 'electrico' ? 0xd8d0ff : 0xfff2e0);
+
+  const arena = posed(await load(`${MODELS}escenarios/${arenaId}.glb`), 1);
+  scene.add(arena);
+  const mon = posed(await load(`${MODELS}criaturas/${id}.glb`), 0.6);
+  const zone = arena.getObjectByName('zone_rival_floor');
+  const base = zone ? new THREE.Box3().setFromObject(zone).getCenter(new THREE.Vector3()) : new THREE.Vector3(0, 0, -2);
+  if (zone) base.y = new THREE.Box3().setFromObject(zone).max.y;
+  mon.position.copy(base);
+  scene.add(mon);
+  mon.updateMatrixWorld(true);
+
+  const box = new THREE.Box3().setFromObject(mon);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const fov = mode === 'full' ? 42 : 34;
+  const cam = new THREE.PerspectiveCamera(fov, W / H, 0.05, 200);
+  const vfov = THREE.MathUtils.degToRad(fov);
+  const hfov = 2 * Math.atan(Math.tan(vfov / 2) * (W / H));
+  const fillH = mode === 'full' ? 0.66 : 0.72, fillW = mode === 'full' ? 0.98 : 0.74;
+  const d = Math.max((size.y / fillH) / (2 * Math.tan(vfov / 2)), (Math.max(size.x, size.z) / fillW) / (2 * Math.tan(hfov / 2)));
+  const dir = mode === 'full' ? new THREE.Vector3(-0.35, 0.05, 1) : new THREE.Vector3(0.45, 0.28, 1);
+  dir.normalize();
+  const look = center.clone();
+  look.y = box.min.y + size.y * (mode === 'full' ? 0.62 : 0.5);
+  cam.position.copy(look).addScaledVector(dir, d);
+  if (mode === 'full') cam.position.y = Math.max(cam.position.y, box.min.y + 0.15);
+  cam.lookAt(look);
+  r.render(scene, cam);
+  const url = r.domElement.toDataURL('image/webp', 0.86);
+  r.dispose();
+  return url;
+}
+
+// Retratos con fondo transparente (entrenadores y cápsulas)
+async function portrait(path, W, H, opts = {}) {
+  const r = renderer(W, H, true);
+  r.setClearColor(0x000000, 0);
+  const scene = new THREE.Scene();
+  lights(scene);
+  const obj = posed(await load(`${MODELS}${path}.glb`), opts.t ?? 0.8);
+  if (opts.rotY) obj.rotation.y = opts.rotY;
+  scene.add(obj);
+  obj.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(obj);
+  const size = box.getSize(new THREE.Vector3());
+  const center = box.getCenter(new THREE.Vector3());
+  const fov = 30;
+  const cam = new THREE.PerspectiveCamera(fov, W / H, 0.01, 100);
+  const vfov = THREE.MathUtils.degToRad(fov);
+  const d = (size.y / (opts.fill || 0.9)) / (2 * Math.tan(vfov / 2));
+  const dir = new THREE.Vector3(opts.dx ?? 0.35, opts.dy ?? 0.12, 1).normalize();
+  cam.position.copy(center).addScaledVector(dir, d);
+  cam.lookAt(center);
+  r.render(scene, cam);
+  const url = r.domElement.toDataURL('image/webp', 0.9);
+  r.dispose();
+  return url;
+}
+
+window.renderOne = async (kind, id) => {
+  if (kind === 'criaturas' || kind === 'full') return creatureArt(id, kind === 'full' ? 'full' : 'normal');
+  if (kind === 'entrenadores') return portrait(`entrenadores/${id}`, 400, 560, { fill: 0.94 });
+  if (kind === 'capsulas') return portrait(`capsulas/${id}`, 320, 320, { fill: 0.7, dy: 0.5, dx: 0.2 });
+};
+window.jobs = () => [
+  ...DEX_ORDER.map(id => ['criaturas', id]),
+  ...DEX_ORDER.map(id => ['full', id]),
+  ...['jugador', 'dani', 'alisa', 'petra', 'volta', 'joven', 'chica', 'cazabichos', 'montanero', 'medium', 'ingeniero'].map(id => ['entrenadores', id]),
+  ...['capsula', 'supercapsula', 'ultracapsula'].map(id => ['capsulas', id]),
+];
+window.__ready = true;
+</script>
+</body>
+</html>

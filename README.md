@@ -1,6 +1,8 @@
 # 🌾 Granja Simulador
 
-> En este repositorio también está **[Criaturas de Brisaluz](criaturas/)**, un RPG de captura de criaturas: `https://chismeh32-jpg.github.io/GameParty/criaturas/`
+> En este repositorio también están:
+> - **[Criaturas de Brisaluz](criaturas/)**, un RPG de captura de criaturas: `https://chismeh32-jpg.github.io/GameParty/criaturas/`
+> - **[Tienda de Cartas Brisaluz](cartas/)**, un simulador de tienda de cartas en el que abres sobres: `https://chismeh32-jpg.github.io/GameParty/cartas/`
 
 Simulador de granja en 2D al estilo Stardew Valley para el navegador. Funciona en el móvil (joystick y botón táctil) y en el ordenador (teclado y ratón). No necesita instalación ni dependencias: todo el pixel art se dibuja con código.
 
