@@ -21,7 +21,7 @@ function newProfileState(name) {
     daily: { last: null, streak: 0 },
     stats: { opened: 0, coinsEarned: 0, gifts: 0, photos: 0, best: null, wishes: 0 },
     ach: {}, fav: {}, shelf: Array(12).fill(null),
-    settings: { freeMode: false, hideMissing: false, shelfOpen: false },
+    settings: { freeMode: false, hideMissing: false, shelfOpen: false, realPhotos: true },
     redeemed: {}, history: [], pity: 0, linesDone: {}, charsDone: {},
   };
 }

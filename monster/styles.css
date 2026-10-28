@@ -214,10 +214,10 @@ h3.sub { font-size: 16px; font-weight: 900; margin: 18px 0 8px; display: flex; a
 .pkg-badge { font-size: 6.5cqw; font-weight: 900; background: #1a0f1e; color: #fff; border-radius: 99px; padding: .5cqw 2.4cqw; box-shadow: 0 0 0 .6cqw rgba(255, 255, 255, .4); }
 .pkg-badge.fav { background: var(--pink); }
 .pkg-rar { position: absolute; top: 15%; left: 0; z-index: 3; width: 9cqw; height: 9cqw; border-radius: 50%; border: .8cqw solid #fff; }
-.pkg.r-comun .pkg-rar { background: var(--r-comun); }
-.pkg.r-rara .pkg-rar { background: var(--r-rara); }
-.pkg.r-epica .pkg-rar { background: var(--r-epica); }
-.pkg.r-legendaria .pkg-rar { background: var(--r-legendaria); }
+.r-comun > .pkg-rar { background: var(--r-comun); }
+.r-rara > .pkg-rar { background: var(--r-rara); }
+.r-epica > .pkg-rar { background: var(--r-epica); }
+.r-legendaria > .pkg-rar { background: var(--r-legendaria); }
 .pkg.r-legendaria { filter: drop-shadow(0 0 5px rgba(255, 200, 58, .7)) drop-shadow(0 4px 8px rgba(0, 0, 0, .45)); }
 .pkg.r-epica { filter: drop-shadow(0 0 4px rgba(200, 106, 255, .6)) drop-shadow(0 4px 8px rgba(0, 0, 0, .45)); }
 /* Brillante */
@@ -239,7 +239,50 @@ h3.sub { font-size: 16px; font-weight: 900; margin: 18px 0 8px; display: flex; a
 .pkg.missing .pkg-brand, .pkg.missing .pkg-line { opacity: .35; }
 .pkg.missing .pkg-name { background: #3a2a40; color: #8a7a90; text-shadow: none; }
 .pkg.missing .pkg-rar { opacity: .5; }
-.pkg .lock { position: absolute; inset: 0; display: grid; place-items: center; z-index: 4; font-family: var(--spooky); font-size: 26cqw; color: rgba(255, 255, 255, .14); }
+.pkg .lock, .pcard .lock { position: absolute; inset: 0; display: grid; place-items: center; z-index: 4; font-family: var(--spooky); font-size: 26cqw; color: rgba(255, 255, 255, .14); }
+
+/* ── Tarjeta con foto real ── */
+.pcard {
+  --gc: var(--pink);
+  container-type: inline-size;
+  position: relative; aspect-ratio: 5 / 8; width: 100%;
+  border-radius: 14px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, #ffffff, #fff0f7 70%, #ffe0ef);
+  border: 3px solid var(--gc);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+  transition: transform .15s;
+}
+.pcard.g-G2 { --gc: #ff7ac8; }
+.pcard.g-G3 { --gc: #a04dff; }
+.pcard.g-COL { --gc: #ffc83a; }
+.pcard.g-SK { --gc: #14d2a0; }
+.pc-img { position: absolute; left: 0; right: 0; top: 0; bottom: 22%; overflow: hidden; }
+.pc-img img { width: 100%; height: 100%; object-fit: contain; padding: 5cqw 4cqw 2cqw; mix-blend-mode: multiply; display: block; }
+.pc-img img.fb { mix-blend-mode: normal; padding: 3cqw 0 0; }
+.pc-foot {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 22%;
+  background: var(--gc); color: #fff; text-align: center;
+  display: flex; flex-direction: column; justify-content: center; padding: 0 5cqw;
+}
+.pc-foot b { font-size: 8.4cqw; font-weight: 900; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pc-foot small { font-size: 5.2cqw; font-weight: 800; opacity: .9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pcard.g-COL .pc-foot, .pcard.g-SK .pc-foot { color: #101014; }
+.pcard .pkg-rar { top: 4cqw; left: 4cqw; }
+.pcard .pkg-badges { top: 4cqw; right: 4cqw; }
+.pcard.r-epica { box-shadow: 0 0 10px rgba(200, 106, 255, .55), 0 4px 10px rgba(0, 0, 0, .4); }
+.pcard.r-legendaria { box-shadow: 0 0 14px rgba(255, 200, 58, .7), 0 4px 10px rgba(0, 0, 0, .4); }
+.pcard.shiny .pc-img::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(125deg, #ff6ad8, #6ad8ff, #fff06a, #6aff9a, #ff6ad8); background-size: 300% 300%;
+  mix-blend-mode: color-dodge; opacity: .45; animation: holo 3s linear infinite;
+}
+/* Sin conseguir: un fantasma de la foto */
+.pcard.missing { background: #241628; border-color: #4a3450; }
+.pcard.missing .pc-img img { filter: grayscale(1) invert(1) brightness(.85); mix-blend-mode: screen; opacity: .32; }
+.pcard.missing .pc-img img.fb { filter: brightness(0) invert(.18); mix-blend-mode: normal; opacity: .9; }
+.pcard.missing .pc-foot { background: #3a2a40; color: #8a7a90; }
+.pcard.missing .pkg-rar { opacity: .5; }
+.credit { text-align: center; margin-top: 6px; }
 .pkg.hide-name .pkg-name { color: transparent; }
 
 /* ── Colección ── */
@@ -267,7 +310,7 @@ select.sel { background: var(--card); color: var(--ink); border: 1px solid var(-
 .line-head .done { color: var(--good); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
 [data-act="doll"], [data-pick] { display: block; width: 100%; text-align: left; }
-.grid > button:active .pkg { transform: scale(.96); }
+.grid > button:active .pkg, .grid > button:active .pcard { transform: scale(.96); }
 .mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
 .item-card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 8px 6px 8px; text-align: center; width: 100%; }
 .item-card img { width: 100%; aspect-ratio: 1; display: block; }
@@ -324,6 +367,8 @@ select.sel { background: var(--card); color: var(--ink); border: 1px solid var(-
 .slot.empty-slot { aspect-ratio: 5 / 8; border: 3px dashed rgba(255, 255, 255, .45); border-radius: 14px; display: grid; place-items: center; font-size: 30px; color: rgba(255, 255, 255, .7); font-weight: 900; }
 .slot .free-doll { position: relative; aspect-ratio: 5 / 8; }
 .slot .free-doll img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .4)); }
+.slot .free-doll.photo img { mix-blend-mode: multiply; filter: none; }
+.slot .free-doll.photo img.fb { mix-blend-mode: normal; }
 .pet-rug { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; padding: 14px 10px; margin-top: 8px; background: radial-gradient(ellipse, #6a2a6a, #3a1440 70%); border-radius: 50% / 40%; }
 .pet-rug img { width: 58px; height: 58px; filter: drop-shadow(0 3px 3px rgba(0, 0, 0, .35)); animation: bob 2.4s ease-in-out infinite; }
 .pet-rug img:nth-child(2n) { animation-delay: -1.2s; }

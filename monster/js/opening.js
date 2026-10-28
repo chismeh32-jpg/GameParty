@@ -195,7 +195,7 @@ const Opening = (() => {
     const op = b.dataset.op;
     if (op === 'close') close();
     else if (op === 'skip') { taps = SHAKES; openLid(true); }
-    else if (op === 'detail') { const id = res.items[0].id; close(); UI.openDoll(id, 'box'); }
+    else if (op === 'detail') { const id = res.items[0].id; close(); UI.openDoll(id, 'auto'); }
     else if (op === 'again') { const rw = res.rewards; res = null; UI.rewardsToasts(rw); start(boxId, b.dataset.src); }
   });
 

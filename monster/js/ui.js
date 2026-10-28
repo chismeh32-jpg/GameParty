@@ -86,10 +86,15 @@ const UI = (() => {
       <div class="bow"><svg viewBox="0 0 100 60"><path d="M50,30 L8,6 Q0,30 8,54Z M50,30 L92,6 Q100,30 92,54Z" fill="${box.color2}" stroke="${box.color}" stroke-width="3"/><circle cx="50" cy="30" r="10" fill="${box.color}"/></svg></div>
       <div class="emb">${Art.skullBow('#fff', box.color2, '100%')}</div><div class="q">?</div></div>`;
   }
-  function pkgHTML(id, { owned = !!S.dolls[id], badges = true, shiny = null } = {}) {
+  // Foto real: la tuya si has puesto una; si no, la de la wiki
+  const photoFor = id => Photos.get(id) || PHOTO_URLS[id] || null;
+  const usePhotos = () => S.settings.realPhotos !== false;
+  // Si la foto no carga, se cambia por el dibujo
+  const fallback = id => `onerror="this.onerror=null;this.src='${Art.dollURL(id)}';this.classList.add('fb')"`;
+  const lineLabel = d => esc(d.lineName.replace('Skullector: ', '').replace('Skulltimate Secrets: ', 'SS: '));
+  function pkgHTML(id, { owned = !!S.dolls[id], badges = true, shiny = null, art = false } = {}) {
     const d = DOLLS[id];
     const v = S.dolls[id];
-    const ph = owned && S.settings.photoThumbs && Photos.get(id);
     const hide = !owned && S.settings.hideMissing;
     const isShiny = shiny ?? (owned && v?.shiny > 0);
     let b = '';
@@ -98,12 +103,22 @@ const UI = (() => {
       if (v.shiny) b += '<span class="pkg-badge">✨</span>';
       if (S.fav[id]) b += '<span class="pkg-badge fav">❤</span>';
     }
+    const ph = !art && usePhotos() && photoFor(id);
+    if (ph) {
+      return `<div class="pcard g-${d.gen} r-${d.rarity} ${owned ? '' : 'missing'} ${isShiny ? 'shiny' : ''}">
+        <div class="pc-img"><img referrerpolicy="no-referrer" src="${esc(ph)}" alt="${esc(d.name)}" draggable="false" ${fallback(id)}></div>
+        <div class="pc-foot"><b>${hide ? '???' : esc(shortName(d.char))}</b><small>${lineLabel(d)} · ${d.year}</small></div>
+        <span class="pkg-rar" title="${RARITY[d.rarity].name}"></span>
+        <div class="pkg-badges">${b}</div>
+        ${owned ? '' : '<div class="lock">?</div>'}
+      </div>`;
+    }
     return `<div class="pkg g-${d.gen} r-${d.rarity} ${owned ? '' : 'missing'} ${isShiny ? 'shiny' : ''} ${hide ? 'hide-name' : ''}">
       <div class="pkg-shape"></div>
       <div class="pkg-in"><div class="pkg-brand">${d.gen === 'SK' ? 'Skullector' : 'Monster High'}</div>
-        <div class="pkg-win"><img ${ph ? `class="photo" referrerpolicy="no-referrer" src="${ph}"` : `src="${Art.dollURL(id)}"`} alt="${esc(d.name)}" draggable="false"></div>
+        <div class="pkg-win"><img src="${Art.dollURL(id)}" alt="${esc(d.name)}" draggable="false"></div>
         <div class="pkg-name">${hide ? '???' : esc(shortName(d.char))}</div>
-        <div class="pkg-line">${esc(d.lineName.replace('Skullector: ', '').replace('Skulltimate Secrets: ', 'SS: '))} · ${d.year}</div>
+        <div class="pkg-line">${lineLabel(d)} · ${d.year}</div>
       </div>
       <span class="pkg-rar" title="${RARITY[d.rarity].name}"></span>
       <div class="pkg-badges">${b}</div>
@@ -234,21 +249,23 @@ const UI = (() => {
   }
 
   /* ── Ficha de muñeca ── */
+  // view: 'photo' | 'box' | 'out'; 'auto' elige la foto si la hay; sin valor mantiene la vista actual
   let dView = 'box';
   function openDoll(id, view) {
-    if (view) dView = view;
     const d = DOLLS[id], ch = CHARS[d.char], line = LINE_BY_ID[d.line], v = S.dolls[id];
-    const ph = Photos.get(id);
+    const ph = photoFor(id);
+    if (view === 'auto') dView = ph && usePhotos() ? 'photo' : 'box';
+    else if (view) dView = view;
     if (dView === 'photo' && !ph) dView = 'box';
     let art;
     if (dView === 'out') art = `<div class="free-doll ${v ? '' : 'missing'}"><img src="${Art.dollURL(id)}" alt=""></div>`;
-    else if (dView === 'photo') art = `<img class="photo-big" referrerpolicy="no-referrer" src="${ph}" alt="Foto de ${esc(d.name)}">`;
-    else art = pkgHTML(id, { badges: false });
+    else if (dView === 'photo') art = `${pkgHTML(id, { badges: false })}<p class="tiny credit">${Photos.has(id) ? 'Tu foto' : `Foto: ${esc(PHOTO_SOURCE)}`}</p>`;
+    else art = pkgHTML(id, { badges: false, art: true });
     const pets = PETS.filter(p => p.owner === d.char), accs = ACCESSORIES.filter(a => a.owner === d.char);
     const others = DOLL_LIST.filter(x => x.char === d.char);
     const haveOthers = others.filter(x => S.dolls[x.id]).length;
     let h = `<div class="detail"><div class="d-art">${art}
-      <div class="view-tabs"><button data-act="dview" data-v="box" class="${dView === 'box' ? 'on' : ''}">En su caja</button><button data-act="dview" data-v="out" class="${dView === 'out' ? 'on' : ''}">Fuera de la caja</button>${ph ? `<button data-act="dview" data-v="photo" class="${dView === 'photo' ? 'on' : ''}">📷 Foto real</button>` : ''}</div></div>
+      <div class="view-tabs">${ph ? `<button data-act="dview" data-v="photo" class="${dView === 'photo' ? 'on' : ''}">📷 Foto</button>` : ''}<button data-act="dview" data-v="box" class="${dView === 'box' ? 'on' : ''}">🎨 En su caja</button><button data-act="dview" data-v="out" class="${dView === 'out' ? 'on' : ''}">🎨 Sin caja</button></div></div>
       <div class="d-info"><h2>${esc(ch.name)}</h2><div class="kind">${esc(ch.kind)}</div>
       <div class="tags">${rarTag(d.rarity)}<span class="tag" style="background:${GENS[d.gen].color}">${GENS[d.gen].name}</span><span class="tag">${esc(line.name)}</span>${line.theme ? `<span class="tag">${esc(THEME_NAMES[line.theme] || '')}</span>` : ''}</div>
       <p class="bio">${esc(ch.bio)}</p><p class="muted" style="font-weight:700;margin-bottom:10px">${esc(line.desc)} (${line.year})</p>
@@ -266,7 +283,7 @@ const UI = (() => {
       const price = Game.wishPrice(id);
       h += `<button class="btn gold" data-act="wish" data-id="${id}" ${Game.canPay(price) ? '' : 'disabled'}>⭐ Pedirla · ${S.settings.freeMode ? 'gratis' : coinSm(price)}</button>`;
     }
-    h += `<button class="btn" data-act="photo" data-id="${id}">📷 ${ph ? 'Cambiar foto real' : 'Añadir foto real'}</button></div></div></div>`;
+    h += `<button class="btn" data-act="photo" data-id="${id}">📷 ${Photos.has(id) ? 'Cambiar mi foto' : ph ? 'Poner otra foto' : 'Añadir foto real'}</button></div></div></div>`;
     sheet(h, null, 'd:' + id);
     $('#sheet').dataset.doll = id;
   }
@@ -293,7 +310,9 @@ const UI = (() => {
     const open = S.settings.shelfOpen;
     const slot = (id, i) => {
       if (!id) return `<button class="slot empty-slot" data-act="slot" data-i="${i}" aria-label="Hueco vacío">+</button>`;
-      return `<button class="slot" data-act="slot" data-i="${i}">${open ? `<div class="free-doll"><img src="${Art.dollURL(id)}" alt=""></div>` : pkgHTML(id, { badges: false })}</button>`;
+      const ph = open && usePhotos() && photoFor(id);
+      const free = ph ? `<div class="free-doll photo"><img referrerpolicy="no-referrer" src="${esc(ph)}" alt="" ${fallback(id)}></div>` : `<div class="free-doll"><img src="${Art.dollURL(id)}" alt=""></div>`;
+      return `<button class="slot" data-act="slot" data-i="${i}">${open ? free : pkgHTML(id, { badges: false })}</button>`;
     };
     const cols = window.innerWidth <= 520 ? 3 : window.innerWidth >= 900 ? 6 : 4;
     let shelves = '';
@@ -349,8 +368,8 @@ const UI = (() => {
       <div class="btn-row"><button class="btn teal" data-act="gift-menu">🎁 Regalar algo</button><button class="btn" data-act="redeem">📩 Abrir un regalo</button></div></div>
       <h3 class="sub">📷 Fotos reales</h3>
       <div class="row-list">
-        <div class="row"><div>Ver mis fotos en la colección<small>Las cajas muestran tu foto en lugar del dibujo.</small></div><button class="switch ${S.settings.photoThumbs ? 'on' : ''}" data-act="set" data-k="photoThumbs" aria-label="Ver fotos"></button></div>
-        <div class="row"><div>${Photos.count()} fotos guardadas<small>Se guardan solo en este dispositivo. Pásaselas a tu pareja con un archivo.</small></div></div>
+        <div class="row"><div>Fotos reales<small>${Object.keys(PHOTO_URLS).length} muñecas con foto de la wiki. Si lo apagas, se ven los dibujos.</small></div><button class="switch ${usePhotos() ? 'on' : ''}" data-act="set" data-k="realPhotos" aria-label="Fotos reales"></button></div>
+        <div class="row"><div>${Photos.count()} fotos tuyas<small>Las que pones tú se guardan solo en este dispositivo. Pásaselas a tu pareja con un archivo.</small></div></div>
         <div class="btn-row"><button class="btn small" data-act="photos-export">⬇️ Exportar fotos</button><button class="btn small" data-act="photos-import">⬆️ Importar fotos</button></div>
       </div>
       <h3 class="sub">👥 Perfiles en este dispositivo</h3>
@@ -467,8 +486,8 @@ const UI = (() => {
     const d = DOLLS[id];
     const has = Photos.has(id);
     const q = encodeURIComponent(`Monster High ${d.gen === 'SK' ? 'Skullector ' : ''}${d.name} ${d.lineName.replace('Skullector: ', '')} ${d.year} doll`);
-    const i = await modal('📷 Foto real', `<p>Pon una foto de verdad de <b>${esc(d.name)}</b> (${esc(d.lineName)}).</p><p class="tiny">Busca la foto, mantén el dedo sobre ella y elige «Copiar dirección de la imagen». Luego pégala con «Pegar enlace». También puedes subir una foto de tu galería.</p>`,
-      [{ label: '🔎 Buscar en Google', cls: '' }, { label: '🔗 Pegar enlace', cls: '' }, { label: '🖼️ Subir de la galería', cls: 'primary' }, ...(has ? [{ label: '🗑️ Quitar foto', cls: 'danger' }] : []), { label: 'Cancelar', cls: 'ghost' }]);
+    const i = await modal('📷 Foto real', `<p>Pon tu propia foto de <b>${esc(d.name)}</b> (${esc(d.lineName)}).${PHOTO_URLS[id] ? ' Sustituirá a la de la wiki.' : ''}</p><p class="tiny">Busca la foto, mantén el dedo sobre ella y elige «Copiar dirección de la imagen». Luego pégala con «Pegar enlace». También puedes subir una foto de tu galería.</p>`,
+      [{ label: '🔎 Buscar en Google', cls: '' }, { label: '🔗 Pegar enlace', cls: '' }, { label: '🖼️ Subir de la galería', cls: 'primary' }, ...(has ? [{ label: '🗑️ Quitar mi foto', cls: 'danger' }] : []), { label: 'Cancelar', cls: 'ghost' }]);
     if (i === 0) { window.open(`https://www.google.com/search?tbm=isch&q=${q}`, '_blank', 'noopener'); return; }
     if (i === 1) {
       const url = await ask('🔗 Enlace de la foto', 'Pega la dirección de la imagen:', '', 'https://...');
@@ -490,7 +509,7 @@ const UI = (() => {
       inp.click();
       return;
     }
-    if (has && i === 3) { await Photos.del(id); toast('Foto quitada'); openDoll(id, 'box'); }
+    if (has && i === 3) { await Photos.del(id); toast('Foto quitada'); openDoll(id, 'auto'); }
   }
   async function savePhoto(id, src) {
     await Photos.put(id, src);
@@ -548,7 +567,7 @@ const UI = (() => {
       case 'gift-box': Sfx.play('tap'); giftFlow('box', el.dataset.box); break;
       case 'coltab': Sfx.play('tap'); colTab = el.dataset.v; render(); break;
       case 'fgen': Sfx.play('tap'); filt.gen = el.dataset.v; render(); break;
-      case 'doll': Sfx.play('tap'); openDoll(id, 'box'); break;
+      case 'doll': Sfx.play('tap'); openDoll(id, 'auto'); break;
       case 'pet': Sfx.play('tap'); openItem('pet', id); break;
       case 'acc': Sfx.play('tap'); openItem('acc', id); break;
       case 'dview': Sfx.play('tap'); openDoll($('#sheet').dataset.doll, el.dataset.v); break;
@@ -598,7 +617,7 @@ const UI = (() => {
         Sfx.play('tap');
         if (S.shelf[i]) {
           const c = await modal(esc(DOLLS[S.shelf[i]].name), `<p>${esc(DOLLS[S.shelf[i]].lineName)}</p>`, [{ label: 'Ver ficha', cls: 'primary' }, { label: 'Cambiar', cls: '' }, { label: 'Quitar', cls: 'danger' }, { label: 'Cerrar', cls: 'ghost' }]);
-          if (c === 0) openDoll(S.shelf[i], 'out');
+          if (c === 0) openDoll(S.shelf[i], 'auto');
           if (c === 2) { S.shelf[i] = null; Game.save(); render(); }
           if (c !== 1) break;
         }
