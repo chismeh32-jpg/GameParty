@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a0f1e">
+<title>Monster High · Cajas Sorpresa</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="app" class="hidden">
+  <header id="top">
+    <a href="../" class="back" title="Volver a GameParty" aria-label="Volver">←</a>
+    <div class="logo"><span class="logo-skull"></span><div><b>Monster High</b><small>Cajas Sorpresa</small></div></div>
+    <div class="coins" id="coins"></div>
+    <button id="who" class="who" aria-label="Perfil"></button>
+  </header>
+  <main id="view"></main>
+  <nav id="tabs">
+    <button data-tab="cajas"><i>🎁</i><span>Cajas</span></button>
+    <button data-tab="coleccion"><i>💀</i><span>Colección</span></button>
+    <button data-tab="estanteria"><i>🪞</i><span>Estantería</span></button>
+    <button data-tab="logros"><i>🏆</i><span>Logros</span></button>
+    <button data-tab="perfil"><i>🦇</i><span>Perfil</span></button>
+  </nav>
+</div>
+
+<div id="welcome" class="welcome hidden">
+  <div class="w-box">
+    <div class="w-skull"></div>
+    <h1>Monster High</h1>
+    <h2>Cajas Sorpresa</h2>
+    <p>Abre cajas misteriosas y colecciona muñecas de todas las generaciones, Skullectors, mascotas y accesorios.</p>
+    <label for="w-name">¿Cómo te llamas?</label>
+    <input id="w-name" maxlength="18" autocomplete="off" placeholder="Tu nombre">
+    <button id="w-go" class="btn primary big">¡Empezar!</button>
+    <p class="tiny">Fan game no oficial y sin ánimo de lucro. Monster High es una marca de Mattel.</p>
+  </div>
+</div>
+
+<div id="opening" class="opening hidden">
+  <div class="op-raywrap"><div class="op-rays"></div></div>
+  <div class="op-top"><span class="op-title"></span><button class="icon-btn" data-op="close" aria-label="Cerrar">✕</button></div>
+  <div class="op-stage"></div>
+  <div class="op-text"></div>
+  <div class="op-actions"></div>
+  <div class="op-fx"></div>
+</div>
+
+<div id="sheet" class="sheet-wrap hidden">
+  <div class="sheet"><button class="icon-btn sheet-x" aria-label="Cerrar">✕</button><div class="sheet-body"></div></div>
+</div>
+
+<div id="modal" class="modal-wrap hidden">
+  <div class="modal"><h3 class="m-title"></h3><div class="m-body"></div><div class="m-actions"></div></div>
+</div>
+
+<div id="toasts" class="toasts"></div>
+<input type="file" id="file-photo" accept="image/*" hidden>
+<input type="file" id="file-import" accept="application/json,.json" hidden>
+
+<script src="js/data.js"></script>
+<script src="js/art.js"></script>
+<script src="js/sfx.js"></script>
+<script src="js/store.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/opening.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

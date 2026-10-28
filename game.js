@@ -1306,6 +1306,7 @@ function menuHtml() {
       <button class="btn" data-act="help">❓ Cómo jugar</button>
       <a class="btn" href="criaturas/" style="text-align:center;text-decoration:none">🎮 Criaturas</a>
       <a class="btn" href="cartas/" style="text-align:center;text-decoration:none">🃏 Tienda de cartas</a>
+      <a class="btn" href="monster/" style="text-align:center;text-decoration:none">💀 Monster High</a>
       <button class="btn danger" data-act="reset">🗑️ Nueva partida</button>
     </div>`;
 }
