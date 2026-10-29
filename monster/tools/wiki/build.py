@@ -75,5 +75,5 @@ for x in entries:
     k = x['file'].replace('_', ' ').lower()
     if best[k] is x and k not in seen: seen.add(k); out.append(x)
 entries = [x for x in out if x['page'] not in ('Faboolous Pets (doll assortment)',)]
-json.dump(entries, open('entries.json', 'w'), indent=0)
+json.dump(entries, open('entries_base.json', 'w'), indent=0)
 print(len(entries))

@@ -34,13 +34,13 @@ Desde la ficha de cualquier muñeca, mascota o accesorio, o desde la tienda para
 
 ## Catálogo
 
-- **615 muñecas en 179 colecciones**, sacadas de la wiki de Monster High:
-  - G1 (2010–2016): 313 muñecas
-  - G2 (2016–2018): 89
-  - G3 (2022–hoy): 129
-  - Ediciones de coleccionista (Haunt Couture, Howliday, Creeproduction, Comic-Con…): 54
+- **719 muñecas en 219 colecciones**, sacadas de la wiki de Monster High (las páginas de cada colección y las de muñecas de cada personaje):
+  - G1 (2010–2016): 365 muñecas
+  - G2 (2016–2018): 106
+  - G3 (2022–hoy): 160
+  - Ediciones de coleccionista (Haunt Couture, Howliday, Creeproduction, Collector, Comic-Con…): 58
   - Skullector, de Pennywise (2020) a las de 2026: 30
-- Incluye los sets de varias muñecas (por ejemplo Cleo y Deuce) y las ediciones especiales.
+- Incluye los sets de varias muñecas (por ejemplo Cleo y Deuce), las muñecas que venían con un playset y las ediciones especiales.
 - **21 mascotas** y **50 accesorios**.
 
 El catálogo se genera con los scripts de `tools/wiki/` (ver su README) y se puede volver a generar cuando salgan muñecas nuevas.
