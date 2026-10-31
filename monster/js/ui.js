@@ -265,7 +265,7 @@ const UI = (() => {
     const others = DOLL_LIST.filter(x => x.char === d.char);
     const haveOthers = others.filter(x => S.dolls[x.id]).length;
     let h = `<div class="detail"><div class="d-art">${art}
-      <div class="view-tabs">${ph ? `<button data-act="dview" data-v="photo" class="${dView === 'photo' ? 'on' : ''}">📷 Foto</button>` : ''}${ph && ch.auto ? '' : `<button data-act="dview" data-v="box" class="${dView === 'box' ? 'on' : ''}">🎨 En su caja</button><button data-act="dview" data-v="out" class="${dView === 'out' ? 'on' : ''}">🎨 Sin caja</button>`}</div></div>
+      <div class="view-tabs">${ph ? `<button data-act="dview" data-v="photo" class="${dView === 'photo' ? 'on' : ''}">📷 Foto</button>` : ''}${`<button data-act="dview" data-v="box" class="${dView === 'box' ? 'on' : ''}">🎨 En su caja</button><button data-act="dview" data-v="out" class="${dView === 'out' ? 'on' : ''}">🎨 Sin caja</button>`}</div></div>
       <div class="d-info"><h2>${esc(d.name)}</h2><div class="kind">${d.chars.length > 1 ? `Set de ${d.chars.length} muñecas` : esc(ch.kind)}</div>
       <div class="tags">${rarTag(d.rarity)}<span class="tag" style="background:${GENS[d.gen].color}">${GENS[d.gen].name}</span><span class="tag">${esc(line.name)}</span></div>
       <p class="bio">${d.chars.map(c => esc(CHARS[c].bio)).join('<br>')}</p><p class="muted" style="font-weight:700;margin-bottom:10px">${d.edition ? `${esc(d.edition)} · ` : ''}${esc(line.desc)}${line.desc.includes(String(d.year)) ? '' : ` (${d.year})`}</p>
@@ -368,7 +368,7 @@ const UI = (() => {
       <div class="btn-row"><button class="btn teal" data-act="gift-menu">🎁 Regalar algo</button><button class="btn" data-act="redeem">📩 Abrir un regalo</button></div></div>
       <h3 class="sub">📷 Fotos reales</h3>
       <div class="row-list">
-        <div class="row"><div>Fotos reales<small>${Object.keys(PHOTO_URLS).length} muñecas con foto de la wiki. Si lo apagas, se ven los dibujos.</small></div><button class="switch ${usePhotos() ? 'on' : ''}" data-act="set" data-k="realPhotos" aria-label="Fotos reales"></button></div>
+        <div class="row"><div>Fotos reales<small>Enseña la foto oficial de la wiki en vez del dibujo de cada muñeca.</small></div><button class="switch ${usePhotos() ? 'on' : ''}" data-act="set" data-k="realPhotos" aria-label="Fotos reales"></button></div>
         <div class="row"><div>${Photos.count()} fotos tuyas<small>Las que pones tú se guardan solo en este dispositivo. Pásaselas a tu pareja con un archivo.</small></div></div>
         <div class="btn-row"><button class="btn small" data-act="photos-export">⬇️ Exportar fotos</button><button class="btn small" data-act="photos-import">⬆️ Importar fotos</button></div>
       </div>

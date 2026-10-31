@@ -21,7 +21,7 @@ function newProfileState(name) {
     daily: { last: null, streak: 0 },
     stats: { opened: 0, coinsEarned: 0, gifts: 0, photos: 0, best: null, wishes: 0 },
     ach: {}, fav: {}, shelf: Array(12).fill(null),
-    settings: { freeMode: false, hideMissing: false, shelfOpen: false, realPhotos: true },
+    settings: { freeMode: false, hideMissing: false, shelfOpen: false, realPhotos: false, art: 2 },
     redeemed: {}, history: [], pity: 0, linesDone: {}, charsDone: {},
   };
 }
@@ -54,6 +54,8 @@ const Store = {
     const base = newProfileState(meta.name);
     for (const k of Object.keys(base)) if (s[k] === undefined) s[k] = base[k];
     for (const k of Object.keys(base.stats)) if (s.stats[k] === undefined) s.stats[k] = base.stats[k];
+    // Las partidas de antes de los dibujos nuevos pasan a verlos por defecto
+    if (s.settings.art !== 2) { s.settings.art = 2; s.settings.realPhotos = false; }
     for (const k of Object.keys(base.settings)) if (s.settings[k] === undefined) s.settings[k] = base.settings[k];
     // Quita objetos que ya no existen en el catálogo
     let gone = 0;

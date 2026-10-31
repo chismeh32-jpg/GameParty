@@ -1,6 +1,6 @@
 # 💀 Monster High · Cajas Sorpresa
 
-Fan game para abrir cajas sorpresa (blind boxes) y coleccionar muñecas de Monster High de todas las épocas: la G1 de 2010, la G2, la G3, las ediciones de coleccionista y las Skullector. Cada muñeca se ve con su **foto oficial**. También hay mascotas y accesorios.
+Fan game para abrir cajas sorpresa (blind boxes) y coleccionar muñecas de Monster High de todas las épocas: la G1 de 2010, la G2, la G3, las ediciones de coleccionista y las Skullector. Cada muñeca tiene su **dibujo propio**, copiado del modelo real: su ropa, su peinado y sus colores. También hay mascotas y accesorios.
 
 - **Online:** `https://chismeh32-jpg.github.io/GameParty/monster/`
 - **En local:** sirve la carpeta del repositorio (por ejemplo `python3 -m http.server`) y abre `/monster/`.
@@ -25,12 +25,17 @@ Desde la ficha de cualquier muñeca, mascota o accesorio, o desde la tienda para
 - Si los dos perfiles están en el mismo dispositivo, se pasa directamente.
 - Si no, se crea un **enlace**. Al abrirlo, el regalo llega al perfil activo. Cada regalo solo se puede abrir una vez por perfil.
 
+## Dibujos
+
+- Cada una de las 719 muñecas tiene una ficha de estilo (`tools/looks/looks.txt`) hecha mirando su foto oficial: peinado y colores del pelo, ropa de arriba y de abajo o vestido, chaqueta, medias, zapatos, cosas de la cabeza y complementos, con sus estampados. `js/figure.js` dibuja la muñeca a partir de esa ficha, en estilo plano.
+- Los sets llevan a todas las muñecas una al lado de otra.
+- Para cambiar una muñeca, se edita su línea de `looks.txt` y se ejecuta `python3 tools/looks/gen.py`, que comprueba la ficha y escribe `js/looks.js`.
+
 ## Fotos reales
 
-- Cada muñeca muestra su foto oficial de la [wiki de Monster High](https://monsterhigh.fandom.com). El juego solo guarda el enlace; la imagen se carga desde la wiki (sin enviar *referer*, que es como la wiki permite mostrarlas en otras páginas).
+- Con el ajuste **Fotos reales** del perfil, cada muñeca muestra su foto oficial de la [wiki de Monster High](https://monsterhigh.fandom.com). El juego solo guarda el enlace; la imagen se carga desde la wiki (sin enviar *referer*, que es como la wiki permite mostrarlas en otras páginas).
 - Si una foto no carga, se ve el dibujo de la muñeca.
 - En la ficha de cada muñeca se puede poner **una foto tuya**, que tiene prioridad: buscarla en Google, pegar el enlace o subirla de la galería. Esas fotos se guardan solo en el dispositivo; para pasárselas a la otra persona hay **Exportar fotos** e **Importar fotos** en el perfil.
-- Con el ajuste **Fotos reales** del perfil se puede volver a los dibujos.
 
 ## Catálogo
 
@@ -51,7 +56,9 @@ El catálogo se genera con los scripts de `tools/wiki/` (ver su README) y se pue
 - `js/data.js`: personajes, mascotas, accesorios, cajas y logros
 - `js/catalog.js`: colecciones y muñecas (generado desde la wiki)
 - `js/photos.js`: enlace a la foto oficial de cada muñeca (generado desde la wiki)
-- `js/art.js`: generador de ilustraciones SVG de muñecas, mascotas y accesorios
+- `js/looks.js`: ficha de estilo de cada muñeca (generado desde `tools/looks/looks.txt`)
+- `js/figure.js`: dibuja cada muñeca a partir de su ficha
+- `js/art.js`: estampados y dibujos de mascotas y accesorios (y el dibujo genérico de reserva)
 - `js/game.js`: lógica de cajas, rarezas, recompensas y regalos
 - `js/store.js`: guardado, perfiles, fotos (IndexedDB) y códigos de regalo
 - `js/ui.js`: pantallas y fichas

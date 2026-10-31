@@ -562,7 +562,8 @@ const Art = (() => {
     urlCache.set(key, u);
     return u;
   }
-  const dollURL = id => urlCache.get('d:' + id) || toURL('d:' + id, dollSVG(id));
+  // Las muñecas con ficha de estilo (looks.js) se dibujan con Figure; el resto, con el dibujo genérico
+  const dollURL = id => urlCache.get('d:' + id) || toURL('d:' + id, typeof LOOKS !== 'undefined' && LOOKS[id] ? Figure.svg(id) : dollSVG(id));
 
   /* ══ Mascotas ══ */
   function petSVG(id) {
@@ -719,5 +720,5 @@ const Art = (() => {
     return `<svg viewBox="0 0 100 100" width="${size}" height="${size}" aria-hidden="true"><path d="M46,20 c-20,0 -30,13 -30,27 c0,9 5,15 12,17 v12 h34 v-12 c7,-2 12,-8 12,-17 c0,-14 -10,-27 -28,-27Z" fill="${c}"/><ellipse cx="35" cy="47" rx="7" ry="8" fill="#1a1018"/><ellipse cx="57" cy="47" rx="7" ry="8" fill="#1a1018"/><path d="M43,60 L46,55 L49,60Z" fill="#1a1018"/><path d="M38,76 L38,70 M46,76 L46,70 M54,76 L54,70" stroke="#1a1018" stroke-width="3"/><path d="M66,22 L88,6 L90,34Z M66,22 L90,40 L70,30Z" fill="${bow}"/><circle cx="68" cy="23" r="6" fill="${bow}"/></svg>`;
   }
 
-  return { doll: dollSVG, dollURL, pet: petSVG, petURL, acc: accSVG, accURL, skullBow, shade, mix };
+  return { doll: dollSVG, dollURL, pet: petSVG, petURL, acc: accSVG, accURL, skullBow, shade, mix, pattern };
 })();

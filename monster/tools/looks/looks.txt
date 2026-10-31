@@ -1,0 +1,719 @@
+basic.clawdeen hr=curly/6a3a1e tp=tube/e8a030/1a1a1a/leopard jk=fur/1a1a1a/e0a8e8 bt=pleat/7a3ac8 sh=boot/7a3ac8/ff7ac8/hstripes ac=belt:e8a030
+basic.cleo hr=longblunt/141414/e8c050 dr=mini/e8c050/22a8a8/stripes nk=halter sh=sandal/e8c050 ac=belt:22a8a8 ft=+bandages | hr=snakes/3a9a3a/c83a3a tp=tee/c8283a jk=vest/f4f4f4/1a1a1a/vstripes bt=pants/1a1a1a sh=sneaker/1a1a1a/ffffff
+basic.draculaura hr=longblunt/151015/ff5fa8 tp=corset/e8287a/1a1a1a jk=bolero/1a1a1a bt=tutu/ffffff lg=tights/3a3a3a sh=lace/ff7ab0/1a1a1a ac=belt:1a1a1a
+basic.frankie hr=long/1a1a1a/ffffff hs=stripes tp=collar/1a1a1a/ffffff/polka bt=pleat/5a7aa8/1a1a1a/plaid sh=heel/1a1a1a ac=bag:1a1a1a
+basic.ghoulia hr=long/3a8ae8/1f5ab8 tp=long/c8283a/1a1a1a/hstripes bt=pants/c8283a sh=boot/1a1a1a/c8283a ac=glasses:ffffff hd=band:5ac83a
+basic.holt hr=flames/ff6a1a/ffd23a tp=tee/1a1a1a jk=jacket/c8283a/1a1a1a bt=pants/2a2a5a/7a3ab8/vstripes sh=sneaker/1a1a1a/f4d03a
+basic.lagoona hr=wavy/f4e08a/8ac8e8 tp=tank/e85a9a/3a8ad8 jk=bolero/1a4a6a bt=shorts/3a8ad8 sh=sandal/7ac8f0 hd=clip:ff7ab0
+dawn.frankie hr=long/1a1a1a/ffffff hs=stripes dr=mini/f4f4f4/1a1a1a/zigzag nk=offs lg=tights/ff3aa8 sh=heel/1a1a1a ac=belt:3ab8e8
+dawn.clawdeen hr=long/b8e83a hs=none dr=mini/7a3ac8/1a1a1a/sparkle nk=offs lg=tights/b8e83a sh=heel/e8c050 ac=belt:1a1a1a,bag:b8e83a
+dawn.cleo hr=bob/141414 dr=pencil/a8d84a/1aa868 nk=halter lg=tights/8a5a3a sh=heel/1aa868 ac=cuffs:e8c050
+dawn.lagoona hr=wavy/f4e08a/8ac8e8 dr=hilo/5ac8e8/ffb0c8 nk=tank sh=heel/ff7ab0 ac=bag:ff7ab0
+dawn.deuce hr=snakes/3ac83a tp=collar/9ae83a/1a1a1a/check jk=vest/1a1a1a bt=pants/1a1a1a/f4f4f4/vstripes sh=sneaker/d8d8d8 ac=sunglasses:c8a050
+dawn.ghoulia hr=long/3a8ae8/1f5ab8 tp=tank/b8b8c0 bt=hilo/ff7a6a/ffb0a0 lg=fishnet/f4f4f4 sh=heel/c8283a ac=glasses:c8283a
+dawn.draculaura hr=long/151015/ff5fa8 dr=hilo/ff3a8a/1a1a1a/zigzag nk=strapless lg=tights/3a3a3a sh=heel/1a1a1a hd=bow:ff3a8a
+gloombeach.frankie hr=long/1a1a1a/ffffff hs=stripes tp=vneck/1a1a1a/f4d03a/flames bt=pleat/3a7ab8/f4d03a/plaid sh=sandal/f4d03a ac=bag:1a1a1a
+gloombeach.cleo hr=braid/141414/e8c050 tp=bra/1a1a1a/f4d03a/stripes bt=hilo/2aa880/1a1a1a sh=sandal/2aa880 hd=shades:2aa880 ft=+bandages
+gloombeach.jacksonjekyll boy=1 hr=short/6a4a2a tp=collar/f4d03a/1a1a1a/vstripes bt=shorts/1a1a1a sh=sandal/f4d03a hd=shades:c8283a
+gloombeach.clawdeen hr=long/4a2a3a/7a3a8a tp=crop/8a3ab8/f4d03a bt=shorts/1a1a1a/f4d03a sh=sandal/ff6ab8 hd=shades:f4d03a ac=belt:f4d03a
+gloombeach.draculaura hr=long/151015/ff5fa8 tp=corset/1a1a1a/ff5fa8 bt=hilo/f4d03a/1a1a1a/polka sh=sandal/f4d03a hd=shades:c8283a
+gloombeach.ghoulia hr=long/3a8ae8/1f5ab8 tp=tank/c8283a/ffffff bt=shorts/c8283a sh=sandal/ff6ab8 ac=glasses:ff6ab8
+screamuniform.frankie dr=skater/1a1a1a/ff3a9a nk=vneck sh=sneaker/f4f4f4/1a1a1a
+screamuniform.clawdeen tp=vneck/1a1a1a/ff3a9a bt=shorts/1a1a1a/ff3a9a lg=knee/a88ae8 sh=sneaker/f4f4f4/ff3a9a
+screamuniform.lagoona tp=tank/1a1a1a/e8287a bt=shorts/1a1a1a/e8287a sh=sandal/f4f4f4
+screamuniform.deuce tp=tank/1a1a1a/ff3a9a bt=shorts/1a1a1a/ff3a9a lg=knee/f4f4f4 sh=sneaker/1a1a1a/7ae83a
+campusstroll.clawdeen hr=curly/8a4ad8 tp=tank/7ac83a/1a1a1a bt=pencil/1a1a1a lg=knee/8aa898 sh=ankle/e8c050 hd=band:7ac83a
+campusstroll.howleen hr=shag/ff7a3a/3a8ae8 tp=tee/1a1a1a/f4d03a bt=shorts/1a1a1a lg=stripes/3a6ae8/f4d03a sh=boot/3a6ae8/1a1a1a
+campusstroll.meowlody hr=long/1a1a1a/f4f4f4 tp=long/1a1a1a/f4f4f4/hstripes bt=mini/c8283a lg=tights/7a7a80 sh=buckle/1a1a1a/c8283a | hr=long/f4f4f4/1a1a1a tp=long/f4f4f4/1a1a1a/hstripes bt=mini/c8283a lg=tights/7a7a80 sh=buckle/1a1a1a/c8283a
+campusstroll.nefera hr=long/1aa8a8/f4d03a tp=tank/2ac8b8/f4d03a bt=tiered/8a8a8a/1a1a1a ac=sash:f4d03a sh=sandal/e8c050 hd=band:f4d03a ft=+bandages
+campusstroll.operetta hr=victory/c8281e tp=tee/f4f4f4/1a1a1a jk=crop/1a1a1a bt=capri/1a1a1a lg=ankle/f4f4f4 sh=sneaker/f4f4f4/1a1a1a
+campusstroll.toralei hr=pony/e8862a/1a1a1a tp=tee/c8283a jk=jacket/1a1a1a/c8283a/hstripes bt=leggings/1a1a1a sh=boot/c8283a/1a1a1a
+classroom.ghoulia hr=long/3a8ae8/1f5ab8 tp=tee/f4f4f4/1a1a1a bt=shorts/1a1a1a/c8283a lg=knee/f4f4f4 sh=sneaker/c8283a/f4f4f4 ac=glasses:f4f4f4
+classroom.frankie hr=long/1a1a1a/ffffff hs=stripes tp=long/5a8ab8/f4f4f4/hstripes bt=leggings/8a8a8a/1a1a1a/plaid sh=sneaker/8a8a8a/f4f4f4
+classroom.lagoona hr=wavy/f4e8b0/8ac8e8 dr=mini/3ab8b8/f4f4f4/check nk=tank jk=lab/f4f4f4 sh=heel/e8c050
+classroom.cleo hr=bob/141414/e8c050 dr=mini/e8c050/1a1a1a nk=collar jk=lab/f4f4f4 sh=sandal/e8c050 | hr=long/3a8ae8/1f5ab8 dr=mini/c8283a nk=tee jk=lab/f4f4f4 sh=heel/c8283a ac=glasses:f4f4f4
+classroom.abbey hr=long/f4f4f4/b05ae8 dr=mini/3a8ae8/1a1a1a nk=tee sh=boot/8a5ad8 | hr=flames/ff5a1a/ffd23a tp=tee/c8283a jk=jacket/1a1a1a/c8283a bt=jeans/2a4a8a sh=sneaker/c8283a
+dayatthemaul.frankie tp=tee/1a1a1a/ff3a9a bt=tutu/ff3a9a lg=tights/1a1a1a sh=heel/ffb0d8 | dr=mini/8aa8d8/ffffff/plaid nk=tee sh=heel/ff7ab0 | tp=tee/1a1a1a bt=pants/3a6ab8/ff3a9a/plaid sh=sneaker/1a1a1a
+deadtired.lagoona hr=long/f4e08a/8ac8e8 tp=tee/1a1a1a/ff3a6a bt=capri/1aa8a8/ff3a6a/scales sh=slipper/2ac8b8 hd=sleep:3ab8c8
+deadtired.ghoulia hr=long/3a8ae8/1f5ab8 tp=tank/f4f4f4/c8283a/polka bt=mini/1a1a1a lg=leggings/f4f4f4 sh=slipper/c8283a ac=glasses:e8283a
+deadtired.cleo hr=long/141414 tp=long/7ac8b8/f4d03a/zigzag bt=leggings/7ac8b8/f4d03a/zigzag sh=slipper/5ac8c8 hd=sleep:f4d03a
+deadtired.frankie hr=long/1a1a1a/ffffff hs=stripes tp=tank/f4f4f4/3a8ae8 bt=pants/3a4a6a/f4f4f4/vstripes sh=slipper/5aa8e8 hd=sleep:5a6a8a
+deadtired.draculaura hr=pig/151015/ff5fa8 tp=tank/e8287a bt=capri/e8287a/ffffff/polka sh=slipper/e8287a hd=sleep:e8287a
+deadtired.clawdeen hr=long/5a3a2a tp=tank/1a1a1a/f4d03a bt=shorts/7a5ad8/1a1a1a/leopard sh=slipper/f4d03a hd=sleep:7a5ad8
+deadtired.abbey hr=long/f4f4f4/8ac8e8 dr=mini/8ac8e8/1a1a1a/snow nk=tee sh=slipper/a8d8f8 hd=beret:f4f4f4
+deadtired.robecca hr=long/141414/3a7ad8 tp=tank/3a6a8a/1a1a1a/stripes bt=shorts/3a6aa8 sh=slipper/c8a080 hd=sleep:3a6aa8
+deadtired.spectra hr=long/9a7ad8 dr=skater/a88ae8/7a4ac8 nk=tee sh=slipper/b89af8
+deadtired.draculaura.2 hr=long/151015/ff5fa8 dr=mini/ff3a8a/1a1a1a/leopard nk=tank sh=slipper/ff5fa8 hd=sleep:ff3a8a
+gomonsterhighteam.draculaura hr=pig/151015/ff5fa8 dr=pleat/1a1a1a/ff3a9a nk=tank lg=tights/ff6ab8 sh=sneaker/f4f4f4/1a1a1a | hr=longblunt/141414/e8c050 dr=pleat/1a1a1a/ff3a9a nk=tank sh=sneaker/f4f4f4/1a1a1a ft=+bandages | hr=long/3a8ae8/1f5ab8 dr=pleat/1a1a1a/ff3a9a nk=tank jk=crop/c8283a sh=sneaker/c8283a ac=glasses:c8283a
+gomonsterhighteam.meowlody hr=long/1a1a1a/f4f4f4 dr=pleat/1a1a1a/ff3a9a nk=tank lg=tights/8a8a90 sh=sneaker/f4f4f4 | hr=long/f4f4f4/1a1a1a dr=pleat/1a1a1a/ff3a9a nk=tank lg=tights/8a8a90 sh=sneaker/f4f4f4 | hr=pony/e8862a/1a1a1a dr=pleat/1a1a1a/ff3a9a nk=tank sh=sneaker/f4f4f4
+killerstylei.draculaura hr=longblunt/151015/ff5fa8 tp=tee/1a1a1a/ff5fa8/hearts bt=tiered/ff7ab8/e8287a lg=socks/1a1a1a sh=mary/ff9ad0
+killerstylei.frankie hr=long/1a1a1a/ffffff hs=stripes dr=mini/8ab8d8/1a1a1a/plaid nk=tee lg=tights/2a2a2a sh=sneaker/1a1a1a/f4f4f4
+playsets.clawdeen hr=long/6a3a8a tp=tank/f4f4f4/7a4ab8 bt=capri/1a1a1a sh=heel/8a5ad8
+playsets.draculaura hr=bun/151015/ff5fa8 dr=midi/1a1a1a/ff5fa8/hearts nk=long sh=slipper/ff5fa8
+playsets.draculaura.2 hr=longblunt/151015/ff5fa8 dr=skater/ff3a8a/1a1a1a nk=tank sh=heel/1a1a1a hd=bow:ff3a8a
+playsets.draculaura.3 hr=pig/151015/ff5fa8 tp=tee/8ac8e8 bt=tutu/ff5fa8 sh=heel/ff5fa8
+playsets.draculaura.4 hr=pig/151015/ff5fa8 dr=skater/c8283a/1a1a1a nk=collar ac=apron:f4f4f4 sh=mary/1a1a1a
+playsets.draculaura.5 hr=longblunt/151015/ff5fa8 dr=skater/1a1a1a/ff3a9a/hearts nk=tank sh=boot/ff5fa8/1a1a1a
+playsets.ghoulia hr=long/3a8ae8/1f5ab8 tp=tee/c8283a/f4f4f4 bt=mini/9a9aa0 lg=tights/3a3a3a sh=boot/1a1a1a ac=glasses:c8283a
+playsets.operetta hr=victory/c8281e dr=skater/1a1a1a/f4f4f4/polka nk=collar sh=heel/c8102e
+schoolclubs.clawdeen tp=tee/1a1a1a jk=coat/c8a040/7a4ab8/tiger bt=pencil/1a1a1a/c8a040 sh=boot/1a1a1a
+schoolclubs.draculaura tp=collar/ffb0c8/f4f4f4/vstripes bt=shorts/8a1a2a lg=tights/ffb0d8 sh=ankle/ff3a8a/1a1a1a hd=tophat:ff7ab0 ac=bowtie:ff3a8a
+schoolclubs.abbey tp=turtle/f4f4f4 jk=fur/8ac8f0/8ac8f0 bt=pants/1a1a1a/a8a8f8 sh=boot/8ac8f0/1a1a1a hd=goggles:8ac8f0/5ac8e8
+schoolclubs.ghoulia tp=tee/1a1a1a/7ac83a bt=mini/f4f4f4/c8283a lg=tights/1a1a1a sh=lace/c8283a/1a1a1a hd=band:c8283a ac=glasses:b8e83a
+schoolsout.abbey hr=long/f4f4f4/ff9ac8 dr=mini/8ac8e8/1a1a1a/zigzag nk=tee jk=fur/f4f4f4/f4f4f4 sh=boot/f4f4f4
+schoolsout.clawdeen hr=long/5a3a2a tp=tee/1aa8a8 jk=jacket/7a4ab8/f4d03a/zigzag bt=leggings/7a3ac8 sh=boot/1a1a1a/f4d03a
+schoolsout.cleo hr=longblunt/141414/1aa8a8 tp=tank/1aa8a8/1a1a1a/zigzag bt=shorts/f4d03a lg=tights/1a1a1a sh=sandal/2ac8b8 ac=bag:1a1a1a ft=+bandages
+schoolsout.draculaura hr=pig/151015/ff5fa8 tp=collar/f4f4f4/1a1a1a jk=vest/1a1a1a bt=tiered/ff3a8a/1a1a1a lg=tights/f0a8c0 sh=heel/ff5fa8 | hr=short/4a2a18 tp=collar/f4f4f4 jk=vest/a88a3a/1a1a1a bt=jeans/1a2a3a sh=ankle/a88a3a hd=cap:4a8ab8 ac=scarf:3a6a3a
+schoolsout.frankie hr=long/1a1a1a/ffffff hs=stripes tp=tee/1a1a1a/3a8ae8 bt=mini/5a9ae8/1a1a1a/plaid lg=leggings/1a1a1a sh=heel/8a8a8a ac=belt:1a1a1a
+schoolsout.lagoona hr=wavy/f4e08a/8ac8e8 tp=vneck/1a8a6a/1a1a1a/plaid bt=leggings/2a2a2a sh=boot/f4f4f4/ff7ab8 ac=scarf:f4d03a,bag:ffb0c8
+schoolsout.spectra hr=long/7a5ad8 tp=corset/1a1a1a/ff7ab8 bt=tutu/6a4a8a/c8a8e8 sh=boot/b88ae8 ac=bag:b88ae8
+skullshores.ghoulia hr=shag/2aa8e8 dr=tiered/ff7a6a/f4f4f4 nk=tank sh=sandal/ff3a3a ac=sunglasses:3ac83a hd=bow:c8283a
+skullshores.lagoona hr=curly/f4e08a tp=tank/2ac8b8/1a1a1a bt=hilo/ff5ab8/1a1a1a/zigzag sh=sandal/2ac8b8 hd=band:2ac8b8
+skullshores.gilwebber boy=1 tp=tank/1a1a1a/f4f4f4 bt=shorts/2ab8a0 sh=sandal/1a1a1a hd=hood:d8f0f8
+skullshores.abbey hr=long/f4f4f4/b05ae8 tp=tank/8ac8e8/1a1a1a/scales bt=hilo/7a8ae8/c8d8f8 sh=heel/8a5ad8 hd=sunhat:7a4ad8
+skullshores.frankie hr=bob/1a1a1a/f4f4f4 hs=stripes tp=bra/f4f4f4/1a1a1a/zigzag bt=hilo/8a8a8a/1a1a1a/leopard sh=sandal/f4f4f4
+skullshores.draculaura hr=longblunt/151015/ff5fa8 tp=tank/ff5fa8/f4f4f4/hstripes bt=hilo/4a4a4a/1a1a1a/check sh=sandal/ff3a8a
+skullshores.clawdeen hr=curly/7a4ab8 dr=mini/e8c040/1a1a1a/leopard nk=tank sh=heel/7a4ab8 | hr=bob/141414/1aa8a8 tp=tank/1a8a7a/f4d03a/zigzag bt=flare/1a8a7a/f4d03a/zigzag sh=heel/e8c050 | hr=long/1a1a1a/ffffff hs=stripes dr=mini/a8d8f0/f4f4f4 nk=tank sh=heel/f4f4f4
+sweet1600.draculaura hr=bun/151015/ff5fa8 dr=skater/1a1a1a/ff3a8a/hearts nk=strapless lg=tights/ffc0d8 sh=heel/ff3a8a hd=tiara:ff3a8a
+sweet1600.frankie hr=bun/1a1a1a/ffffff hs=stripes dr=bubble/3a8ad8/c8283a/plaid nk=strapless lg=tights/1a1a1a sh=heel/3a8ad8 ac=gloves:1a1a1a
+sweet1600.clawdeen hr=long/5a2a6a tp=collar/f4f4f4/1a1a1a jk=blazer/1a1a1a/f4f4f4 bt=capri/7a3ac8/1a1a1a/pinstripe sh=boot/1a1a1a/e8c050 ac=belt:e8c050,bag:c8a070
+sweet1600.clawd hr=short/4a2a18/2aa8a8 tp=collar/1a1a1a jk=blazer/1aa8a8/e8c050/flowers bt=pants/4a4a4a sh=ankle/6a6a6a ac=tie:e8c050
+sweet1600.cacupid hr=curly/ffa8c0 dr=skater/f4f4f4/1a1a1a/flowers nk=tank lg=tights/c8c8d0 sh=boot/f4f4f4/1a1a1a
+betweenclasses.jacksonjekyll boy=1 hr=short/1a1a1a tp=long/f4e03a jk=vest/2a2a2a/7ac83a/check bt=pants/a8a8a8 sh=sneaker/3a8ae8/f4f4f4 ac=glasses:1a1a1a,bag:8ad83a
+betweenclasses.robecca hr=long/141414/3a7ad8 dr=mini/1a1a1a/3a7ad8 nk=tank jk=bolero/3a6ab8 sh=boot/a86a5a hd=goggles:8a5a3a
+betweenclasses.rochelle hr=long/ffb0c8/8ac8c8 dr=skater/1a1a1a/f4f4f4/lace nk=tee sh=boot/ffb0c8/f4f4f4 ac=bag:f4f4f4
+betweenclasses.venus hr=long/ff3a8a/7ac83a tp=tee/3a3a5a/f4f4f4 bt=mini/1a1a1a lg=leggings/b84a9a/1a1a1a/leopard sh=boot/a83ac8 ac=bag:f0d0c8
+coffinbean.frankie hr=long/f4f4f4/1a1a1a hs=stripes tp=tee/1aa8b8/1a1a1a/polka bt=skater/f4f4f4/1a1a1a/zigzag sh=heel/f4f4f4 ac=belt:1a1a1a
+coffinbean.abbey hr=long/f4f4f4/ff6ab8 dr=mini/1a1a1a/ff6ab8/zigzag nk=tee sh=boot/e83ac8
+coffinbean.toralei hr=long/e8862a/c8481a tp=tank/1a1a1a/ff5a8a/hstripes bt=pencil/c8283a/1a1a1a/check sh=heel/e8283a
+coffinbean.robecca hr=long/141414/3a7ad8 dr=bubble/2a6ad8/1a1a1a/flowers nk=tank sh=sandal/e8d8c8 ac=neck:c8a050
+coffinbean.twyla hr=wavy/3a5ae8/8ac8e8 tp=tank/5a3ac8/8ac8e8/flowers bt=shorts/5a3ac8/8ac8e8/flowers sh=mary/2ac8e8
+coffinbean.venus hr=side/ff3a7a/7ac83a tp=tank/1a1a1a/ff3a7a bt=mini/ff5aa8/1a1a1a/web sh=boot/ff1a9a
+coffinbean.clawdeen hr=long/5a3a2a tp=tee/7a4ab8 bt=skater/1a1a1a sh=boot/3a6ae8
+danceclass.howleen hr=buns/ff6aa0 tp=tank/f4f4f4/ff5a9a/flowers bt=capri/3a3a5a/ff6aa0/flowers ac=sash:ff6aa0,bag:1a1a1a sh=sneaker/5ab8e8
+danceclass.robecca hr=bun/141414/3a7ad8 dr=hilo/4a5aa8/8a7ad8/flowers nk=tank sh=boot/a86a4a ac=bag:7a6ad8
+danceclass.operetta hr=wavy/d8281e dr=tutu/1a1a1a/f4f4f4/polka nk=tank sh=mary/f4f4f4/1a1a1a hd=bigbow:6a6aa8 ac=bag:e8283a
+danceclass.lagoona hr=long/f4e8b0/8ac8e8 dr=tutu/2a2a2a/f4f4f4/polka nk=tank lg=tights/c8d8d8 sh=sandal/ff4aa8
+danceclass.gilwebber boy=1 tp=tank/3a8a7a bt=capri/2a2a2a sh=sneaker/1a1a1a | hr=bun/ffb0c8/8ac8c8 dr=skater/1a1a1a/ffb0c8/vstripes nk=tank sh=heel/1a1a1a ac=bag:ffb0c8
+dotdeadgorgeous.draculaura hr=long/3a1a2a/ff5fa8 dr=tiered/f4f4f4/1a1a1a/lace nk=tank sh=heel/e8287a | hr=long/f4f4f4/b8d8f0 dr=hilo/8ac8e8/1a1a1a/lace nk=tank sh=boot/8ac8e8 | hr=long/3a8ae8/1f5ab8 dr=tiered/c8283a/1a1a1a/lace nk=tank sh=heel/f4f4f4 ac=glasses:f4f4f4
+dotdeadgorgeous.operetta hr=long/c8281e/1a1a1a dr=tutu/e8283a/1a1a1a/polka nk=tank sh=mary/1a1a1a/e8283a hd=bigbow:e8283a
+dotdeadgorgeous.lagoona hr=pony/f4e08a/8ac8e8 dr=hilo/1a5ab8/ff5ab8/scales nk=tank sh=heel/ff5ab8 ac=bag:f4d03a
+dotdeadgorgeous.spectra hr=pony/7a5ad8 dr=hilo/6a4ab8/b8a8e8 nk=halter sh=boot/7a5ad8 ac=neck:c8c8d8
+ghoulsalive.clawdeen hr=long/6a4a2a tp=tank/e8c050/1a1a1a/leopard jk=fur/f4f4f4/f4f4f4 bt=tutu/7a3ac8 sh=boot/7a3ac8/c8a8f8/hstripes
+ghoulsalive.spectra hr=long/6a4ac8 dr=hilo/6a2a6a/c8c8d0/lace nk=corset sh=boot/e83ac8
+ghoulsalive.frankie hr=long/b8b8b8/f4f4f4 tp=tank/f4f4f4 bt=tiered/c8c8c8/1a1a1a/plaid sh=mary/1a1a1a
+ghoulsalive.robecca hr=wavy/141414/3a7ad8 tp=tank/3a8ae8/1a1a1a bt=mini/1a1a1a lg=tights/a86a4a sh=thigh/c8603a hd=goggles:c8603a/ffb0c8
+ghoulsalive.deuce hr=snakes/3ac83a/c83a3a tp=tee/c8283a jk=vest/d8d8d8/1a1a1a bt=pants/1a1a1a sh=sneaker/f4f4f4/1a1a1a ac=sunglasses:c8283a
+ghoulsalive.toralei hr=bob/e8642a/c8481a tp=tank/c8283a/1a1a1a/stripes bt=mini/1a1a1a sh=boot/e8283a
+ghoulsrule.frankie hr=curly/1a1a1a/f4f4f4 dr=gown/f4f4f4/1a1a1a/plaid nk=corset ac=gloves:1a1a1a
+ghoulsrule.clawdeen hr=curly/a87ae8 tp=long/7a6ab8/c8b8e8/sparkle bt=pants/7a6ab8/c8b8e8/sparkle jk=coat/1a1a1a sh=boot/1a1a1a/e8c050 ac=belt:e8c050
+ghoulsrule.draculaura hr=bun/1a1a1a/ff3a8a dr=tutu/e83a9a/1a1a1a/lace nk=corset jk=cape/1a1a1a/1a1a1a/web lg=tights/8a3a6a sh=boot/1a1a1a
+ghoulsrule.cleo hr=bob/141414/1aa8a8 dr=mermaid/1a1a1a/2ab8b8 nk=halter ac=cuffs:e8c050 sh=heel/2ab8b8
+ghoulsrule.abbey hr=long/f4e8d0/ff9ac8 dr=tutu/a8c8f0/f4f4f4/sparkle nk=offs sh=boot/f4f4f4 hd=flower:c8e8f8
+ghoulsrule.lagoona hr=long/f4e08a/8ac8e8 tp=offs/1a6a8a/2aa8c8 bt=leggings/1a1a1a sh=thigh/1a1a1a ac=gloves:1a1a1a
+iheartfashion.frankie hr=long/f4f4f4/1a1a1a hs=stripes tp=tee/f4c83a/c8283a dr=mini/2a4ab8/1a1a1a/plaid nk=tee sh=heel/e8283a
+iheartfashion.abbey hr=long/f4f4f4/ff9ac8 dr=pencil/d8b0e8/1a1a1a nk=tee sh=boot/1a1a1a ac=bag:e83ac8
+iheartfashion.clawdeen hr=long/5a3a2a tp=tee/9ae83a/1a1a1a jk=crop/7a3ac8 bt=leggings/7a3ac8 sh=lace/e8c050 ac=bag:b8e83a
+iheartfashion.scarahscreams tp=tank/1a1a1a jk=lab/f4f4f4 bt=shorts/1a1a1a sh=boot/f4f4f4 hd=shades:f4f4f4
+iheartfashion.cleo hr=long/141414/1aa8a8 tp=tank/1a1a1a bt=skater/8ac8e8 lg=tights/c8643a/1a1a1a/tiger sh=sandal/e8c050 ac=bag:e8c050
+iheartfashion.venus hr=long/ff3a7a/7ac83a dr=tiered/f4f4f4/1a1a1a/check nk=tank jk=crop/3a5a3a sh=boot/ff3a7a
+iheartfashion.wydownaspider hr=long/c8281e tp=tank/f4d03a bt=pencil/5a5a5a/1a1a1a/zigzag lg=tights/8a8a8a sh=boot/b8b8c0
+iheartfashion.irisclops hr=bob/6a4a2a tp=tee/c84a7a/2a2a4a/zigzag bt=leggings/f4f4f4/1a1a1a/polka sh=boot/2ac8b8
+iheartfashion.djinnigrant hr=wavy/6a7ae8/c8a8f0 dr=skater/1a1a1a/f4f4f4/sparkle nk=tank sh=sandal/f4d03a/1a1a1a
+killerstyleii.clawdeen hr=curly/5a3a2a/b8e83a tp=tee/e8e83a dr=pencil/2a2a4a/e8e83a/sparkle nk=tank jk=fur/c8a8f0/c8a8f0 sh=heel/f4d03a ac=bag:f4d03a
+killerstyleii.operetta hr=victory/c8281e/1a1a1a tp=corset/1a1a1a/c8283a bt=pencil/f4f4f4/1a1a1a/leopard sh=mary/c8283a/1a1a1a
+maulsession.frankie tp=tee/4aa8e8/c8283a bt=pencil/c8283a/f4f4f4/flowers sh=heel/8ac8f0 ac=bag:b8d8e8
+maulsession.cleo dr=pencil/c8a040/1a1a1a/stripes nk=halter sh=heel/e8c040 ac=sash:5ac8e8,bag:5ac8e8
+maulsession.spectra dr=pencil/3a4ab8/b8b8f8/zigzag nk=long jk=long/c8c8d0 sh=boot/c8c8d0 ac=bag:e83a9a,sunglasses:1a1a1a
+maulsession.toralei tp=tee/2a2a3a/a8a8a8/sparkle bt=mini/1a1a1a/a8a8a8/zigzag sh=boot/1a1a1a/e8642a ac=scarf:e8642a,belt:b8b8b8
+maulsession.abbey tp=long/b8e8f0/f4f4f4/web bt=mini/c8b8e8/f4f4f4/snow jk=fur/1a1a1a/1a1a1a sh=lace/7a6ad8/5ac8e8 ac=bag:5ac8e8
+maulsession.clawdeen tp=tank/3a3a8a/b8b8e8/zigzag jk=fur/e8e83a/c8a8f0 bt=pants/2a2a5a/e8d83a/sparkle sh=heel/f4d03a ac=sunglasses:b8a8e8
+maulsession.lagoona tp=tank/2ac8c8/e83a8a bt=pants/2ac8c8/e83a8a ac=sash:e83a8a,bag:f4f4f4 sh=sandal/2ab8a8/e85ab8 hd=shades:ffb0d8
+maulsession.operetta tp=corset/1a1a1a/7a3ab8 bt=pencil/f4f4f4/1a1a1a/leopard sh=heel/f4f4f4/c8283a ac=bag:c8283a,sunglasses:5a3a2a
+mywardrobeandi.operetta dr=skater/f4f4f4/5a3ab8/web nk=collar jk=bolero/5a3ab8 ac=belt:e8283a sh=heel/e8283a ac=bag:9a6ad8
+mywardrobeandi.frankie tp=tank/4aa8e8 jk=crop/1a1a1a/c8c8d0 bt=skater/8a8ab8/c8283a/check sh=heel/f4f4f4
+mywardrobeandi.robecca dr=hilo/2a6ad8/c8803a/gears nk=halter ac=belt:a8683a sh=boot/3a8ae8/a8683a
+mywardrobeandi.ghoulia dr=skater/c8c8c8/c8283a/zigzag nk=tank ac=belt:2a8ad8 sh=heel/2a6ad8/1a1a1a ac=glasses:1a1a1a,bag:c8283a
+pictureday.draculaura hr=pig/151015/ff5fa8 tp=tee/3a3a3a/ff5fa8 bt=tutu/ff3a9a/1a1a1a sh=boot/1a1a1a hd=bow:ff3a9a
+pictureday.abbey hr=long/f4f4f4/ff9ac8 dr=mini/8ac8e8/1a1a1a/zigzag nk=tank jk=fur/1a1a1a/1a1a1a lg=leggings/f4f4f4/8ac8e8/snow sh=boot/b8b8c0
+pictureday.spectra hr=long/a88ae8/7a5ad8 dr=hilo/3a2a6a/e83a6a/zigzag nk=long sh=boot/c8c8d0
+pictureday.cleo hr=long/1a6a8a/1aa8a8 dr=mini/3a5ab8/e8c050/scales nk=tee ac=belt:f4d03a lg=stripes/1a1a1a/e8c050 sh=heel/3a8ae8
+pictureday.operetta hr=victory/c8281e/1a1a1a tp=collar/f4f4f4/1a1a1a jk=vest/7a3ab8 bt=tutu/e8283a/1a1a1a/polka sh=boot/1a1a1a/f4f4f4
+pictureday.frankie hr=long/f4f4f4/1a1a1a hs=stripes tp=collar/1a1a1a jk=crop/3a8ae8/f4d03a bt=skater/2a4ab8/f4f4f4/zigzag sh=heel/1a1a1a ac=bag:f4d03a
+pictureday.lagoona hr=curly/f4e08a dr=mini/2ac8a8/ff5a9a/flowers nk=tank jk=bolero/1a1a1a ac=sash:f4d03a sh=sandal/2ac8b8
+scarilyeverafter.draculaura hr=longblunt/151015/ff5fa8 dr=tiered/a8d83a/e83a8a/flowers nk=offs sh=heel/1a1a1a
+scarilyeverafter.clawdeen hr=long/6a3a2a dr=skater/c8182a/1a1a1a/leopard nk=tank jk=cape/c8182a/c8182a sh=boot/a87ae8 ac=bag:a87ae8 hd=hood:c8182a
+scarilyeverafter.frankie hr=bun/d8d8d8/f4f4f4 dr=bubble/2a8ad8/3a3a3a nk=offs lg=tights/f4f4f4 sh=lace/f4f4f4/2a8ad8
+scaris.skelita hr=long/141414/e8642a dr=tiered/1a1a1a/e83a8a/stripes nk=tank ac=belt:8a4a2a sh=sandal/a8e83a
+scaris.jinafire hr=long/3ad83a/1a1a1a dr=pencil/a8182a/e8c050/scales nk=collar lg=tights/e8c83a sh=sandal/e8642a ac=bag:c8283a hd=flower:e8c050
+scaris.clawdeen hr=curly/5a2a6a dr=pencil/1a1a1a/f4d03a/polka nk=tank ac=belt:f4d03a sh=heel/f4d03a ac=bag:f4d03a
+scaris.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=pencil/3a8ae8/1a1a1a/zigzag nk=tee sh=boot/1a1a1a hd=bow:f4d03a
+scaris.rochelle hr=long/ffb0c8/8ac8c8 dr=pencil/ffb0c8/1a1a1a/lace nk=tank lg=stripes/7a7a7a/c8c8c8 sh=heel/ffa8d0 hd=beret:8a8a8a
+scaris.abbey hr=long/f4f4f4/3a8ae8 dr=pencil/2a3ab8/8a6ae8/sparkle nk=tee sh=heel/f4f4f4 ac=bag:5ac8e8
+scaris.ghoulia hr=long/3a8ae8/1f5ab8 dr=pencil/1a1a1a/c8283a nk=tee sh=boot/5ab8e8 ac=glasses:e8283a
+scaris.deuce hr=snakes/3ac83a tp=tee/7ac83a bt=shorts/4a4a4a/f4f4f4/check sh=sneaker/1a1a1a hd=cap:5ac83a ac=bag:b8e83a
+scaris.draculaura hr=long/3a1a2a/ff5fa8 dr=skater/ff6ab8/1a1a1a/check nk=offs sh=heel/1a1a1a ac=bag:ff3a9a
+scaris.catrine hr=wavy/9a7ad8/f4f4f4 dr=pencil/5a5a8a/c8c8e8/stripes nk=long sh=heel/a88ae8 ac=bag:1a1a1a
+scaris.lagoona hr=long/f4e8b0/8ac8e8 dr=pencil/4a5a6a/ffb0c8 nk=tee sh=heel/ffb0c8 ac=bag:5ac8b8 | hr=long/141414/e8c050 dr=pencil/3a5a3a/e8c050/zigzag nk=tank sh=heel/e8c050 ac=bag:e8c050
+skultimaterollermaze.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=pencil/1a1a1a/2ac8b8/polka nk=tank sh=skate/2ab8d8 hd=helmet:2ab8d8 ac=kneepads:2ab8d8
+skultimaterollermaze.lagoona hr=wavy/f4e08a/7ac83a dr=pencil/1a1a1a/ff3a8a nk=tee tp=tee/f4d03a sh=skate/2ab8a0 hd=helmet:2ab8a0 ac=kneepads:2ab8a0
+skultimaterollermaze.operetta hr=victory/c8281e/1a1a1a dr=pencil/f4f4f4/1a1a1a/polka nk=collar sh=skate/f4f4f4 ac=kneepads:1a1a1a
+skultimaterollermaze.ghoulia hr=pig/2a8ae8/3ac8a8 dr=pencil/f4f4f4/1a1a1a/vstripes nk=collar tp=collar/ff3a8a sh=skate/1a1a1a hd=helmet:ff3a8a ac=glasses:3ac83a,kneepads:ff3a8a
+skultimaterollermaze.abbey hr=long/f4f4f4/3ab8e8 tp=tank/1a1a1a bt=pencil/8ac8e8/f4f4f4 sh=skate/ff6ab8 ac=kneepads:ff6ab8 | hr=pig/2a8ae8/3ac8a8 dr=pencil/f4f4f4/1a1a1a/vstripes nk=collar sh=skate/1a1a1a hd=helmet:ff3a8a ac=glasses:3ac83a,kneepads:ff3a8a
+skultimaterollermaze.abbey.2 hr=long/f4f4f4/3ab8e8 tp=tank/1a1a1a bt=pencil/c8c8e8 sh=skate/e83ac8 hd=helmet:5a8ae8 ac=kneepads:ff6ab8
+skultimaterollermaze.clawdeen hr=long/5a3a2a/a87ae8 dr=pencil/1a1a1a/a8e83a/leopard nk=long sh=skate/a88ae8 hd=helmet:b8e83a ac=kneepads:b8e83a
+tohowlfor.draculaura dr=skater/2a1a2a/ff9ac8/skulls nk=halter tp=tee/ff9ac8 sh=heel/e8287a hd=bow:e8287a
+tohowlfor.lagoona dr=skater/2a1a3a/c86ac8/leaves nk=tank sh=heel/7ae8e8 ac=bag:5ac8c8
+tohowlfor.spectra dr=hilo/3a1a3a/c83a9a/sparkle nk=halter sh=heel/c8c8d0 ac=sunglasses:f4f4f4
+tohowlfor.abbey dr=pencil/3a9ae8/1a1a1a/zigzag nk=offs sh=sandal/a83ae8 ac=bag:a8c8f8
+thirteenwishes.twyla hr=wavy/3ac8a8/5a6ae8 hs=ombre tp=long/3a5ab8/1a1a1a bt=tiered/6a4ab8/c8c8e8 lg=tights/c8c8d0 sh=boot/2a4ab8
+thirteenwishes.gigi hr=pony/e8287a/ff7ab0 tp=tank/2aa8b8/e8c050 bt=capri/1a1a1a/e8c050/flowers sh=sandal/ff3a9a ac=cuffs:e8c050
+thirteenwishes.howleen hr=long/ff3a7a/ff9ab8 dr=pencil/1a1a1a/f4d03a/zigzag nk=tee jk=jacket/3a4a8a/ff3a7a lg=tights/ff5a8a sh=lace/1a1a1a/f4d03a hd=beanie:1a1a1a ac=bag:f4d03a
+thirteenwishes.lagoona hr=pony/f4d03a/3ab8e8 tp=tank/2ac8b8/e83a8a bt=hilo/7ac8c8/c8a8e8 sh=sandal/a8e83a ac=bag:8ac8f0
+thirteenwishes.cleo hr=long/141414/2ab8b8 tp=tank/1a1a1a/e8c050 bt=flare/2ab8b8/e8c050/zigzag sh=sandal/e8c050 hd=headdress:e8c050
+thirteenwishes.spectra hr=long/a88ae8 dr=tiered/b82a8a/1a1a1a/lace nk=strapless sh=heel/e8c050
+13wisheshauntthecasbah.draculaura hr=long/1a1a1a/ff3a8a dr=hilo/1a1a1a/ff3a8a/lace nk=strapless sh=sandal/ff9ad0 hd=tiara:e8c050 ac=cuffs:e8c050
+13wisheshauntthecasbah.frankie hr=long/1a6a8a/2ab8b8 dr=gown/1a6a8a/e8c050/sparkle nk=tank sh=sandal/2a5ab8 hd=headdress:e8c050/2ab8b8 ac=cuffs:e8c050
+13wisheshauntthecasbah.clawdeen hr=long/6a3a2a/a87ae8 tp=tube/1a1a1a/e8c050/leopard bt=hilo/7a4ab8/1a1a1a/leopard ac=belt:e8c050 sh=sandal/e8c050 hd=band:e8c050
+13wisheshauntthecasbah.abbey hr=curly/f4f4f4/c8c8e8 dr=hilo/1a2a4a/a8c8f0/sparkle nk=long sh=heel/e8c050 hd=band:e8c050
+artclass.robecca hr=long/141414/3a7ad8 dr=pencil/2a3a8a/c8803a/zigzag nk=tank sh=thigh/2a6ad8 hd=goggles:c8603a
+artclass.draculaura hr=bob/151015/ff5fa8 dr=skater/1a1a1a/ff5fa8/check nk=offs sh=boot/f4f4f4/ff5fa8 hd=beret:1a1a1a
+artclass.abbey hr=long/f4f4f4/c8a8f0 dr=mini/3a8ab8/1a1a1a/zigzag nk=tee sh=boot/8ac8e8 hd=beret:e83ac8
+artclass.skelita hr=long/141414/2ab8b8 dr=skater/1a1a1a/e83a8a/flowers nk=collar ac=sash:e83a6a sh=heel/2ab8b8 hd=flower:2ab8b8
+beachbeasties.draculaura hr=pig/151015/ff5fa8 dr=swim/1a1a1a/f4f4f4/vstripes nk=halter sh=sandal/ff5fa8 ac=collar:ff6ab8
+beachbeasties.venus hr=pony/ff3a7a/7ac83a dr=swim/f4f4f4/1a1a1a/zigzag nk=halter sh=sandal/ff5a9a ac=sunglasses:7ac83a
+beachbeasties.lagoona hr=long/f4e8b0/8ac8e8 dr=swim/ff5a8a/7ac8c8/flowers nk=tank tp=offs/f4f4f4/8ac8d8 sh=sandal/ff6ab8 ac=sunglasses:7ae8c8
+beachbeasties.frankie hr=long/1a1a1a/3a7ae8 hs=stripes dr=swim/1a3ab8/f4f4f4/leopard nk=tank sh=sandal/e8e83a ac=sunglasses:f4f43a
+beachbeasties.rochelle hr=bob/ffb0c8/f4f4f4 dr=tutu/ffb0c8/2a2a2a/hstripes nk=halter sh=sandal/7ae8d8 hd=bow:3ab8b8
+beachbeasties.holt hr=flames/ff6a1a/ffd23a tp=tank/c8283a/1a1a1a bt=shorts/3a3a3a/f4d03a/flames sh=sandal/f4d03a
+beachbeasties.clawdeen hr=long/6a3a2a/c8a8f0 tp=bra/7a3ab8/a8e83a/leopard bt=tiered/a8e83a/1a1a1a/leopard sh=heel/a83ac8 hd=band:3a8a3a ac=bag:7a3ab8
+beachbeasties.spectra hr=bob/6a4ab8/c8a8f0 dr=swim/2a3a8a/e83a8a/zigzag nk=tank sh=heel/2ab8e8 hd=cap:6a4ab8
+beachbeasties.jinafire hr=mohawk/3ac83a/e83a3a tp=tank/e8a03a/3ac83a bt=swim/e8a03a sh=sandal/e8283a ac=bag:e8283a
+fca.draculaura hr=bun/151015/ff5fa8 dr=hilo/1a1a1a/ff3a9a/lace nk=tank sh=sandal/ff3a9a
+fca.lagoona hr=wavy/f4e8b0/2ab8b8 dr=pencil/1a1a1a/ff6ab8/zigzag nk=halter sh=heel/ffb0d0 hd=tophat:1a1a1a
+fca.cleo hr=wavy/141414/2ab8b8 dr=hilo/1a5a7a/e8c050/scales nk=tank sh=sandal/e8c050 hd=band:e8c050 ac=bag:e8c050
+fca.clawdeen hr=curly/5a2a6a/a87ae8 tp=long/2a1a2a/e8c050/sparkle bt=tutu/e83ac8 ac=belt:e8c050,neck:e8c050 sh=sandal/e8c050
+frightscameraactionhau.viperine hr=long/ffb0b8/f4c8c0 dr=mini/2a2a3a/ffb0c8/flowers nk=long sh=lace/ffa0c8 ac=glasses:ffa0b0 hd=beret:ffb0c8
+frightscameraactionhau.honeyswamp hr=curly/1aa8a8 dr=tiered/7ad8c8/1a1a1a/flowers nk=collar sh=heel/ff9ad0 hd=flower:ff7ab0
+frightscameraactionhau.elissabat hr=long/3a1a3a/7a3a8a dr=tutu/3a1a4a/1a1a1a nk=long sh=boot/1a1a1a
+frightscameraactionhau.clawdiawolf hr=curly/f4d03a tp=collar/f4f4f4 jk=blazer/c8182a/1a1a1a bt=pencil/c8a040/1a1a1a/zigzag lg=knee/c8182a sh=mary/e8c040
+frightscameraactionhau.operetta hr=victory/c8281e/1a1a1a dr=skater/f4f4f4/1a1a1a/zigzag nk=tank sh=mary/1a1a1a hd=bow:f4f4f4
+ghoulspirit.frankie hr=long/f4f4f4/1a1a1a hs=stripes tp=long/1a1a1a/3a8ae8/plaid bt=skater/3a7ab8/1a1a1a/plaid sh=heel/2ab8d8
+ghoulspirit.venus hr=long/e8283a/3ac83a dr=mini/1a1a1a/e8283a nk=tee sh=boot/e8283a
+ghoulspirit.spectra hr=long/5a3ab8/7a5ad8 tp=tee/1a1a1a/e83a8a bt=pleat/e83a8a/1a1a1a/plaid sh=heel/c8182a hd=band:7a5ad8
+ghoulspirit.slomanmortavitch boy=1 hr=mohawk/2a6ae8 tp=tee/8a2a8a bt=capri/3a3aa8 sh=sneaker/1a1a1a
+ghoulsnightout.rochelle hr=long/ff3a7a/f4f4f4 tp=tee/1a1a1a/ff6ab8/sparkle jk=crop/c8b8a0 bt=tiered/ffb0c8/1a1a1a sh=heel/ffb0c8 ac=tie:3a3a3a,bag:ff9ac8
+ghoulsnightout.lagoona hr=pony/f4e8b0/8ac8e8 tp=tank/1a1a1a jk=crop/2ab8c8/e83a8a bt=tiered/1a1a1a/ff3a8a lg=knee/ff5ab8 sh=boot/2ac8b8
+ghoulsnightout.spectra hr=wavy/6a3ab8/9a6ad8 dr=pencil/3a2a4a/c8c8d0/sparkle nk=tank sh=heel/c8c8d0 ac=bag:c8c8d0
+ghoulsnightout.venus hr=long/ff3a7a/7ac83a dr=tiered/1a1a1a/ff3a8a/check nk=tank sh=boot/1a1a1a/3ac83a | hr=curly/6a3a8a dr=pencil/1a1a1a/e8c050/leopard nk=tank sh=heel/7a3ac8 | hr=long/ffb0c8/f4f4f4 dr=tiered/3a3a3a/ff9ac8/check nk=tank sh=heel/ffb0c8 | hr=long/3a8ae8/1f5ab8 dr=pencil/2a2a6a/c8283a nk=tee sh=heel/f4f4f4 ac=glasses:c8283a,bag:c8283a
+iheartshoes.draculaura hr=wavy/151015/ff5fa8 tp=tee/f4d03a jk=bolero/c8283a/1a1a1a/plaid bt=pencil/e8283a/1a1a1a/lace sh=heel/1a1a1a hd=shades:1a1a1a ac=bag:1a1a1a
+iheartshoes.cleo hr=bob/141414/1aa8a8 tp=tank/2ab8b8/e8c050 bt=capri/2ab8b8/e8c050/zigzag ac=sash:e8c050 sh=sandal/e8c050 hd=shades:f4d03a
+lonesignature.amanitanightshade hr=curly/7a4ad8 dr=hilo/c8b8e0/3a6a3a/leaves nk=tank sh=heel/1a1a1a
+lonesignature.castafierce hr=long/1a1a1a/e8642a dr=tutu/5a3ab8/1a1a1a/sparkle nk=corset jk=cape/1a1a1a sh=boot/5a3ab8
+lonesignature.catty hr=long/ff3a9a dr=hilo/ff3a9a/1a1a1a/sparkle nk=corset sh=boot/f4f4f4
+lonesignature.finneganwake boy=1 hr=mohawk/2a8ae8 tp=tee/f4d03a/c8283a jk=vest/5a8aa8 bt=jeans/3a5a8a sh=sneaker/3a5a8a
+lonesignature.headlessheadmistressbl hr=bun/1a1a1a dr=midi/7a3ab8/1a1a1a nk=collar jk=coat/7a3ab8/1a1a1a sh=boot/1a1a1a
+lonesignature.janeboolittle hr=curly/2a2a6a/c83a8a dr=tutu/2ab8c8/1a1a1a nk=tank jk=crop/1a1a1a lg=tights/1a1a1a sh=boot/2a8ae8 ac=bag:1a1a1a
+musicfestival.clawdeen hr=curly/5a3a2a tp=tank/a83ac8/e8c050/sparkle bt=leggings/c83ac8 sh=thigh/f4d03a ac=neck:f4f4f4
+musicfestival.venus hr=long/e8285a/f4f4f4 tp=tank/ff5a9a/3ac83a bt=mini/1a1a1a/ff3a9a/zigzag ac=belt:7ac83a sh=boot/1a1a1a/e8287a
+musicfestival.abbey hr=long/f4f4f4/8ac8e8 tp=tank/8ac8e8/a83ae8/zigzag bt=leggings/5ab8e8 sh=boot/5ab8e8/e83ac8 hd=band:3a3a5a
+musicfestival.draculaura hr=long/151015/ff5fa8 dr=pencil/e8287a/1a1a1a nk=tank sh=heel/e8287a ac=belt:1a1a1a | hr=short/4a2a18/2aa8a8 tp=tank/2a2a2a bt=capri/2a2a2a sh=sandal/2ab8a8
+newscaremester.catrine hr=wavy/f4f4f4/a88ae8 dr=tiered/1a2a3a/ff9ac8/stripes nk=tee sh=heel/a88ae8 ac=bag:ffb0d8
+newscaremester.catty hr=long/ff3a7a tp=tee/ffb0d0/1a1a1a/sparkle jk=crop/e8287a bt=leggings/e8287a sh=boot/1a1a1a
+newscaremester.clawdeen hr=long/5a2a6a/a8e83a jk=crop/1a1a1a/a8e83a tp=tank/a8e83a bt=tutu/7a3ac8/1a1a1a sh=boot/1a1a1a ac=bag:1a1a1a
+newscaremester.gigi hr=pony/e8287a/ff9ab8 tp=tank/1a1a1a/e8c050 bt=mini/ff6ab8/e8c050 lg=fishnet/ff7a9a sh=sandal/e8c050 ac=sash:e8c050,bag:ff6ab8
+newscaremester.invisibilly boy=1 hr=short/3a8ab8 tp=long/1a3a6a/3a8ab8 bt=capri/3a8ae8/1a1a1a/plaid sh=sandal/1a1a1a hd=beanie:3a8ab8
+newscaremester.jinafire hr=pony/3ac83a/1a1a1a tp=tank/1a1a1a/e8c050 bt=leggings/e8283a/1a1a1a/flowers lg=fishnet/1a1a1a sh=sandal/3ac83a
+newscaremester.twyla hr=long/7ae0e8/5a8ae8 dr=mini/7a6ae8/c8a8f0/flowers nk=long sh=mary/1a1a1a ac=bag:1a1a1a
+powerghouls.clawdeen hr=curly/4a2a1a tp=tank/8a3ab8/e8c050/sparkle bt=shorts/7a3ac8 sh=thigh/c8a040 hd=band:a83ac8 ac=cuffs:a83ac8
+powerghouls.spectra hr=long/2a2a8a/7a5ad8 dr=mini/2a1a3a/c83a9a/web nk=tank sh=thigh/b8b8c0/e83a9a hd=mask:e83a9a ac=collar:e83a9a
+powerghouls.toralei hr=long/e8642a/c8481a tp=long/c8283a/2a2a2a/hstripes bt=leggings/c8283a/2a2a2a/hstripes sh=thigh/c8182a hd=mask:1a1a1a
+powerghouls.frankie hr=long/f4f4f4/1a1a1a hs=stripes dr=pencil/c8c8d0/1a1a1a/sparkle nk=tank sh=thigh/c8c8d0 ac=collar:d8f03a
+sweetscreams.draculaura hr=pig/1a1a1a/e8287a dr=tiered/2a1a2a/e8287a/vstripes nk=long sh=boot/1a1a1a/e8287a ac=bag:1a1a1a
+sweetscreams.frankie hr=long/f4f4f4/1a1a1a hs=stripes dr=tutu/f4f4f4/c8283a/vstripes nk=long tp=long/c8283a sh=lace/f4f4f4/c8283a hd=bow:1a1a1a
+sweetscreams.abbey hr=long/1a1a1a/a87ae8 dr=tutu/2a2a3a/7ae8c8/check nk=tank jk=fur/a83ac8/a83ac8 sh=boot/1a1a1a/a83ac8 hd=crown:3a3a5a
+sweetscreams.ghoulia hr=curly/2a3ab8 dr=tutu/1a1a1a/2a6ae8/polka nk=tank sh=boot/e8283a/7ac83a ac=glasses:2ab8b8 hd=tiara:7ac83a
+apackoftrouble.howleen hr=long/ff6a6a tp=long/c8283a/1a1a1a/hstripes bt=jeans/2a4ab8 sh=boot/1a1a1a | hr=short/4a2a18 tp=tee/1a1a1a/2ab8b8/hstripes bt=shorts/8a8a8a sh=sneaker/8a3ab8 | hr=curly/f4d03a tp=tee/f4f4f4/c8283a/hstripes bt=mini/c8283a sh=sandal/f4f4f4 ac=glasses:1a1a1a | hr=curly/5a2a6a tp=tank/1a1a1a bt=tiered/a88ae8/1a1a1a sh=sandal/e8c050
+creepateria.cleo hr=long/141414/2ab8b8 dr=pencil/2a3a8a/f4d03a/zigzag nk=offs sh=sandal/f4d03a hd=band:2ab8b8
+creepateria.draculaura hr=long/2a1a2a/ff5fa8 tp=tee/1a1a1a/f4d03a/hearts bt=pencil/ff3a9a/1a1a1a/check sh=heel/ff3a9a
+creepateria.howleen hr=long/ff3a7a tp=tee/c8283a/f4d03a/polka bt=pencil/1a1a1a/3ab8e8/check sh=boot/ff5ab8
+freakyfieldtrip.gigi hr=long/e8287a/ff9a6a dr=pencil/1a2a6a/c86ae8/sparkle nk=tank ac=neck:e8c050 sh=sandal/e8c050
+freakyfieldtrip.clawdeen hr=curly/5a3a2a/a87ae8 dr=pencil/1a1a1a/7ac83a/leopard nk=tank ac=sash:7ac83a sh=boot/a88ae8
+freakyfieldtrip.toralei hr=bob/e8642a/2ab8b8 dr=pencil/c8283a/1a1a1a/leopard nk=tee sh=sandal/2ab8a8
+freakyfusionrechargech.frankie hr=long/1a1a1a/3a7ae8 hs=stripes dr=pencil/1a1a1a/c8c8d0/sparkle nk=tank sh=heel/f4f43a
+freakyfusion.lagoonafire hr=pony/e8402a/a8e83a hs=split tp=tank/e8283a/1a1a1a jk=bolero/2ab8b8 bt=tutu/1a1a1a/ff3a8a/flowers lg=fishnet/f4f4f4 sh=heel/ff3a8a ft=+fins
+freakyfusion.dracubecca hr=wavy/1a1a1a/3a7ad8 dr=tutu/3a6ad8/ff3a8a/hearts nk=tee jk=bolero/c8603a sh=boot/1a1a1a hd=bow:c8603a
+freakyfusion.cleolei hr=long/1a1a1a/c86ae8 tp=tank/3ab8a8/e8c050/zigzag bt=leggings/2a1a3a/e8c050/zigzag sh=heel/1a1a1a ac=bag:f4d03a ft=+catEars,+tail
+freakyfusion.clawvenus hr=pony/7ac83a/ff3a7a hs=split dr=pencil/1a1a1a/7ac83a/leaves nk=tank jk=fur/e83ac8/f4d03a lg=tights/c8a83a sh=boot/1a1a1a/ff3a8a
+freakyfusion.neighthan boy=1 hr=mohawk/3a8ae8/e83a3a tp=tee/1a1a1a/3a8ae8 bt=pants/1a1a1a/e8283a/flames sh=sneaker/f4e83a ft=+unicorn
+freakyfusionfusioninsp.frankie hr=long/f4e8b0/1a1a1a hs=split tp=tee/1a1a1a jk=vest/e8d83a/1a1a1a/leopard bt=leggings/1a1a1a sh=boot/c8b8a0 ft=+catEars
+freakyfusionfusioninsp.ghoulia hr=long/7ac8f0/1a1a1a dr=tutu/2a6ad8/1a1a1a/polka nk=tee ac=sash:e8283a sh=boot/2ab8e8 ac=glasses:1a1a1a hd=bow:1a1a1a ft=+wings
+freakyfusionfusioninsp.operetta hr=long/c8281e/1a1a1a hs=split dr=pencil/b84a8a/1a1a1a/plaid nk=collar lg=stripes/1a1a1a/c83a9a sh=mary/1a1a1a ac=bag:ff5ab8 ft=+horns
+freakyfusionfusioninsp.scarahscreams hr=bob/2a2a2a tp=collar/f4f4f4 bt=leggings/3a2a2a/c8603a/leopard sh=boot/f4f4f4 ac=bag:1a1a1a ft=+catEars,+tail
+freakyfusionhybrids.sirena hr=wavy/3a4ab8/7a8ae8 tp=tank/c8e870/c8c8d0/scales bt=mermaid/c8c8d0/1a1a1a/scales sh=heel/1a1a1a ac=neck:f4f4f4
+freakyfusionhybrids.avea hr=long/1a1a1a/2ab8b8 tp=collar/2ab8b8 jk=jacket/c8283a/1a1a1a bt=leggings/7a6a9a lg=tights/7a6a9a sh=boot/1a1a1a hd=tophat:1a1a1a/c8283a ft=+wings
+freakyfusionhybrids.bonitafemur hr=long/ffb0c8/f4f4f4 dr=tutu/ff3a9a/1a1a1a/lace nk=corset sh=boot/d8e83a ft=+mothWings,+antennae
+freakyfusionsavefranki.clawdeen hr=curly/5a3a2a tp=tank/1a1a1a/f4d03a bt=capri/3a3a3a/a83ac8/zigzag sh=sneaker/f4d03a/7a3ac8
+freakyfusionsavefranki.draculaura hr=bob/2a1a2a/ff5fa8 tp=tee/1a1a1a/ff5fa8 bt=bubble/c8285a/1a1a1a/plaid sh=sneaker/f4d03a hd=bow:f4d03a
+freakyfusionsavefranki.jacksonjekyll boy=1 hr=short/f4d03a/1a1a1a tp=tee/1a1a1a/3a8ae8 bt=shorts/2a6a5a/1a1a1a/plaid sh=sneaker/2ab8e8 ac=glasses:3a8ae8
+geekshriek.abbey hr=long/f4f4f4/ff9ac8 dr=pencil/5ab8c8/1a1a1a/zigzag nk=tee sh=boot/8a3ab8 ac=glasses:a83ac8
+geekshriek.frankie hr=long/f4f4f4/1a1a1a hs=stripes dr=pencil/1a1a1a/2ab8c8/plaid nk=tank sh=heel/2ab8c8 ac=glasses:2ab8c8
+geekshriek.howleen hr=long/ff3a6a tp=tee/f4f43a/1a1a1a jk=crop/1a1a1a bt=pencil/2a4ab8/f4d03a sh=sneaker/d8f03a ac=glasses:f4f43a
+geekshriek.ghoulia hr=pig/2a6ae8/1a1a1a tp=collar/f4f4f4/1a1a1a/check bt=skater/ff6a8a/1a1a1a/skulls sh=boot/e8283a ac=glasses:1a1a1a,bowtie:e8283a
+geekshriek.catty hr=bob/e8287a dr=pencil/f4f4f4/1a1a1a/flowers nk=tee sh=sneaker/f4f4f4 ac=glasses:f4f4f4
+geekshriek.gigi hr=long/e8287a/ff9a6a dr=pencil/a8c8e8/1a1a1a/hearts nk=tank sh=boot/2ab8e8 ac=glasses:2ab8e8
+ghoulchat.rochelle hr=bob/8ae8d8/ffb0c8 hs=split dr=pencil/1a1a1a/7ae8d8/zigzag nk=tee sh=heel/5ac8c8 | hr=wavy/9a7ad8/f4f4f4 dr=pencil/8a7ad8/1a1a1a/flowers nk=offs sh=boot/a88ae8
+ghoulsports.clawdeen hr=long/5a3a2a tp=long/f4f4f4/5a5ab8/vstripes bt=capri/f4f4f4/5a5ab8/vstripes lg=knee/f4f4f4 sh=sneaker/1a1a1a hd=cap:5a3ab8/f4f4f4
+ghoulsports.spectra hr=long/6a3ab8 tp=tank/1a1a1a/b8e83a bt=tutu/e8c8f0/b8e83a lg=knee/f4f4f4 sh=sneaker/f4f4f4/d8f03a hd=band:b8e83a
+ghoulsports.toralei hr=bob/e8642a/c8481a tp=tank/2ac8b8/1a1a1a/vstripes bt=shorts/1a1a1a/e8642a lg=knee/1a1a1a sh=boot/ff5a9a ac=scarf:e8642a
+gloomandbloom.janeboolittle hr=long/2a1a2a/7a3a8a dr=tutu/1a1a1a/c8283a nk=long tp=long/c8283a sh=boot/2a4a8a/c8283a ac=neck:2ab8c8
+gloomandbloom.venus hr=pony/e8285a/3ac83a dr=skater/1a1a1a/e8283a/flowers nk=long sh=boot/1a1a1a/3a8a3a hd=flower:e8285a
+gloomandbloom.catrine hr=wavy/a88ae8/f4f4f4 dr=skater/6a5ab8/2a3a8a/flowers nk=tank ac=sash:2a3a8a sh=boot/3a6ab8 hd=flower:2ab8e8
+gloomandbloom.cleo hr=curly/141414/2ab8b8 dr=skater/2a3a6a/e8c050/plaid nk=long lg=leggings/8ab8d8 sh=sandal/2a5ab8 hd=flower:2ab8e8
+gloomandbloom.jinafire hr=long/3ac83a/1a6a3a dr=tiered/c8283a/1a1a1a/flowers nk=tee sh=sandal/7ac8a0 hd=flower:e8402a ac=bag:c8402a
+haunted.clawdeen hr=long/9a5ad8/7a3ab8 dr=hilo/c84ac8/e8c050 nk=strapless ac=neck:e8c050 sh=sandal/e8c050
+haunted.draculaura hr=long/ff5aa0/1a1a1a dr=pencil/5a1a3a/ff5fa8/sparkle nk=tank jk=cape/ffb0d0 ac=neck:c8c8d0 sh=heel/ffb0c8
+haunted.twyla hr=wavy/7ae0d8 dr=hilo/a8b8e8/5a6ab8 nk=tank ac=neck:c8c8d0 sh=heel/2ab8a8 hd=band:3a3a5a
+haunted.spectra hr=long/9a5ad8/7a3ab8 dr=tiered/6a3a9a/c8c8d0/plaid nk=strapless tp=tube/e83a8a ac=neck:c8c8d0 sh=boot/c8c8d0
+hauntedstudentspirits.vandala hr=wavy/2ab8b8 dr=hilo/2a2a3a/ff9a8a/lace nk=long sh=sandal/2ab8b8 hd=pirate:2ab8d8/ffb0a0 ac=neck:ff9a8a
+hauntedstudentspirits.riverstyxx hr=long/8ac8f0/ffa8c8 hs=split dr=midi/c8b8f0/ff9ac8/sparkle nk=tank jk=cape/5a5a5a sh=boot/a88ae8 hd=bow:c8a8f0
+hauntedstudentspirits.kiyomi hr=long/c83a9a/7a3ab8 dr=pencil/5a6ad8/ff7ab8/plaid nk=tank ac=neck:ff9ac8,bag:5a5ad8 sh=heel/3a3a3a
+hauntedstudentspirits.portergeiss boy=1 hr=quiff/5a5a3a tp=collar/7a7a8a/ff6ab8 bt=shorts/5a5a5a/1a1a1a/camo sh=sneaker/2ab8a0
+hauntedstudentspirits.rochelle hr=long/8ae0e0/ffb0c8 dr=hilo/2a8a9a/ff9ac8/plaid nk=tank ac=neck:ff9ac8 sh=heel/7ae0e0
+iheartaccessories.skelita hr=long/3a1a1a/e8283a dr=pencil/1a1a1a/e8642a/stripes nk=collar sh=heel/ff3a8a hd=flowers:e8283a/2ab8b8 ac=bag:ff5a8a
+iheartaccessories.operetta hr=victory/c8281e/1a1a1a tp=tee/1a1a1a/f4f4f4 jk=jacket/e8c8f0 bt=pants/f4b8e0/1a1a1a/polka sh=heel/c8a8f0 ac=bag:f4f4f4
+manster.gilwebber boy=1 tp=tee/a8a8e8 jk=vest/2ab8a8 bt=capri/2a2a2a sh=sandal/5a5ab8 | hr=snakes/3ac83a tp=tank/1a1a1a bt=pants/3a8a3a/1a1a1a/plaid sh=sneaker/f4f4f4 ac=sunglasses:e8283a
+monsterexchange.draculaura hr=bun/ff5fa8/1a1a1a dr=tiered/e8287a/1a1a1a/polka nk=offs sh=heel/ffa8d0 hd=bow:ff5fa8 ac=bag:1a1a1a
+monsterexchange.lorna hr=long/e8642a/c8281e dr=tiered/2a5a8a/e8283a/check nk=tank sh=boot/3a3a3a ac=bag:e8283a
+monsterexchange.lagoona hr=curly/f4e08a/2ab8b8 dr=mini/f4f4f4/1a1a1a/polka nk=long jk=bolero/1a1a1a sh=boot/9a9aa0 hd=tiara:2ab8b8 ac=bag:ff9ac8
+monsterexchange.marisol hr=long/e8287a/f4d03a tp=tank/e83a9a jk=jacket/f4802a/7ac83a bt=tiered/1a1a1a/7ac83a/check sh=boot/ff3a9a hd=tophat:a8e83a
+picniccasketfor2.frankie hr=long/f4f4f4/1a1a1a hs=stripes dr=mini/2a4ab8/1a1a1a/plaid nk=collar ac=sash:f4d03a sh=heel/1a1a1a | boy=1 hr=short/f4d03a/1a1a1a tp=tee/3a8ae8 jk=blazer/4a4a4a bt=pants/f4e03a sh=sneaker/3a3a3a ac=glasses:f4d03a
+wearemonsterhigh.slomanmortavitch boy=1 tp=tee/7a3a8a bt=jeans/2a3a8a sh=sneaker/1a1a1a | hr=long/f4e8b0/8ac8e8 dr=pencil/2a5ab8 nk=tee sh=boot/7a5ad8 | hr=bob/141414 dr=pencil/c88a3a/1a1a1a/leopard nk=tank sh=heel/c8283a | hr=long/f4d03a/c8603a tp=tee/e8803a jk=vest/f4d03a bt=pencil/8a5a2a sh=boot/c8603a | hr=bob/1a1a1a dr=pencil/1a1a1a/3ac83a nk=collar sh=heel/f4f4f4
+zombieshake.meowlody hr=bun/1a1a1a/f4f4f4 dr=pencil/2a2a2a/c8283a/zigzag nk=tank jk=crop/c8283a sh=sneaker/f4f4f4/c8283a | hr=bun/f4f4f4/1a1a1a dr=pencil/2a2a2a/c8283a/zigzag nk=tank jk=crop/c8283a sh=boot/c8283a
+zombieshake.rochelle hr=bun/ffb0c8/2ab8b8 dr=tutu/1a1a1a/f4f4f4/sparkle nk=offs sh=boot/1a1a1a | hr=long/e8285a/3ac83a dr=hilo/1a1a1a/e8283a/zigzag nk=tank sh=boot/3ac83a ac=bag:3ac83a
+booyorkbooyork.astranova hr=pony/2a8ae8/a8d8f0 dr=mermaid/f4f4f4/c83a9a/sparkle nk=offs sh=thigh/a82a8a ft=+wings
+booyorkbooyorkcityghou.elle hr=bob/2a5ab8/a8d8f0 dr=pencil/5a5a6a/1a1a1a/zigzag nk=tee sh=thigh/8a5ad8 | hr=bun/1a1a1a/e8283a dr=tutu/1a1a1a/e8a83a/stripes nk=tank lg=tights/f4d03a sh=boot/1a1a1a hd=crown:e8283a ft=+mothWings,+antennae | hr=long/ffa8c8 tp=tee/f4d03a/1a1a1a bt=skater/2a9aa8/1a1a1a sh=boot/ff6ab8 ft=+mouseEars
+booyorkbooyorkcitysche.catty hr=long/ff3a7a dr=tutu/7a3a8a/c8c8d0/sparkle nk=tank jk=fur/c8c8d0/c8c8d0 lg=tights/1a1a3a sh=boot/2ab8c8 hd=bigbow:2ab8d8
+booyorkbooyorkcitysche.nefera hr=long/1a6a7a/2ab8b8 dr=hilo/1a1a1a/c8803a/scales nk=corset ac=gloves:2ab8b8 sh=sandal/2ab8b8 hd=crown:3a3a3a
+booyorkbooyorkcometcro.cleo hr=longblunt/141414/e8a03a dr=pencil/2a4a8a/e8a03a/zigzag nk=long sh=sandal/c8803a hd=band:e8a03a ft=+bandages | hr=snakes/3ac83a tp=long/9ae83a/1a1a1a/zigzag bt=pants/1a1a1a sh=boot/c8603a ac=sunglasses:e8a03a
+booyorkbooyorkfrightse.clawdeen hr=long/5a3a2a tp=tee/f4f4f4/7a5ad8/zigzag jk=crop/7a6ab8 bt=shorts/c8a03a sh=boot/e8c050 hd=shades:e8a03a ac=bag:1a1a1a
+booyorkbooyorkfrightse.draculaura hr=long/151015/ff5fa8 dr=pencil/f4f4f4/e8287a/hearts nk=tank tp=tank/ff9ac8 bt=pencil/c8c8d0 sh=boot/c8c8d0 hd=shades:1a1a1a ac=bag:ff9ac8
+booyorkbooyorkfrightse.operetta hr=victory/c8281e/1a1a1a tp=tank/c8283a bt=pencil/f4f4f4/c8283a/flowers sh=boot/c8a8d8 hd=shades:c8283a ac=bag:a8a8b0
+booyork.mouscedes hr=wavy/ffa8c8 dr=gown/e8d8a0/1a1a1a/web nk=collar tp=tank/1a1a1a jk=fur/5a5a6a/5a5a6a sh=boot/5a5a6a hd=tiara:2ab8b8 ft=+mouseEars
+booyork.luna hr=bun/3a2a1a dr=hilo/1a1a1a/ff9ab8/web nk=corset tp=corset/c8283a lg=tights/1a1a1a sh=boot/c8c8d0 ft=+mothWings,+antennae
+booyork.elle hr=pony/2a4a8a/5a7ab8 dr=gown/8aa8e8/1a2a6a/sparkle nk=halter tp=tank/1a2a6a sh=heel/8ac8e8 hd=tiara:2ab8e8
+booyorkbooyorkoutoftom.draculaura hr=long/5a3a2a tp=tee/7a5ab8 bt=shorts/c8a03a sh=boot/e8c050 hd=bow:e8a03a | hr=long/151015/ff5fa8 dr=pencil/f4f4f4/e8287a/hearts nk=tank sh=boot/c8c8d0 | hr=long/ff3a7a tp=tank/1a1a1a jk=crop/e8287a bt=pencil/1a1a1a sh=boot/e8287a
+brandboo.batsyclaro hr=long/e8e8a8/c8d870 tp=offs/7ac83a/3a8a3a bt=shorts/2a4a2a sh=thigh/7ac83a hd=flower:f4f4f4 ft=+wings
+brandboo.isidawndancer hr=long/2ab8c8/1a7a8a tp=long/e8285a/1a1a1a/zigzag bt=leggings/1a1a1a/e8285a/zigzag sh=boot/2ab8c8 hd=crown:e8a03a ft=+horns
+brandboo.kjerstitrollsn hr=curly/7a6ae8/ff9ad8 tp=tee/1a1a1a/f4f4f4 bt=tutu/a83ac8/2ab8b8 lg=knee/7ac8b8 sh=boot/a8a8e8 hd=beanie:5ac8a8 ac=glasses:ff5aa8 ft=+horns
+budgetdeadtired.clawdeen hr=long/5a2a6a/a87ae8 dr=pencil/1a1a1a/b8e83a/polka nk=tank sh=slipper/a87ae8
+budgetdeadtired.draculaura hr=long/151015/ff5fa8 dr=skater/ff5fa8/1a1a1a/skulls nk=tank sh=slipper/ff3a9a
+budgetdeadtired.frankie hr=long/1a1a1a/2ab8e8 hs=stripes dr=pencil/2ab8e8/1a1a1a/zigzag nk=tank tp=tank/f4d03a sh=slipper/2ab8e8
+designerboootique.frankie hr=long/f4f4f4/1a1a1a hs=stripes tp=tank/2ab8e8 bt=pencil/1a1a1a/f4f4f4/check sh=heel/1a1a1a
+fangtasticfitness.lagoona hr=bun/f4d08a/ff6a8a tp=tee/3a3a3a/2ab8b8/scales bt=capri/ff8a8a sh=bare
+fangtasticfitness.catrine hr=long/7a5ab8/e83a8a tp=halter/7a6a8a/e83a8a/hstripes bt=capri/3a3a3a/c8c8c8/camo sh=bare
+fangtasticfitness.venus hr=side/e8285a/3ac83a tp=tank/3a6a3a/1a1a1a/check bt=shorts/2a2a2a/e8283a/leaves sh=bare
+freakduchic.honeyswamp hr=curly/a88ae8 dr=tutu/2a2a2a/f4f4f4/vstripes nk=tank sh=boot/f4f4f4
+freakduchic.jinafire hr=long/3ac83a/1a1a1a dr=tutu/c8283a/1a1a1a/flames nk=halter lg=fishnet/e8a03a sh=thigh/e8283a/ff5a8a
+freakduchic.frankie hr=curly/f4f4f4/1a1a1a dr=tutu/2a6ab8/1a1a1a/zigzag nk=corset sh=thigh/1a1a1a hd=tophat:1a1a1a
+freakduchic.toralei hr=curly/c8281e/e8642a dr=tutu/7a2a8a/e8a03a/stripes nk=corset sh=lace/c83a9a hd=tophat:1a1a1a
+freakduchic.gooliopejellington hr=curly/ff8aa0/f4d03a dr=tutu/2a2a2a/e8a03a/check nk=collar lg=tights/ffa8c0 sh=heel/c8283a hd=crown:e8a03a
+freakduchic.rochelle hr=long/ff3a7a/f4f4f4 dr=tutu/1a1a1a/2ab8c8/hstripes nk=tank sh=boot/ff3a8a
+freakduchic.draculaura hr=long/1a1a1a/ff3a8a tp=long/1a1a1a/ff3a8a bt=leggings/ff3a8a/1a1a1a/zigzag jk=cape/e8287a sh=boot/1a1a1a/e8a03a hd=mask:e8287a
+freakduchicnoir.clawdeen hr=long/b8a8e8/7a5ad8 tp=tank/1a1a1a/f4f4f4 bt=pants/1a1a1a/f4f4f4/vstripes jk=fur/c8b8e8/c8b8e8 sh=boot/1a1a1a hd=tophat:1a1a1a
+freakduchicnoir.twyla hr=bob/7ae0c8/2a8a7a tp=long/1a1a1a/f4f4f4 bt=flare/f4f4f4/1a1a1a/zigzag sh=heel/1a1a1a ac=bowtie:7ae0c8
+frightfullytallghouls.clawdeen hr=curly/6a3a1e tp=tube/e8a0b0/1a1a1a/tiger jk=fur/1a1a1a/f4f4f4 bt=skater/7a3ac8 sh=buckle/7a3ac8/c8a8f0
+frightfullytallghouls.draculaura hr=longblunt/151015/ff5fa8 tp=corset/e8287a/1a1a1a jk=bolero/1a1a1a bt=tutu/f4f4f4 lg=tights/3a3a3a sh=lace/ffb0d8/1a1a1a
+frightfullytallghouls.frankie hr=long/1a1a1a/f4f4f4 hs=stripes tp=collar/1a1a1a/f4f4f4/polka bt=pleat/3a5a8a/1a1a1a/plaid sh=heel/1a1a1a
+frightfullytallghouls.elissabat hr=long/3a1a3a/7a3a8a dr=tutu/5a2a6a/1a1a1a nk=long sh=boot/1a1a1a
+ghoulfair.howleen hr=long/ff3a6a dr=pencil/1a1a1a/2ab8c8/flowers nk=tee sh=heel/2ab8e8
+ghoulfair.elissabat hr=long/2a1a2a/c8283a dr=skater/3a2a3a/e8283a/lace nk=tank sh=boot/e8283a
+ghoulfair.heath boy=1 hr=flames/ff5a1a/ffd23a tp=tee/1a1a1a/e8642a/flames bt=shorts/2a3a8a sh=sneaker/ff8a1a
+ghoulfair.scarahscreams hr=long/1a1a1a/b8e83a dr=pencil/1a1a1a/a8e83a/stars nk=tank sh=boot/f4f4f4
+ghoulebritiesinlondoom.elissabat hr=long/2a1a2a/c8283a dr=pencil/3a2a5a/c8283a/plaid nk=collar sh=thigh/9a7ad8 | hr=long/ff3a7a dr=pencil/f4f4f4/e8287a nk=tank sh=boot/f4f4f4 | hr=long/ffb0c8/f4c8c0 dr=pencil/2a4ab8/e8283a/hstripes nk=tank sh=boot/5ab8e8 ac=glasses:ff9ab8,bag:5a8ae8
+ghoulfriends.draculaura hr=long/151015/ff5fa8 dr=pencil/ff5ab8/1a1a1a/check nk=tank ac=belt:f4d03a sh=boot/ff5ab8
+ghoulfriends.gigi hr=pony/e8287a/ff7ab0 dr=pencil/2ab8c8/e83a9a/zigzag nk=tee sh=heel/e8c050
+ghoulfriends.frankie hr=long/1a1a1a/2ab8e8 hs=stripes dr=pencil/2ab8c8/1a1a1a/plaid nk=tank ac=belt:2a5ab8 sh=heel/e8283a
+ghoulfriends.clawdeen hr=long/5a2a6a/a87ae8 dr=pencil/7a3ab8/1a1a1a/zigzag nk=tank ac=belt:a8e83a sh=thigh/a8e83a
+ghoulsgetaway.spectra hr=long/9a5ad8/e8a8d8 dr=pencil/d8d83a/1a1a1a/flowers nk=tank jk=fur/e86ac8/e86ac8 sh=sandal/f4d8b0 hd=flowers:e86ac8
+ghoulsgetaway.meowlody hr=long/e8e0d0/1a1a1a dr=pencil/1a1a1a/e8642a/zigzag nk=tank lg=tights/7a7a80 sh=boot/e8642a hd=sunhat:e8642a ac=collar:e8642a
+ghoulsgetaway.jinafire hr=long/3ac83a/1a1a1a dr=tiered/e8283a/f4d03a/flowers nk=tank sh=boot/e8283a ac=collar:e8d0a0
+ghoulsgetaway.elissabat hr=long/5a3a8a/a8e83a tp=tank/f4f4f4/1a1a1a/polka bt=skater/7a5ab8/f4d03a/flowers sh=sandal/f4d8b0 hd=band:a8e83a
+ghoulsgetaway.janeboolittle hr=long/2a5ae8/1a3ab8 dr=pencil/c8285a/2ab8c8/flowers nk=tank ac=collar:e8e83a sh=sandal/2ab8c8
+goregeousaccessories.robecca hr=curly/2a3ab8 tp=tank/2a4ab8 bt=skater/e8e0d0/8a8a8a/flowers sh=boot/2a3ab8 ac=bag:2a4ab8
+goregeousaccessories.honeyswamp hr=curly/7ad8c8 dr=pencil/e8e0c8/a87ae8/check nk=collar sh=heel/a88ae8 ac=bag:2ab8b8
+greatscarrierreefdownu.posea hr=long/c83a8a/2ab8c8 tp=tank/3a3a5a/c84a8a/web bt=mermaid/3a8a5a/a8e83a/leaves sh=bare hd=crown:3a3a3a
+greatscarrierreefdownu.kala hr=bob/2a2a5a/c84a9a tp=tank/c83a9a/f4d03a bt=mermaid/2a1a3a/f4d03a/zigzag sh=bare
+reef.frankie hr=long/1a1a1a/2ab8e8 hs=stripes tp=tank/3a6a3a/d8d83a/flowers bt=mermaid/1a7a7a/2ab8c8/scales sh=bare ft=+fins
+reef.toralei hr=bob/e8642a/c8481a tp=tank/c8483a/e8a03a/flowers bt=mermaid/e8803a/1a1a1a/tiger sh=bare
+reef.lagoona hr=pony/f4d03a/ff6ab8 tp=tank/ff5a9a/2ab8c8 bt=mermaid/2a3ab8/2ab8e8/scales sh=bare
+reef.draculaura hr=long/2a1a2a/ff5fa8 tp=tank/1a1a1a/f4d03a/scales bt=mermaid/1a1a1a/e8285a/scales sh=bare
+reef.clawdeen hr=bob/6a3a2a/7a5ab8 tp=tank/2a8a8a/7a5ad8 bt=mermaid/2a3ab8/2ab8a8/scales sh=bare
+greatscarrierreefhisst.peri hr=wavy/2a6ad8/f4e8c8 hs=split tp=tank/f4d03a/1a1a1a bt=mermaid/2a3ab8/e83ac8/scales sh=bare
+loveinscaris.garrottduroque boy=1 hr=quiff/2a3a8a tp=collar/c8283a jk=jacket/3a3a3a bt=jeans/3a4a6a sh=boot/5a4a3a ac=scarf:c8283a | hr=bun/1a1a1a/8ae0d8 dr=tiered/1a1a1a/f4f4f4/hstripes nk=offs sh=heel/7ae0d8
+lovesnotdead.slomanmortavitch boy=1 tp=tee/1a1a1a/f4f4f4 jk=blazer/5a2a8a/1a1a1a bt=pants/1a1a1a sh=sneaker/5a3ab8 | hr=bun/2a6ae8 dr=skater/1a1a1a/c8283a/hearts nk=tank sh=boot/c8283a ac=glasses:c8283a
+maulmonsteristas.clawdeen hr=long/5a2a6a/b8e83a tp=tank/1a1a1a bt=pencil/4a2a5a/b8e83a/zigzag sh=boot/7a3ab8 | hr=long/151015/ff5fa8 dr=pencil/c8283a/1a1a1a/hearts nk=tank sh=boot/ff3a9a | hr=long/e8287a/ff9a6a dr=gown/c8285a/f4d03a/zigzag nk=tank sh=heel/e8c050 | boy=1 tp=tee/2a3a5a/3a8ab8/vstripes bt=pants/6a6a5a sh=boot/2a2a2a | hr=long/7a5ad8 dr=pencil/5a4a8a/f4f4f4/flowers nk=tank sh=heel/f4f4f4
+scaremakeup.clawdeen hr=long/5a2a6a/7a5ae8 dr=skater/2a4a2a/e8a03a/leaves nk=tank sh=heel/2a3ab8 | hr=curly/f4c8c8/a8d8e8 dr=pencil/ff9ac8/1a1a1a/skulls nk=tank sh=sandal/a8d8e8
+scarnival.clawd hr=short/4a2a18 tp=tank/f4f4f4/3a3a3a/hstripes bt=shorts/1a6a5a/1a1a1a/plaid sh=ankle/6a4a2a hd=helmet:2ab8a8 ac=collar:3a3a3a
+scarnival.skelita hr=long/1a1a1a/2ab8b8 dr=tiered/e8803a/f4f4f4/zigzag nk=offs sh=boot/e8642a
+scarnival.draculaura hr=long/151015/ff5fa8 tp=tank/2a8ab8/1a1a1a/vstripes bt=skater/c8285a/1a1a1a/lace sh=heel/ff5ab8
+wheellove.lagoona hr=bun/f4d03a/2ab8b8 dr=pencil/1a6a8a/1a1a1a/plaid nk=tank sh=skate/c8a050 | boy=1 tp=tee/2a8ab8 bt=capri/1a2a4a sh=skate/1a1a1a ac=kneepads:1a1a1a
+wheelinwerecats.meowlody hr=long/1a1a1a/f4f4f4 tp=tank/1a1a1a jk=crop/e8a03a bt=pencil/f4f4f4/1a1a1a/zigzag sh=boot/1a1a1a hd=helmet:e8a03a | hr=long/f4f4f4/1a1a1a dr=pencil/e8a03a/1a1a1a/leopard nk=tank sh=boot/1a1a1a hd=helmet:1a1a1a
+fiercerockers.catty hr=long/ff3a7a/2ab8e8 dr=pencil/f4f4f4/1a1a1a/web nk=tank lg=tights/1a1a3a sh=boot/2ab8e8 | hr=bob/e8642a/2ab8b8 tp=tank/2ab8c8/1a1a1a bt=skater/e8642a/1a1a1a sh=thigh/1a1a1a
+fiercerockers.venus hr=long/e8285a/3ac83a dr=pencil/1a1a1a/c8c8d0/sparkle nk=tank sh=boot/a83ac8 | hr=long/3ac83a/1a1a1a dr=pencil/c8283a/f4d03a/flowers nk=collar sh=boot/1a1a1a | hr=curly/2a3ab8 tp=tank/1a1a1a jk=crop/1a1a1a bt=leggings/5a3a2a/e8a03a/leopard sh=heel/e8c050
+screamsugar.amanitanightshade hr=long/2a3ab8/7a5ad8 dr=skater/2a1a6a/5a3ab8/flowers nk=tee sh=heel/1a1a1a
+screamsugar.cleo hr=long/141414 dr=pencil/2a2a5a/a83ac8/flowers nk=tank sh=heel/e8c050
+accessoriespack.frankie tp=tank/2ab8c8 bt=mini/2ab8c8 sh=boot/2ab8d8 ac=glasses:f4f4f4
+accessoriespack.draculaura hr=long/151015/ff5fa8 tp=tee/1a1a1a bt=mini/ff5ab8 sh=skate/ff9ad0 hd=shades:f4e03a
+artclassstudio.draculaura hr=long/151015/ff5fa8 tp=tank/f4f4f4/1a1a1a/vstripes bt=pencil/e8287a/1a1a1a/flowers sh=heel/2ab8e8
+cheerleader.frankie hr=long/1a1a1a/f4f4f4 tp=tank/ff3a8a/1a1a1a bt=tiered/1a1a1a sh=boot/2a5ae8
+cheerleader.draculaura hr=long/151015/ff5fa8 tp=tank/1a1a1a/ff3a8a bt=tiered/ff3a9a sh=boot/ff5ab8
+cheerleader.lagoona hr=long/f4e8a0 tp=tank/ffb0d0/2ab8b8 bt=tiered/2ab8a8 sh=boot/ff5a8a
+cheerleader.cleo hr=long/141414 tp=tank/2ab8c8 bt=tiered/2a6ad8 sh=boot/e8c050
+cheerleader.clawdeen hr=long/4a2a3a/7a3a8a tp=tank/a8e83a/1a1a1a bt=tiered/a87ae8 sh=boot/e8c050
+completelook.frankie tp=tee/f4f4f4/1a1a1a/skulls bt=pencil/3a2a4a/ff3a8a/plaid sh=heel/c8c8d0 ac=bag:2ab8d8,sunglasses:f4f0a0
+completelook.draculaura dr=skater/ff8ad8/1a1a1a/skulls nk=tank ac=belt:2ab8e8 sh=heel/2ab8e8 ac=bag:ff3a9a
+completelook.clawdeen dr=pencil/7a3ab8/1a1a1a/zigzag nk=tank sh=boot/a8e83a ac=bag:f4d03a,sunglasses:1a1a1a
+completelook.cleo dr=pencil/e8d82a/1a1a1a/zigzag nk=tank sh=heel/c8a040 ac=bag:e8285a,sunglasses:e8285a
+daytonightfashion.draculaura hr=long/1a1a1a/ff3a7a hs=split tp=collar/f4f4f4/1a1a1a jk=vest/1a1a1a bt=tutu/ff5ab8/1a1a1a sh=lace/ff3a8a ac=sunglasses:ff5ab8
+daytonightfashion.frankie hr=long/1a1a1a/f4f4f4 tp=halter/1a1a1a/f4f4f4 bt=pencil/2a6ad8/f4d03a/check sh=heel/f4d03a hd=mask:2ab8d8 ac=bag:c8c8d0
+electrified.silvitimberwolf hr=curly/7ac8f0/f4f43a dr=skater/1a1a1a/f4803a/flames nk=tee jk=fur/ff6aa8/ff6aa8 sh=sandal/f4f43a
+electrified.draculaura hr=curly/1a1a1a/e8285a dr=skater/1a1a1a/f4d03a/hearts nk=tee sh=sandal/ff3a9a hd=bigbow:ff3a9a
+electrified.arihauntington hr=curly/9a3ad8/e83a9a dr=pencil/1a1a1a/3ab8e8/zigzag nk=tee sh=sandal/ff5ab8 hd=clip:ff5ab8
+electrified.cleo hr=curly/1a1a1a/e8283a dr=pencil/1a1a1a/f4d03a/zigzag nk=tube sh=sandal/ff3a5a hd=bow:f4d03a
+electrified.venus hr=curly/ff3a6a/3ac83a dr=pencil/1a1a1a/a8e83a/zigzag nk=tank sh=sandal/a8e83a hd=flower:3ac83a
+electrifiedhighvoltage.frankie hr=curly/f4f4f4/1a1a1a dr=tutu/1a1a1a/f4d03a/zigzag nk=tank sh=thigh/f4f43a ac=collar:f4d03a
+electrifiedmonstrousha.clawdeen hr=curly/a83ad8/e83a7a dr=tutu/1a1a1a/ffb0d0/zigzag nk=tank sh=sandal/ff6ab8 hd=flower:b8e83a
+electrifiedmonstrousha.twyla hr=curly/2ac8c8/7a5ad8 hs=split dr=tutu/1a1a1a/e83a8a/web nk=tank sh=heel/2ab8b8 hd=bow:e83ac8
+firstdayofschool.draculaura hr=longblunt/151015/ff5fa8 tp=tee/f4f4f4/1a1a1a jk=vest/ff3a9a/1a1a1a/polka bt=skater/1a1a1a/ff5ab8/sparkle sh=sneaker/ff3a9a
+firstdayofschool.frankie hr=long/1a1a1a/f4f4f4 hs=stripes tp=tee/2ab8d8/1a1a1a jk=vest/1a1a1a bt=pleat/2a5ab8/1a1a1a/plaid sh=boot/1a1a1a ac=bag:f4d03a
+firstdayofschool.arihauntington hr=long/a82a6a/7a2a8a dr=hilo/5a2a8a/c8c8d0/zigzag nk=tee sh=boot/e8283a ac=bag:e8283a
+firstdayofschool.clawdeen hr=long/4a2a3a/7a3a8a tp=tank/a8e83a/1a1a1a/hstripes jk=fur/1a1a1a/a87ae8 bt=capri/7a3ab8/1a1a1a/leopard sh=boot/e8c050 ac=bag:a87ae8
+firstdayofschool.cleo hr=longblunt/141414/e8c050 tp=tank/2ab8a8 bt=capri/2ab8a8/1a1a1a/tiger sh=sandal/2a6ad8 hd=headdress:e8c050 ac=bag:e8c050
+firstdayofschool.lagoona hr=long/f4e8a0/8ac8e8 tp=tee/ff5a7a/f4f4f4 bt=shorts/2ab8a8/1a1a1a/zigzag lg=tights/2a2a2a sh=boot/2ab8c8 ac=bag:2a8ab8
+ghoulsbeastpet.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=pencil/2a6ad8/c8283a/plaid nk=tank sh=heel/e8283a ac=bag:8ac8e8
+ghoulsbeastpet.draculaura hr=long/2a1a2a dr=skater/ff5a7a/c8283a/hearts nk=tank sh=heel/2ab8e8 ac=bag:ff9ad8
+ghoulsbeastpet.cleo hr=longblunt/141414 dr=pencil/2a5ab8/e8c050/zigzag nk=tank sh=sandal/e8c050 ac=cuffs:e8c050
+ghoulsbeastpet.lagoona hr=long/f4e08a dr=pencil/2ab8b8/ff5a7a/flowers nk=tee sh=heel/ff6a7a
+ghoulsbeastpet.clawdeen hr=long/4a2a2a dr=pencil/e8c050/1a1a1a/leopard nk=tank sh=heel/7a3ab8
+ghoullalalocker.clawdeen hr=curly/5a2a6a/a87ae8 dr=pencil/3a3a3a/a8e83a/polka nk=tee ac=belt:e8c050 sh=boot/7a3ac8
+howdoyouboo.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=pencil/2ab8e8/1a1a1a/skulls nk=tank sh=boot/f4e83a
+howdoyouboo.cleo hr=longblunt/141414/2a5ae8 dr=pencil/2a6ad8/f4d03a/skulls nk=tank sh=sandal/e8c050 ac=cuffs:e8c050
+howdoyouboo.clawdeen hr=long/4a2a2a/7a3a8a dr=pencil/7a3ab8/f4f4f4/skulls nk=tank ac=belt:a8e83a sh=thigh/c83ac8
+icescreamghouls.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=skater/3ab8c8/1a1a1a/check nk=tank sh=boot/2ab8e8 | hr=pig/1a1a1a/ff5fa8 dr=skater/ffb0d0/ff3a8a/hearts nk=tank ac=collar:f4d03a sh=boot/ff3a9a | hr=longblunt/141414 tp=tank/f4f4f4/e83a8a/hearts bt=pencil/2ab8a8 sh=heel/f4d03a hd=headdress:e8c050 | hr=long/4a2a2a dr=pencil/7a3ab8/a8e83a/polka nk=tank tp=tee/a8e83a sh=heel/a8e83a
+musicclass.arihauntington hr=long/e87ad8 dr=pencil/a87ae8/f4f4f4/stripes nk=tee sh=boot/ff6ab8 hd=sunhat:7a5ad8
+musicclass.cleo hr=longblunt/141414/2ab8b8 tp=tee/e8c050 bt=hilo/2a5ab8/f4f4f4/flowers sh=sandal/e8c050 hd=headdress:e8c050
+partyhair.draculaura hr=long/2a1a2a/ff5fa8 tp=tank/2ab8c8/1a1a1a bt=pencil/ff9ad0/1a1a1a/skulls sh=boot/2ab8c8
+shriekwrecked.daynatreasurajones hr=curly/f4e0a0 dr=gown/1a1a1a/e8c050/skulls nk=corset sh=boot/2ab8e8 hd=pirate:c8603a
+shriekwrecked.gooliopejellington hr=long/2a6ae8/ff7ab8 hs=split dr=tutu/1a1a1a/f4f4f4/hstripes nk=tank sh=boot/f4d03a hd=crown:c8a040
+shriekwreckednauticalg.rochelle hr=bun/ffb0b8/2ab8b8 dr=tutu/1a1a1a/2ab8c8/stars nk=offs sh=boot/e8b0a0 hd=crown:e8a090 ac=collar:2ab8c8
+shriekwreckednauticalg.draculaura hr=curly/1a1a1a/ff5fa8 dr=skater/ff9ad0/1a1a1a/stars nk=tank tp=tank/f4f4f4 lg=knee/ff9ac0 sh=sandal/e8a03a ac=gloves:ff9ad0,bag:ff9ad0
+shriekwreckednauticalg.lagoona hr=curly/f4e08a tp=tee/f4f4f4/c8283a/hstripes bt=capri/f4f4f4/1a1a1a/stars lg=knee/c8283a sh=sandal/7ae8d8 hd=crown:e8483a
+shriekwreckedshriekmat.catrine hr=wavy/a88ae8/f4f4f4 dr=skater/8a9ae8/1a1a1a/stars nk=tank sh=heel/2a5ae8 hd=beret:1a1a1a ac=bag:2a5ae8
+shriekwreckedshriekmat.clawdeen hr=long/4a2a2a tp=tee/7a5ab8/f4f4f4/hstripes bt=capri/1a1a1a sh=boot/a87ae8 hd=band:e8285a ac=neck:e8c050,bag:ff7ab0
+shriekwreckedshriekmat.gilwebber boy=1 tp=tank/2ab8c8 bt=shorts/1a1a1a/f4f4f4/stars sh=sneaker/2ab8b8
+surftoturfscooter.lagoona hr=pony/f4e08a/ff3a7a tp=tank/1a1a1a/2ab8b8 bt=capri/2ab8b8/1a1a1a/check sh=sneaker/ff3a7a hd=helmet:c8a8f0
+transformingghouls.draculaura hr=long/2a1a2a/ff5fa8 dr=skater/ff3a9a/1a1a1a/check nk=halter sh=heel/ff3a9a ft=+wings
+transformingghouls.lagoona hr=bun/f4e08a/ff9a8a tp=crop/ff3a5a/1a1a1a bt=hilo/2ab8a8/ff7a7a/scales sh=heel/ff3a3a ft=+wings
+transformingghouls.clawdeen hr=long/5a3a2a tp=tank/1a1a1a jk=fur/c83ac8/c83ac8 bt=skater/9a5ad8/e8c050/polka sh=boot/a83ac8 hd=mask:e8c050
+welcome.clawdeen hr=long/4a2a2a/7a3a8a dr=skater/a83ac8/e8a03a/tiger nk=tank jk=fur/a83ac8/a83ac8 sh=sandal/a83ac8
+welcome.cleo hr=longblunt/141414/2ab8e8 dr=hilo/2a5ab8/e8a03a/zigzag nk=halter sh=lace/c8283a hd=band:2ab8e8
+welcome.lagoona hr=long/e8d83a/a8e83a dr=mermaid/ff6a7a/2ab8b8/scales nk=halter sh=sandal/2ab8a8
+welcome.abbey hr=bob/f4f4f4/e83a7a hs=streak dr=skater/2a3ab8/c8a8f0/sparkle nk=long tp=long/c8b8f0 sh=boot/a83ae8
+welcome.deuce hr=snakes/3ac83a tp=collar/f4f4f4 jk=vest/8a8aa8/1a1a1a/flowers bt=pants/1a1a1a sh=boot/f4f4f4 ac=bowtie:f4d03a
+welcome.moanicadkay hr=bun/d8a8e8/d8e83a dr=tutu/1a1a1a/c8a8f0/flowers nk=strapless lg=tights/8a8a90 sh=heel/ffa8d0
+welcome.draculaura hr=long/151015/ff5fa8 dr=pencil/1a1a1a/ff5ab8 nk=tank sh=boot/2ab8e8
+welcome.moanicadkay.2 hr=long/d8a8e8/d8e83a tp=tank/3a3a3a/d8e83a bt=leggings/1a1a1a/f4f4f4/camo sh=boot/ffa8d0 ac=bag:ff9ad0
+welcometomonsterhighmo.draculaura hr=long/151015/ff5fa8 dr=pencil/1a1a1a/ff3a8a/flowers nk=tank sh=boot/1a1a1a | hr=long/d8a8e8/d8e83a tp=tank/3a3a3a/d8e83a bt=leggings/1a1a1a/f4f4f4/camo sh=boot/ffa8d0
+welcometomonsterhighph.draculaura hr=long/1a1a1a/ff3a7a dr=hilo/1a1a1a/ff3a9a/sparkle nk=tank sh=heel/1a1a1a hd=tiara:1a1a1a
+welcometomonsterhighph.frankie hr=long/f4f4f4/1a1a1a hs=stripes dr=tutu/2a6ad8/1a1a1a/sparkle nk=halter ac=belt:f4d03a sh=heel/f4f4f4 hd=bow:2a6ad8
+welcometomonsterhighpo.draculaura hr=long/1a1a1a/ff3a7a dr=pencil/1a1a1a/f4f4f4/lace nk=tank ac=belt:e8285a,neck:f4f4f4 sh=heel/1a1a1a hd=tiara:1a1a1a
+welcometomonsterhighpo.arihauntington hr=wavy/c83a9a/f4a8e8 dr=pencil/ff5ab8/2a3ab8/stars nk=tee sh=thigh/3a6ae8
+welcometomonsterhighsi.arihauntington hr=long/c83a9a/f4a8e8 dr=hilo/5a3ab8/c8a8f0/sparkle nk=tank sh=thigh/3a3ad8 hd=band:c8c8d0
+dessertghouls.catrine hr=long/5a3ab8/e83a8a dr=pencil/c8c8c8/3a6ae8/polka nk=tank sh=boot/3a6ad8 hd=crown:e8283a
+dessertghouls.cleo hr=bob/141414/2ab8b8 dr=pencil/2ab8c8/e8283a/hearts nk=halter sh=boot/e8b03a hd=crown:e8c050
+dessertghouls.arihauntington hr=long/c83a9a/f4a8e8 dr=pencil/f4f4f4/a83ac8/polka nk=tee sh=heel/e83a9a hd=tophat:e8a0d8
+emoji.draculaura hr=long/2a1a2a dr=pencil/2a3a5a/ff3a8a/polka nk=tank sh=sandal/ff3a8a hd=bigbow:c8182a
+emoji.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=pencil/f4e83a/1a1a1a/polka nk=tank sh=thigh/2ab8e8 hd=goggles:5a5a5a
+emoji.lagoona hr=wavy/f4e8a0/8ac8a8 dr=pencil/ff9aa8/1a1a1a/polka nk=tank sh=boot/2ab890
+emoji.clawdeen hr=long/4a2a2a/c8283a dr=pencil/c8a8e8/e8c050/polka nk=tank sh=boot/a87ae8 hd=cap:ff9ab8
+gardenghouls.treesathornwillow hr=long/c8285a/1a1a1a tp=tank/1a1a1a bt=pencil/3a3a5a/c8a8e8/zigzag sh=boot/8a5a3a
+gardenghoulswingedcrit.wingrid hr=pony/1a1a1a/d8e83a tp=tank/c83ac8 bt=skater/1a1a1a/2ab8b8/flowers sh=boot/1a1a1a ft=+mothWings,+antennae
+gardenghoulswingedcrit.beetrice hr=long/1a1a1a/f4d03a tp=tank/1a1a1a/f4d03a bt=bubble/f4c83a/1a1a1a/hstripes sh=thigh/ff3a8a ft=+mothWings,+antennae
+gardenghoulswingedcrit.lumina hr=pony/ff3a7a/ff9a3a dr=skater/ff5a7a/2ab8b8/polka nk=tank sh=heel/2ab8a8 ft=+mothWings,+antennae
+gardenghoulswings.twyla hr=long/7ae0e8/a8d8f0 dr=tutu/1a1a2a/c8c8f0 nk=tank sh=boot/ff6ab8 hd=bow:7a3ab8 ft=+mothWings
+gardenghoulswings.cleo hr=long/141414/2ab8b8 dr=skater/1a1a1a/2ab8c8/sparkle nk=tank sh=sandal/e8c050 ac=sunglasses:e8c050 ft=+mothWings
+gardenghoulswings.toralei hr=long/e8642a/2ab8b8 dr=tiered/1a1a1a/e8283a/flowers nk=tank sh=sandal/ff5a3a ac=sunglasses:c8a050 ft=+mothWings
+lotsoflooks.draculaura hr=long/a82a6a/1a1a1a tp=tank/ff9ac8 bt=shorts/2a3a6a sh=boot/8ad8e8 ac=collar:1a1a1a
+lotsoflooks.frankie hr=long/1a1a1a/f4f4f4 dr=pencil/f4f4f4/1a1a1a/zigzag nk=tube ac=belt:e8283a sh=boot/c8c8d0
+monsterfamily.clawdeen hr=long/4a2a3a/7a3a8a tp=tank/7a3ab8/f4f4f4/stripes bt=capri/c8e85a sh=slipper/a87ae8
+monsterfamily.lagoona hr=wavy/f4e8a0 dr=swim/2a3a3a/ff6a8a/flowers nk=tank sh=sandal/ff7a5a
+monsterfamilymonstersi.cleo hr=long/3a2a1a/e8c050 dr=pencil/3a5ab8/e8285a/zigzag nk=long sh=sandal/2ab8b8
+monsterfamilysmallsibl.ebbieblue hr=curly/f4e08a/2a6ae8 dr=skater/2ab8c8/a83ac8 nk=tank sh=sandal/7ab8e8 ft=+fins
+monsterfamilysmallsibl.fangelicavanbat hr=curly/9a6ad8 tp=tank/2ab8a8 bt=skater/c8a8f0/7a3ab8/polka sh=mary/1a1a1a ft=+wings,+fangs
+monsterfamilysmallsibl.pawlawolf hr=curly/7a4a2a tp=tee/a83ac8 bt=shorts/1a6a8a sh=sneaker/7a3ab8 ft=+wolfEars
+monsterfamilysmallsibl.sandydenile hr=bob/e8c050 dr=swim/a83ac8/e8c050 nk=tank sh=bare hd=headdress:e8c050
+monsterfamilyvampireki.draculaura hr=long/151015/ff5fa8 dr=skater/1a1a1a/ff3a8a/hearts nk=tank ac=apron:ff9ad0 sh=heel/ff3a8a
+oneteamonescreamwinnin.clawdeen hr=long/4a2a3a/7a3a8a tp=tee/f4f4f4/1a1a1a bt=leggings/1a1a1a/ff3a8a sh=sneaker/a87ae8
+partyghouls.abbey hr=long/f4f4f4/8ac8e8 dr=hilo/2a2a6a/a83ac8/flowers nk=offs sh=boot/2ab8d8 hd=flower:7a3ab8
+partyghouls.rochelle hr=wavy/ffa0b8/f4f4f4 dr=tiered/a8285a/1a1a1a/flowers nk=tank jk=vest/1a1a1a sh=boot/ff9ad0 hd=crown:5ad8c8
+partyghouls.venus hr=long/e8285a/3ac83a dr=skater/2a1a2a/e83a6a/flowers nk=long sh=boot/1a1a1a hd=flower:e8285a ac=bag:e8603a
+schoolspirit.draculaura hr=bun/1a1a1a/ff5fa8 tp=tee/f4f4f4/1a1a1a bt=skater/ff9a8a/c8603a/hearts sh=boot/c8c8d0 | hr=side/c8b8f0/2ab8b8 tp=collar/7ad8e8/5a3a8a bt=skater/2a1a3a/c8a8f0/hearts sh=boot/5a3ab8
+swimming.frankie hr=long/1a1a1a/f4f4f4 dr=swim/2a5ab8/f4f4f4/stripes nk=tank sh=bare
+swimming.draculaura hr=long/151015 dr=swim/e8287a/1a1a1a/stripes nk=tank sh=bare
+swimming.clawdeen hr=long/4a2a3a/7a3a8a dr=swim/7a5ad8/2ab8e8/zigzag nk=tank sh=bare
+swimming.lagoona hr=long/f4e08a/7ae8c8 dr=swim/ff5a7a/2ab8b8/flowers nk=tank sh=bare
+teenhangout.lagoona hr=bob/f4e08a tp=tank/1a1a1a bt=skater/2ab8b8/e8285a/flowers sh=boot/ff5a5a
+voltageousscienceclass.draculaura hr=pony/a82a6a/1a1a1a dr=skater/ff3a5a/1a1a1a/skulls nk=collar sh=boot/ff5a8a | hr=long/f4f4f4/1a1a1a hs=stripes dr=pencil/2ab8a8/3ac83a/zigzag nk=tee lg=tights/1a1a1a sh=thigh/c8c8d0
+ballerinaghouls.draculaura hr=bun/1a1a1a/e8287a dr=tutu/1a1a1a/ff3a8a/hstripes nk=tank lg=knee/2ab8e8 sh=boot/ff3a9a hd=tiara:ff3a8a
+ballerinaghouls.cleo hr=bun/141414/2a6ae8 dr=tutu/2ab8c8/c8283a/flowers nk=corset ac=gloves:2a6ae8 sh=lace/e8c050 hd=headdress:e8c050
+ballerinaghouls.moanicadkay hr=bun/d8a8e8/d8e83a dr=tutu/e8a0d8/7ac83a/flowers nk=corset sh=lace/9a6ad8 ac=gloves:9a6ad8
+comicbook.cleo hr=long/141414/2ab8b8 dr=pencil/e8a03a/1a1a1a/zigzag nk=tee sh=sandal/f4c83a hd=bow:f4d03a
+coffeebreak.deuce hr=snakes/5ae84a tp=tee/7ac8a0/1a1a1a bt=pants/3a3a3a/c8c8c8/camo sh=sneaker/d8f03a | hr=long/1a1a1a/f4f4f4 hs=stripes tp=tee/1a1a1a jk=jacket/3a6ad8/f4f4f4/plaid bt=shorts/1a1a1a sh=boot/ff6ab8
+dayout.draculaura hr=long/ff3a8a/1a1a1a hs=split tp=offs/ff7ab0/1a1a1a bt=pencil/1a1a1a/f4f4f4/polka lg=fishnet/1a1a1a sh=boot/ff3a9a ac=bag:ff9ad0
+dayout.clawdeen hr=wavy/e8a0b8/5a3a2a hs=split tp=tank/a83ac8/f4d03a jk=crop/1a1a1a bt=shorts/8a5ad8 lg=ankle/1a1a1a sh=boot/f4d03a ac=glasses:f4d03a
+dayout.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 dr=pencil/5a8ad8/f4f4f4/plaid nk=collar sh=sneaker/ffb0d0/1a1a1a ac=bag:8ac8e8
+dayout.cleo hr=long/141414/2a6ae8 dr=pencil/2ab8a8/e8a03a/zigzag nk=halter sh=sandal/c8603a hd=headdress:e8c050
+dayout.lagoona hr=wavy/e8a0d0/a8e8a0 hs=ombre tp=tee/1a1a1a/f4f4f4 bt=hilo/f4f4f4/1a1a1a/zigzag sh=sneaker/ff5aa8 ac=bag:e8283a
+g3core.draculaura hr=long/ff3a8a/1a1a1a hs=split dr=skater/ff9ad0/1a1a1a/hearts nk=offs lg=fishnet/1a1a1a sh=boot/ff3a9a ft=+wings
+g3core.clawdeen hr=wavy/e8a0b8/5a3a2a hs=split tp=tank/1a1a1a jk=fur/c83a9a/1a1a1a bt=shorts/8a5ad8/1a1a1a/plaid lg=ankle/1a1a1a sh=boot/a87ae8 ac=glasses:f4d03a
+g3core.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=vneck/1a1a1a/ff5ab8 jk=jacket/f4f4f4/1a1a1a bt=pleat/5a8ad8/1a1a1a/plaid sh=sneaker/ffb0d0/1a1a1a
+g3core.cleo hr=long/141414/2a6ae8 dr=pencil/2ab8a8/e8c050/zigzag nk=tank sh=thigh/f4e0b0 hd=headdress:e8c050
+g3core.lagoona hr=wavy/a8e8d8/e8a0d0 hs=ombre tp=long/ff6a7a/1a1a1a bt=shorts/7ae8e8/c8a8f0/scales sh=sneaker/ff5aa8
+g3core.deuce hr=snakes/3ac8a8 tp=tee/3a1a2a jk=jacket/1a6a4a bt=pants/1a2a2a sh=sneaker/f4e8d0/c8283a
+g3core.toralei hr=long/e8402a/c8281e tp=tee/f4f4f4/1a1a1a jk=crop/1a1a1a bt=pleat/3a3a5a/e8642a/plaid sh=boot/f4f4f4/1a1a1a
+g3core.ghoulia hr=long/2a6ae8/1a3ab8 tp=tee/1a1a1a jk=jacket/f4f4f4/1a1a1a/leopard bt=mini/ff3a6a lg=tights/1a1a1a sh=boot/c8c8d0 ac=glasses:ff5a8a
+g3core.abbey hr=long/c8b8f0/f4f4f4 tp=crop/f4f4f4/a88ae8 bt=flare/a88ae8/f4f4f4/sparkle sh=boot/7a5ad8 ac=gloves:7a5ad8
+g3core.clawd hr=short/4a2a18 tp=tee/c8283a jk=jacket/1a1a1a/e8a03a bt=jeans/8aa8c8 sh=sneaker/5a4a8a
+g3core.draculaura.2 hr=long/ff3a8a/1a1a1a hs=split tp=offs/1a1a1a/1a1a1a bt=tutu/ff3a9a/1a1a1a/sparkle lg=fishnet/1a1a1a sh=boot/ff5ab8 hd=hat:1a1a1a/ff3a8a
+g3core.clawdeen.2 hr=wavy/e8a0b8/5a3a2a hs=split tp=tank/1a1a1a jk=fur/c88ae8/c88ae8 bt=pants/c8a8f0/7a3ab8/leopard ac=belt:f4d03a sh=boot/5a3a8a
+g3core.frankie.2 hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=tee/ff9ac8/1a1a1a jk=jacket/1a1a1a/5ae84a bt=shorts/5ab8e8 lg=tights/1a1a1a sh=boot/1a1a1a
+g3core.cleo.2 hr=long/141414/2a6ae8 tp=offs/e8c050/f4d03a bt=hilo/7ae8d8/1a1a1a/zigzag sh=sandal/e8c050 ft=+bandages
+g3core.lagoona.2 hr=long/f4e8a0/ff7ab8 tp=tank/ff6ab8 jk=crop/7ae8e8 bt=flare/f4f4f4/1a1a1a/zigzag sh=sneaker/ff9ad0
+g3core.venus hr=curly/e8285a/3ac83a hs=split tp=tee/1a1a1a/ff5a9a jk=crop/7ac83a/e8285a bt=shorts/8ac8e8 lg=knee/1a1a1a sh=boot/ff3a9a/3ac83a
+g3core.catty hr=long/ff3a7a tp=tank/f4f4f4 jk=jacket/ff3a8a bt=pencil/c8c8d0/1a1a1a/sparkle sh=thigh/ff3a8a
+g3core.spectra hr=wavy/6a4ab8/a88ae8 tp=long/5a3a8a/c8c8d0/sparkle bt=shorts/5a3a8a jk=long/c8b8f0 sh=boot/c8c8d0 ac=collar:c8c8d0
+g3core.jinafire hr=long/1a1a1a/a83ad8 tp=tee/1a1a1a jk=jacket/c8283a/e8c050 bt=pleat/a88ae8 lg=tights/e8a03a/1a1a1a/scales sh=boot/1a1a1a
+g3core.nefera hr=braid/1a2a2a/2ab8b8 dr=pencil/c8a040/2ab8b8/zigzag nk=tank sh=thigh/1a1a1a ac=cuffs:e8c050
+g3core.draculaura.3 hr=pig/1a1a1a/ff5fa8 hs=split tp=long/e8287a/ff9ad0/sparkle bt=mini/e8287a/1a1a1a/sparkle lg=knee/f4f4f4 sh=boot/ff5ab8
+g3core.clawdeen.3 hr=wavy/9a6ad8/5a3a8a tp=tank/1a1a1a/f4d03a jk=jacket/7a3ab8 bt=tutu/c8a8f0 sh=thigh/e8a0d8 hd=crown:e8c050
+g3core.frankie.3 hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=tee/1a1a1a/ff9ac8 bt=skater/1a1a1a/ff9ac8 lg=stripes/c8f03a/1a1a1a sh=boot/1a1a1a
+g3core.cleo.3 hr=long/141414/2a6ae8 tp=crop/1a1a1a/e8c050 jk=jacket/1a1a1a/e8c050 bt=pants/2a8ab8/e8c050/zigzag sh=boot/e8c050 hd=headdress:e8c050
+g3core.lagoona.3 hr=wavy/f4e0b0/ff9ac8 hs=ombre tp=crop/1a1a1a/ff6ab8 bt=flare/2ac8c8/f4f4f4/sparkle sh=sneaker/ff9ac8
+g3core.skelita hr=long/1a1a1a/2a2a2a dr=tutu/1a1a1a/2ab8b8/flowers nk=offs sh=boot/2ab8b8 hd=flowers:e8a03a
+g3core.robecca hr=long/141414/3a7ad8 dr=pencil/2a6ad8/1a1a1a/flames nk=tee sh=boot/c8603a
+g3core.twyla hr=buns/7a5ad8/5ae0d8 hs=split tp=long/3a5ae8 bt=skater/5a3ab8/2a3a8a/stars lg=tights/2a2a3a sh=boot/5a3ab8
+g3core.twyla.2 hr=wavy/7ae0d8/8a6ad8 hs=split tp=long/8a6ad8/1a1a1a bt=tutu/1a1a1a/c8c8f0 lg=tights/8a7ab8 sh=boot/5a3ab8
+g3core.heath boy=1 hr=flames/ff6a1a/ffd23a tp=long/3a7ad8/f4f4f4 bt=shorts/c8603a/3a7ad8/flames sh=sandal/3a5ab8
+g3core.meowlody hr=long/f4f4f4/ff6ab8 tp=tee/ff3a8a/1a1a1a bt=pencil/e8283a/f4d03a/flames lg=tights/4a4a4a sh=boot/a88ae8
+g3core.purrsephone hr=long/1a1a1a/f4f4f4 tp=tee/a88ae8 jk=crop/1a1a1a/f4f4f4/zigzag bt=shorts/1a1a1a lg=knee/1a1a1a sh=boot/e8283a
+ampedup.frankie hr=long/1a1a1a/ff5ab8 hs=stripes sk=8ac8e8/b8e8c8 tp=tee/3a3a3a jk=jacket/2a2a2a/2ab8e8 bt=leggings/1a1a1a/5ae84a/zigzag sh=boot/1a1a1a ac=tie:ff3a8a
+boojeweledbeautycase.cleo hr=long/141414/2a6ae8 dr=pencil/2ab8b8/e8c050/sparkle nk=halter sh=sandal/e8c050 hd=headdress:e8c050
+creepoverparty.draculaura hr=long/ff3a8a/1a1a1a hs=split tp=tee/1a1a1a/ff5ab8 jk=fur/ff3a9a/ff3a9a bt=leggings/1a1a1a/ff5ab8/hearts sh=slipper/1a1a1a
+creepoverparty.clawdeen hr=wavy/e8a0b8/5a3a2a hs=split tp=long/a88ae8/5a3a8a jk=fur/c8a8f0/c8a8f0 bt=pants/8a5ad8/5a3a8a/stars sh=slipper/8a6ad8
+creepoverparty.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 tp=tee/ff9ac8/1a1a1a jk=fur/3ab8e8/3ab8e8 bt=pants/3a6ad8 sh=slipper/2ab8e8 hd=band:ff6ab8
+creepoverparty.twyla hr=wavy/7ae0d8/8a6ad8 hs=split tp=long/a88ae8/1a1a1a bt=pants/a88ae8/5a3a8a/stars sh=slipper/7ae0d8 hd=sleep:7ae0d8 ac=bowtie:1a1a1a
+creepoverpartybedroom.clawdeen hr=wavy/e8a0b8/5a3a2a hs=split tp=long/2a5a7a bt=pants/2a5a7a/a8e83a/stars sh=slipper/a87ae8 | hr=long/ff3a8a/1a1a1a hs=split tp=tee/1a1a1a bt=pants/ff3a9a/1a1a1a/hearts sh=slipper/ff3a9a
+faboolouspets.clawdeen hr=wavy/e8a0b8/5a3a2a hs=split tp=tee/2ab8b8 jk=jacket/3a3a5a/2ab8b8 bt=pencil/2a5a7a/a87ae8/zigzag sh=boot/a87ae8 | hr=long/1a1a1a/ff5fa8 tp=tee/1a1a1a jk=jacket/e87ad8/1a1a1a bt=pencil/ff5ab8 sh=boot/ff3a9a
+faboolouspets.cleo hr=long/141414/2a6ae8 tp=crop/3a3a8a/e8a03a/zigzag jk=jacket/2a4ab8/e8a03a/zigzag bt=shorts/c8d86a/1a1a1a/check sh=sandal/e8c050 hd=headdress:e8c050
+fansea.lagoona hr=braid/f4d03a/2ab8b8 hs=streak dr=gown/2a3a6a/e8c050/scales nk=tank jk=cape/5a9ae8 sh=heel/e8c050 ac=neck:e8c050
+fangtasticroadtrip.clawdeen hr=wavy/e8a0b8/5a3a2a hs=split tp=tee/f4f4f4 bt=shorts/c8a8f0 sh=sneaker/f4f4f4
+monsterball.clawdeen hr=wavy/c88a5a/5a3a2a tp=tank/1a1a1a/e8c050 jk=blazer/a82a7a/1a1a1a bt=pants/a82a7a/1a1a1a/sparkle sh=heel/1a1a1a
+monsterball.draculaura hr=long/1a1a1a/ff5fa8 hs=split dr=tutu/1a1a1a/ff3a9a/lace nk=corset lg=tights/ff5ab8 jk=cape/ff5ab8 sh=boot/ff3a9a hd=bow:1a1a1a
+monsterball.lagoona hr=long/f4d03a/7ae8e8 hs=ombre tp=corset/2ab8b8/1a1a1a/scales bt=hilo/ff3a6a/2ab8b8/flowers sh=boot/ff5a8a hd=bow:2a5ab8
+monsterball.cleo hr=long/141414/2a6ae8 dr=hilo/1a1a1a/e8c050/sparkle nk=tube tp=tube/2a5ab8 sh=sandal/e8c050 hd=headdress:e8c050
+fearidescent.draculaura hr=long/ff6ab8/1a1a1a hs=split tp=collar/1a1a1a/f4f4f4 jk=bolero/1a1a1a bt=skater/ff3a9a/1a1a1a/sparkle sh=boot/ff3a9a hd=headphones:f4f4f4 ft=+wings
+fearidescent.clawdeen hr=curly/9a6ad8/7a3ab8 dr=pencil/2a2a3a/a87ae8/leopard nk=long sh=boot/a87ae8 ac=choker:1a1a1a
+fearidescent.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=long/c8d8f0 bt=skater/2a6ad8/c8c8f0/sparkle sh=boot/2a5ab8 hd=crown:c8c8d0
+fearidescent.cleo hr=long/7ac8f0/e8a03a hs=ombre dr=pencil/e8a03a/f4d03a/sparkle nk=long sh=sandal/e8c050 hd=turban:e8b03a
+fearidescent.lagoona hr=long/a8d8e8/7ae0d8 hs=ombre tp=offs/2a4ab8/7ab8e8/sparkle bt=mermaid/2a4ab8/7ab8e8/sparkle sh=heel/2ab8d8 hd=crown:3ab8e8
+skulltimatesecretsinno.draculaura hr=long/ff6ab8/1a1a1a hs=split tp=tee/1a1a1a jk=fur/ff3a9a/ff3a9a bt=skater/ffb0d0 sh=lace/1a1a1a hd=beret:1a1a1a
+skulltimatesecretsinno.clawdeen hr=wavy/e8a0d0/9a6ad8 tp=tank/1a1a1a jk=fur/c8a8f0/f4f4f4 bt=shorts/5a5a7a sh=boot/e87ad8 hd=beanie:c87ae8
+skulltimatesecretsinno.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 tp=tee/f4f4f4 jk=jacket/1a1a1a bt=skater/7ac8f0 sh=boot/c8c8d0 hd=cap:1a1a1a/1a1a1a
+skulltimatesecretsinno.cleo hr=long/141414/2a6ae8 tp=tank/2ab8c8 jk=jacket/e8c050/f4d03a bt=pencil/2ab8c8/e8c050/sparkle sh=boot/e8a03a hd=headdress:e8c050
+skulltimatesecretsinno.lagoona hr=long/f4e0b0/7ae0d8 hs=ombre tp=crop/1a1a1a jk=jacket/3a8ae8 bt=shorts/2a2a3a/2ab8b8/check sh=boot/ff5a8a hd=cap:3ab8e8
+neonfrights.draculaura hr=long/1a1a1a/ff3a8a hs=split tp=long/1a1a1a/ff3a9a bt=mini/1a1a1a sh=boot/ff6ab8 hd=hood:ff3a9a ft=+horns
+neonfrights.frankie hr=long/f4f43a/1a1a1a hs=split sk=8ac8e8/b8e8c8 tp=long/1a1a1a/d8f03a bt=leggings/3ab8e8/d8f03a sh=boot/d8f03a hd=hood:d8f03a
+neonfrights.toralei hr=long/e8642a/c8281e tp=long/e8642a bt=shorts/c8283a sh=thigh/e8803a hd=hood:e8642a
+neonfrights.ghoulia hr=long/2a3ab8/2ab8e8 tp=long/3ac83a/1a1a1a bt=shorts/ff6ab8 sh=thigh/3ac83a hd=hood:3ac83a ac=glasses:1a1a1a
+neonfrights.twyla hr=long/7ae0d8/5a8ae8 tp=long/1a1a1a/c8a8f0 bt=shorts/a88ae8 sh=boot/2ab8b8 hd=hood:a8a8f0 ft=+mouseEars
+spaday.lagoona hr=long/f4e0b0/ff9ac8 hs=ombre tp=crop/1a1a1a bt=shorts/3a8ae8 sh=sneaker/ff5a8a hd=bow:ff6ab8
+studio.clawdeen hr=wavy/e8b090/5a3a2a hs=split tp=tank/1a1a1a jk=jacket/a88ae8 bt=pants/7a3ab8/c8a8f0/sparkle sh=sneaker/d8f03a hd=hat:a8c8e8 ac=sunglasses:1a1a1a
+eeekendgetaway.clawdeen hr=wavy/c88a5a/5a3a2a tp=tank/a8e83a bt=pants/5a3a8a/a87ae8/leopard sh=sneaker/a8e83a
+eeekendgetaway.draculaura hr=long/1a1a1a/ff5fa8 dr=pencil/1a1a1a/ff5ab8/hearts nk=tank sh=heel/1a1a1a
+fearbook.abbey hr=long/2a3ab8/8ac8e8 tp=long/2a4ab8/f4f4f4/zigzag jk=fur/5ab8e8/5ab8e8 bt=pants/2a4ab8 sh=boot/5ab8e8 hd=goggles:ff6ab8/ff9ad0
+fearbook.draculaura hr=long/1a1a1a/ff5fa8 hs=split dr=pencil/ff5ab8/1a1a1a/check nk=tank jk=crop/1a1a1a sh=slipper/ff5ab8 hd=beret:1a1a1a
+fearbook.draculaura.2 hr=bob/1a1a1a tp=collar/f4f4f4/1a1a1a jk=blazer/1a1a1a bt=pencil/1a1a1a lg=tights/3a3a3a sh=boot/ff5ab8
+fearbook.ghoulia hr=long/2a6ae8/1a3ab8 tp=tee/1a1a1a bt=pants/c8283a sh=sneaker/f4f4f4 hd=helmet:ff3a8a ac=glasses:e8283a
+fearbook.lagoona hr=long/f4e0a0/7ae0d8 hs=ombre tp=tee/1a1a1a/ff5a8a bt=pants/5a2a8a/1a1a1a/stars sh=sneaker/ff5a8a ac=glasses:ff6ab8
+fearbook.toralei hr=long/e8642a/1a1a1a tp=tee/1a1a1a jk=jacket/c8283a/1a1a1a/tiger bt=shorts/1a1a1a sh=thigh/a83ac8
+fearbook.twyla hr=pig/7a5ad8/2ab8b8 hs=split dr=skater/7a6ad8/1a1a1a/stars nk=collar lg=tights/9a8ab8 sh=boot/2ab8c8
+fearbook.venus hr=curly/a8e83a/ff3a7a hs=split tp=long/1a1a1a/c8283a bt=pants/2a5a3a/e8283a/flowers sh=boot/1a1a1a
+monsterfest.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 tp=tank/1a1a1a bt=pants/5a8ad8/f4d03a/plaid jk=vest/f4f4f4 sh=boot/c8c8d0 hd=flowers:2ab8e8
+monsterfest.clawdeen hr=wavy/9a6ad8/7a3ab8 tp=crop/1a1a1a/e8c050 jk=fur/c8a8f0/c8a8f0 bt=shorts/3a3a3a/a8e83a/leopard sh=thigh/e8b03a hd=crown:c8a8f0
+monsterfest.cleo hr=long/141414/2a6ae8 tp=offs/e8b03a/e8c050 bt=flare/2a6a8a/e8c050/zigzag sh=sandal/2ab8a8 hd=headdress:e8c050
+monsterfest.lagoona hr=long/f4e0d0/7ae0d8 hs=ombre tp=tank/1a1a1a/ff5a8a dr=hilo/3a6ab8/7ae0e8 nk=tank sh=boot/1a1a1a hd=crown:7ae0e8
+monsterfest.draculaura hr=long/1a1a1a/ff5fa8 dr=pencil/ffb0d0/1a1a1a/sparkle nk=tank sh=boot/7a5a8a
+scareadiseisland.clawdeen hr=wavy/c8a0c0/5a3a2a tp=crop/a8e83a/1a1a1a/leopard bt=shorts/1a1a1a sh=sandal/a8e83a hd=shades:a8e83a
+scareadiseisland.draculaura hr=long/1a1a1a tp=bra/1a1a1a/ff3a9a bt=hilo/ff3a9a/1a1a1a/web sh=sandal/ff3a9a hd=bigbow:ff3a9a ac=earrings:ff3a9a
+scareadiseisland.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 tp=collar/1a1a1a/f4d03a/flowers bt=shorts/1a1a1a sh=sandal/f4d03a hd=bucket:b8b8c0
+scareadiseislandsnacks.lagoona hr=long/f4e0b0/ff9ac8 hs=ombre dr=pencil/1a1a1a/ff6a8a/flowers nk=tank sh=sandal/ff6a8a
+gardenmysteries.draculaura hr=long/a82a5a/ff5fa8 tp=long/1a1a1a/c8283a bt=mini/c8283a sh=boot/1a1a1a lg=fishnet/1a1a1a
+gardenmysteries.twyla hr=long/5a3ab8/7a5ad8 dr=pencil/2a2a5a/c8a8f0/stars nk=tank sh=boot/2ab8b8
+gardenmysteries.venus hr=long/e8285a/3ac83a tp=long/1a1a1a/ff5a9a bt=mini/c8283a lg=tights/3a6a3a sh=boot/1a1a1a
+monstermysteries.draculaura hr=long/1a1a1a/ff5fa8 tp=long/1a1a1a/ff5ab8 bt=mini/ff5ab8/1a1a1a/hearts lg=knee/ffb0d0 sh=boot/1a1a1a
+monstermysteries.clawdeen hr=long/7a3ab8/c8a8f0 tp=tank/1a1a1a dr=tutu/7a3ab8/e8c050/sparkle nk=tank sh=thigh/a87ae8
+monstermysteries.cleo hr=long/141414/2ab8b8 dr=tutu/1a5a6a/e8c050/sparkle nk=tank sh=thigh/e8c050 hd=headdress:e8c050
+monstermysteries.abbey hr=long/7ab8e8/2a4ab8 dr=tutu/2a3a6a/7ab8e8/sparkle nk=tank sh=thigh/3a6ad8
+wednesday.enidsinclair hr=long/f4e0a0/ff9ac8 hs=tips tp=long/ff9ac8/f4f4f4/hearts bt=pants/ff7ab0/f4d03a/plaid sh=boot/f4d03a hd=beret:ff6aa8 ac=bag:ff9ac8
+wednesday.wednesday hr=pig/141414 sk=f0e8e8 dr=skater/1a1a1a/f4f4f4 nk=collar jk=blazer/2a2a2a/8a8a8a/pinstripe lg=fishnet/1a1a1a sh=boot/1a1a1a
+wednesday.wednesday.2 hr=pig/141414 sk=f0e8e8 dr=gown/1a1a1a/2a2a2a/lace nk=long sh=boot/1a1a1a
+wednesday.wednesday.3 hr=pig/141414 sk=f0e8e8 dr=skater/1a1a1a/f4f4f4 nk=collar lg=knee/1a1a1a/f4f4f4 sh=boot/1a1a1a
+wednesday.biancabarclay hr=bob/1a1a1a sk=6a4030 tp=collar/f4f4f4 jk=blazer/3a1a5a/7a5ab8/pinstripe bt=skater/5a2a8a lg=tights/3a2a4a/7a5ab8 sh=boot/1a1a1a ac=bag:5a2a8a
+wednesday.morticia hr=long/141414 sk=f0e8e8 dr=gown/1a1a1a/c8283a nk=long
+wednesday.agnesdemille hr=long/e8803a sk=f8e0d0 tp=collar/f4f4f4 jk=blazer/3a1a5a/7a5ab8/pinstripe bt=skater/5a2a8a lg=tights/3a2a4a sh=boot/1a1a1a
+wednesday.wednesday.4 hr=pig/141414 sk=f0e8e8 tp=long/1a1a1a jk=blazer/2a2a2a bt=leggings/1a1a1a sh=boot/1a1a1a
+buriedsecrets.cleo hr=long/141414/2ab8b8 tp=tube/1a1a1a bt=shorts/2a8a7a/e8c050/zigzag sh=sandal/e8c050 hd=headdress:e8c050
+buriedsecrets.clawdeen hr=curly/c8a0e8/9a6ad8 tp=tank/1a1a1a bt=shorts/3a2a4a/c8a8f0/stars sh=heel/ffb0d0
+buriedsecrets.draculaura hr=long/ff5ab8/1a1a1a hs=split dr=pencil/ff5ab8/1a1a1a/web nk=tank sh=heel/1a1a1a hd=band:ff3a9a
+buriedsecrets.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 dr=pencil/5a8ae8/f4f4f4/plaid nk=tank sh=heel/2ab8e8
+buriedsecrets.toralei hr=long/c8402a/1a1a1a tp=tank/1a1a1a/f4d03a/leopard bt=pleat/e8283a lg=knee/1a1a1a sh=sneaker/7a3ab8 hd=cap:1a1a1a
+buriedsecrets.ghoulia hr=long/2ab8a8/3ac83a tp=tee/1a1a1a/ff5a8a/polka bt=pleat/e8287a lg=knee/ff6ab8 sh=sneaker/1a1a1a ac=glasses:a8e83a
+buriedsecrets.spectra hr=long/7a5ad8/c8a8f0 dr=pencil/a88ae8/f4f4f4/sparkle nk=tee sh=boot/a8a8b0
+buriedsecrets.twyla hr=long/2ab8c8/5a3ab8 tp=tee/2ab8c8 jk=crop/1a1a1a bt=tiered/2ab8c8 sh=boot/2ab8b8 hd=headphones:1a1a1a
+buriedsecretscourtside.toralei hr=long/c8402a/1a1a1a tp=tank/1a1a1a/f4d03a/leopard bt=pleat/e8283a lg=knee/1a1a1a sh=sneaker/7a3ab8 hd=cap:1a1a1a
+buriedsecretscourtside.clawdeen hr=curly/5a3a2a tp=tank/f4f4f4/a83ac8 bt=pleat/1a1a1a sh=sneaker/f4f4f4 hd=band:f4d03a
+buriedsecretscourtside.ghoulia hr=long/2ab8a8/3ac83a tp=tee/1a1a1a/ff5a8a/polka bt=pleat/e8287a lg=knee/ff6ab8 sh=sneaker/1a1a1a hd=cap:f4f4f4
+buriedsecretscourtside.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 tp=tank/1a1a1a/2ab8e8 bt=pleat/7ac8e8 lg=knee/d8f03a sh=sneaker/f4f4f4 hd=band:ff3a8a
+buriedsecretshauntedda.twyla hr=bun/7a5ad8/2ab8c8 dr=tutu/3a2a6a/2ab8b8/sparkle nk=tank sh=sandal/2ab8b8 ac=bag:7a5ad8
+buriedsecretshauntedda.clawdeen hr=curly/a83ac8 dr=tutu/2a2a2a/e8a03a/leopard nk=halter sh=lace/ff5ab8 ac=bag:e8a8f0
+buriedsecretshauntedda.lagoona hr=bob/f4e0a0/7ae0d8 dr=tutu/2a6a5a/ff6ab8/sparkle nk=halter sh=sandal/ff6ab8 ac=bag:7ae0a8
+buriedsecretshauntedda.cleo hr=bun/141414/2a8ae8 dr=tutu/3a3a2a/e8c050/sparkle nk=halter sh=lace/3a3ab8 ac=bag:2ab8e8
+buriedsecretshauntedda.draculaura hr=bun/1a1a1a dr=tutu/a82a5a/1a1a1a/sparkle nk=halter sh=lace/1a1a1a ac=bag:ff5ab8
+buriedsecretsscaremest.toralei hr=long/e8642a/c8281e tp=collar/f4f4f4 jk=vest/5a2a5a bt=pleat/a8283a/1a1a1a/plaid sh=boot/a83ac8 ac=tie:a83ac8,bag:c8283a
+buriedsecretsscaremest.clawdeen hr=long/4a2a2a/a83ac8 tp=collar/f4f4f4 jk=vest/1a1a1a bt=pleat/5a3a8a/1a1a1a/plaid sh=boot/7a3ab8 ac=tie:7a3ab8,bag:7a3ab8
+buriedsecretsscaremest.draculaura hr=long/a82a5a/1a1a1a tp=collar/f4f4f4 jk=vest/a8283a bt=pleat/a8283a/1a1a1a/plaid sh=heel/a8283a hd=bow:1a1a1a ac=bag:a8283a
+buriedsecretsscaremest.frankie hr=long/1a1a1a/2ab8e8 hs=stripes sk=8ac8e8/b8e8c8 tp=collar/f4f4f4 jk=vest/1a1a1a bt=pleat/2a4ab8/1a1a1a/plaid sh=boot/2a4ab8 ac=tie:2ab8e8,bag:5ac8e8
+makeamonsterpet.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=tee/d8f03a jk=lab/f4f4f4 bt=shorts/2a2a2a sh=boot/1a1a1a ac=glasses:f4f4f4
+scarysweetbirthday.draculaura hr=pig/1a1a1a/ff5fa8 dr=tutu/ffb0d0/1a1a1a/web nk=offs ac=gloves:1a1a1a sh=boot/1a1a1a hd=bow:ff9ad0
+scarysweetbirthday.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 dr=tutu/1a1a1a/c8c8d0/web nk=offs lg=knee/ffb0d0 sh=boot/c8d8e8 hd=crown:c8c8d0
+scarysweetbirthday.cleo hr=long/141414/2a6ae8 dr=hilo/1a1a1a/e8c050/sparkle nk=offs sh=sandal/c8d8e8 hd=headdress:e8c050
+scarysweetbirthday.cupidasteria hr=curly/ffb0c8/f4f4f4 dr=tutu/f4e8d0/ff6ab8/hearts nk=offs lg=tights/8a8a90 sh=boot/c8a040 hd=bigbow:e8283a ft=+wings
+scarysweetbirthday.clawdeen hr=long/3a2a1a/5a3a2a dr=pencil/c8a040/1a1a1a/leopard nk=tank sh=heel/e8c050 hd=headdress:e8c050
+skulltimatesecretsgore.draculaura hr=long/1a1a1a/ff5fa8 tp=tube/ff3a9a bt=pencil/a8285a/f4d03a/flowers sh=sandal/ff3a9a hd=flower:ff3a9a
+skulltimatesecretsgore.jinafire hr=long/3ac83a/1a1a1a tp=tube/c8283a bt=pencil/5a3a8a/3ac83a/flowers sh=sandal/e8c050 hd=flower:e8c050
+skulltimatesecretsgore.lagoona hr=long/f4e8d0/7ae0d8 tp=tube/2ab8b8 bt=pencil/2a8a9a/ff9ac8/flowers sh=sandal/7ae0d8 hd=flower:ff9ac8
+skulltimatesecretshaun.catty hr=long/ff3a7a tp=tee/1a1a1a jk=jacket/2ab8c8/c8c8d0 bt=pencil/e8287a sh=boot/ff6ab8 ac=sunglasses:1a1a1a
+skulltimatesecretshaun.clawdeen hr=curly/4a2a1a/c8a040 tp=tank/1a1a1a jk=jacket/a83ac8 bt=skater/2a2a2a/e8c050/leopard sh=boot/c8a040
+skulltimatesecretshaun.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=tank/f4f4f4 jk=fur/c8c8d0/c8c8d0 bt=skater/2a2a3a/c8c8d0/sparkle sh=boot/2ab8e8
+vamptasticscooter.draculaura hr=long/1a1a1a/ff5fa8 dr=pencil/ff9ad0/1a1a1a/web nk=tank sh=boot/1a1a1a
+welcomecommittee.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=collar/f4f4f4 jk=jacket/1a1a1a/f4f4f4/plaid bt=pants/1a1a1a/a8e83a/plaid sh=boot/f4f43a/1a1a1a ac=tie:1a1a1a
+buriedsecretsconcertlu.cleo hr=long/141414/2a6ae8 dr=pencil/e8c050/2ab8b8/sparkle nk=tank sh=boot/c8603a ac=neck:2ab8b8
+monsteristas.clawdeen hr=wavy/e8a0d0/9a6ad8 tp=crop/a83ac8 bt=pencil/7a3ab8/ff6ab8/zigzag sh=boot/ff9ad8 ac=bag:f4d03a
+monsteristas.cleo hr=long/141414/2a6ae8 dr=pencil/c8c8d0/e8c050/sparkle nk=tank sh=sandal/7ae0d8
+monsteristas.draculaura hr=long/1a1a1a/ff9ac8 dr=pencil/ff6ab8/1a1a1a/hearts nk=offs sh=heel/ff3a8a
+monsteristas.frankie hr=long/1a1a1a/2ab8e8 hs=split sk=8ac8e8/b8e8c8 dr=pencil/f4f4f4/1a1a1a/check nk=tank sh=boot/ffa8e0
+monsteristas.clawdeen.2 hr=curly/4a2a1a/a83ac8 tp=tank/a83ac8 bt=pencil/7a3ab8/f4f4f4/tiger sh=boot/a83ac8
+monsteristas.cleo.2 hr=long/141414/2a6ae8 tp=offs/f4d03a bt=pencil/2a5ab8/f4d03a/zigzag sh=sandal/e8c050
+monsteristas.frankie.2 hr=long/1a1a1a/f4f4f4 hs=stripes sk=8ac8e8/b8e8c8 tp=crop/3a6ad8 bt=pencil/a8e83a/1a1a1a/plaid sh=boot/1a1a1a
+moonspellmagic.clairedeluna hr=wavy/1a2a3a/2a6ae8 tp=crop/1a1a2a jk=kimono/c8c8d0/1a1a1a bt=leggings/1a1a1a sh=boot/1a1a1a hd=hat:1a1a2a/c8c8d0
+moonspellmagic.laylastone hr=long/a88ae8/f4c8e8 tp=tank/3a2a5a jk=jacket/8a8ac8 bt=skater/3a3a5a/c8c8d0/sparkle sh=boot/a88ae8 hd=hat:4a5ab8/c8a8f0
+moonspellmagic.raelumina hr=curly/f4c0a0 tp=crop/8a6a3a jk=kimono/a07a4a/e8c050 bt=gown/f4b0b8 sh=boot/c8285a hd=hat:ff6a9a/e8c050
+moonspellmagic.willowthorne hr=long/7a3ab8/c8a8f0 tp=crop/2a8a7a/1a1a1a bt=flare/1a1a1a/e8c050/stars sh=boot/1a1a1a hd=hat:1a5a4a/e8c050
+moonspellmagic.carinasong hr=long/ffc0d0/ff9ab8 dr=skater/e88ab8/ffd0e0/sparkle nk=offs sh=lace/c8606a hd=hat:c86a8a/ffd0e0
+selfscaresecrets.draculaura hr=long/ff3a8a/1a1a1a hs=split tp=crop/ff5ab8 bt=pencil/1a1a1a/ff5ab8/sparkle sh=heel/1a1a1a
+selfscaresecrets.abbey hr=long/c8b8f0/f4f4f4 tp=tank/b84a8a bt=tiered/2a3ab8/1a1a1a/sparkle sh=sandal/a88ae8
+selfscaresecrets.venus hr=curly/e8285a/3ac83a hs=split tp=crop/1a1a1a/ff5a9a bt=pencil/3a8a3a/1a1a1a/sparkle sh=boot/1a1a1a
+selfscaresecrets.frankie hr=long/2ab8e8/1a1a1a hs=split sk=8ac8e8/b8e8c8 tp=long/ffb0d0/2ab8e8/zigzag bt=mini/1a1a1a lg=knee/2ab8e8 sh=boot/ff6ab8
+selfscaresecrets.cleo hr=curly/1a3a8a/2a6ae8 tp=long/5ab8e8/f4f4f4/zigzag bt=shorts/2a4ab8 sh=boot/c8a070
+universalmonsters.dracula hr=longblunt/141414/c8283a sk=f0e8ec tp=collar/f4f4f4/c8283a jk=long/1a1a1a/c8283a bt=leggings/1a1a1a sh=boot/1a1a1a ac=bowtie:c8283a,bag:c8283a
+universalmonsters.frankenstein hr=longblunt/1a1a1a/f4f4f4 sk=8ac870 tp=tank/1a1a1a jk=jacket/1a1a1a/c8c8d0 bt=pants/1a1a1a sh=boot/1a1a1a ac=neck:c8c8d0
+universalmonsters.imhotep hr=long/c8c8c8/f4f4f4 sk=c8c8c8 dr=gown/a8a8a0/e8e0d0/stripes nk=long ft=+bandages ac=bag:c8803a
+sdcc.frankie hr=long/1a1a1a/f4f4f4 hs=stripes sk=c8c8c8 tp=collar/1a1a1a/f4f4f4/polka bt=pleat/5a5a5a/1a1a1a/plaid sh=heel/1a1a1a ac=bag:1a1a1a
+sdcc.ghoulia hr=long/7ac8f0/2a6ae8 tp=long/1a1a1a/c8283a bt=pants/c8283a sh=boot/c8283a/1a1a1a ac=glasses:f4f4f4,bag:c8283a
+sdcc.mannytaur boy=1 hr=short/a07a4a tp=tee/c8283a bt=jeans/3a4a6a sh=ankle/8a5a2a ft=+horns | hr=long/4a3a2a tp=long/c8285a/1a1a1a bt=skater/ff3a8a lg=leggings/1a1a1a sh=heel/c8285a
+sdcc.kieranvalentine boy=1 hr=short/3a1a2a tp=collar/c8283a jk=blazer/1a1a1a bt=pants/1a1a1a sh=boot/1a1a1a | hr=pony/2a3ab8/5a6ae8 dr=mermaid/1a1a1a/7a3ab8/flowers nk=tank sh=heel/a8a8f0
+sdcc.frankie.2 hr=long/1a1a1a/f4f4f4 hs=stripes tp=long/c8a890 bt=pants/c8a890 sh=boot/1a1a1a/f4d03a ac=belt:2ab8b8,earrings:2ab8b8 hd=band:f4f43a
+sdcc.hexiciahsteam boy=1 hr=short/2a2a2a tp=collar/f4f4f4 jk=vest/2a8ab8/1a1a1a/vstripes bt=capri/a8182a lg=knee/f4f4f4 sh=ankle/5a3a2a ac=tie:7a3ab8 | hr=curly/2a3ab8/3a7ad8 dr=hilo/2a8ab8/c8803a/gears nk=corset sh=boot/2ab8e8 hd=tophat:2ab8c8
+sdcc.hoodudevoodoo boy=1 hr=shag/5a8ad8 sk=e8e0d8 tp=long/1a1a1a/f4f4f4 jk=jacket/2a2a2a/c8283a bt=pants/b8b8c8 sh=sneaker/a8a8b8 ft=+stitches | hr=long/1a1a1a tp=tank/a8c83a bt=pencil/5a5a2a sh=heel/2a6a3a
+sdcc.wydownaspider hr=curly/c8281e dr=skater/c8283a/f4f4f4/web nk=tank sh=boot/f4f4f4/1a1a1a
+collector.draculaura hr=bun/1a1a1a/ff9ac8 dr=mermaid/1a1a1a/ff9ac8/web nk=offs jk=cape/1a1a1a/1a1a1a/web sh=heel/ff9ac8 hd=tophat:1a1a1a
+collector.skelita hr=pig/1a2a2a/2ab8b8 dr=skater/1a1a1a/e83a8a/flowers nk=collar sh=heel/2ab8d8 hd=flowers:e83a8a/f4d03a
+creeproduction.draculaura =basic.draculaura
+creeproduction.clawdeen =basic.clawdeen
+creeproduction.frankie =basic.frankie
+creeproduction.lagoona =basic.lagoona
+creeproduction.cleo =basic.cleo
+creeproduction.spectra hr=long/7a5ad8 tp=corset/1a1a1a/ff7ab8 bt=tutu/6a2a6a/c8a8e8 sh=boot/ff3ab8 ac=neck:c8c8d0
+creeproduction.abbey hr=long/f4f4f4/b05ae8 dr=mini/1a1a1a/b05ae8/zigzag nk=tank jk=fur/f4f4f4/f4f4f4 sh=boot/f4f4f4
+creeproduction.ghoulia =basic.ghoulia
+creeproduction.toralei =campusstroll.toralei
+creeproduction.meowlody =campusstroll.meowlody
+creeproduction.operetta =campusstroll.operetta
+creeproduction.rochelle hr=long/ffb0c8/8ac8c8 tp=tee/1a1a1a/f4f4f4/hstripes bt=tiered/f4f4f4/1a1a1a/plaid sh=boot/ffb0c8 hd=band:1a1a1a ac=bag:f4f4f4
+creeproduction.venus hr=long/3ac83a/ff3a7a tp=tee/1a1a1a/ff3a7a bt=leggings/ff3a7a/3ac83a/leaves sh=boot/a83ac8 ac=bag:f0c8b0
+creeproduction.robecca =betweenclasses.robecca
+creeproduction.draculaura.2 =dawn.draculaura
+creeproduction.clawdeen.2 =dawn.clawdeen
+creeproduction.frankie.2 =dawn.frankie
+creeproduction.lagoona.2 =dawn.lagoona
+fangclub.venus hr=long/1a1a1a/e8285a dr=swim/2a6a3a/1a1a1a/leaves nk=halter sh=thigh/3a8a3a ft=+vines
+hauntcouture.frankie hr=long/1a1a1a/f4f4f4 hs=stripes tp=long/1a1a1a jk=jacket/2a6a8a/1a1a1a/plaid bt=tutu/1a1a1a lg=tights/c8c8d0 sh=boot/c8d8e8 ac=bag:1a1a1a
+hauntcouture.clawdeen hr=long/5a3a2a/7a4a2a tp=crop/1a1a1a/e8c050 jk=fur/a83ac8/a83ac8 bt=mini/5a3ab8/e8c050 sh=boot/3a2a1a ac=neck:e8c050
+hauntcouture.draculaura hr=bob/1a1a1a/ff5fa8 dr=skater/ffb0c8/c8283a/web nk=long jk=cape/c8285a/c8285a/web lg=tights/3a3a3a sh=boot/ff3a8a hd=beret:c8285a ft=+wings
+hauntcouture.cleo hr=long/141414/2ab8b8 tp=bra/1a1a1a/e8c050 bt=pants/c8a060/2ab8b8/zigzag jk=kimono/2ab8a8/f4f4f4 sh=sandal/e8c050 hd=headdress:e8c050
+hauntcouture.lagoona hr=long/d8e8b0/7ae0d8 dr=hilo/2a6ab8/1a1a1a/scales nk=corset tp=corset/1a1a1a lg=tights/8a9aa8 sh=boot/c8c8d0 hd=flower:2ab8b8
+hauntcouture.frankie.2 hr=long/1a1a1a/3ac83a hs=stripes tp=tank/1a1a1a jk=jacket/1a1a1a/c8c8d0 bt=leggings/2a4ab8/3ac83a/zigzag sh=boot/1a1a1a
+hauntcouture.cleo.2 hr=long/141414 tp=tank/c8a060/1a1a1a/stripes bt=leggings/c8a060/1a1a1a/stripes jk=cape/8a8a8a sh=boot/1a1a1a hd=crown:e8c050 ft=+bandages
+hauntcouture.spectra hr=long/7a4ad8/c8a8f0 dr=hilo/3a2a8a/a88ae8/sparkle nk=long sh=boot/5a8ae8 hd=mask:5a8ae8 ac=neck:c8c8d0
+howliday.draculaura hr=long/1a1a1a/ff5fa8 hs=split dr=gown/1a1a1a/c8c8d0/lace nk=corset tp=corset/c8283a jk=cape/1a1a1a/1a1a1a/snow sh=boot/5a3a2a hd=crown:c8c8d0
+howliday.cleo boy=1 hr=snakes/3ac83a tp=collar/f4f4f4 jk=blazer/2a8a3a/1a1a1a/check bt=pants/2a8a3a/1a1a1a/check sh=ankle/c8a040 ac=sunglasses:1a1a1a,bowtie:e8283a | hr=longblunt/141414/2ab8b8 dr=skater/2a8ab8/e8283a/flowers nk=tank sh=heel/2ab8b8 ac=bag:e8c050
+howliday.clawdeen hr=curly/5a3ab8/a87ae8 dr=gown/5a3a8a/1a1a1a/sparkle nk=tube jk=fur/f4f4f4/f4f4f4 hd=crown:e8c050
+howliday.skelita hr=long/1a2a2a/2ab8b8 dr=gown/1a1a1a/a83ae8/flowers nk=offs tp=offs/1a1a1a/a83ae8 ac=belt:e8c050 hd=flowers:e8a03a/ff3a5a
+howliday.clawd boy=1 hr=short/3a1a10 tp=collar/f4f4f4 jk=jacket/c8182a/1a1a1a/leopard bt=flare/c8182a/1a1a1a/leopard sh=ankle/1a1a1a | hr=bun/1a1a1a/ff5fa8 tp=offs/1a1a1a bt=mermaid/ff3a8a/1a1a1a/lace lg=tights/3a3a3a sh=heel/ff3a8a ac=bag:ff3a8a
+howliday.cleo.2 hr=long/141414 dr=gown/e8b03a/c8903a/vstripes nk=halter jk=cape/e8c050 sh=sandal/e8c050 hd=crown:e8c050/2ab8b8
+howliday.skelita.2 hr=long/1a1a1a/c8603a dr=gown/1a1a1a/e8a03a/flowers nk=offs sh=boot/1a1a1a hd=sunhat:a83ac8
+howliday.skelita.3 hr=long/1a2a2a/2ab8b8 dr=gown/1a1a1a/ff3a6a/flowers nk=long tp=long/1a1a1a ac=apron:ff3a6a hd=crown:e8a03a/2ab8b8
+howliday.draculaura.2 hr=bun/1a1a1a/7a3ab8 dr=gown/1a1a1a/5a3a8a/lace nk=corset jk=cape/1a1a1a/2a1a3a/web lg=stripes/1a1a1a/f4f4f4 sh=boot/1a1a1a hd=crown:1a1a1a ft=+wings
+reeldrama.draculaura hr=longblunt/1a1a1a/c8283a sk=e8e8e8 tp=corset/1a1a1a/c8c8c8 jk=bolero/1a1a1a bt=tutu/f4f4f4 lg=tights/3a3a3a sh=lace/f4f4f4/1a1a1a
+reeldrama.clawdeen hr=curly/1a1a1a/7a3ab8 sk=a8a8a8 tp=tube/f4f4f4/1a1a1a/tiger jk=fur/1a1a1a/f4f4f4 bt=pleat/8a8a8a sh=boot/f4f4f4/1a1a1a/hstripes
+reeldrama.frankie hr=long/1a1a1a/2a6ae8 hs=stripes sk=d8d8d8 tp=collar/1a1a1a/f4f4f4/polka bt=pleat/8a8a8a/1a1a1a/plaid sh=heel/1a1a1a
+reeldrama.lagoona hr=wavy/c8c8c8/7ae0d8 sk=c8c8c8 tp=tank/5a5a5a/1a1a1a jk=bolero/1a1a1a bt=shorts/2a2a2a sh=sandal/1a1a1a
+reeldrama.cleo hr=longblunt/141414/e8c050 sk=c8c8c8 dr=mini/a8a8a8/1a1a1a/stripes nk=halter sh=sandal/1a1a1a ft=+bandages
+stitchedinstyle.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=hilo/2a8ab8/1a1a1a/plaid nk=corset sh=boot/1a1a1a ac=neck:f4f4f4
+vampireheart.draculaura hr=bun/1a1a1a dr=gown/1a1a1a/2a2a2a/lace nk=corset sh=heel/1a1a1a hd=crown:3a3a3a ft=+wings
+outtafright.operetta hr=victory/c8281e/1a1a1a dr=hilo/f4f4f4/c8a8e8/skulls nk=tank tp=tank/1a1a1a lg=tights/3a3a3a sh=mary/1a1a1a hd=bow:c8283a ac=bag:c8283a
+skullebrity.rupaul hr=curly/f4ece0 dr=gown/2a2a2a/8a8a8a/lace nk=long jk=cape/7a7a7a/7a7a7a/web sh=thigh/2a2a2a hd=crown:3a3a3a ft=+wings
+skullebrity.harrisreed boy=1 hr=long/c8281e sk=f4e0d8 tp=long/f4f4f4/1a1a1a/check bt=gown/1a1a1a/2a2a2a ac=belt:1a1a1a
+skullebrity.elvira hr=long/141414 sk=f4ecec dr=gown/1a1a1a/7a3ab8/lace nk=strapless jk=cape/3a2a4a/3a2a4a/web lp=c8283a
+barbie.frankie hr=long/1a1a1a/f4f4f4 hs=stripes dr=mermaid/1a1a1a/2a2a2a/lace nk=strapless ac=gloves:1a1a1a sh=heel/1a1a1a
+sk_shining.grady hr=bob/6a3a2a sk=f4e0d8 dr=skater/a8c8e8/f4f4f4 nk=tee lg=knee/f4f4f4 sh=mary/1a1a1a hd=bow:c8d8f0
+sk_it.pennywise hr=curly/e8642a sk=f4f0f0 dr=tutu/e8e0e8/c8283a nk=long ac=collar:f4f4f4 lg=stripes/f4f4f4/c8283a sh=sneaker/a8b8c8 lp=c8283a
+sk_beetle.beetlejuice hr=curly/e8e8a0/7ac83a sk=d8e0c0 tp=long/f4f4f4/1a1a1a/vstripes bt=pants/f4f4f4/1a1a1a/vstripes sh=boot/1a1a1a ac=tie:1a1a1a | hr=longblunt/1a1a1a sk=f4ecec dr=midi/1a1a1a/c8283a nk=long sh=boot/1a1a1a hd=hat:1a1a1a
+sk_gremlins.greta hr=wavy/3ac87a/1a6a3a sk=7ad87a dr=tutu/1a1a1a/a83ac8/sparkle nk=offs jk=crop/c8283a lg=tights/3a8a3a sh=heel/c8283a ac=bag:c8283a ft=+gremlinEars
+sk_dracula.dracula hr=longblunt/141414 sk=f4f0f0 tp=collar/f4f4f4/c8283a jk=cape/1a1a1a/c8283a/web bt=leggings/1a1a1a sh=boot/1a1a1a/c8283a lp=c8283a
+sk_frank.bride hr=bun/1a1a1a/f4f4f4 hs=stripes sk=e8e8e8 dr=gown/f4f4f4/d8d8d8 nk=long hd=veil:f4f4f4 | boy=1 hr=short/1a1a1a sk=7a9a7a tp=collar/3a3a3a jk=blazer/1a1a1a bt=pants/1a1a1a sh=boot/1a1a1a
+sk_annabelle23.annabelle hr=long/a0602a sk=f4e0d0 dr=skater/f4ece0/c8283a nk=long ac=sash:c8283a sh=mary/1a1a1a
+sk_elvira.elvira hr=bun/141414 sk=f4ecec dr=gown/1a1a1a/2a2a2a/lace nk=strapless lp=c8283a sh=heel/1a1a1a
+sk_chucky.chucky hr=shag/e8642a sk=f4d8c0 tp=long/c8283a/2a4ab8/hstripes bt=jeans/2a4a8a sh=sneaker/f4f4f4 ft=+stitches | hr=wavy/f4e0a0 sk=f4e0d8 dr=skater/f4f4f4/e8283a/stars nk=tube jk=crop/1a1a1a sh=heel/1a1a1a ac=bag:c8283a
+sk_nbc.jack boy=1 hr=short/f4f4f4 sk=f4f4f4 tp=collar/f4f4f4 jk=blazer/1a1a1a/f4f4f4/pinstripe bt=pants/1a1a1a/f4f4f4/pinstripe sh=boot/1a1a1a ac=bowtie:1a1a1a ft=+skeleton | hr=long/c8281e sk=a8c8e8 dr=gown/2a2a2a/c8283a/patch nk=long sh=boot/1a1a1a ft=+stitches
+sk_eljuegodelcala24.younghee hr=pig/141414 sk=f4e8d8 dr=skater/e8803a/f4d03a nk=offs tp=offs/f4d03a lg=knee/f4f4f4 sh=mary/c8283a
+sk_hocus.mary hr=long/141414/7a3ab8 sk=f4e0d8 dr=skater/c8283a/e8a03a/stripes nk=corset lg=stripes/1a1a1a/c8283a sh=boot/1a1a1a | hr=long/f4e0a0 sk=f4e8e0 dr=gown/a8285a/e8a03a nk=corset sh=boot/1a1a1a | hr=curly/e8642a sk=f4e0d8 dr=gown/3a8a3a/7a3ab8/sparkle nk=corset jk=cape/5a2a8a lg=stripes/2a6a2a/1a1a1a sh=boot/1a1a1a
+sk_addams.morticia hr=long/141414 sk=f4ecec dr=gown/1a1a1a/2a2a2a/lace nk=long | hr=pig/141414 sk=f0e8e8 dr=skater/2a2a2a/f4f4f4/plaid nk=collar sh=boot/1a1a1a
+sk_lamujeryelmons24.gillman hr=wavy/3ac87a/1a8a5a sk=5ac88a dr=hilo/2a8a5a/7ae8a8/scales nk=long sh=bare ft=+fins
+sk_alien25.xenomorph hr=bob/2a2a2a sk=3a3a3a tp=long/2a2a2a/4a4a4a bt=hilo/3a3a3a/5a5a5a sh=boot/1a1a1a ft=+tail
+sk_beetle2.beetlejuice hr=curly/b8e83a/f4f4f4 sk=d8e0c0 tp=collar/c8283a jk=blazer/c8182a/1a1a1a/plaid bt=pants/c8182a/1a1a1a/plaid sh=boot/f4f4f4 | hr=long/1a1a1a sk=f4ecec dr=gown/c8182a/e8283a/lace nk=long hd=veil:c8283a
+sk_eduardomanosti25.edwardscissorhands hr=curly/141414 sk=f4f4f4 tp=long/1a1a1a/3a3a3a dr=tutu/1a1a1a/2a2a2a nk=long sh=thigh/1a1a1a ac=belt:1a1a1a,gloves:5a5a5a
+sk_jovenesocultos25.david boy=1 hr=shag/f4e8b0 sk=f0e0d8 tp=tee/1a1a1a jk=long/1a1a1a bt=pants/1a1a1a sh=boot/1a1a1a
+sk_lanoviacadaver25.emily hr=long/2a3ab8 sk=a8c8e8 dr=gown/2a4a8a/a8c8f0/lace nk=long hd=veil:5a7ae8 ft=+skeleton
+sk_m3gan25.m3gan hr=long/f4e0a0 sk=f4e0d8 dr=tutu/e8d8d0/8a8a9a nk=long ac=bowtie:3a5ab8 lg=tights/e8e0e0 sh=mary/1a1a1a
+sk_nosotros25.adelaidewilson hr=curly/1a1a1a sk=5a3a2a tp=long/f4f4f4/c8283a bt=pants/d8d0c0/c8c8b8/camo ac=belt:e8c050 sh=sandal/f4f4f4 | hr=curly/1a1a1a sk=5a3a2a tp=long/c8182a bt=pants/c8182a ac=belt:e8c050 sh=sandal/c8a070
+sk_bitelchus26.magiciansassistant hr=bun/1a1a1a sk=8aa8d8 dr=pencil/c8283a/1a1a1a nk=tank lg=tights/c8c8d0 sh=heel/c8283a | hr=bun/e8642a sk=3ab8a0 dr=gown/c8182a/e8a03a nk=tube jk=cape/c8182a ac=sash:a8a8f0
+sk_buffycazavampi26.angel boy=1 hr=quiff/1a1a1a sk=f4e0d8 tp=tee/1a1a1a jk=long/1a1a1a bt=pants/1a1a1a sh=boot/1a1a1a | hr=long/f4e0b0 sk=f4e0d8 tp=long/1a1a1a jk=jacket/1a1a1a bt=pants/c8182a sh=boot/1a1a1a ac=bag:8a5a3a
+sk_gozer.gozer hr=bob/1a1a1a sk=f4ecec tp=long/f4f4f4/c8c8d0/sparkle bt=pants/f4f4f4/c8c8d0/sparkle sh=boot/f4f4f4 lp=c8283a
+sk_halloween.michael boy=1 hr=long/1a1a1a sk=f0ecec tp=long/2a3a5a bt=pants/2a3a5a sh=boot/1a1a1a ac=belt:1a1a1a
+sk_krampus.krampus hr=long/f4f4f4 sk=c8b8b8 dr=gown/6a1a1a/1a1a1a/vstripes nk=long jk=coat/8a1a1a/f4f4f4 hd=hood:f4f4f4 ft=+horns
+sk_coraline.coraline hr=bob/2a4ab8 sk=f4e0d8 tp=long/f4d03a jk=coat/f4d03a bt=mini/1a1a1a lg=stripes/a83ac8/1a1a1a sh=boot/f4d03a hd=cap:1a1a1a ac=bag:e8283a
+sk_lospayasosases26.shorty hr=curly/b8e83a sk=f4f4f4 tp=long/f4d03a/e8642a bt=pants/f4d03a/e8642a/zigzag sh=skate/c8283a ac=collar:e8642a ft=+clownface
+sk_mastersdeluniv26.skeletor hr=bob/c83ac8 sk=d8e83a tp=tank/2a3ab8 bt=tutu/c8283a/7a3ab8 jk=cape/3a2a8a sh=boot/2a3ab8 hd=hood:3a2a8a
+sk_oogie.oogie hr=long/7ae83a/3a8a3a sk=8ad85a dr=gown/3ac83a/c8283a/flowers nk=long sh=bare hd=hood:3ac83a
